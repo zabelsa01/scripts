@@ -1,0 +1,1 @@
+ls -r c:\windows

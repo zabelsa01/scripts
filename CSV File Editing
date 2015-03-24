@@ -1,0 +1,40 @@
+# Imports Modules
+import csv
+import os
+
+# Sets Global Variables
+global my_dict
+my_dict = {}
+global filtered_dict
+filtered_dict = {}
+dir_path = '/big/scott/temp/'
+
+# Gets a list of all CSV files in a directory
+for root, dirs, files in os.walk(dir_path):
+    csvs = []
+    for file in files:
+        if file.endswith('.csv'):
+            csvs.append(file)
+
+# Iterates through the list of CSV files and generates a dictionary
+for i in csvs:
+    with open(dir_path+i) as my_csv:
+        f = csv.reader(my_csv)
+        next(f)
+        for row in f:
+            my_dict[row[1]] = row[2]
+
+# Finds specific words in dictionary
+my_list = ['TEMP', 'hack']
+for k, v in my_dict.items():
+    v = v.upper()
+    for a in my_list:
+        a = a.upper()
+        if a in v:
+            filtered_dict[k] = v
+
+# Prints Results
+# print filtered_dict.items()
+with open(dir_path+'results.txt', 'w') as results:
+    for f in filtered_dict.keys():
+        results.write(f + '\n')

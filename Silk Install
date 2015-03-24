@@ -1,0 +1,102 @@
+#Check packages for latest release..curl command does this.
+#You will need to edit the interfaces when starting YAF
+#You will need to determine your internal network for Sensors.conf file
+
+#Download dependencies
+apt-get -y install libglib2.0-dev
+apt-get -y install libpcap-dev
+apt-get -y install python-dev
+
+#Dowload Silk Packages
+cd ~
+mkdir tmp
+cd tmp
+###GET LATEST VERSION INFO FROM NETSA"###
+curl http://tools.netsa.cert.org/ | grep "tar.gz" | cut -d"/" -f4 | cut -d'"' -f1
+
+wget http://tools.netsa.cert.org/releases/silk-3.10.1.tar.gz
+wget http://tools.netsa.cert.org/releases/yaf-2.7.1.tar.gz
+wget http://tools.netsa.cert.org/releases/libfixbuf-1.6.2.tar.gz
+
+#Install fixbuf
+cd ~/tmp
+tar -zxvf libfixbuf-*
+cd libfixbuf-*
+./configure && make
+make install
+
+#Install YAF
+cd ~/tmp
+tar -zxvf yaf-*
+cd yaf-*
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+./configure --enable-applabel
+make
+make install
+
+# Make data directory
+mkdir /data
+
+#Build and install SiLK 
+cd ~/tmp
+tar -xvzf silk-*
+cd silk-*
+./configure \
+ --with-libfixbuf=/usr/local/lib/pkgconfig/ \
+ --with-python
+make
+make install
+
+#Add Silk to ld.so.conf
+cat <<EOF >>silk.conf
+/usr/local/lib
+/usr/local/lib/silk
+EOF
+mv silk.conf /etc/ld.so.conf.d/
+ldconfig
+
+#Create Silk Conf File
+cd ~/tmp/silk-2.5.0
+cp site/twoway/silk.conf /data
+
+#Create Sensors.conf File
+cat <<EOF >sensors.conf
+probe S0 ipfix
+ listen-on-port 18001
+ protocol tcp
+ listen-as-host 127.0.0.1
+end probe
+group my-network
+ ipblocks 192.168.1.0/24 # address of eth0. CHANGE THIS.
+ ipblocks 10.0.0.0/8 # other blocks you consider internal
+end group
+sensor S0
+ ipfix-probes S0
+ internal-ipblocks @my-network
+ external-ipblocks remainder
+end sensor
+EOF
+
+#Configure rwflowpack
+cat /usr/local/share/silk/etc/rwflowpack.conf | \
+sed 's/ENABLED=/ENABLED=yes/;' | \
+sed 's/SENSOR_CONFIG=/SENSOR_CONFIG=\/data\/sensors.conf/;' | \
+sed 's/SITE_CONFIG=/SITE_CONFIG=\/data\/silk.conf/' | \
+sed 's/LOG_TYPE=syslog/LOG_TYPE=legacy/' | \
+sed 's/LOG_DIR=.*/LOG_DIR=\/var\/log/' | \
+sed 's/CREATE_DIRECTORIES=.*/CREATE_DIRECTORIES=yes/' \
+>> rwflowpack.conf
+mv rwflowpack.conf /usr/local/etc/
+mv sensors.conf /data
+
+#Create Startup Scripts and Start Service
+cp /usr/local/share/silk/etc/init.d/rwflowpack /etc/init.d
+update-rc.d rwflowpack start 20 3 4 5 .
+service rwflowpack start
+
+#Start Yaf
+nohup /usr/local/bin/yaf --silk --ipfix=tcp --live=pcap  --out=127.0.0.1 \
+  --ipfix-port=18001 --in=eth0 --applabel --max-payload=384 &
+
+#Test query
+#/usr/local/bin/rwfilter --sensor=S0 --proto=0-255 --pass=stdout --type=all | rwcut | tail

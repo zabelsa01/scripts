@@ -1,0 +1,97 @@
+#!/usr/bin/python
+import os, shutil, subprocess, fnmatch, chizer, time
+
+# IF FILE FAILES TO MOUNT: OPERATION NOT PERMITTED. NTFS IN UNSAFE STATE RUN THE FOLLOWING COMMAND
+# sudo ntfsfix /dev/sdb1
+
+#if len(os.listdir('/run/media/scott/')) < 1:
+#	os.system("mount -t 'ntfs' -r /dev/sdb1 /run/media/scott/")
+
+#DO NOT PUT A SLASH AT THE END
+mountdrive = os.popen('df -h | grep sdb1 | awk -F " " {\'print $6\'}').read().strip('\n')
+mountdvd = os.popen('df -h | grep -i batch | awk -F " " {\'print $6\'}').read().strip('\n')
+srcdir = mountdrive
+dstdir = mountdrive + '/DoNotMove'
+dirty_file = mountdvd + "/dirty_files.txt"
+fileext = ['pst', 'msi', 'dll', 'exe', 'class', 'msg', 'apk', 'zip', 'rar', '7z']
+
+mychoice = raw_input('Enter (F) to run Dirty File Search \nEnter (E) to run Bad File Extension Search\n')
+
+def MakeDest(dest):
+	fdest = dstdir + dest
+	if not os.path.exists(fdest):
+		print "Making Dir " + fdest
+        	os.makedirs(fdest)
+	else:
+		pass
+
+def MoveFile(filename):
+	if os.path.exists(filename):
+		print "Moving " + filename
+        	with open(srcdir + '/' + 'strip-results.txt', 'a+') as f:
+                	f.write(filename + '\n')
+        	shutil.move(filename, dstdir + filename)
+        	f.close()
+	else:
+		pass
+
+def ExtCheck(filename, path):
+	if os.path.exists(filename):
+		f = filename.split('/')[-1].split('.')[1].strip('\n').lower()
+		if f in fileext:
+			MakeDest (path)
+			MoveFile(filename.strip('\n'))
+	else:
+		pass
+
+def EncryptCheck(filename, path):
+	if os.path.exists(filename):
+		f = filename.split('/')[-1].split('.')[1].strip('\n').lower()
+		if chizer.isChunksEncrypted(filename) == True:
+			print 'ChunkEncrypted: ' + filename
+			#MakeDest(path)
+			#MoveFile(filename.strip('\n'))
+		elif chizer.isFileEncrypted(filename) == True:
+			print 'FileEncrypted: ' + filename
+			#MakeDest(path)
+			#MoveFile(filename.strip('\n'))
+		else:
+			pass
+	else:
+		pass
+
+def RemoveBadFiles():
+	if os.path.exists(dirty_file):
+        	print "Using " + dirty_file
+	else:
+        	exit
+	text_file = open(dirty_file, "r")
+	for filename in text_file:
+		f = filename.split('/')[-1].split('.')[1].strip('\n').lower()
+		#if f not in ['png', 'txt', 'gif', 'xml', 'log']:
+		path = '/'.join(filename.split('/')[ 1:len(filename.split('/')) -1 ])
+		path =  srcdir + '/' + path
+		filename = srcdir + '/' + '/'.join(filename.split('/')[1::]).strip('\n')
+		MakeDest(path)
+		MoveFile(filename)
+	text_file.close()
+
+def BadFileExt():
+	for root, dirs, files in os.walk(srcdir):
+		for file in files:
+			fullpath = root + '/' + file
+			if "DoNotMove" in fullpath:
+				continue
+			elif "RECYCLE.BIN" in fullpath:
+				continue
+			else:
+				ExtCheck(fullpath, root)
+				#EncryptCheck(fullpath, root)
+if mychoice.lower() == 'f':
+	print 'Moving files identified on DVD'
+	RemoveBadFiles()
+elif mychoice.lower() == 'e':
+	print 'Moving Bad File Extension'
+	BadFileExt()
+else:
+	exit

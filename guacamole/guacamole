@@ -61,5 +61,9 @@ echo "</user-mapping>" >> /etc/guacamole/user-mapping.xml
 rm -rf /usr/share/tomcat8/.guacamole
 ln -s /etc/guacamole /usr/share/tomcat8/.guacamole
 
+#Set Permissions
+chown root:tomcat8 /etc/guacamole/user-mapping.xml
+
 # Restart Tomcat Service
+service guacd restart
 service tomcat8 restart

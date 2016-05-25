@@ -12,6 +12,8 @@ import pwd
 filepath = '/etc/ansible/roles/create-new-user/tasks/add-user.yml'
 usernamepath = '/etc/ansible/roles/create-new-user/vars/main.yml'
 
+os.system('clear')
+
 # Create User Account
 def create_account():
 	#Check if running as root
@@ -21,6 +23,7 @@ def create_account():
 		exit() 
 
 	# User input for username
+	global person
 	person = raw_input('Enter Username: ')
 
 	# Create Salted Passowrd
@@ -39,6 +42,7 @@ def create_account():
 	else:
 		os.system('clear')
 		print '++====PASSWORD SALTED HASH====++'
+		global salthash
 		salthash = crypt.crypt(apswd, "$1$SomeSalt$")
 		print salthash
 

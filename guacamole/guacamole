@@ -46,6 +46,9 @@ cd ..
 mv guacamole-0.9.9.war /etc/guacamole/guacamole.war
 ln -s /etc/guacamole/guacamole.war /var/lib/tomcat8/webapps/
 
+# Link to the rdp libraries to the path that guacamole uses
+ln -sv /usr/local/lib/freerdp /usr/lib/x86_64-linux-gnu/freerdp
+
 # Configure guacamole.properties
 echo "guacd-hostname: localhost" >> /etc/guacamole/guacamole.properties
 echo "guacd-port: 4822" >> /etc/guacamole/guacamole.properties

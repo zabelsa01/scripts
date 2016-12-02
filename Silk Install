@@ -43,7 +43,7 @@ tar -xvzf silk-*
 cd silk-*
 ./configure \
  --with-libfixbuf=/usr/local/lib/pkgconfig/ \
- --with-python
+ --with-python --enable-ipv6
 make
 make install
 

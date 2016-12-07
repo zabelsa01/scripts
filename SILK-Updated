@@ -23,6 +23,9 @@ for x in $(curl https://tools.netsa.cert.org/projects.html | grep ".gz" | awk -F
   do wget http://tools.netsa.cert.org/releases/$x
 done
 
+#DELETING AN OLDER VERISON OF ANALYSIS PIPELINE THAT IS DOWNLOADED FROM NETSA 
+rm -rf analysis-pipeline-4*
+
 # Make data directory
 mkdir /data
 

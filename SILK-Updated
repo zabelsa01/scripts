@@ -1,33 +1,10 @@
 # Install Link
 # https://www.youtube.com/watch?v=5fLhb6EHvyw&index=1&list=PLSNlEg26NNpyBCKGeWaYWyuZPGfkaPWAM
 
-#BEFORE DOING ANYTHING DOWNLOAD 
-  #download libschemaTools.tar.gz
-  #tar -xvzf libschema*
-  #cd libschema*
-  #./configure & make & make install
-  
-  #download libfixbuf
-  #tar -xvzf libfixbuf*
-  #cd libfixbuf*
-  #./configure & make & make install
-  
-  #download netsa-python
-  #tar -xvzf netsa*
-  #cd netsa*
-  #python setup.py build
-  #python setup.py install
-  
-  #download rayon
-  #tar -xvzf rayon*
-  #cd rayon*
-  #python setup.py install
-
 #Check packages for latest release..curl command does this.
 #You will need to edit the interfaces when starting YAF
 #You will need to determine your internal network for Sensors.conf file
 
-#~~~~~~~~~~SCRIPT START~~~~~~~~~
 #VARIABLES
 home=$(echo ~)
 workingdir=$home'/tmp'
@@ -42,9 +19,19 @@ mkdir $workingdir
 cd $workingdir
 
 ###GET LATEST VERSION INFO FROM NETSA"###
-for x in $(curl http://tools.netsa.cert.org/ | grep "tar.gz" | cut -d"/" -f4 | cut -d'"' -f1)
+for x in $(curl https://tools.netsa.cert.org/projects.html | grep ".gz" | awk -F"/" {'print $NF'} | awk -F'"' {'print $1'})
   do wget http://tools.netsa.cert.org/releases/$x
 done
+
+# Make data directory
+mkdir /data
+
+#Install libfixbuf
+cd $workingdir
+tar -xvzf libfixbuf*
+cd libfixbuf*
+./configure && make
+make install
 
 #Install YAF
 cd $workingdir
@@ -55,9 +42,6 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 make
 make install
 
-# Make data directory
-mkdir /data
-
 #Build and install SiLK 
 cd $workingdir
 tar -xvzf silk-*
@@ -65,7 +49,8 @@ cd silk-*
 ./configure \
  --with-libfixbuf=/usr/local/lib/pkgconfig/ \
  --with-python --enable-ipv6
-make & make install
+make
+make install
 
 #Add Silk to ld.so.conf
 cat <<EOF >>silk.conf
@@ -75,15 +60,34 @@ EOF
 mv silk.conf /etc/ld.so.conf.d/
 ldconfig
 
+#Install schematools
+cd $workingdir
+tar -xvzf libschema*
+cd libschema*
+./configure && make
+make install
+
 #Make PipeLine
 cd $workingdir
 tar-xvzf analysis*
 cd analysis*
-./configure & make & make install
+./configure && make
+make install
+
+#Install netsa-python
+cd $workingdir
+tar -xvzf netsa*
+cd netsa*
+python setup.py build
+python setup.py install
+
+#Install Rayon
+cd $workingdir
+tar -xvzf rayon*
+cd rayon*
+python setup.py install
 
 ldconfig
-
-#~~~~~~~~~~~END OF NEW SCRIPT~~~~~~~~~~~~~
 
 #Create Silk Conf File
 cd $workingdir/silk-2.5.0

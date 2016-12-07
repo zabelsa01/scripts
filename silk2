@@ -1,11 +1,33 @@
+# Install Link
+# https://www.youtube.com/watch?v=5fLhb6EHvyw&index=1&list=PLSNlEg26NNpyBCKGeWaYWyuZPGfkaPWAM
+
 #BEFORE DOING ANYTHING DOWNLOAD 
-  #libschemaTools.tar.gz
+  #download libschemaTools.tar.gz
+  #tar -xvzf libschema*
+  #cd libschema*
   #./configure & make & make install
+  
+  #download libfixbuf
+  #tar -xvzf libfixbuf*
+  #cd libfixbuf*
+  #./configure & make & make install
+  
+  #download netsa-python
+  #tar -xvzf netsa*
+  #cd netsa*
+  #python setup.py build
+  #python setup.py install
+  
+  #download rayon
+  #tar -xvzf rayon*
+  #cd rayon*
+  #python setup.py install
 
 #Check packages for latest release..curl command does this.
 #You will need to edit the interfaces when starting YAF
 #You will need to determine your internal network for Sensors.conf file
 
+#~~~~~~~~~~SCRIPT START~~~~~~~~~
 #VARIABLES
 home=$(echo ~)
 workingdir=$home'/tmp'
@@ -20,18 +42,9 @@ mkdir $workingdir
 cd $workingdir
 
 ###GET LATEST VERSION INFO FROM NETSA"###
-count=$(curl http://tools.netsa.cert.org/ | grep "tar.gz" | cut -d"/" -f4 | cut -d'"' -f1  |wc -l)
-arr=($(curl http://tools.netsa.cert.org/ | grep "tar.gz" | cut -d"/" -f4 | cut -d'"' -f1))
-while [ $count -gt -1 ]
-  do echo wget http://tools.netsa.cert.org/releases/${aar[$count]}
-  let count=count-1
+for x in $(curl http://tools.netsa.cert.org/ | grep "tar.gz" | cut -d"/" -f4 | cut -d'"' -f1)
+  do wget http://tools.netsa.cert.org/releases/$x
 done
-
-#Install fixbuf
-tar -zxvf libfixbuf-*
-cd $workingdir/libfixbuf-*
-./configure && make
-make install
 
 #Install YAF
 cd $workingdir
@@ -52,8 +65,7 @@ cd silk-*
 ./configure \
  --with-libfixbuf=/usr/local/lib/pkgconfig/ \
  --with-python --enable-ipv6
-make
-make install
+make & make install
 
 #Add Silk to ld.so.conf
 cat <<EOF >>silk.conf
@@ -63,11 +75,15 @@ EOF
 mv silk.conf /etc/ld.so.conf.d/
 ldconfig
 
-#NEW FILES (NEED TO MAKE VARIABLES)
+#Make PipeLine
 cd $workingdir
-tar -xvzf libschemaTools-1.2.0.tar.gz
-cd libsschemaTools-1.2.0
+tar-xvzf analysis*
+cd analysis*
+./configure & make & make install
 
+ldconfig
+
+#~~~~~~~~~~~END OF NEW SCRIPT~~~~~~~~~~~~~
 
 #Create Silk Conf File
 cd $workingdir/silk-2.5.0

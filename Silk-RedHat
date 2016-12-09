@@ -33,7 +33,7 @@ mkdir $workingdir
 cd $workingdir
 
 ###GET LATEST VERSION INFO FROM NETSA"###
-for x in $(curl https://tools.netsa.cert.org/projects.html | grep ".gz" | awk -F"/" {'print $NF'} | awk -F'"' {'print $1'})
+for x in $(curl https://tools.netsa.cert.org/projects.html | tac | tac | grep -a ".gz" | awk -F"/" {'print $NF'} | awk -F'"' {'print $1'})
   do wget http://tools.netsa.cert.org/releases/$x
 done
 

@@ -94,8 +94,7 @@ python setup.py install
 ldconfig
 
 #Create Silk Conf File
-cd $workingdir/silk-*
-cp site/twoway/silk.conf /data
+cp $workingdir/silk-*/site/twoway/silk.conf /data
 
 #Create Sensors.conf File
 cat <<EOF >sensors.conf

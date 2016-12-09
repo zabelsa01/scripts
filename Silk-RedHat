@@ -14,6 +14,15 @@ mkdir $workingdir/downloads
 cd $workingdir/downloads
 yum -y install curl
 yum -y install wget
+dnf config-manager --set-enable updates-testing
+yum -y update
+yum -y install libpcap-devel
+yum -y groupinstall "Development tools"
+yum -y install libc.so.6
+yum -y install libglib-2.0.so.0
+yum -y install libgmodule-2.0.so.0
+yum -y install libgobject-2.0.so.0
+yum -y install libgthread-2.0.so.0
 wget http://rpm.pbone.net/index.php3/stat/3/srodzaj/2/search/gcc-4.1.2-33.src.rpm
 wget http://rpm.pbone.net/index.php3/stat/3/srodzaj/2/search/glibc-2.7-2.src.rpm
 wget archive.fedoraproject.org/fedora/linux/releases/8/Everything/i386/os/Packages/glibc-headers-2.7-2.i386.rpm
@@ -26,8 +35,7 @@ wget ftp://ftp.pbone.net/mirror/archive.fedoraproject.org/fedora/linux/releases/
 rpm -ivh gcc-4.1.2-33.i386.rpm glibc-devel-2.7-2.i386.rpm glibc-headers-2.7-2.i386.rpm kernel-headers-2.6.23.1-42.fc8.i386.rpm
 rpm -ivh gcc-c+-4.1.2-33.i386.rpm libstdc+-devel-4.1.2-33.i386.rpm
 rpm -ivh glib2-devel-2.14.2-1.fc8.i386.rpm
-yum -y install libpcap-devel
-yum -y groupinstall "Development tools"
+
 
 #Make a tmp directory in your home directory
 mkdir $workingdir
@@ -46,14 +54,14 @@ mkdir /data
 
 #Install libfixbuf
 cd $workingdir
-tar -xvzf libfixbuf*
+tar -xvzf libfixbuf*.gz
 cd libfixbuf*
 ./configure && make
 make install
 
 #Install YAF
 cd $workingdir
-tar -zxvf yaf-*
+tar -zxvf yaf-*.gz
 cd yaf-*
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ./configure --enable-applabel
@@ -62,7 +70,7 @@ make install
 
 #Build and install SiLK 
 cd $workingdir
-tar -xvzf silk-*
+tar -xvzf silk-*.gz
 cd silk-*
 ./configure \
  --with-libfixbuf=/usr/local/lib/pkgconfig/ \
@@ -80,28 +88,28 @@ ldconfig
 
 #Install schematools
 cd $workingdir
-tar -xvzf libschema*
+tar -xvzf libschema*.gz
 cd libschema*
 ./configure && make
 make install
 
 #Make PipeLine
 cd $workingdir
-tar-xvzf analysis*
+tar-xvzf analysis*.gz
 cd analysis*
 ./configure && make
 make install
 
 #Install netsa-python
 cd $workingdir
-tar -xvzf netsa*
+tar -xvzf netsa*.gz
 cd netsa*
 python setup.py build
 python setup.py install
 
 #Install Rayon
 cd $workingdir
-tar -xvzf rayon*
+tar -xvzf rayon*.gz
 cd rayon*
 python setup.py install
 

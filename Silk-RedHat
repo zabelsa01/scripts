@@ -1,0 +1,153 @@
+# Install Link
+# https://www.youtube.com/watch?v=5fLhb6EHvyw&index=1&list=PLSNlEg26NNpyBCKGeWaYWyuZPGfkaPWAM
+
+#Check packages for latest release..curl command does this.
+#You will need to edit the interfaces when starting YAF
+#You will need to determine your internal network for Sensors.conf file
+
+#VARIABLES
+home=$(echo ~)
+workingdir=$home'/tmp'
+mkdir $workingdir/downloads
+
+#Download dependencies
+cd $workingdir/downloads
+yum -y install curl
+yum -y install wget
+wget http://rpm.pbone.net/index.php3/stat/3/srodzaj/2/search/gcc-4.1.2-33.src.rpm
+wget http://rpm.pbone.net/index.php3/stat/3/srodzaj/2/search/glibc-2.7-2.src.rpm
+wget archive.fedoraproject.org/fedora/linux/releases/8/Everything/i386/os/Packages/glibc-headers-2.7-2.i386.rpm
+wget http://rpm.pbone.net/index.php3/stat/3/srodzaj/2/search/kernel-2.6.23.1-42.fc8.src.rpm
+wget ftp://ftp.pbone.net/mirror/archive.fedoraproject.org/fedora/linux/releases/8/Fedora/i386/os/Packages/gcc-c++-4.1.2-33.i386.rpm
+wget ftp://ftp.pbone.net/mirror/archive.fedoraproject.org/fedora/linux/releases/8/Everything/i386/os/Packages/libstdc++-devel-4.1.2-33.i386.rpm
+wget ftp://ftp.pbone.net/mirror/archive.fedoraproject.org/fedora/linux/releases/8/Fedora/x86_64/os/Packages/glib2-devel-2.14.2-1.fc8.i386.rpm
+
+#Install RPM Files
+rpm -ivh gcc-4.1.2-33.i386.rpm glibc-devel-2.7-2.i386.rpm glibc-headers-2.7-2.i386.rpm kernel-headers-2.6.23.1-42.fc8.i386.rpm
+rpm -ivh gcc-c+-4.1.2-33.i386.rpm libstdc+-devel-4.1.2-33.i386.rpm
+rpm -ivh glib2-devel-2.14.2-1.fc8.i386.rpm
+yum -y install libpcap-devel
+
+#Make a tmp directory in your home directory
+mkdir $workingdir
+cd $workingdir
+
+###GET LATEST VERSION INFO FROM NETSA"###
+for x in $(curl https://tools.netsa.cert.org/projects.html | grep ".gz" | awk -F"/" {'print $NF'} | awk -F'"' {'print $1'})
+  do wget http://tools.netsa.cert.org/releases/$x
+done
+
+#DELETING AN OLDER VERISON OF ANALYSIS PIPELINE THAT IS DOWNLOADED FROM NETSA 
+rm -rf analysis-pipeline-4*
+
+# Make data directory
+mkdir /data
+
+#Install libfixbuf
+cd $workingdir
+tar -xvzf libfixbuf*
+cd libfixbuf*
+./configure && make
+make install
+
+#Install YAF
+cd $workingdir
+tar -zxvf yaf-*
+cd yaf-*
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+./configure --enable-applabel
+make
+make install
+
+#Build and install SiLK 
+cd $workingdir
+tar -xvzf silk-*
+cd silk-*
+./configure \
+ --with-libfixbuf=/usr/local/lib/pkgconfig/ \
+ --with-python --enable-ipv6
+make
+make install
+
+#Add Silk to ld.so.conf
+cat <<EOF >>silk.conf
+/usr/local/lib
+/usr/local/lib/silk
+EOF
+mv silk.conf /etc/ld.so.conf.d/
+ldconfig
+
+#Install schematools
+cd $workingdir
+tar -xvzf libschema*
+cd libschema*
+./configure && make
+make install
+
+#Make PipeLine
+cd $workingdir
+tar-xvzf analysis*
+cd analysis*
+./configure && make
+make install
+
+#Install netsa-python
+cd $workingdir
+tar -xvzf netsa*
+cd netsa*
+python setup.py build
+python setup.py install
+
+#Install Rayon
+cd $workingdir
+tar -xvzf rayon*
+cd rayon*
+python setup.py install
+
+ldconfig
+
+#Create Silk Conf File
+cd $workingdir/silk-2.5.0
+cp site/twoway/silk.conf /data
+
+#Create Sensors.conf File
+cat <<EOF >sensors.conf
+probe S0 ipfix
+ listen-on-port 18001
+ protocol tcp
+ listen-as-host 127.0.0.1
+end probe
+group my-network
+ ipblocks 192.168.1.0/24 # address of eth0. CHANGE THIS.
+ ipblocks 10.0.0.0/8 # other blocks you consider internal
+end group
+sensor S0
+ ipfix-probes S0
+ internal-ipblocks @my-network
+ external-ipblocks remainder
+end sensor
+EOF
+
+#Configure rwflowpack
+cat /usr/local/share/silk/etc/rwflowpack.conf | \
+sed 's/ENABLED=/ENABLED=yes/;' | \
+sed 's/SENSOR_CONFIG=/SENSOR_CONFIG=\/data\/sensors.conf/;' | \
+sed 's/SITE_CONFIG=/SITE_CONFIG=\/data\/silk.conf/' | \
+sed 's/LOG_TYPE=syslog/LOG_TYPE=legacy/' | \
+sed 's/LOG_DIR=.*/LOG_DIR=\/var\/log/' | \
+sed 's/CREATE_DIRECTORIES=.*/CREATE_DIRECTORIES=yes/' \
+>> rwflowpack.conf
+mv rwflowpack.conf /usr/local/etc/
+mv sensors.conf /data
+
+#Create Startup Scripts and Start Service
+cp /usr/local/share/silk/etc/init.d/rwflowpack /etc/init.d
+update-rc.d rwflowpack start 20 3 4 5 .
+service rwflowpack start
+
+#Start Yaf
+nohup /usr/local/bin/yaf --silk --ipfix=tcp --live=pcap  --out=127.0.0.1 \
+  --ipfix-port=18001 --in=eth0 --applabel --max-payload=384 &
+
+#Test query
+#/usr/local/bin/rwfilter --sensor=S0 --proto=0-255 --pass=stdout --type=all | rwcut | tail

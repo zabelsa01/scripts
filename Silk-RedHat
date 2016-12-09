@@ -27,6 +27,7 @@ rpm -ivh gcc-4.1.2-33.i386.rpm glibc-devel-2.7-2.i386.rpm glibc-headers-2.7-2.i3
 rpm -ivh gcc-c+-4.1.2-33.i386.rpm libstdc+-devel-4.1.2-33.i386.rpm
 rpm -ivh glib2-devel-2.14.2-1.fc8.i386.rpm
 yum -y install libpcap-devel
+yum -y groupinstall "Development tools"
 
 #Make a tmp directory in your home directory
 mkdir $workingdir

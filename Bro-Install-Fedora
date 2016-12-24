@@ -9,7 +9,14 @@ apikey='8d0223f0-5b01-4e17-4d29-8097370448f3'
 sudo -i
 cd /tmp
 sudo -i
-dnf -y install wget git cmake cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python-devel swig zlib-devel
+
+if cat /proc/version | grep -i "Red Hat"
+        then 
+                dnf -y install wget git cmake cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python-devel swig zlib-devel
+        else 
+                sudo apt-get -y install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev
+fi
+
 git clone --recursive git://git.bro.org/bro
 ./configure --prefix=$installsrc
 make
@@ -24,7 +31,6 @@ broctl deploy
 #CONFIGURE CRITICAL STACK
 cd /tmp
 curl https://packagecloud.io/install/repositories/criticalstack/critical-stack-intel/script.rpm.sh | bash
-dnf -y install critical-stack-intel
 critical-stack-intel api $apikey
 critical-stack-intel pull
 critical-stack-intel config --set bro.restart=true

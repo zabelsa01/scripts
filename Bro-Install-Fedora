@@ -1,0 +1,55 @@
+#! /bin/bash
+
+#SET VARIABLES
+installsrc='/opt/bro'
+promisc_interface='ens34'
+apikey='8d0223f0-5b01-4e17-4d29-8097370448f3'
+
+#INSTALL BRO
+sudo -i
+cd /tmp
+sudo -i
+dnf -y install wget git cmake cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python-devel swig zlib-devel
+git clone --recursive git://git.bro.org/bro
+./configure --prefix=$installsrc
+make
+make install
+
+#CONFIGURE BRO AND START THE PROCESS
+sed -i -e 's/eth0/'$promisc_interface'/g' $installsrc/etc/node.cfg
+export PATH=/opt/bro/bin:$PATH
+broctl install
+broctl deploy
+
+#CONFIGURE CRITICAL STACK
+cd /tmp
+curl https://packagecloud.io/install/repositories/criticalstack/critical-stack-intel/script.rpm.sh | bash
+dnf -y install critical-stack-intel
+critical-stack-intel api $apikey
+critical-stack-intel pull
+critical-stack-intel config --set bro.restart=true
+broctl deploy
+
+#ADD CRITICAL STACK UPDATE TO CRON HOURLY
+touch /etc/cron.hourly/critical-stack-update.sh
+cat <<EOT >> /etc/cron.hourly/critical-stack-update.sh
+#! /bin/bash
+critical-stack-intel pull
+EOT
+chmod +x /etc/cron.hourly/critical-stack-update.sh
+
+#CONFIGURE INTEL FRAMEWORK
+cat <<EOT >> $installsrc/share/bro/site/local.bro
+
+# Intel Framework
+mkdir /opt/bro/feeds
+const feed_directory = "/opt/bro/feeds";
+@load frameworks/intel/seen
+@load frameworks/intel/do_notice
+redef Intel::read_files += {
+        feed_directory + "myfeeds.intel",
+        "/opt/critical-stack/frameworks/intel/master-public.bro.dat",
+};
+EOT
+
+broctl deploy

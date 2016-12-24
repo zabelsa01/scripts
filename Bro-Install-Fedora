@@ -30,7 +30,16 @@ broctl deploy
 
 #CONFIGURE CRITICAL STACK
 cd /tmp
-curl https://packagecloud.io/install/repositories/criticalstack/critical-stack-intel/script.rpm.sh | bash
+
+if cat /proc/version | grep -i "Red Hat"
+        then 
+                curl https://packagecloud.io/install/repositories/criticalstack/critical-stack-intel/script.rpm.sh | bash
+                yum -y install critical-stack-intel
+        else
+                curl https://packagecloud.io/install/repositories/criticalstack/critical-stack-intel/script.deb.sh | sudo bash
+                apt-get -y install critical-stack-intel
+fi
+
 critical-stack-intel api $apikey
 critical-stack-intel pull
 critical-stack-intel config --set bro.restart=true

@@ -1,0 +1,26 @@
+#! /bin/bash
+
+#Installs on Debian
+
+#Variables
+promisc='eth0'
+pcap_dir='/opt/pcaps'
+
+#Install Dependicies
+sudo apt-get -y install git build-essential flex bison ccache libnl-3-dev libnl-genl-3-dev libgeoip-dev
+libnetfilter-conntrack-dev libncurses5-dev liburcu-dev libnet1-dev libpcap-dev
+
+cd /tmp
+git clone git://github.com/netsniff-ng/netsniff-ng.git
+cd netsniff-ng/src
+make
+sudo make install
+
+if which netsniff-ng
+  then
+    mkdir $pcap_dir
+    sed -i 's/exit\s0/netsniff-ng --in $promisc --out $pcap_dir --interval 1hrs\n&/' /etc/rc.local
+    netsniff-ng --in $promisc --out $pcap_dir --interval 1hrs
+  else
+    echo 'Netsniff-NG did not install correctly. You might have to run make, make install again.'
+fi

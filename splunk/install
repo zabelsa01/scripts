@@ -1,1 +1,17 @@
-splunk stuff
+#! /bin/bash
+
+cd /tmp
+rm -rf splunk*.rpm
+
+#WGET Link from Splunk download page
+wget -O splunk-6.5.1-f74036626f0c-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=6.5.1&product=splunk&filename=splunk-6.5.1-f74036626f0c-linux-2.6-x86_64.rpm&wget=true'
+
+chmod 744 splunk*.rpm
+dnf install -y splunk*.rpm
+
+#Install Splunk as Root (use sudo -H -u splunk to run as splunk user)
+sudo -H -u splunk /opt/splunk/bin/splunk start enable boot-start --accept-license
+
+#Edit Firewall rules if needed
+#firewall-cmd --list-all
+#firewall-cmd --add-port=8000/tcp --permanent

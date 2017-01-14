@@ -8,6 +8,7 @@ wget -O splunk-6.5.1-f74036626f0c-linux-2.6-x86_64.rpm 'https://www.splunk.com/b
 
 chmod 744 splunk*.rpm
 dnf install -y splunk*.rpm
+#yum localinstall -y splunk*.rpm
 
 #Install Splunk as Root (use sudo -H -u splunk to run as splunk user)
 sudo -H -u splunk /opt/splunk/bin/splunk start enable boot-start --accept-license

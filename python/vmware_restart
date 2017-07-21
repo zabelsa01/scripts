@@ -1,0 +1,44 @@
+#! /usr/bin/python
+
+# Set to run in /etc/crontab file for suspending
+# Set to run in /etc/rc.local (Before Login) to start back up
+
+import subprocess
+import os
+import datetime
+import time
+
+todaydate = str(datetime.date.today())
+todaytime = str(datetime.datetime.today())
+
+
+#START VMWARE GUESTS BACK UP
+if os.path.exists('/var/log/vmware_status.log'):
+	flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
+	for i in open('/var/log/vmware_status.log').read().splitlines():
+		subprocess.call('vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui', shell=True)
+		flog.write(todaytime + ':' + i + ':This system has been started' + '\n')
+	flog.close()
+	os.system('rm -rf /var/log/vmware_status.log')
+
+
+#SUSPEND VMWARE GUESTS
+elif not os.path.exists('/var/log/vmware_status.log'):
+	vmguests = (subprocess.check_output('vmrun list | grep "vmware"', shell=True).splitlines())
+
+	for i in vmguests:
+		print i
+		flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
+		fsys = open('/var/log/vmware_status.log', 'a')
+		subprocess.call('vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
+		flog.write(todaytime + ':' + i + ':This system has been suspended' + '\n')
+		fsys.write(i + '\n')
+	flog.close()
+	fsys.close()
+
+#REBOOT DESKTOP
+	if len(subprocess.check_output('vmrun list', shell=True).splitlines()) == 1:
+		os.system('shutdown -r now')
+
+else:
+	print 'Good Bye!'

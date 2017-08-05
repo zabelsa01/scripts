@@ -13,6 +13,7 @@ todaytime = str(datetime.datetime.today())
 
 
 #START VMWARE GUESTS BACK UP
+time.sleep(10)
 if os.path.exists('/var/log/vmware_status.log'):
 	flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
 	for i in open('/var/log/vmware_status.log').read().splitlines():
@@ -33,6 +34,7 @@ elif not os.path.exists('/var/log/vmware_status.log'):
 		subprocess.call('vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
 		flog.write(todaytime + ':' + i + ':This system has been suspended' + '\n')
 		fsys.write(i + '\n')
+		#time.sleep(5)
 	flog.close()
 	fsys.close()
 

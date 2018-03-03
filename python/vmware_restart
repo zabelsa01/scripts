@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
-# Set to run in /etc/crontab file for suspending
-# Set to run in /etc/rc.local (Before Login) to start back up
+# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/crontab file for suspending
+# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/rc.local (Before Login) to start back up
 
 import subprocess
 import os
@@ -14,23 +14,23 @@ todaytime = str(datetime.datetime.today())
 
 #START VMWARE GUESTS BACK UP
 time.sleep(10)
-if os.path.exists('/var/log/vmware_status.log'):
+if os.path.exists('/var/log/vmware_logs/reboot.log'):
 	flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
-	for i in open('/var/log/vmware_status.log').read().splitlines():
+	for i in open('/var/log/vmware_logs/reboot.log').read().splitlines():
 		subprocess.call('vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui', shell=True)
 		flog.write(todaytime + ':' + i + ':This system has been started' + '\n')
 	flog.close()
-	os.system('rm -rf /var/log/vmware_status.log')
+	os.system('rm -rf /var/log/vmware_logs/reboot.log')
 
 
 #SUSPEND VMWARE GUESTS
-elif not os.path.exists('/var/log/vmware_status.log'):
+elif not os.path.exists('/var/log/vmware_logs/reboot.log'):
 	vmguests = (subprocess.check_output('vmrun list | grep "vmware"', shell=True).splitlines())
 
 	for i in vmguests:
 		print i
 		flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
-		fsys = open('/var/log/vmware_status.log', 'a')
+		fsys = open('/var/log/vmware_logs/reboot.log', 'a')
 		subprocess.call('vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
 		flog.write(todaytime + ':' + i + ':This system has been suspended' + '\n')
 		fsys.write(i + '\n')

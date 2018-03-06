@@ -1,0 +1,16 @@
+acl Bypass ssl::server_name .apple.com
+acl Bypass ssl::server_name .icloud.com
+acl Bypass ssl::server_name .mzstatic.com
+acl Bypass ssl::server_name .dropbox.com
+
+acl ssl_step1 at_step SslBump1
+acl ssl_step2 at_step SslBump2
+acl ssl_step3 at_step SslBump3
+
+ssl_bump peek ssl_step1
+ssl_bump splice Bypass
+
+acl SNIGroup4 ssl::server_name_regex -i  .testsite1\.com
+acl SNIGroup4 ssl::server_name_regex -i .testsite2\.com
+ssl_bump bump ssl_step2 SNIGroup4
+ssl_bump splice all

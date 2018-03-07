@@ -14,7 +14,7 @@ acl SNIGroup4 ssl::server_name_regex -i  .site1\.com
 acl SNIGroup4 ssl::server_name_regex -i  .site2\.com
 
 #Splice Bypass List
-ssl_bump peek step1
+ssl_bump peek step2
 ssl_bump splice Bypass
 
 ssl_bump bump ssl_step2 SNIGroup4

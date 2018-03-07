@@ -1,0 +1,33 @@
+## RUN AS A DAEMON
+sudo docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 --name elk --hostname elk sebp/elk
+## RUN AND INTERACT
+sudo docker run --name kali --hostname kali -it kalilinux/kali-linux-docker
+## DISPLAY IMAGES AND CONTAINERS
+sudo docker ps -a (display all containers)
+sudo docker ps (show running containers)
+sudo docker images (show docker images)
+# INTERACT WITH CONTAINERS
+sudo docker start <container-name>
+sudo docker start -ai <container ID> (attach and interact)
+sudo docker exec -it <container-name> /bin/bash
+sudo docker exec -d <container-name> command (run a command in the background)
+# CREATE NEW CONTAINERS FROM EXISTING
+sudo docker commit <CONTAINER ID> <new-name>
+   - Example: sudo docker commit fe437c751c7f my-kali:version1
+# DELETE ALL STOPPED CONTAINERS
+sudo docker container prune
+# RUN GUI LIKE WIRESHARK
+sudo docker run -ti --net=host --privileged -v $HOME:/root:ro -e XAUTHORITY=/root/.Xauthority -e DISPLAY=$DISPLAY my-kali:version1
+
+# NOTES
+To use binaries in a docker images:
+docker run #{image} "COMMAND to be Ran"
+
+To use binaries in a docker images continuously(setting or configs need to be inherited):
+docker run #{image} --name #{container_name}
+
+To enter a docker images and run command interactively:
+docker run -it #{image}
+
+To start a docker in background(as daemon)with process up and running that defined in Dockerfile:
+docker run -d --name #{container_name} #{image}

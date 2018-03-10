@@ -31,3 +31,8 @@ docker run -it #{image}
 
 To start a docker in background(as daemon)with process up and running that defined in Dockerfile:
 docker run -d --name #{container_name} #{image}
+
+# DOCKER PUSH
+docker tag guac-mysql:version1 zabelsa01/mystuff:mysql
+docker push zabelsa01/mystuff (pushes all images with mystuff tag)
+docker push zabelsa01/mystuff:mysql (pushes only mysql)

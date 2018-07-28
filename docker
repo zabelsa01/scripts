@@ -36,3 +36,6 @@ docker run -d --name #{container_name} #{image}
 docker tag guac-mysql:version1 zabelsa01/mystuff:mysql
 docker push zabelsa01/mystuff (pushes all images with mystuff tag)
 docker push zabelsa01/mystuff:mysql (pushes only mysql)
+
+My Containers
+docker run -d -p 8083:80 -p 8443:443 -e 'DH_SIZE=2048' -v /root/docker-configs/nginx/:/etc/nginx/external/ --name my-nginx marvambass/nginx-ssl-secure

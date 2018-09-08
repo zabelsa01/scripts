@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       #UPSTREAM
-      SERVERNAME: mydomain.com
+      SERVERNAME: mydomain.com <-Change
       #EXTRANAMES
     ports:
       - "80:80"

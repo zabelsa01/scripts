@@ -1,0 +1,41 @@
+# docker-compose.yml
+---
+version: "2"
+services:
+  sslproxy:
+    image: danieldent/nginx-ssl-proxy
+    restart: always
+    environment:
+      #UPSTREAM
+      SERVERNAME: mydomain.com
+      #EXTRANAMES
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /hd2/docker/nginx-proxy-ssl:/etc/nginx/conf.d
+      - /hd2/docker/nginx-proxy-ssl:/etc/letsencrypt
+#
+  guacamole:
+    image: aptalca/guacamole
+    restart: always
+    ports:
+      - "8081:8080"
+    volumes:
+      - /hd2/docker/guacamole/:/config
+#
+#  owncloud:
+#    image: owncloud
+#    restart: always
+#    ports:      
+#      - "8083:80"
+#    volumes:
+#      - /hd2/docker/oc:/var/www/html
+#
+  nextcloud:
+    image: nextcloud
+    restart: always
+    ports:
+      - "8082:80"
+    volumes:
+      - /hd2/docker/nextcloud:/var/www/html

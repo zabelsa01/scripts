@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
 # crontab -e (Sets the script to run as a crontab)
-#0 4  * * 0   python /usr/local/bin/system-update.py
-#@reboot         python /usr/local/bin/system-update.py
+#0 4  * * 0	python /usr/local/bin/system-update.py
+#@reboot	python /usr/local/bin/system-update.py
 
 import subprocess
 import os

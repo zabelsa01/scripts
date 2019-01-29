@@ -1,7 +1,8 @@
 #! /usr/bin/python3
 
-# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/crontab file for suspending
-# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/rc.local (Before Login) to start back up
+# crontab -e (Sets the script to run as a crontab)
+#0 4  * * 0   python /usr/local/bin/system-update.py
+#@reboot         python /usr/local/bin/system-update.py
 
 import subprocess
 import os

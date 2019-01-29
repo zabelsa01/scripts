@@ -1,10 +1,21 @@
-**My Notes**
 NMAP
   Nmap -sC -sV -oA export_path/filename
 
 HYDRA (Password Guessing)
   HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get  /manager/html
   Proxy is used with Burp Suite; -C is pass list username:password; -vV is Verbose
+
+Wfuzz (Brute Force Web Usernames)
+  wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d “username=FUZZ&password=whatever” --hs “No account found with that username.” http://10.10.10.97/login.php
+    -d was received from BurpSuite based on the post data that was sent
+  HTTP Dir Search
+    wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt http://10.10.10.121/FUZZ
+
+Gobuster (Find website directories)
+  gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log
+
+Dirb (Find website directories)
+  dirb http://website/
 
 Msfvenom 
   msfvenom -l formats (list format such as asp, dll, exe, war)
@@ -34,18 +45,6 @@ Silent Trinity (Good C2)
   Python3.7 st.py (starts the program)
   Example https://www.youtube.com/watch?v=PJeBIey8gc4 (at 31:00)
 
-Wfuzz (Brute Force Web Usernames)
-  wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d “username=FUZZ&password=whatever” --hs “No account found with that username.” http://10.10.10.97/login.php
-    -d was received from BurpSuite based on the post data that was sent
-  HTTP Dir Search
-    wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt http://10.10.10.121/FUZZ
-
-Gobuster (Find website directories)
-  gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log
-
-Dirb (Find website directories)
-  dirb http://website/
-
 Test XSS
   <center>test</center>
   If the text is centered and the source contains the html code it is not filtering html code
@@ -72,7 +71,7 @@ Hashcat (password cracker)
   hashcat -m 7400 hashfile /opt/wordlists/rockyou
   View hash mode type at (Google Hashcat example hashes)
   Search for the beginning of the hash to determine the mode
-  
+
 Linux Priv Escalation Enumeration
   https://github.com/rebootuser/LinEnum
 

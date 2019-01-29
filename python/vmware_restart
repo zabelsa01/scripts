@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 # Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/crontab file for suspending
 # Set (/usr/bin/python /usr/local/bin/system-update.py) to run in /etc/rc.local (Before Login) to start back up
@@ -18,7 +18,7 @@ if os.path.exists('/var/log/vmware_logs/reboot.log'):
 	flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
 	for i in open('/var/log/vmware_logs/reboot.log').read().splitlines():
 		subprocess.call('vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui', shell=True)
-		flog.write(todaytime + ':' + i + ':This system has been started' + '\n')
+		flog.write(todaytime + ':' + i + ' :This system has been started' + '\n')
 	flog.close()
 	os.system('rm -rf /var/log/vmware_logs/reboot.log')
 
@@ -32,7 +32,7 @@ elif not os.path.exists('/var/log/vmware_logs/reboot.log'):
 		flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
 		fsys = open('/var/log/vmware_logs/reboot.log', 'a')
 		subprocess.call('vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
-		flog.write(todaytime + ':' + i + ':This system has been suspended' + '\n')
+		flog.write(todaytime + ':' + i + ' :This system has been suspended' + '\n')
 		fsys.write(i + '\n')
 		#time.sleep(5)
 	flog.close()
@@ -40,7 +40,10 @@ elif not os.path.exists('/var/log/vmware_logs/reboot.log'):
 
 #REBOOT DESKTOP
 	if len(subprocess.check_output('vmrun list', shell=True).splitlines()) == 1:
-		os.system('shutdown -r now')
+                flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
+                flog.write(todaytime + ' :Desktop has been rebooted' + '\n')
+                flog.close()
+                os.system('/sbin/shutdown -r now')
 
 else:
 	print 'Good Bye!'

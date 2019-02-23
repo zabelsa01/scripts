@@ -60,6 +60,9 @@ Smbmap (shows a list of SMB Shares)
 
 NetCat
   Listener - nc -lvnp port
+  
+Responder (Can grab hash when a system is attempting to connect to you over SMB)
+  responder -I tun0
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/
@@ -75,7 +78,12 @@ Empire
 Hashcat (password cracker)
   View hash mode type at (Google Hashcat example hashes)
   Search for the beginning of the hash to determine the mode
-  Hashcat -m 7400 hashfile /opt/wordlists/rockyou
+  Hashcat -m 7400 hashfile.txt /opt/wordlists/rockyou
+  NTLMv2 = 5600
+
+Searchsploit
+  searchsploit program-name
+  searchsploit -m exploit-name (mirrors exploit)
 
 Linux Priv Escalation Enumeration
   https://github.com/rebootuser/LinEnum

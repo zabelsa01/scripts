@@ -70,6 +70,7 @@ File Transfer
     python -m SimpleHTTPServer <port / default 8000>
   SMB Share
     impacket-smbserver files `pwd`
+      - files is a name that should be the same as the current directory
       - example: xcopy \\10.10.10.14\files\filename.exe
 
 NetCat

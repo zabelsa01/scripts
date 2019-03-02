@@ -45,7 +45,7 @@ Wfuzz (Brute Force Web Usernames)
   Wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d “username=FUZZ&password=whatever” --hs “No account found with that username.” http://10.10.10.97/login.php
   -d was received from BurpSuite based on the post data that was sent
   HTTP Dir Search
-  wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt http://10.10.10.121/FUZZ
+  wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt --hs "404" http://10.10.10.121/FUZZ
   
 Gobuster (Find website directories)
   Gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log

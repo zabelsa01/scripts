@@ -108,7 +108,7 @@ Linux Priv Escalation Enumeration
   https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
 
 Python Bash Shell
-  Python -c ‘import pty;pty.spawn(“/bin/bash”)’
+  python -c ‘import pty;pty.spawn(“/bin/bash”)’
 
 Phamton Evasion
 Veil

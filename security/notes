@@ -112,6 +112,9 @@ Linux Priv Escalation Enumeration
 Binaries (Binaries that can be exploited by an attacker to bypass local security restrictions.)
   Windows (Lolbins): https://github.com/LOLBAS-Project/LOLBAS
   Unix (GTFOBins): https://gtfobins.github.io/
+  
+FTP
+  wget -m fto://anonymous:anonymous@10.10.10.106 (Download all files)
 
 Python Bash Shell
   python -c 'import pty;pty.spawn("/bin/bash")'

@@ -1,0 +1,11 @@
+Log into nginx docker container
+  sudo docker exec -it nginxproxyssl_sslproxy_1 /bin/bash
+
+Run this command
+  certbot -d home.zabelsa.com --manual --preferred-challenges dns certonly
+
+Log into Google Domain management and create TXT record
+  _acme-challenge.home TXT key_from_letsencrypt
+  
+Restart Docker Container
+  docker restart nginxproxyssl_sslproxy_1

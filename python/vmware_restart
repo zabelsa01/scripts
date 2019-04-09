@@ -1,8 +1,7 @@
 #! /usr/bin/python3
 
-# crontab -e (Sets the script to run as a crontab)
-#0 4  * * 0	python /usr/local/bin/system-update.py
-#@reboot	python /usr/local/bin/system-update.py
+# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in crontab -e with suspend time
+# Set (/usr/bin/python /usr/local/bin/system-update.py) to run in crontab -e with @reboot
 
 import subprocess
 import os
@@ -18,8 +17,9 @@ time.sleep(10)
 if os.path.exists('/var/log/vmware_logs/reboot.log'):
 	flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
 	for i in open('/var/log/vmware_logs/reboot.log').read().splitlines():
-		subprocess.call('/usr/bin/vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui', shell=True)
-		flog.write(todaytime + ':' + i + ' This system has been started' + '\n')
+		#subprocess.call('/usr/bin/vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui', shell=True)
+		os.system('/usr/bin/vmrun start ' + i.replace('(','\(').replace(')','\)').replace(' ','\ ') + ' nogui')
+                flog.write(todaytime + ':' + i + ' This system has been started' + '\n')
 	flog.close()
 	os.system('rm -rf /var/log/vmware_logs/reboot.log')
 
@@ -32,8 +32,9 @@ elif not os.path.exists('/var/log/vmware_logs/reboot.log'):
 		print i
 		flog = open('/var/log/vmware_logs/' + todaydate + '-' + 'vmware_update.log', 'a')
 		fsys = open('/var/log/vmware_logs/reboot.log', 'a')
-		subprocess.call('/usr/bin/vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
-		flog.write(todaytime + ':' + i + ' This system has been suspended' + '\n')
+		#subprocess.call('/usr/bin/vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '), shell=True)
+		os.system('/usr/bin/vmrun suspend ' + i.replace('(','\(').replace(')','\)').replace(' ','\ '))
+                flog.write(todaytime + ':' + i + ' This system has been suspended' + '\n')
 		fsys.write(i + '\n')
 		#time.sleep(5)
 	flog.close()

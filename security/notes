@@ -38,7 +38,8 @@ Magic Bytes
   
 Burp and SQLMap
   Using Burp copy the request. Right click on the request and select copy to file and name it whatever.req
-  sqlmap -r whatever.req (--batch) (--dbms mysql) (--force-ssl)
+  sqlmap -r whatever.req (--batch) (--dbms mysql) (--force-ssl) (-p ID)
+    The -p is for parameter to test sql injections on
 
 Msfconsole
   Vim meterpreter.rc

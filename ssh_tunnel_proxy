@@ -1,5 +1,5 @@
 # Browse using SSH Proxychains
-##localhost$ #ssh -D 9050 user@remotehost
+localhost$ ssh -D 9050 user@remotehost
 localhost$ proxychains4 firefox
   Browse the web through the remote host
 

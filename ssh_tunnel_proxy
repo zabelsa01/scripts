@@ -1,20 +1,20 @@
-# Browse using SSH Proxychains
-##### localhost$ ssh -D 9050 user@remotehost
-localhost$ proxychains4 firefox
-  Browse the web through the remote host
+Browse using SSH Proxychains
+  localhost$ ssh -D 9050 user@remotehost
+  localhost$ proxychains4 firefox
+    Browse the web through the remote host
 
-# Proxy outbound 
-localhost$ ssh -L 9000:localhost:80 user@remotehost
-localhost$ curl http://localhost:9000 
-  returns webpage on remote server
-  Bind 9000 on localhost to 80 on remote host
+Proxy outbound
+  localhost$ ssh -L 9000:localhost:80 user@remotehost
+  localhost$ curl http://localhost:9000 
+    returns webpage on remote server
+    Bind 9000 on localhost to 80 on remote host
   
-localhost$ ssh -L 9000:www.google.com:443 user@remotehost
-localhost$ curl http://localhost:9000
-  returns Google through the remote host
+  localhost$ ssh -L 9000:www.google.com:443 user@remotehost
+  localhost$ curl http://localhost:9000
+    returns Google through the remote host
 
-# Proxy inbound (Reverse Proxy)
-localhost$ ssh -R 8888:localhost:80 user@remotehost
-remotehost$ curl http://localhost:8888
-  returns webpage on localhost from remotehost
+Proxy inbound (Reverse Proxy)
+  localhost$ ssh -R 8888:localhost:80 user@remotehost
+  remotehost$ curl http://localhost:8888
+    returns webpage on localhost from remotehost
   

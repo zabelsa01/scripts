@@ -17,4 +17,8 @@ Proxy inbound (Reverse Proxy)
   localhost$ ssh -R 8888:localhost:80 user@remotehost
   remotehost$ curl http://localhost:8888
     returns webpage on localhost from remotehost
+
+
+Good Examples
+  https://hackertarget.com/ssh-examples-tunnels/
   

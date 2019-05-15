@@ -21,23 +21,18 @@ print " "
 print "----------------------------------------------------------------"
 print " "
 
-# Input Variables
+# User Input Variables
 ip_rang = raw_input("Enter IP, Range, or CIDR to scan.\n")
-# ports = []
 ports = raw_input("\nEnter ports to scan seperated by commas. Recommend not scanning more than 2 ports at a time.\n")
-# output_dir = raw_input("\nEnter path to output results. Default is current directory.\n")
-#data_len = raw_input("\nEnter number of extra bytes to add to the packets. This helps avoid IDS detection. Recommend using 15.\n")
-
 
 # Script Variables
+nmap_options = '-vv -n -sT -Pn -n -T2 --max-retries 2 --scan-delay 1075ms --randomize-hosts --data-length 15'
 src_range = [31420, 58372]
-data_len = str(15)
 nm = nmap.PortScanner()
-
 
 # Definitions
 def nmap_run():
-    nm.scan(hosts=ip_rang, arguments='-vv -n -sT -Pn -n -T2 --max-retries 2 --scan-delay 1075ms --randomize-hosts --data-length ' + data_len + ' -p ' + ports)
+    nm.scan(hosts=ip_rang, arguments= nmap_options + ' -p ' + ports)
     nmap_reports()
 
 
@@ -46,7 +41,7 @@ def nmap_reports():
     # f = open(working_dir + '/' + str(now) + '.csv')
     os.system("clear")
     print 'Running Nmap against ' + ip_rang
-    print 'Scanning port(s)' + ports
+    print 'Scanning port(s) ' + ports
     print "The results will be saved to current directory in CSV format."
     print '-----------------------------------'
     if os.path.isfile(str(now) + '.csv'):
@@ -54,7 +49,6 @@ def nmap_reports():
             skip = nm.csv()
             skip = skip.splitlines()[1:]
             skip = '\n'.join(skip)
-            print skip
             f.write(skip + '\n')
     else:
         f = open(str(now) + '.csv', 'a')
@@ -75,6 +69,7 @@ def nmap_reports():
             for port in lport:
                 if nm[host][proto][port]['state'] == 'open':
                     print ('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+                    
 
 
 # Start Script

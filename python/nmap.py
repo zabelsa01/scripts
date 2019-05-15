@@ -26,7 +26,7 @@ ip_rang = raw_input("Enter IP, Range, or CIDR to scan.\n")
 ports = raw_input("\nEnter ports to scan seperated by commas. Recommend not scanning more than 2 ports at a time.\n")
 
 # Script Variables
-nmap_options = '-vv -n -sT -Pn -n -T2 --max-retries 2 --scan-delay 1075ms --randomize-hosts --data-length 15'
+nmap_options = '-vv -sT -Pn -n -T2 --max-retries 2 --scan-delay 1075ms --randomize-hosts --data-length 15'
 src_range = [31420, 58372]
 nm = nmap.PortScanner()
 

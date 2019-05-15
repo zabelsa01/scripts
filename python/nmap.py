@@ -26,11 +26,12 @@ ip_rang = raw_input("Enter IP, Range, or CIDR to scan.\n")
 # ports = []
 ports = raw_input("\nEnter ports to scan seperated by commas. Recommend not scanning more than 2 ports at a time.\n")
 # output_dir = raw_input("\nEnter path to output results. Default is current directory.\n")
-data_len = raw_input("\nEnter number of extra bytes to add to the packets. This helps avoid IDS detection. Recommend using 15.\n")
+#data_len = raw_input("\nEnter number of extra bytes to add to the packets. This helps avoid IDS detection. Recommend using 15.\n")
 
 
 # Script Variables
 src_range = [31420, 58372]
+data_len = str(15)
 nm = nmap.PortScanner()
 
 
@@ -41,15 +42,23 @@ def nmap_run():
 
 
 def nmap_reports():
-    now = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    now = datetime.datetime.now().strftime("%Y-%m-%d")
     # f = open(working_dir + '/' + str(now) + '.csv')
-    f = open(str(now) + '.csv', 'w')
     os.system("clear")
     print 'Running Nmap against ' + ip_rang
-    print 'Scanning port(s)' + ports + ' with ' + data_len + ' bytes added to each packet.'
+    print 'Scanning port(s)' + ports
     print "The results will be saved to current directory in CSV format."
     print '-----------------------------------'
-    f.write(nm.csv())
+    if os.path.isfile(str(now) + '.csv'):
+        with open(str(now) + '.csv', 'a') as f:
+            skip = nm.csv()
+            skip = skip.splitlines()[1:]
+            skip = '\n'.join(skip)
+            print skip
+            f.write(skip + '\n')
+    else:
+        f = open(str(now) + '.csv', 'a')
+        f.write(nm.csv())
     f.close()
 
 
@@ -64,7 +73,8 @@ def nmap_reports():
             lport = nm[host][proto].keys()
             lport.sort()
             for port in lport:
-                print ('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+                if nm[host][proto][port]['state'] == 'open':
+                    print ('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
 
 
 # Start Script

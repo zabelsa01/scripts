@@ -71,9 +71,9 @@ def nmap_reports():
 
 
 # Print Results in List Format
-    for host in nm.all_hosts():
+     print logo
+     for host in nm.all_hosts():
         print ' '
-        print logo
         print('Host : %s (%s)' % (host, nm[host].hostname()))
         print('State : %s' % nm[host].state())
         for proto in nm[host].all_protocols():

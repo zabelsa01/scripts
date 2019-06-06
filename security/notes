@@ -128,10 +128,9 @@ Empire
   Set listener [tab] to set listener
 
 Hashcat (password cracker)
-  View hash mode type at (Google Hashcat example hashes)
-  Search for the beginning of the hash to determine the mode
+  hashcat --example-hashes (view example hashes to find the mode)
   Hashcat -m 7400 hashfile.txt /opt/wordlists/rockyou
-  NTLMv2 = 5600
+  NTLMv2 = 5600  
 
 Searchsploit
   searchsploit program-name

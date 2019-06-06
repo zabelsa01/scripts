@@ -86,6 +86,21 @@ Smbmap (shows a list of SMB Shares)
   Smbmap -u alice1978 -p ‘NTLM_Hash:NTLM_Hash’ -H 10.10.10.107 
   -R (-R list contents of shares)
   --download (download file)
+  
+Smbclient
+  smbclient -N -L //10.10.10.97 (List all SMB Shares as anonymous)
+  smbclient -N //10.10.10.97/share (View Share contents)
+  
+SMB Mount Share
+  mount -t cifs //10.10.10.97/sharename /mnt
+  find . -ls | tee /path/output.txt (Output a directory tree listing to a file)
+  
+SMBcacls
+  smbcacls -N //10.10.10.97/sharename /folder (Prints out NTFS permissions)
+  
+SCF (Shell Command Files)
+  If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.
+  https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/
 
 File Transfer
   Web Server

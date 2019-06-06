@@ -71,6 +71,7 @@ Wfuzz (Brute Force Web Usernames)
   
 Gobuster (Find website directories)
   Gobuster -w /usr/share/wordlists/dirbuster/wordlist.txt -u http://10.10.10.85:3000 -x html,php  -o outputfile.log -t 50
+  -s to change the status codes (example gobuster -w .... output.log -s 200,301
 
 Dirb (Find website directories)
   Dirb http://website/

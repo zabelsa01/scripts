@@ -1,0 +1,20 @@
+## MAKE TWO DIRECTORIES IN NGINX FOLDER; CONF AND LETSENCRYPT
+## CHANGE THE SERVERNANME AND VOLUME NAMES BELOW
+
+# docker-compose.yml
+---
+version: "2"
+services:
+  sslproxy:
+    image: danieldent/nginx-ssl-proxy
+    container_name: nginx_proxy
+    restart: unless-stopped
+    environment:
+      #UPSTREAM
+      SERVERNAME: WWW.DOMAINNAME.COM
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /DOCKER-PATH/nginx/conf:/etc/nginx/conf.d
+      - /DOCKER-PATH/nginx/letsencrypt:/etc/letsencrypt

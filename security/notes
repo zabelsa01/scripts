@@ -101,7 +101,7 @@ SMBcacls
   smbcacls -N //10.10.10.97/sharename /folder (Prints out NTFS permissions)
   
 Crackmapexec
-  crackmapexec 10.10.10.125 --share -u ' ' -p ' ' (View SMB Shares)
+  crackmapexec 10.10.10.125 --share -u '' -p '' (View Anonymous SMB Shares)
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

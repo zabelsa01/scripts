@@ -1,0 +1,14 @@
+#!/bin/bash
+
+apt install -y fail2ban
+
+cat > /etc/fail2ban/jail.local <<DELIM
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 5
+DELIM
+
+systemctl restart fail2ban.service

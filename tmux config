@@ -9,6 +9,7 @@ unbind C-b
 # Quality of Life Stuff
 set -g history-limit 10000
 set -g allow-rename off
+set -g mouse on
 
 # Join Windows
 bind-key j command-prompt -p "join pane from:"	"join-pane -s '%%'"

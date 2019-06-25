@@ -1,3 +1,4 @@
+# apt install tigervnc-standalone-server tigervnc-common
 # vncserver -SecurityTypes=VeNCrypt,TLSVnc -geometry 2080x1080 -depth 24 :1
   # - Starts VNC using TLS encryption
 

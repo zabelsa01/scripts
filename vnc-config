@@ -1,5 +1,8 @@
-# xstartup file located in $HOME/.vnc/
+# vncserver -SecurityTypes=VeNCrypt,TLSVnc -geometry 2080x1080 -depth 24 :1
+  # - Starts VNC using TLS encryption
 
+
+# xstartup file located in $HOME/.vnc/
 #!/bin/sh
 def
 export XKL_XMODMAP_DISABLE=1
@@ -9,6 +12,3 @@ unset DBUS_SESSION_BUS_ADDRESS
 xrdb $HOME/.Xresources
 xsetroot -solid grey
 startxfce4 &
-xfce4-panel &
-#gonme-session &
-#lxsession &

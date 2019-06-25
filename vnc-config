@@ -1,0 +1,14 @@
+# xstartup file located in $HOME/.vnc/
+
+#!/bin/sh
+def
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+xrdb $HOME/.Xresources
+xsetroot -solid grey
+startxfce4 &
+xfce4-panel &
+#gonme-session &
+#lxsession &

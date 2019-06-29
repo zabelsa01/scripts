@@ -175,6 +175,7 @@ Linux Priv Escalation Enumeration
   https://dirtycow.ninja/
   https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
   https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
+  https://github.com/DominicBreuker/pspy
   
 Binaries (Binaries that can be exploited by an attacker to bypass local security restrictions.)
   Windows (Lolbins): https://github.com/LOLBAS-Project/LOLBAS

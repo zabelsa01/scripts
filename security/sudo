@@ -1,0 +1,5 @@
+user	ALL=NOPASSWD:/usr/sbin/openvpn --config /etc/openvpn/htb.ovpn
+user	ALL=(root:root) /usr/bin/mount
+user	ALL=(root:root) /usr/bin/msfdb
+user	ALL=(root:root) /usr/bin/msfconsole
+user	ALL=(root:root) /usr/bin/vim /etc/hosts

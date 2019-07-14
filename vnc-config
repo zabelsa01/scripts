@@ -1,15 +1,23 @@
-# apt install tigervnc-standalone-server tigervnc-common
-# vncserver -SecurityTypes=VeNCrypt,TLSVnc -geometry 2080x1080 -depth 24 :1
-  # - Starts VNC using TLS encryption
+#Install Kali with XFCE Desktop (ISO from Kali website)
+#Remove default tightvncserver
+#Install TigerVNC
+	# apt -y install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer
+#StartVNC: vncserver -localhost no -geometry 2080x1080 -dpi 96 :2
+#VNC Server will be listening on port 5902
 
+#--CONFIGS--#
+#Create xstartup and config files in ~/.vnc directory
 
-# xstartup file located in $HOME/.vnc/
+#xstartup
 #!/bin/sh
-def
-export XKL_XMODMAP_DISABLE=1
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
+exec startxfce4
 
-xrdb $HOME/.Xresources
-xsetroot -solid grey
-startxfce4 &
+#config
+securitytypes=tlsvnc
+desktop=attack
+geometry=2080x1080
+dpi=96
+alwaysshared
+localhost=no

@@ -3,3 +3,4 @@ user	ALL=(root:root) /usr/bin/mount
 user	ALL=(root:root) /usr/bin/msfdb
 user	ALL=(root:root) /usr/bin/msfconsole
 user	ALL=(root:root) /usr/bin/vim /etc/hosts
+user  ALL=(root:root) /usr/bin/neo4j console

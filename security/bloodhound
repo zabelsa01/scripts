@@ -1,4 +1,6 @@
 # This will provide you with bloodhound test data to analyze
+# To change neoj4 password
+  # CALL dbms.security.changePassword('newpassword') [Enter this in the neo4j query search bar on http://localhost:7474]
 
 # Install Package
 sudo apt -y update; sudo apt -y upgrade; sudo apt -y dist-upgrade

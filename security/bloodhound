@@ -1,0 +1,21 @@
+# This will provide you with bloodhound test data to analyze
+
+# Install Package
+sudo apt -y update; sudo apt -y upgrade; sudo apt -y dist-upgrade
+sudo apt -y install bloodhound
+
+# Configure Neo4j
+sudo ./neo4j console
+firefox http://localhost:7474
+# Change password
+
+# Generate Test Data
+pip install neo4j-driver
+git clone https://github.com/BloodHoundAD/BloodHound-Tools
+chmod +x DBCreator.py
+python DBCreator.py
+#dbconfig
+#connect
+#generate
+
+# Connect to Bloodhound to analyze data

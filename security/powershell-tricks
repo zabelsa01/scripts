@@ -1,5 +1,5 @@
 Find files containing passwords
-ls -r -d 2 c:\path | ? {$_.FullName -like '*pass*'} | select -expand FullName
+ls -r -d 2 -i *pass* | select FullName
 
 Find files with passwords in contencts of TXT and LOG Files
-ls -r -d 2 -include *.txt,*.log c:\path | sls -pattern 'pass' | select Line, Path (or Out-File ./file.txt)
+ls -r -d 2 -i *.txt,*.log c:\path | sls -patt 'pass' | select Line, Path (or Out-File ./file.txt)

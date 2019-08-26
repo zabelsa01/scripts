@@ -1,0 +1,31 @@
+# Install source https://github.com/cobbr/Covenant
+
+mkdir /opt/covenant
+cd /opt/covenant
+
+git clone --recurse-submodules https://github.com/cobbr/Covenant
+cd Covenant/Covenant
+docker build -t covenant .
+
+mkdir /opt/covenant/docker
+
+docker-compose file below and save in /opt/covenant/docker
+
+# docker-compose.yml
+---
+version: "3"
+services:
+   covenant:
+      image: covenant:latest
+      container_name: covenant
+      restart: unless-stopped
+      ports:
+         - "7443:7443"
+         - "80:80"
+         - "443:443"
+      volumes:
+         - /opt/covenant/Covenant/Covenant/Data:/app/Data
+      user: root
+      
+docker-compose up -d
+https://localhost:7443

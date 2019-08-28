@@ -29,3 +29,10 @@ services:
       
 docker-compose up -d
 https://localhost:7443
+
+
+How to save a container as a new image
+docker login --username=dockerhub_username
+docker commit container_name new_name
+docker tag ID hub_username/covenant:latest
+docker push hub_username/covenant

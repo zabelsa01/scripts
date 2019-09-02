@@ -1,4 +1,4 @@
-/etc/systemd/system/vncserver@.service 
+vim /etc/systemd/system/vncserver@.service 
 
     [Unit]
     Description=Start TightVNC server at startup

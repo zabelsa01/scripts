@@ -1,0 +1,24 @@
+/etc/systemd/system/vncserver@.service 
+
+    [Unit]
+    Description=Start TightVNC server at startup
+    After=syslog.target network.target
+
+    [Service]
+    Type=forking
+    User=user
+    Group=user
+    WorkingDirectory=/home/user
+
+    PIDFile=/home/user/.vnc/%H:%i.pid
+    ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
+    ExecStart=/usr/bin/vncserver -depth 24 -geometry 2080x1080 :%i
+    ExecStop=/usr/bin/vncserver -kill :%i
+
+    [Install]
+    WantedBy=multi-user.target
+
+chmod +x 755 /etc/systemd/system/vncserver@.service\
+systemctl daemon-reload 
+systemctl enable vncserver@2.service
+systemctl start vncserver@2.service

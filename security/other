@@ -35,6 +35,7 @@ Cobalt
     - Get-GPPPassword
   Spawn x64 listener (Move out of Powershell); then kill old listener
   If admin you can inject into system process to become SYSTEM or another process
+  Golden/Silver Tickets: https://github.com/bluscreenofjeff/AggressorScripts
   
   Connect MetaSploit to Cobalt Listener
     set lhost cobalt host

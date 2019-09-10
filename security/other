@@ -61,4 +61,8 @@ PrivExchange
   # Windows Version
    - http://blog.redxorblue.com/2019/01/red-teaming-made-easy-with-exchange.html
    
+PrivEsc
+  Schedule Tasks/Trusted Installer
+    https://tyranidslair.blogspot.com/2019/09/the-art-of-becoming-trustedinstaller.html?m=1
+   
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

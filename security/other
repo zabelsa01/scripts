@@ -103,5 +103,9 @@ PrivEsc
     
   Multi-Domain (Forrest) compromise usiing Sid History
     https://adsecurity.org/?p=1640
- 
+    
+  Bypass UAC Local
+    Open CMD; Open another CMD (As Admin; select NO)
+    cd c:\windows\system32 -> odbcad32.exe -> Tracing -> add cmd.exe to pathbar
+    
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

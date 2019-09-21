@@ -19,11 +19,14 @@ Proxy inbound (Reverse Proxy)
     returns webpage on localhost from remotehost
     
 Example
-Connect to Web Site from remote host through another host
-  laptop - ssh -d 9050 username@desktop (runs firefox from desktop)
-  desktop - ssh -L 127.0.0.1:8000:10.10.5.1:443 user@10.10.5.5
-  laptop - proxychains firefox
-  https://127.0.0.1:8000
+  Connect to Web Site from remote host through another host
+    laptop - ssh -d 9050 username@desktop (runs firefox from desktop)
+    desktop - ssh -L 127.0.0.1:8000:10.10.5.1:443 user@10.10.5.5
+    laptop - proxychains firefox
+    https://127.0.0.1:8000
+
+  Tunnel to remote desktop through another host
+    ssh -L 127.0.0.1:8000:10.10.5.11:3389 desktop
 
 
 Good Examples

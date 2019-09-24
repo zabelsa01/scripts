@@ -103,6 +103,10 @@ SMB Mount Share
 SMBcacls
   smbcacls -N //10.10.10.97/sharename /folder (Prints out NTFS permissions)
   
+Impacket Tools
+  python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+  python /usr/share/doc/python-impacket/examples/psexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+  
 Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
   crackmapexec 10.10.10.125 --shares -u '' -p '' (View Anonymous SMB Shares)
   cme smb 10.10.10.125 -u username -p 'password' -x whoami (run CMD command, -X for Powershell)

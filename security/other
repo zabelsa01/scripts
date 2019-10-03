@@ -15,6 +15,9 @@ GhostPack Tools
     - Examples: https://powersploit.readthedocs.io/en/latest/Recon/Invoke-Kerberoast/
   SharpHound.exe -c All, Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe (Kerberose Tool)
+  AMSIBypass - Rastamouse
+    - [System.Reflection.Assembly]::LoadFile("D:\Tools\ASBBypass\ASBBypass\bin\Release\ASBBypass.dll")
+    - [Amsi]::Bypass()
     
 Bloodhound/Neo4J
   # FIND SPN WITH DOMAIN ADMIN

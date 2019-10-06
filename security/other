@@ -6,6 +6,7 @@ ATT&CK: https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1089
 Lateral Movement SCM+DLL: https://posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
 MSBuild + WebDav: https://www.n00py.io/2018/06/executing-meterpreter-in-memory-on-windows-10-and-bypassing-antivirus/
 Impacket Tools: https://www.secureauth.com/labs/open-source-tools/impacket
+Cradle Crafter: https://github.com/danielbohannon/Invoke-CradleCrafter
 Good Cheat Sheet: https://m0chan.github.io/2019/07/30/Windows-Notes-and-Cheatsheet.html
 
 GhostPack Tools

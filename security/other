@@ -92,6 +92,8 @@ Cobalt
   If admin you can inject into system process to become SYSTEM or another process
   Silver Tickets: https://github.com/bluscreenofjeff/AggressorScripts
   run Powershell -File 'C:\$Recycle.Bin\amsi_bypass.ps1'
+  # Get a TGT ticket from the DC
+    - pth domain\user hash (this also performs a downgrade attack so not recommended; user Rubueus instead)
   
   Connect MetaSploit to Cobalt Listener
     set lhost cobalt host

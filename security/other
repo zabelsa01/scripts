@@ -41,6 +41,9 @@ Bloodhound/Neo4J
   UNWIND tempVar AS comps
   RETURN u.name,COUNT(DISTINCT(comps))
   ORDER BY COUNT(DISTINCT(comps)) DESC
+  
+PowerView
+  Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
 
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)

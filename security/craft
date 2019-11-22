@@ -6,7 +6,7 @@ Trade Craft Notes:
 
  - Attackers:
    - Source for UserAgent Strings: http://www.irongeek.com/fed-watch.php
-   - Use command line arguments with 'spawnto' 
+   - Customize PPID and Spawnto to look like legitimate processes
    - Run tasks as human accounts and not service account to blend in
    - Download Sysmon config to set PPID and Spawnto to something that will not be logged or will blend in
    - Don't make remote connections via IP because it will authenticate with NTLM vice Kerberose when using FQDN

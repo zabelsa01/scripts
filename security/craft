@@ -1,0 +1,27 @@
+Trade Craft Notes:
+
+ - Defenders:
+   - Recommend admins set service accounts to a single failed login lockout policy
+   - Disabling Seclogon (Secondary Logon) service prevents Make Token, Runas, etc..
+
+ - Attackers:
+   - Source for UserAgent Strings: http://www.irongeek.com/fed-watch.php
+   - Use command line arguments with 'spawnto' 
+   - Run tasks as human accounts and not service account to blend in
+   - Download Sysmon config to set PPID and Spawnto to something that will not be logged or will blend in
+   - Don't make remote connections via IP because it will authenticate with NTLM vice Kerberose when using FQDN
+   - Utilize secure delete when deleting artifacts on a target
+   - When making a token always use the GUI as the command line can cause errors with special characters or spaces
+   - Look for scheduled tasks that are missing exe's or contain script to utilize for persistence instead of creating new services or schtasks
+   - Using Cobalts 'ls' command can lock out accounts. Recommend using 'dir'. Think they are using a custom C# dir
+     - Make a tools list in C# for common Windows commands such as ipconfig, netstat, sc, etc..
+      
+
+USB Stuff
+  - Hak5 
+  - Bad USB: https://github.com/topics/badusb
+  - p4wnp1: https://github.com/mame82/P4wnP1
+
+Other Notes:
+  - Mayhem: https://spectrum.ieee.org/computing/software/mayhem-the-machine-that-finds-software-vulnerabilities-then-patches-them
+  - Talk about utilizing LUA to develop tools instead of .Net due to smaller size and not running .Net

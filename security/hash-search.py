@@ -22,10 +22,12 @@ def choice():
         path = raw_input('Enter Path to Hash File \n')
         hashes = subprocess.check_output(["grep", "-oP", "[a-z0-9]{18,}", path])
         hashlist = hashes.splitlines()
-        for i in hashlist:
+        uniqhash = set(hashlist)
+        uhashlist = list(uniqhash)
+        for i in uhashlist:
             param = dict(key=api, query=i)
             execute(param)
-            time.sleep(4)
+            time.sleep(3)
     elif (choice == '2'):
         os.system('clear')
         hash = raw_input('Enter Hash: \n')

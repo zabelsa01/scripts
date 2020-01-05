@@ -1,4 +1,4 @@
-apt install tightvncserver
+apt install tigervnc-standalone-server
 apt install xvfb (not sure if required)
 
 vim ~/.vnc/xstartup

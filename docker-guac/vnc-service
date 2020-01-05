@@ -1,22 +1,23 @@
 vim /etc/systemd/system/vncserver@.service 
 
-    [Unit]
-    Description=Start TightVNC server at startup
-    After=syslog.target network.target
+        [Unit]
+        Description=Start TightVNC server at startup
+        After=syslog.target network.target
 
-    [Service]
-    Type=forking
-    User=user
-    Group=user
-    WorkingDirectory=/home/user
+        [Service]
+        Type=simple
+        User=user
+        Group=user
+        WorkingDirectory=/home/user
 
-    PIDFile=/home/user/.vnc/%H:%i.pid
-    ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
-    ExecStart=/usr/bin/vncserver -depth 24 -geometry 2080x1080 :%i
-    ExecStop=/usr/bin/vncserver -kill :%i
+        PIDFile=/home/user/.vnc/%H:%i.pid
+        ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
+        ExecStart=/usr/bin/vncserver -localhost no -SecurityTypes VncAuth -depth 24 -alwaysshared  -fg -geometry 2080x1080 :%i
+        ExecStop=/usr/bin/vncserver -kill :%i
 
-    [Install]
-    WantedBy=multi-user.target
+        [Install]
+        WantedBy=multi-user.target
+
 
 chmod +x 755 /etc/systemd/system/vncserver@.service\
 systemctl daemon-reload 

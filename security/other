@@ -241,6 +241,9 @@ Windows Commands
       Disable: reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
       Enable:  reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 
+  Disable Defender
+      Powershell Set-MpPreference -DisableRealtimeMonitoring $true ($false turns it on)
+  
   Opens Powershell as Administrator
       Start-Process PowerShell -Verb RunAs
 

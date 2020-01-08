@@ -243,6 +243,7 @@ Windows Commands
 
   Disable Defender
       Powershell Set-MpPreference -DisableRealtimeMonitoring $true ($false turns it on)
+      Powershell Add-MpPreference -ExclusionPath "C:\Temp" (Excludes a folder)
   
   Opens Powershell as Administrator
       Start-Process PowerShell -Verb RunAs

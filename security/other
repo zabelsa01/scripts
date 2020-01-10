@@ -48,6 +48,9 @@ Bloodhound/Neo4J
   RETURN u.name,COUNT(DISTINCT(comps))
   ORDER BY COUNT(DISTINCT(comps)) DESC
   
+Antivirus Info
+  WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
+  
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
   Trust Mapping: Get-DomainTrustMapping to | Export-CSV -NoTypeInformation trusts.csv

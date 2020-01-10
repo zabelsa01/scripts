@@ -13,6 +13,7 @@ MSBuild Rastamouse: https://rastamouse.me/2019/06/tikispawn-msbuild/
 Payload delivery cmds: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Download%20and%20Execute.md 
 SpecterOps Docs: https://www.specterops.io/resources/research-and-development
 Aggressor Script Lateral Movement: https://github.com/FortyNorthSecurity/AggressorAssessor
+AD Password Spray: https://github.com/outflanknl/Spray-AD/blob/master/README.md
 
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)

@@ -8,3 +8,12 @@ Reboot system and boot to USB Drive
   - Powershell: Edit auto.ps1 to have a powershell script execute at boot
   - Sticky Keys: Press Shift 5 times fast when you get to the login screen
   - Online MS Accounts: Wait approximetely ~5minutes after Windows login screen appears. Login with any PIN number.
+
+BIOS Hotkeys
+Dell: Boot Menu F12 / BIOS [DEL]
+HP: Boot Menu F2 / BIOS F10
+Lenovo: Boot Menu F12 / BIOS F1
+ASUS:  Boot Menu [ESC] / BIOS F2
+Acer: Boot Menu F12 / BIOS F2
+MSI: Boot Menu F11 / BIOS [DEL]
+Thosiba: Boot Menu F12 / BIOS F2

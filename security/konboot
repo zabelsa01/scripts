@@ -1,0 +1,10 @@
+Help: https://kon-boot.com/docs/#windows_guide
+
+- Disable Secureboot
+- Disable Virtualization support
+
+Reboot system and boot to USB Drive
+
+  - Powershell: Edit auto.ps1 to have a powershell script execute at boot
+  - Sticky Keys: Press Shift 5 times fast when you get to the login screen
+  - Online MS Accounts: Wait approximetely ~5minutes after Windows login screen appears. Login with any PIN number.

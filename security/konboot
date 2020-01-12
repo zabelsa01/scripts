@@ -16,7 +16,8 @@ Reboot system and boot to USB Drive
 Dell:      F12      |   [DEL]
 HP:        F2       |   F10
 Lenovo:    F12      |   F1
-ASUS:      [ESC]    |   F2
+ASUS:      F8       |   [DEL]
 Acer:      F12      |   F2
 MSI:       F11      |   [DEL]
 Thosiba:   F12      |   F2
+Gigabyte   F12      |   [DEL]

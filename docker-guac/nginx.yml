@@ -18,11 +18,15 @@ services:
     container_name: nginx_proxy
     restart: unless-stopped
     environment:
-      #UPSTREAM
-      SERVERNAME: WWW.DOMAINNAME.COM
+      UPSTREAM: 127.0.0.1:8080
+      SERVERNAME: FQDN
+      DO_AUTH: required
+      PROXY_PASSWORD: <SET PASSWORD>
+      REAL_IP_RECURSIVE: 'on'
+      SET_REAL_IP_FROM_CLOUDFLARE: 'yes'
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - /DOCKER-PATH/nginx/conf:/etc/nginx/conf.d
-      - /DOCKER-PATH/nginx/letsencrypt:/etc/letsencrypt
+      - /PATH/nginx/conf:/etc/nginx/conf.d
+      - /PATH/nginx/letsencrypt:/etc/letsencrypt

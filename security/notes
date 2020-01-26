@@ -95,6 +95,7 @@ Smbmap (shows a list of SMB Shares)
 Smbclient
   smbclient -N -L //10.10.10.97 (List all SMB Shares as anonymous)
   smbclient -N //10.10.10.97/share (View Share contents)
+  smbclient -U username \\\\10.10.10.169\\share password
   
 SMB Mount Share
   mount -t cifs //10.10.10.97/sharename /mnt

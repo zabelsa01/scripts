@@ -98,7 +98,7 @@ Smbclient
   smbclient -U username \\\\10.10.10.169\\share password
   
 SMB Mount Share
-  mount -t cifs //10.10.10.97/sharename /mnt
+  mount -t cifs -o user=<username> //10.10.10.97/share /mnt
   find . -ls | tee /path/output.txt (Output a directory tree listing to a file)
   
 SMBcacls

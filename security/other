@@ -16,6 +16,7 @@ Aggressor Script Lateral Movement: https://github.com/FortyNorthSecurity/Aggress
 AD Password Spray: https://github.com/outflanknl/Spray-AD/blob/master/README.md
 RDP Lateral Movement: https://posts.specterops.io/revisiting-remote-desktop-lateral-movement-8fb905cb46c3 (Opsec Considerations)
 WinRM Shell: https://alionder.net/winrm-shell/
+Specter Ops Agressor Script: https://posts.specterops.io/move-faster-stay-longer-6b4efab9c644
 
 GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)

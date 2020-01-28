@@ -22,8 +22,9 @@ GhostPack Tools
   Seatbelt.exe system|user (Opsec Tool)
   SharpUp.exe (Privesc Tool)
   SharpDump.exe (LSASS MiniDump Tool)
-  SharpView.exe (Network Enumeration) (Use module -Help to get syntax) 
-    - Examples: https://powersploit.readthedocs.io/en/latest/Recon/Invoke-Kerberoast/
+  SharpView.exe (Network Enumeration) (Use module -Help to get syntax)
+    - Exmaple: SharpView.exe Get-NetLoggedon localhost
+    - PowerView Examples: https://powersploit.readthedocs.io/en/latest/Recon
   SharpHound.exe -c All,Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe (Kerberose Tool)
   SharpDPAPI.exe

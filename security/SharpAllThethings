@@ -1,0 +1,13 @@
+#! /bin/bash
+#DOWNLOAD ALL THE SHARP THINGS
+
+mkdir SharpAllTheThings
+cd SharpAllTheThings
+
+list=$(curl https://github.com/N7WEra/SharpAllTheThings | grep Link | awk -F'"' '{print $2}' | awk -F "tree" '{print $1}' | awk -F "blob" '{print $1}' | uniq)
+echo $list | tr " " "\n" >> list.txt
+
+for i in $(cat list.txt); do
+        git clone $i
+done
+rm -rf list.txt

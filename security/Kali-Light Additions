@@ -1,0 +1,57 @@
+FIREFOX PLUGIN foxy proxy
+FIREFOX PLUGIN dark reader
+FIREFOX PLUGIN useragent switcher
+
+APT:
+
+geany
+open-vm-tools-desktop
+metasploit-framework
+dnsenum
+enum4linux
+nmap 
+recon-ng
+spike
+burpsuite
+dirb
+dotdotpwn
+hydra
+nikto
+nishang
+proxychains
+sqlitebrowser
+sqlmap
+webshells
+wfuzz
+wireshark
+crunch
+hashcat
+hashcat-utils
+john
+mimikatz
+seclists
+wordlists
+radare2
+radare2-cutter
+ollydbg
+exploitdb
+binwalk
+gdb
+nasm
+tcpdump
+crackmapexec
+cherrytree
+bless
+python-pip
+python3-pip
+powershell
+git
+apache2
+net-tools
+python-future
+
+
+PIP:
+
+pip install pwntools
+pip install impacket

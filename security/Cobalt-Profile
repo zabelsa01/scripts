@@ -4,6 +4,8 @@
 # A template with variants
 # Authors: Me 
 
+## Variants can be changed in the following blocks:  "http-get", "http-post", "http-stager", and "https-certificate".
+
 ################################################
 ## Profile Name
 ################################################

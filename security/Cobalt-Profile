@@ -2,7 +2,7 @@
 # Version: CobaltStrike 4.0
 # Description: 
 # A template with variants
-# Authors: Me
+# Authors: Me 
 
 ################################################
 ## Profile Name
@@ -33,6 +33,18 @@ https-certificate {
     set C   "US";
     set CN  "jquery.com";
     set O   "jQuery";
+    set OU  "Certificate Authority";
+    set validity "365";
+}
+
+https-certificate "SharePoint" {
+    #set keystore "/pathtokeystore";
+    #set password "password";
+
+    ## Option 3) Cobalt Strike Self-Signed Certificate
+    set C   "US";
+    set CN  "sharepoint.com";
+    set O   "SharePoint";
     set OU  "Certificate Authority";
     set validity "365";
 }

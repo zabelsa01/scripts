@@ -1,0 +1,23 @@
+RT Tips: https://github.com/vysecurity/RedTips
+RT Experiments: https://ired.team/
+RT Tyranidslair: https://tyranidslair.blogspot.com/2019/
+Windows/Linux Commands: https://github.com/foi-oss/ortbot
+ATT&CK: https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1089/T1089.md
+Lateral Movement SCM+DLL: https://posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
+MSBuild + WebDav: https://www.n00py.io/2018/06/executing-meterpreter-in-memory-on-windows-10-and-bypassing-antivirus/
+Impacket Tools: https://www.secureauth.com/labs/open-source-tools/impacket
+Cradle Crafter: https://github.com/danielbohannon/Invoke-CradleCrafter
+Good Cheat Sheet: https://m0chan.github.io/2019/07/30/Windows-Notes-and-Cheatsheet.html
+MSBuild: https://github.com/3gstudent/msbuild-inline-task
+MSBuild Rastamouse: https://rastamouse.me/2019/06/tikispawn-msbuild/
+Payload delivery cmds: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Download%20and%20Execute.md 
+SpecterOps Docs: https://www.specterops.io/resources/research-and-development
+Aggressor Script Lateral Movement: https://github.com/FortyNorthSecurity/AggressorAssessor
+AD Password Spray: https://github.com/outflanknl/Spray-AD/blob/master/README.md
+RDP Lateral Movement: https://posts.specterops.io/revisiting-remote-desktop-lateral-movement-8fb905cb46c3 (Opsec Considerations)
+WinRM Shell: https://alionder.net/winrm-shell/
+Specter Ops Agressor Script: https://posts.specterops.io/move-faster-stay-longer-6b4efab9c644
+Covenant & Donut: https://blog.naijasecforce.com/red-teaming-with-covenant-and-donut/
+Sharp Everything: https://github.com/N7WEra/SharpAllTheThings
+SharpSploit Compiled: https://github.com/anthemtotheego/SharpSploitConsole
+Traffic Generator (Ghost): https://github.com/cmu-sei/ghosts

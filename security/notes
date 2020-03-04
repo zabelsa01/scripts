@@ -81,6 +81,9 @@ Gobuster (Find website directories)
 
 Dirb (Find website directories)
   Dirb http://website/
+  
+Generate Website Wordlist
+  cewl http://10.10.10.175/index.html
 
 Test XSS
   <center>test</center>

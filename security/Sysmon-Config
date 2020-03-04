@@ -1,0 +1,13 @@
+Download Sysmon and SwiftOnSecurity Config
+sysmon.exe -accepteula -i sysmonconfig-export.xml
+
+
+Download WinLogBeat 6.8.4
+powershell -exec bypass -File .\install-service-winlogbeat.ps1
+Set-Service -Name WinLogBeat -StartupType Automatic
+Start-Service -Name WinLogBeat
+
+
+Delete Service
+$service = Get-WmiObject -Class Win32_Service -Filter "Name='winlogbeat'"
+$service.delete()

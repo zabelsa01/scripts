@@ -1,0 +1,3 @@
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]
+“SecurityLayer”=dword:00000001
+“UserAuthentication”=dword:0x00000000

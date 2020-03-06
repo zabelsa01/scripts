@@ -1,3 +1,16 @@
+####Downloading Tools####
+apt-get update && apt-get install -y git
+mkdir -p /tools
+export GIT_SSL_NO_VERIFY=1
+git clone https://github.com/lgandx/Responder.git /tools/responder
+git clone https://github.com/CoreSecurity/impacket.git /tools/impacket
+cd /tools/impacket && python ./setup.py install
+
+
+####Dumping Creds####
+https://github.com/qdba/MyBashBunny/tree/master/Payloads/library/DumpCreds
+
+
 ####PS Drive By####
 
 #!/bin/bash

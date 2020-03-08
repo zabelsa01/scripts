@@ -35,6 +35,10 @@ Bloodhound/Neo4J
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
   
+Donut-maker
+  https://github.com/Hackplayers/Salsa-tools/blob/master/Donut-Maker/donut-maker.py
+  pip3 install donut-shellcode
+  
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
   Trust Mapping: Get-DomainTrustMapping to | Export-CSV -NoTypeInformation trusts.csv

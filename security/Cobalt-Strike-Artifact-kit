@@ -2,3 +2,4 @@ Download artifact kit from Cobalt help menu
 Modify files in src-common and src-main
   - remove all comments and change variables 
   - read through and change anything else that can be signatured
+Run ./build.sh

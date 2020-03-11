@@ -7,4 +7,5 @@ Run ./build.sh
     dist-peek, dist-pipe, dist-readfile, dist-template
     Load one of the cna script into CS and generate a payload to see if AV alerts
 
-Dist-Pipe has a default sleep of 1024 seconds (17 minutes) to avoid sanbox. This can be changed if necessary
+Dist-Pipe needs to be modified to use HEAP memory allocation. 
+This can be followed using the Cobalt Strike artifact kit Youtube video

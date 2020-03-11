@@ -3,7 +3,8 @@ Modify files in src-common and src-main
   - remove all comments and change variables 
   - read through and change anything else that can be signatured
 Run ./build.sh
+    This will generate the following folders/techniques for AV avoidance
+    dist-peek, dist-pipe, dist-readfile, dist-template
+    Load one of the cna script into CS and generate a payload to see if AV alerts
 
-This will generate the following folders/techniques for AV avoidance
-dist-peek, dist-pipe, dist-readfile, dist-template
-Load one of the cna script into CS and generate a payload to see if AV alerts
+Dist-Pipe has a default sleep of 1024 seconds (17 minutes) to avoid sanbox. This can be changed if necessary

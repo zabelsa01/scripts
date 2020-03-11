@@ -9,3 +9,5 @@ Run ./build.sh
 
 Dist-Pipe needs to be modified to use HEAP memory allocation. 
 This can be followed using the Cobalt Strike artifact kit Youtube video
+
+You can change patch.c but it must be 1024 characters for buffer

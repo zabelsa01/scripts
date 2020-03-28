@@ -1,0 +1,21 @@
+Conf File for rules
+/etc/john/jonh.conf
+
+Rule format:
+CheatSheet: https://countuponsecurity.files.wordpress.com/2016/09/jtr-cheat-sheet.pdf
+[List.Rules:MyRule]
+#cAz capitalize first letter
+cAz"[0-9]" 
+cAz"199[0-9]"
+cAz"2020"
+cAz"[0-9][0-9]"
+cAz"[!@#]"
+cAz"[0-9][!@#$%]"
+cAz"[0-9][0-9][!@#$%]"
+t #toggle case
+d #duplicate word
+
+English Dictionary:
+sudo apt -y install aspell-en
+aspell dump dicts
+aspell -d en dump master | grep -v "'" >> englisht.txt

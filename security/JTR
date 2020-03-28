@@ -19,3 +19,45 @@ English Dictionary:
 sudo apt -y install aspell-en
 aspell dump dicts
 aspell -d en dump master | grep -v "'" >> englisht.txt
+
+Example Syntax
+john ngodfrey --wordlist=./english.txt --rules=MyRule -max-len=15 -min-len=7
+
+Built-in Rules
+cat /etc/john/john.conf | grep "List.Rules" | grep -v include
+[List.Rules:None]
+[List.Rules:Drop]
+[List.Rules:JumboSingle]
+[List.Rules:Single]
+[List.Rules:Extra]
+[List.Rules:Wordlist]
+[List.Rules:NT]
+[List.Rules:ShiftToggle]
+[List.Rules:Multiword]
+[List.Rules:Split]
+[List.Rules:OldOffice]
+[List.Rules:o1]
+[List.Rules:o2]
+[List.Rules:o3]
+[List.Rules:o]
+[List.Rules:i1]
+[List.Rules:i2]
+[List.Rules:i3]
+[List.Rules:i]
+[List.Rules:oi]
+[List.Rules:T9]
+[List.Rules:best64]
+[List.Rules:d3ad0ne]
+[List.Rules:dive]
+[List.Rules:InsidePro]
+[List.Rules:T0XlC]
+[List.Rules:rockyou-30000]
+[List.Rules:specific]
+[List.Rules:hashcat]
+[List.Rules:passphrase-rule1]
+[List.Rules:passphrase-rule2]
+[List.Rules:Loopback]
+[List.Rules:Single-Extra]
+[List.Rules:Jumbo]
+[List.Rules:All]
+[List.Rules:MyRule]

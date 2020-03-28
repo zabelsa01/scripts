@@ -31,6 +31,12 @@ c A0"[0-9]"Az"!@#$" #Capatalize first letter, Prepend 0-9, and Append special ch
 T2 #toggle case
 d #duplicate word
 
+[List.Rules:MyDup]
+#Duplicate 4x keyboard walks to 8 characters
+d
+du
+d T4T5T6T7
+
 [List.Rules:Leet]
 so0Q
 sa4Q

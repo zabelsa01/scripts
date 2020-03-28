@@ -35,9 +35,12 @@ Bloodhound/Neo4J
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
   
-Donut-maker
-  https://github.com/Hackplayers/Salsa-tools/blob/master/Donut-Maker/donut-maker.py
-  pip3 install donut-shellcode
+Donut
+  Remove old versions: pip3 uninstall donut-shellcode
+  Install: pip3 install donut-shellcode
+  sudo python3 setup.py install
+  sudo make
+  Donut-maker: https://github.com/Hackplayers/Salsa-tools/blob/master/Donut-Maker/donut-maker.py
   
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”

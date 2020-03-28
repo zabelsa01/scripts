@@ -1,6 +1,10 @@
 Conf File for rules
 /etc/john/jonh.conf
 
+Mask:
+john --mask='?u?l?l?l?l?l?l?d?d?s' -min-len=7 -max-len=12 ngodfrey
+u=Upper; l=lower; s=SpecialCharacter
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Rule format:

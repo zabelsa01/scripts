@@ -28,7 +28,7 @@ c A0"[!@#$]"
 c A0"[!@#$][!@#$]"
 c A0"[!@#$]"Az"[0-9]"
 c A0"[0-9]"Az"!@#$" #Capatalize first letter, Prepend 0-9, and Append special character
-t #toggle case
+T2 #toggle case
 d #duplicate word
 
 [List.Rules:Leet]
@@ -38,6 +38,13 @@ so0QMsa4Q
 so0QAz"[0-9][!@#$]"
 sa4QAz"[0-9][!@#$]"
 so0QMsa4QAz"[0-9][!@#$]"
+T2so0Q
+T2sa4Q
+T2so0QMsa4Q
+T2so0QAz"[0-9][!@#$]"
+T2sa4QAz"[0-9][!@#$]"
+T2so0QMsa4QAz"[0-9][!@#$]"
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Print passwords created to screen

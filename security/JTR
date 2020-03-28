@@ -1,6 +1,8 @@
 Conf File for rules
 /etc/john/jonh.conf
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Rule format:
 CheatSheet: https://countuponsecurity.files.wordpress.com/2016/09/jtr-cheat-sheet.pdf
 [List.Rules:MyRule]
@@ -29,6 +31,15 @@ c A0"[0-9]"Az"!@#$" #Capatalize first letter, Prepend 0-9, and Append special ch
 t #toggle case
 d #duplicate word
 
+[List.Rules:Leet]
+so0Q
+sa4Q
+so0QMsa4Q
+so0QAz"[0-9][!@#$]"
+sa4QAz"[0-9][!@#$]"
+so0QMsa4QAz"[0-9][!@#$]"
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Print passwords created to screen
 john --wordlist=./password.lst --rules=MyRule -max-len=15 -min-len=7 --stdout
 
@@ -39,6 +50,8 @@ aspell -d en dump master | grep -v "'" >> englisht.txt
 
 Example Syntax
 john ngodfrey --wordlist=./english.txt --rules=MyRule -max-len=15 -min-len=7
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Built-in Rules
 cat /etc/john/john.conf | grep "List.Rules" | grep -v include

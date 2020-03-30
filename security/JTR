@@ -13,13 +13,11 @@ hashcat -m 1000 -a 6 Password ?d ?s (Password1!)
 Keyboard Walk Cracking
 kwprocessor
 https://github.com/hashcat/kwprocessor
-Create ./kwprocessor/basechars/custom.base (Use the keybaord fullbase if you have the hardware)
-    1!qQ2@aAzZxX
+Create ./kwprocessor/routes/custom.route 
+    31313
+    (Example: Start at ! move down 3, over 1, up 3, over 1, down, 3)
 Generate List
-    ./kwp -S1 -3 1 -4 0 -7 1 -9 1 basechars/custome.base keymaps/en-us.keymap routes/4-to-4-exhaustive.route -o walk.txt
-Combine List
-  Install https://github.com/hashcat/princeprocessor
-  ./pp4.bin --pw-min7 --pw-max=10 -o combinedlist.txt < walk.txt
+    ./kwp -S1 basechars/full.base keymaps/en-us.keymap routes/custom.route -o walk.txt
 
 
 ###JTR###

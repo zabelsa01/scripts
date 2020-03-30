@@ -1,3 +1,24 @@
+###Hashcat###
+HASHCAT: Hashcat -a0 -w3 -m1000 /path/to/hashes /path/to/dictionary [-r rules file]
+Rules: /usr/share/hashcat/rules
+* a = dictionary attack; w3 = almost all processing hardware; m = hash type - 1000 is NTLM
+Mask Cracking
+a6 or a7 (a6= append after; a7 append before)
+hashcat -m 1000 -a 6 Password ?d ?s (Password1!)
+
+Keyboard Walk Cracking
+kwprocessor
+https://github.com/hashcat/kwprocessor
+Create ./kwprocessor/basechars/custom.base
+    1!qQ2@aAzZxX
+Generate List
+    ./kwp -S1 -3 1 -4 0 -7 1 -9 1 basechars/custome.base keymaps/en-us.keymap routes/4-to-4-exhaustive.route -o walk.txt
+Combine List
+  Install https://github.com/hashcat/princeprocessor
+  ./pp4.bin --pw-min7 --pw-max=10 -o combinedlist.txt < walk.txt
+
+
+###JTR###
 Conf File for rules
 /etc/john/jonh.conf
 

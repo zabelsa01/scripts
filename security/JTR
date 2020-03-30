@@ -1,3 +1,7 @@
+Dictionaries:
+https://wiki.skullsecurity.org/Passwords
+https://haveibeenpwned.com/Passwords
+
 ###Hashcat###
 HASHCAT: Hashcat -a0 -w3 -m1000 /path/to/hashes /path/to/dictionary [-r rules file]
 Rules: /usr/share/hashcat/rules

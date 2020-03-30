@@ -9,7 +9,7 @@ hashcat -m 1000 -a 6 Password ?d ?s (Password1!)
 Keyboard Walk Cracking
 kwprocessor
 https://github.com/hashcat/kwprocessor
-Create ./kwprocessor/basechars/custom.base
+Create ./kwprocessor/basechars/custom.base (Use the keybaord fullbase if you have the hardware)
     1!qQ2@aAzZxX
 Generate List
     ./kwp -S1 -3 1 -4 0 -7 1 -9 1 basechars/custome.base keymaps/en-us.keymap routes/4-to-4-exhaustive.route -o walk.txt

@@ -9,6 +9,8 @@ Rules: /usr/share/hashcat/rules
 Mask Cracking
 a6 or a7 (a6= append after; a7 append before)
 hashcat -m 1000 -a 6 Password ?d ?s (Password1!)
+sudo hashcat -a 6 -1 ?u?l -m 13400  keepass.txt word.txt ?1 --force
+        - -1 ?u?l (Custom character set Upper and Lower)
 
 Keyboard Walk Cracking
 kwprocessor

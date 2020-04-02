@@ -5,7 +5,7 @@ GhostPack Tools
   SharpView.exe (Network Enumeration) (Use module -Help to get syntax)
     - Exmaple: SharpView.exe Get-NetLoggedon localhost
     - PowerView Examples: https://powersploit.readthedocs.io/en/latest/Recon
-  SharpHound.exe -c All,Loggedon [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
+  SharpHound.exe -c All,GPOLocalGroup [-s|-d] --Throttle 20 --Jitter 7 --NoSaveCache --RandomFilenames --EncryptZip
   Rubeus.exe (Kerberose Tool)
   SharpDPAPI.exe
     - SharpDPAPI backupkey /server:dc01.fqdn /file:keyname.pvk (file is optional; base64 without)

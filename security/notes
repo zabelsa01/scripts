@@ -135,8 +135,12 @@ Crackmapexec (https://www.youtube.com/watch?v=Dd4ZAm2mwwA)
     
 Evil-WinRm
   https://github.com/Hackplayers/evil-winrm
-  evil-winrm -i 10.10.10.175 -u username -p password
+  evil-winrm -i 10.10.10.175 -u username -p password 
+  -s /path/to/powershell-scripts
+  -e /path/to/C#
+  -H hash
   menu (show additional options when connected)
+  Type PS1 file and enter menu again to see Functions loaded
       Donut-maker
       https://github.com/Hackplayers/Salsa-tools/blob/master/Donut-Maker/donut-maker.py
       pip3 install donut-shellcode

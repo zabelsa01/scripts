@@ -17,6 +17,11 @@ Example Custom Mask
 sudo hashcat -a 6 -1 ?l?u?d -2 wo -3 rd -m 13400  keepass.txt word.txt ?2?3?1?1?1 --force
         Word.txt contains. Pass
         Will match Password575, Password4g2, Passworderg, etc..
+       
+sudo hashcat -a 6 -1 ?l?u?d -2 Jt -3 N -m 13400  keepass.txt word.txt ?2?3?1?1?1 --force
+        -1 sets variable for lower, upper, digit
+        -2 sets variable for character J and t
+        -3 sets variable for character N
 
 Keyboard Walk Cracking
 kwprocessor
@@ -35,6 +40,10 @@ Conf File for rules
 Mask:
 john --mask='?u?l?l?l?l?l?l?d?d?s' -min-len=7 -max-len=12 ngodfrey
 u=Upper; l=lower; s=SpecialCharacter
+
+Build Lists:
+john --mask='Password[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]' --stdout >> list.txt
+        match: Password123, Passwordz11, etc..
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

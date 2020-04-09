@@ -203,6 +203,14 @@ Lateral Movement
     ls \\target\c$ (verify permissions)
   jump psexec, psexec64, psexec_psh, winrm, winrm64
   shell wmic.exe /node:<target> process call create "powershelle.exe whoami"
+  
+Kerberos Info:
+    TGTDelg: Request another user's service ticket using any user account and impersonate that user
+        Rubues: tgtdelg           Impacket: getST.py           (Need to be authenticated)
+    ASREP Roast: Get hash for a user with "Do not require kerberos preauth" set
+        Rubues: asreproast        Impacket: GetNPUsers.py      (Do not need to be authenticated)
+    Kerberoast: Get the hash of an account with a SPN Set to crack   
+        Rubeus: kerberoast        Impacket: GetUserSPNs.py     (Need to be authenticated)
    
 PrivEsc
   Kerberoast (Request SPN and get the TGS for offline cracking)

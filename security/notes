@@ -187,6 +187,13 @@ Impacket MSSQL Client
   python mssqlclient.py -p 1433 reporting:@10.10.10.125 -windows-auth
   python psexec.py username:password@10.10.10.125 cmd -path c:\\windows\\system32\\
      --password can be left out and it will prompt
+     
+MSSQL Commands
+  List databases: sp_databases
+  Use database: use <dbname>
+  List tables: select * from INFORMATION_SCHEMA.TABLES;
+  List data: select * from <table name>
+  
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/

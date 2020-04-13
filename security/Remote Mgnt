@@ -1,0 +1,22 @@
+Folder Structure
+    0 - admin (SOw, ROE, DSR, scope, etc..)
+    1 - infrastructure (C2 profiles and releated data)
+    2 - recon (OSINT data, Bloodhound collection, scan data)
+    3 - artifacts (Payloads, tooling, phishing emails)
+    4 - targets (Specific hosts and released data/files)
+    5 - screenshots (Screenshots with formalized naming scheme)
+    6 - logs (Access logs, C2 Logs, Bash Logs, etc..)
+    7 - report (Delivered reports, drafts, QA revisions)
+    8 - working (General folder for team members to keep/share peronal notes)
+
+Logs
+    Start (UTC), End (UTC), Source, Target, Tool, User Context, Command, Description, Result, Comments, System Mod, Operator
+    End: Only for long events
+
+Final Day Checklist
+    Daily Status reports
+    Activity logs
+    Organized project files
+    Verified evidence
+    Reviewed team's notes
+    Discussed narrative

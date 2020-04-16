@@ -35,6 +35,10 @@ Bloodhound/Neo4J
   RETURN u.name,COUNT(DISTINCT(comps))
   ORDER BY COUNT(DISTINCT(comps)) DESC
   
+Linux Powershell (Pwsh)
+  Import a module syntax
+  Import-Module .\Invoke-CradleCrafter.psd1; Invoke-CradleCrafter
+  
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
   

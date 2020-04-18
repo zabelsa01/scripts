@@ -1,5 +1,6 @@
 DockerHub: https://hub.docker.com/r/kylemanna/openvpn
 Github: https://github.com/kylemanna/docker-openvpn/blob/master/docs/docker-compose.md
+Good Setup: https://gist.github.com/aeimer/543c231b3ae0fbf8f4f00dc911d9379a
 
 Start the docker-compose
 Generate certificates using the github instructions.

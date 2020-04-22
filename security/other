@@ -39,6 +39,17 @@ Linux Powershell (Pwsh)
   Import a module syntax
   Import-Module .\Invoke-CradleCrafter.psd1; Invoke-CradleCrafter
   
+Powershell Encoding (AMSI Bypass)
+  Base64: 
+    $malicious = "am" + "siutils"
+    [Convert]::ToBase64String([Text.encoding]::UTF8.GetBytes($malicious))
+  Encrypted:
+    $malicious = "am" + "siutils"
+    $encrypted = @()
+    $decrypted = @()
+    foreach($byte in [Text.Encoding]::UTF8.GetBytes($malicious)){ $encrypted += $byte -bxor 1 }
+    [Test.Encoding]::UTF8.GetString($decrypted)
+  
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
   

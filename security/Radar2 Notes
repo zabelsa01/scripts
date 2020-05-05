@@ -18,7 +18,10 @@ Functions
   
 Print Strings in Data Section
   iz
-  
+
+Print value of hex characters
+  ? 0x149a
+
 Print value of register
   px 32 @ 0x1234 (Print hex 32 bytes at 0x1234)
   

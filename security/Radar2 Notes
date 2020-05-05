@@ -9,6 +9,7 @@ Debug
   db 0x1234 (Set Breakpoint at 0x1234)
   dc (run until break boint)
   db -0x1234 (Remove Breakpoint)
+  doo (restart execution)
   
 Analyze file
   aaaa

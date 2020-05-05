@@ -26,6 +26,7 @@ Print Stuff
   afvd (Print variables)
   ? 0x149a (Print value of 0x149a)
   px 32 @ 0x1234 (Print hex 32 bytes at 0x1234)
+  dr (Print registers; eax,ebx,ecx,esp,etc..)
   
 Change value
   wx 9090 @ 0x1234 (Add NOP to 0x1234)

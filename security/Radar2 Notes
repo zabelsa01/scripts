@@ -1,0 +1,19 @@
+Open a file for writing
+  radar2 -w file
+  
+Analyze file
+  aaaa
+  
+Seek to main
+  s main
+ 
+Visual Mode
+  V (Normal visual mode
+  VV (Map mode; hjkl to move map around screen)
+  V! (Window mode; symbols, functions, and disassembly)
+  
+Print Main Functions
+  pdf
+  
+Change value
+  wx 9090 @ 0x1234 (Add NOP to 0x1234)

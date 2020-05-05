@@ -16,6 +16,9 @@ Functions
   afl (Analyze functions)
   pdf (print function; ie s main -> pdf)
   
+Print Strings in Data Section
+  iz
+  
 Print value of register
   px 32 @ 0x1234 (Print hex 32 bytes at 0x1234)
   

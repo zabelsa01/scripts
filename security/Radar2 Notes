@@ -35,3 +35,4 @@ Print Stuff
   
 Change value
   wx 9090 @ 0x1234 (Add NOP to 0x1234)
+  wa jmp 0x4444 @ 0x1234 (change instruction of 0x1234 to jmp 0x4444)

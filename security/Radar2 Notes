@@ -8,6 +8,7 @@ Opening file for writing
 Debug
   db 0x1234 (Set Breakpoint at 0x1234)
   dc (run until break boint)
+  dbi (view all breaks)
   db -0x1234 (Remove Breakpoint)
   doo (restart execution)
   

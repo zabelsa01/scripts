@@ -44,6 +44,10 @@ u=Upper; l=lower; s=SpecialCharacter
 Build Lists:
 john --mask='Password[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]' --stdout >> list.txt
         match: Password123, Passwordz11, etc..
+        
+Create wordlist with simple words like Months, then add rules
+        for i in $(cat wordlist); do echo $i; echo ${i}2020; done > newlist.txt
+        john --wordlist=newlist.txt --rules=best64 --stdout > newerlist.txt
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

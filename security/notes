@@ -93,6 +93,10 @@ Test XSS
   <center>test</center>
   If the text is centered and the source contains the html code it is not filtering html code
 
+LDAP Dump
+  ldapdomaindump
+  ldapsearch -LLL -x -H ldap://cascade.local -b 'DC=cascade,DC=local' -E pr=1000/noprompt
+
 Smbmap (shows a list of SMB Shares)
   Smbmap -u Username -p Password -H 10.10.10.97
   Smbclient -U ‘username%password’ \\\\10.10.10.97\share (recurse on) <- List everything

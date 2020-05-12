@@ -247,6 +247,9 @@ Python Bash Shell
   stty raw -echo
   fg+Enter and hit enter twice
   
+Powershell pass Credentials onliner
+   powerpick $SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force; $Cred = New-Object System.Management.Automation.PSCredential('RLAB\ngodfrey_adm', $SecPassword); Get-DomainObject WS04 -Credential $Cred
+
 AMSI
   amsituils (Test if AMSI is enabled)
   Bypass:

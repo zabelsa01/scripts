@@ -97,6 +97,8 @@ LDAP Dump
   ldapdomaindump
   ldapsearch -LLL -x -H ldap://cascade.local -b 'DC=cascade,DC=local' -E pr=1000/noprompt
   nmap -Pn -p 389 --script ldap-search --script-args "DC=cascade,DC=local" 10.10.10.182
+  LDAP Extended Attributes
+  Get-ADObject -SearchBase "CN=Deleted Objects,DC=cascade,DC=local" -ldapFilter:"(msDs-lastKnownRDN=TempADmin)" -IncludeDeletedObjects -Properties *
 
 Smbmap (shows a list of SMB Shares)
   Smbmap -u Username -p Password -H 10.10.10.97

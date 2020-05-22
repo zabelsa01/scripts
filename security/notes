@@ -84,7 +84,7 @@ Gobuster (Find website directories)
   -s to change the status codes (example gobuster -w .... output.log -s 200,301
 
 Dirb (Find website directories)
-  dirb http://10.10.10.187 -X .php,.html -N 302 -w -z 100 -r -v -t -u admin:password -p 10.10.10.187:3129 -o dirb.log
+  dirb http://10.10.10.187 <wordlist> -X .php,.html -N 302 -w -z 100 -r -v -t -u admin:password -p 10.10.10.187:3129 -o dirb.log
   -X: file extensions
   -N: ignore status code
   -w: show warning messages (in-depth scan)

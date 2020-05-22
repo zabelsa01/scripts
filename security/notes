@@ -85,7 +85,7 @@ Gobuster (Find website directories)
 
 Dirb (Find website directories)
   dirb http://10.10.10.187 <wordlist> -X .php,.html -N 302 -w -z 100 -r -v -t -u admin:password -p 10.10.10.187:3129 -o dirb.log
-  -X: file extensions
+  -X: file extensions (-x /usr/share/dirb/wordlists/extensions_common.txt)
   -N: ignore status code
   -w: show warning messages (in-depth scan)
   -z: delay miliseconds
@@ -93,7 +93,7 @@ Dirb (Find website directories)
   -v: show 404 codes
   -t: Do NOT add trailing / at the end
   -u: username:password (HTTP Authorization) 
-  -p: proxy (Good for Access forbidden)
+  -p: proxy:port (Good for Access forbidden)
   -o: output
   
 Generate Website Wordlist

@@ -84,7 +84,17 @@ Gobuster (Find website directories)
   -s to change the status codes (example gobuster -w .... output.log -s 200,301
 
 Dirb (Find website directories)
-  Dirb http://website/
+  dirb http://10.10.10.187 -X .php,.html -N 302 -w -z 100 -r -v -t -u admin:password -p 10.10.10.187:3129 -o dirb.log
+  -X: file extensions
+  -N: ignore status code
+  -w: show warning messages (in-depth scan)
+  -z: delay miliseconds
+  -r: Do NOT recurse
+  -v: show 404 codes
+  -t: Do NOT add trailing / at the end
+  -u: username:password (HTTP Authorization) 
+  -p: proxy (Good for Access forbidden)
+  -o: output
   
 Generate Website Wordlist
   cewl http://10.10.10.175/index.html

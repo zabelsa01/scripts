@@ -1,0 +1,29 @@
+Install Go on Kali
+  Download: https://golang.org/dl/
+
+Move File
+  sudo tar -xvf go1.11.linux-amd64.tar.gz
+  sudo mv go /usr/local
+  
+Add Go to Path
+  Appened below text to ~/.profile
+      export GOROOT=/usr/local/go
+      export GOPATH=$HOME/go
+      export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+  Reload profile
+      source ~/.profile
+  
+Install Capstone Library and time
+    sudo apt-get install libcapstone-dev time
+    
+Install Keystone Library
+    git clone https://github.com/Microsoft/vcpkg.git
+    cd vcpkg
+    ./bootstrap-vcpkg.sh
+    ./vcpkg integrate install
+
+Locate make-share.sh
+    cd to that directory
+    mkdir build
+    cd build
+    ../make-share.sh

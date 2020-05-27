@@ -17,13 +17,16 @@ Install Capstone Library and time
     sudo apt-get install libcapstone-dev time
     
 Install Keystone Library
-    git clone https://github.com/Microsoft/vcpkg.git
-    cd vcpkg
-    ./bootstrap-vcpkg.sh
-    ./vcpkg integrate install
-
-Locate make-share.sh
-    cd to that directory
+    https://github.com/keystone-engine/keystone
+    cd keystone
     mkdir build
-    cd build
     ../make-share.sh
+   sudo make install
+   sudo ldconfig
+   
+Download and Install SGN
+    https://github.com/EgeBalci/sgn
+    cd sgn
+    go get github.com/egebalci/sgn
+    
+sgn -h

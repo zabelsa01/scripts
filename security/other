@@ -328,6 +328,8 @@ Persistance
       Drop Location=Command=C:\Windows\Temp\myservice.exe
       Listener: https
       Custom File: /root/beacons/beacon-svc.exe
+  Scheduled Tasks:
+    Same as above, but time must be 11:30 format and repitition is 5 (ie PT5H) so run every 5 hours.
 
   shell sc create MyService binpath= c:\windows\temp\https-local-svc-x64.exe start= auto
   

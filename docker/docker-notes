@@ -34,6 +34,7 @@ docker run -d --name #{container_name} #{image}
 
 # DOCKER PUSH
 docker login --username=yourhubusername --email=youremail@company.com
+   * If login fails: sudo apt install gnupg2 pass
 docker tag guac-mysql:version1 zabelsa01/mystuff:mysql
 docker push zabelsa01/mystuff (pushes all images with mystuff tag)
 docker push zabelsa01/mystuff:mysql (pushes only mysql)

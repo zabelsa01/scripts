@@ -33,6 +33,7 @@ To start a docker in background(as daemon)with process up and running that defin
 docker run -d --name #{container_name} #{image}
 
 # DOCKER PUSH
+docker login --username=yourhubusername --email=youremail@company.com
 docker tag guac-mysql:version1 zabelsa01/mystuff:mysql
 docker push zabelsa01/mystuff (pushes all images with mystuff tag)
 docker push zabelsa01/mystuff:mysql (pushes only mysql)

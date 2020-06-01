@@ -34,7 +34,7 @@ SGN Payloads: https://github.com/EgeBalci/sgn
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers
 UAC Bypass Cobalt: https://github.com/chryzsh/Aggressor-Scripts
 UAC Bypass C# Cobalt: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
-Complie C# on Linux: https://github.com/cobbr/SharpGen
+Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/SharpGen.html)
 Cobalt Strike C# Compile and Run: https://github.com/cube0x0/SharpeningCobaltStrike
 More C# CS Stuff: https://github.com/FuzzySecurity/Sharp-Suite
 

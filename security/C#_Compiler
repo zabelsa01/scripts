@@ -1,0 +1,18 @@
+Install DotNet
+cd /tmp
+wget https://packages.microsoft.com/config/ubuntu/19.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.1
+
+Install Software
+git clone https://github.com/cube0x0/SharpeningCobaltStrike
+
+cd SharpeningCobaltStrike/Compiler
+dotnet build -c Release ; dotnet bin/Release/netcoreapp2.1/Compiler.dll -s /opt/tools/CSharp_Tools/Uncompiled/Rubeus/Rubeus/Program.cs -f /tmp/rub.exe
+
+If missing Nugent Dependies
+Search for package: https://www.nuget.org/packages
+Example: From compiler directory run: dotnet add package McMaster.Extensions.CommandLineUtils --version 2.2.5

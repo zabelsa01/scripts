@@ -7,7 +7,7 @@ sudo apt-get install apt-transport-https
 sudo apt-get update
 sudo apt-get install dotnet-sdk-2.1
 
-confuse.cr file below for obfuscation
+Note: confuse.cr file below for obfuscation (SharpingCobaltStrike confuse file is in SharpeningCobaltStrike/Compiler/src/Compiler.cs)
 
 Use either SharpGen or SharpeningCobaltStrike
 
@@ -21,8 +21,7 @@ Install Software
 git clone https://github.com/cube0x0/SharpeningCobaltStrike
 
 cd SharpeningCobaltStrike/Compiler
-dotnet bin/Release/netcoreapp2.1/Compiler.dll -s /opt/tools/CSharp_Tools/Uncompiled/SharpDump/SharpDump/Program.cs -f /tmp/share/SharpDumping.exe --confuse confuse.cr
-dotnet build -c Release ; dotnet bin/Release/netcoreapp2.1/Compiler.dll -s /opt/tools/CSharp_Tools/Uncompiled/Rubeus/Rubeus/Program.cs -f /tmp/rub.exe
+dotnet build -c Release ; dotnet bin/Release/netcoreapp2.1/Compiler.dll -c -s /opt/tools/CSharp_Tools/Uncompiled/Rubeus/Rubeus/Program.cs -f /tmp/rub.exe
 * You may need to use /bin/bash instead of /bin/zsh
 * SharpGen.dll Options: dotnet bin/Release/netcoreapp2.1/SharpGen.dll -h
 

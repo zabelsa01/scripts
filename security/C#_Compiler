@@ -7,6 +7,8 @@ sudo apt-get install apt-transport-https
 sudo apt-get update
 sudo apt-get install dotnet-sdk-2.1
 
+confuse.cr file below for obfuscation
+
 Use either SharpGen or SharpeningCobaltStrike
 
 ** SharpGen **
@@ -27,3 +29,21 @@ dotnet build -c Release ; dotnet bin/Release/netcoreapp2.1/Compiler.dll -s /opt/
 If missing Nugent Dependies
 Search for package: https://www.nuget.org/packages
 Example: From compiler directory run: dotnet add package McMaster.Extensions.CommandLineUtils --version 2.2.5
+
+** confuse.cr file **
+<project baseDir="{0}" outputDir="{1}" xmlns="http://confuser.codeplex.com">
+    <module path="{2}">
+      <rule pattern="true" inherit="false">
+         <protection id="anti debug" />
+         <protection id="anti dump" />
+         <protection id="anti ildasm" />
+         <protection id="anti tamper" />
+         <protection id="constants" />
+         <protection id="ctrl flow" />
+         <protection id="invalid metadata" />
+         <!-- <protection id="ref proxy" />     -->
+         <protection id="rename" />
+         <protection id="resources" />
+      </rule>
+    </module>
+</project>

@@ -10,6 +10,8 @@ sudo apt-get install dotnet-sdk-2.1
 Note: confuse.cr file below for obfuscation (SharpingCobaltStrike confuse file is in SharpeningCobaltStrike/Compiler/src/Compiler.cs)
 
 Use either SharpGen or SharpeningCobaltStrike
+** SharpGen has problems compiling some C# programs
+** SharpingCobaltStrike has problems with confuserEX..does not seem to be completly obfuscating the program
 
 ** SharpGen **
 Install Software

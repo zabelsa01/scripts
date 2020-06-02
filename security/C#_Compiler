@@ -16,6 +16,8 @@ Use either SharpGen or SharpeningCobaltStrike
 ** SharpGen **
 Install Software
 https://github.com/cobbr/SharpGen
+cd SharpGen
+dotnet build -c Release
 dotnet bin/Release/netcoreapp2.1/SharpGen.dll -s /opt/tools/CSharp_Tools/Uncompiled/SharpDump/SharpDump/Program.cs --confuse confuse.cr -f /tmp/sdump.exe
 
 ** SharpeningCobaltStrike **

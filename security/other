@@ -394,5 +394,7 @@ Windows Commands
       ls -r -d 2 -i *pass* c:\path | ? {$_.LastWriteTime -lt (Get-Date).AddDays(-30)} | select LastWriteTime, FullName | epcsv -NotypeInformation ./test.csv
     Powershell Console Logs
       gc "C:\Users\<username>\Application Data\microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
-    
+    Powershell Zip Compress
+      Compress-Archive -Path C:\path\file -DestinationPath C:\path\file.zip
+      
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

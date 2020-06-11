@@ -201,6 +201,7 @@ Cobalt
     - pth domain\user hash (this also performs a downgrade attack so not recommended; user Rubueus instead)
   Proxychains: socks 9050 (beacon); edit /etc/proxychains.conf -> socks4 teamserverIP 9050
     * proxy firefox: proxy settings -> socks host: teamserver IP port 9050
+  SSH-Key: shh-key 10.10.5.5:22 root /path/to/file.key
   
   Connect MetaSploit to Cobalt Listener
     set lhost cobalt host

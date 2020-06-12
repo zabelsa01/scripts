@@ -193,6 +193,8 @@ Cobalt
   pth (Will perform a Kerberos downgrade and could be detected)
   Powershell-Import /path/to/ps1 file
     - Get-GPPPassword
+  Spawn a new process unattached: powerpick New-Object -ComObject 'InternetExplorer.Application'
+    - This will create two IE processes under your current PID (You can inject into them if needed)
   Spawn x64 listener (Move out of Powershell); then kill old listener
   If admin you can inject into system process to become SYSTEM or another process
   Silver Tickets: https://github.com/bluscreenofjeff/AggressorScripts

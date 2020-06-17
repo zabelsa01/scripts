@@ -39,7 +39,9 @@ Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/S
 Cobalt Strike C# Compile and Run: https://github.com/cube0x0/SharpeningCobaltStrike
 More C# CS Stuff: https://github.com/FuzzySecurity/Sharp-Suite
 Spooler Aggressor Script; SEImpersonate -> System: https://github.com/rxwx/spoolsystem
-Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-probably-never-heard-of-2d7e41d43464  
+Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-probably-never-heard-of-2d7e41d43464
+Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/master/beacon_handler/modules/automigrate.cna
+
 
 Binary Analysis
 Radare2: https://www.youtube.com/watch?v=317dNavABKo

@@ -13,10 +13,46 @@ services:
   openvpn:
     cap_add:
      - NET_ADMIN
-    image: kylemanna/openvpn
+    #image: kylemanna/openvpn
+    image: myopenvpn
     container_name: openvpn
+    networks:
+     openvpn_net:
+      ipv4_address: 172.18.0.2
     ports:
-     - "10.10.10.1:1194:1194/udp"
-    restart: always
+     - "2194:1194/udp"
+    expose:
+     - 5555
+    restart: unless-stopped
     volumes:
      - ./openvpn-data/conf:/etc/openvpn
+
+  openvpn_monitor:
+    container_name: monitor
+    restart: unless-stopped
+    image: ruimarinho/openvpn-monitor
+    networks:
+     openvpn_net:
+      ipv4_address: 172.18.0.3
+    ports:
+      - "127.0.0.1:8085:80"
+    environment:
+      # General
+      OPENVPNMONITOR_DEFAULT_DATETIMEFORMAT: "%d/%m/%Y %H:%M:%S"
+      #OPENVPNMONITOR_DEFAULT_LOGO: https://exmaple.com/logo.png
+      OPENVPNMONITOR_DEFAULT_MAPS: "True"
+      OPENVPNMONITOR_DEFAULT_LATITUDE: "38.847118"
+      OPENVPNMONITOR_DEFAULT_LONGITUDE: "-77.306320"
+      OPENVPNMONITOR_DEFAULT_SITE: Live
+      # Site 1 - OpenVPN1
+      OPENVPNMONITOR_SITES_0_ALIAS: OVPN1
+      OPENVPNMONITOR_SITES_0_HOST: 172.18.0.2
+      OPENVPNMONITOR_SITES_0_NAME: <DOMAINNAME>
+      OPENVPNMONITOR_SITES_0_PORT: 5555
+
+networks:
+  openvpn_net:
+   ipam:
+     driver: default
+     config:
+      - subnet: 172.18.0.0/24

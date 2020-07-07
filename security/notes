@@ -98,6 +98,7 @@ Dirb (Find website directories)
   
 Generate Website Wordlist
   cewl http://10.10.10.175/index.html
+  cewl -d 5 -m 3 http://fuse.fabricorp.local/papercut/logs/html/index.htm --with-numbers >> webpass.txt
 
 Test XSS
   <center>test</center>

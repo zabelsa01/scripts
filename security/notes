@@ -164,7 +164,8 @@ Evil-WinRm
       pip3 install donut-shellcode
   
 Anonymous RPC
-  rpcclient -U "" -N 10.10.10.161  
+  rpcclient -U "" -N 10.10.10.161
+  rpcclient -U "username%password" -c "enumdomusers;quit" 10.10.10.161
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

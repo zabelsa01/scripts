@@ -106,7 +106,8 @@ Test XSS
 
 LDAP Dump
   ldapdomaindump
-  ldapsearch -LLL -x -H ldap://cascade.local -b 'DC=cascade,DC=local' -E pr=1000/noprompt
+  Anonymous: ldapsearch -LLL -x -H ldap://cascade.local -b 'DC=cascade,DC=local' -E pr=1000/noprompt
+  Bind: ldapsearch -H ldap://fuse.fabricorp.local -x -W -D "svc-scan@fabricorp.local" -b "dc=fabricorp,dc=local"
   nmap -Pn -p 389 --script ldap-search --script-args "DC=cascade,DC=local" 10.10.10.182
   LDAP Extended Attributes
   Get-ADObject -SearchBase "CN=Deleted Objects,DC=cascade,DC=local" -ldapFilter:"(msDs-lastKnownRDN=TempADmin)" -IncludeDeletedObjects -Properties *

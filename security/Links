@@ -43,6 +43,7 @@ Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-proba
 Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/master/beacon_handler/modules/automigrate.cna
 Compile C# Programs: https://github.com/Flangvik/SharpCollection
 Windows Attack Platform: https://github.com/fireeye/commando-vm
+Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-escalation
 
 
 Binary Analysis

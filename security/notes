@@ -66,6 +66,11 @@ Msfdb run (runs Metasploit while starting the database)
   Exploit -j (run in background)
   Jobs (view active listeners)
   Sessions -l (list active sessions)
+  
+Proxy Through Meterpreter
+  sudo ip route add 10.9.0.0/24 dev tun0
+  use post/multi/manage/autoroute
+  use server/socks4a (set port 9050)  
 
 Silent Trinity (Good C2)
   https://github.com/byt3bl33d3r/SILENTTRINITY

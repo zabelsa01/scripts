@@ -408,4 +408,10 @@ Windows Commands
     Powershell Zip Compress
       Compress-Archive -Path C:\path\file -DestinationPath C:\path\file.zip
       
+Windows Port Forwarding
+Port Forward
+    Show Proxy: netsh interface portproxy show all
+    Set PortForward: netsh interface portproxy add v4tov4 listenport=8443 listenaddress=10.10.14.3 connectport=443 connectaddress=10.10.5.13
+    Reset Proxy: netsh interface portproxy reset
+      
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

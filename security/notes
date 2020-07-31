@@ -68,8 +68,7 @@ Msfdb run (runs Metasploit while starting the database)
   Sessions -l (list active sessions)
   
 Proxy Through Meterpreter
-  sudo ip route add 10.9.0.0/24 dev tun0
-  use post/multi/manage/autoroute
+  route add 10.9.0.0/16 <session #>
   use server/socks4a (set port 9050)  
 
 Silent Trinity (Good C2)

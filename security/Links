@@ -52,6 +52,7 @@ https://6point6.co.uk/insights/abusing-pdf-files/
 https://www.ired.team/offensive-security/initial-access/phishing-with-ms-office/phishing-xlm-macro-4.0
 https://github.com/xorrior/EmailRaider/blob/master/EmailRaider.ps1
 https://github.com/dafthack/MailSniper/blob/master/README.md
+https://pentestlab.blog/2017/12/18/microsoft-office-ntlm-hashes-via-frameset/
 
 Binary Analysis
 Radare2: https://www.youtube.com/watch?v=317dNavABKo

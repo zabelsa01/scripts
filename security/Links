@@ -44,9 +44,12 @@ Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/mas
 Compile C# Programs: https://github.com/Flangvik/SharpCollection
 Windows Attack Platform: https://github.com/fireeye/commando-vm
 Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-escalation
-Payload and Delivery: https://github.com/shr3ddersec/shr3dkit
-Obfuscate VBA Macro document: https://github.com/outflanknl/EvilClippy
 
+Phishing
+https://github.com/outflanknl/EvilClippy
+https://github.com/shr3ddersec/shr3dkit
+https://6point6.co.uk/insights/abusing-pdf-files/
+https://www.ired.team/offensive-security/initial-access/phishing-with-ms-office/phishing-xlm-macro-4.0
 
 Binary Analysis
 Radare2: https://www.youtube.com/watch?v=317dNavABKo

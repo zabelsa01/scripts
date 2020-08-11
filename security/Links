@@ -51,6 +51,7 @@ https://github.com/dafthack/MailSniper/blob/master/README.md
 https://pentestlab.blog/2017/12/18/microsoft-office-ntlm-hashes-via-frameset/
 
 AD Exploitation
+Delegation: https://en.hackndo.com/constrained-unconstrained-delegation/
 S4U Pwnage: https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
 Machine Quotas: https://blog.netspi.com/machineaccountquota-is-useful-sometimes/ 
 AD Recon: https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1

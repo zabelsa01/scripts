@@ -30,22 +30,16 @@ Blackhills Active Defense Scripts: https://adhdproject.github.io/#!index.md
 Proxy Tool: https://www.proxifier.com/
 SecureThisShit Payloads: https://github.com/S3cur3Th1sSh1t/Creds
 Webserver/WebDAv Program: https://breakdev.org/pwndrop
-SGN Payloads: https://github.com/EgeBalci/sgn
-Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers
-UAC Bypass Cobalt: https://github.com/chryzsh/Aggressor-Scripts
-UAC Bypass C# Cobalt: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
-Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/SharpGen.html)
-  * Having issues; the below script can compile C# on Linux
-Cobalt Strike C# Compile and Run: https://github.com/cube0x0/SharpeningCobaltStrike
-More C# CS Stuff: https://github.com/FuzzySecurity/Sharp-Suite
-Spooler Aggressor Script; SEImpersonate -> System: https://github.com/rxwx/spoolsystem
 Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-probably-never-heard-of-2d7e41d43464
-Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/master/beacon_handler/modules/automigrate.cna
-Compile C# Programs: https://github.com/Flangvik/SharpCollection
-Windows Attack Platform: https://github.com/fireeye/commando-vm
+
+
+Payloads
+Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers
+SGN Payloads: https://github.com/EgeBalci/sgn
+
+PrivEsc
 Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-escalation
-AD Recon: https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1
-AD Exploitatin CheatSheet: https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet
+Spooler Aggressor Script; SEImpersonate -> System: https://github.com/rxwx/spoolsystem
 
 Phishing
 https://github.com/outflanknl/EvilClippy
@@ -56,11 +50,30 @@ https://github.com/xorrior/EmailRaider/blob/master/EmailRaider.ps1
 https://github.com/dafthack/MailSniper/blob/master/README.md
 https://pentestlab.blog/2017/12/18/microsoft-office-ntlm-hashes-via-frameset/
 
+AD Exploitation
+S4U Pwnage: https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
+Machine Quotas: https://blog.netspi.com/machineaccountquota-is-useful-sometimes/ 
+AD Recon: https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1
+AD Exploitatin CheatSheet: https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet
+
 Binary Analysis
 Radare2: https://www.youtube.com/watch?v=317dNavABKo
 https://github.com/RPISEC/Malware
 http://security.cs.rpi.edu/courses/binexp-spring2015/
 https://github.com/ctfs/
+
+C# & Aggressor Scripts
+Compile C# Programs: https://github.com/Flangvik/SharpCollection
+Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/master/beacon_handler/modules/automigrate.cna
+More C# CS Stuff: https://github.com/FuzzySecurity/Sharp-Suite
+Cobalt Strike C# Compile and Run: https://github.com/cube0x0/SharpeningCobaltStrike
+Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/SharpGen.html)
+  * Having issues; the below script can compile C# on Linux
+UAC Bypass Cobalt: https://github.com/chryzsh/Aggressor-Scripts
+UAC Bypass C# Cobalt: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
+
+Attack VMs
+Windows Attack Platform: https://github.com/fireeye/commando-vm
 
 SpecterOps
 Medium

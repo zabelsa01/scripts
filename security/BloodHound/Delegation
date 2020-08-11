@@ -21,7 +21,7 @@ Trust FROM specific services (Attribute is set ON target)
 Requirements:
     userAccountControl=TrustedToAuthForDelegation
     Write Perms to msDS-AllowedToActOnBehalfOfOtherIdentity
-set msDS-AllowedToActOnBehalfOfOtherIdentity to resource (computer/user) that you have password or hash for (resouce must have an SPN)
+set msDS-AllowedToActOnBehalfOfOtherIdentity to resource (computer/user that has an SPN)
 Use PowerMad to set the security descriptors and the SID from the resource above
     * If you do not have a resource you can try Machine Quota and create a new machine using PowerMad
     * Powerview display ms-ds-machinecountquota: Get-DomainObject -Identity "dc=offense,dc=local" -Domain offense.local

@@ -1,2 +1,5 @@
 Look up SID to Name
     MATCH (n) WHERE n.objectid = 'S-1-5-21-2011815209-557191040-1566801441' RETURN n.name LIMIT 25
+    
+Has SPN
+    match (n) where n.hasspn=true return n.name,n.serviceprincipalnames

@@ -1,4 +1,5 @@
 Rubeus /tgtdeleg: abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host.
+    * Works if user has a session
 
 DELEGATION
 -------------------------------------------------------------------------------------------------

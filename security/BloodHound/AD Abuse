@@ -1,3 +1,7 @@
+Rubeus /tgtdeleg: abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host.
+
+
+DELEGATION
 Unconstrained Delegation
 Trust to ANY service
 Requirements:

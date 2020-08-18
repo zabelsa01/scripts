@@ -67,9 +67,11 @@ Msfdb run (runs Metasploit while starting the database)
   Jobs (view active listeners)
   Sessions -l (list active sessions)
   
-Proxy Through Meterpreter
+Meterpreter Socks Proxy (Setup socks proxy from meterpreter)
   route add 10.9.0.0/16 <session #>
-  use server/socks4a (set port 9050)  
+  use server/socks4a (set port 9050)
+Proxychains Meterpreter (Send meterpreter through socks proxy)
+  setg proxies socks4a:127.0.0.1:9050
 
 Silent Trinity (Good C2)
   https://github.com/byt3bl33d3r/SILENTTRINITY

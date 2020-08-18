@@ -71,7 +71,7 @@ Meterpreter Socks Proxy (Setup socks proxy from meterpreter)
   route add 10.9.0.0/16 <session #>
   use server/socks4a (set port 9050)
 Proxychains Meterpreter (Send meterpreter through socks proxy)
-  setg proxies socks4a:127.0.0.1:9050
+  setg proxies socks4:127.0.0.1:9050
   set ReverseAllowProxy true
 
 Silent Trinity (Good C2)

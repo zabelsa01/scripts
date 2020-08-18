@@ -72,6 +72,7 @@ Meterpreter Socks Proxy (Setup socks proxy from meterpreter)
   use server/socks4a (set port 9050)
 Proxychains Meterpreter (Send meterpreter through socks proxy)
   setg proxies socks4a:127.0.0.1:9050
+  set ReverseAllowProxy true
 
 Silent Trinity (Good C2)
   https://github.com/byt3bl33d3r/SILENTTRINITY

@@ -10,3 +10,6 @@ Display All Groups in Domain (Case sensistive)
     
 Display User
     match (n:User) where n.name contains 'STEVEN.SANCHEZ' return n
+
+Admin Security Groups by Domain
+    match (n:Group) where n.domain contains 'CORE' AND n.admincount=true return n.name, n.admincount, n.description

@@ -4,3 +4,9 @@ Look up SID to Name
 Has SPN
     match (n) where n.serviceprincipalnames AND n.serviceprincipalnames IS NOT NULL RETURN n.domain,n.name,n.serviceprincipalnames ORDER BY n.domain
     match (n) where n.hasspn=true return n.name,n.serviceprincipalnames
+    
+Display All Groups in Domain (Case sensistive)
+    match (n:Group) where n.domain contains 'CORE' return n.name
+    
+Display User
+    match (n:User) where n.name contains 'STEVEN.SANCHEZ' return n

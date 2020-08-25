@@ -36,6 +36,7 @@ Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-proba
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers
 SGN Payloads: https://github.com/EgeBalci/sgn
+Web Shells: https://github.com/tennc/webshell/tree/master/jsp
 
 PrivEsc
 Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-escalation

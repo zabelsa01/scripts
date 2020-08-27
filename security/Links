@@ -33,6 +33,9 @@ Webserver/WebDAv Program: https://breakdev.org/pwndrop
 Proxy Jumping: https://medium.com/maverislabs/proxyjump-the-ssh-option-you-probably-never-heard-of-2d7e41d43464
 Browser/Restricted Desktop Breakout: https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/
 AMSI Bypass: https://amsi.fail
+Encrypt Powershell Script: https://github.com/the-xentropy/xencrypt/blob/master/xencrypt.ps1   
+C# Powershell Execution: https://github.com/Mr-B0b/SpaceRunner   
+
 
 
 Payloads

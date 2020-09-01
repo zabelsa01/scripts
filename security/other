@@ -447,5 +447,14 @@ Port Forward
     Show Proxy: netsh interface portproxy show all
     Set PortForward: netsh interface portproxy add v4tov4 listenport=8443 listenaddress=10.10.14.3 connectport=443 connectaddress=10.10.5.13
     Reset Proxy: netsh interface portproxy reset
+    
+Windows proxy through Kali VPN
+    Windows: Set Static IP on Windows and set GW to Kali IP
+    Kali: Set IPv4 Forwarding
+        sudo sysctl net.ipv4.ip_forward
+    Kali: IPTables
+        sudo iptables -t nat -A POSTROUTING -o tun0 -j  MASQUERADE
+        sudo netfilter-persistent save
+        sudo systemctl enable netfilter-persistent.service
       
  Artfact,PS_Log,Term_Log,CS_log [gui+cmd],CherTree

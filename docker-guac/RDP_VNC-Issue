@@ -7,3 +7,10 @@ VNC Root Display Issue
   switch to root and merge Xauthority
   sudo -i
   xauth merge /home/user/.Xauthority
+  
+Chrome Choppy Text
+  Load chrome://settings/ in the browser's address bar or select Menu > Settings.
+  Click on "advanced" at the bottom of the page.
+  Scroll down to the "system" section.
+  Toggle "Use hardware acceleration when available" to off.
+  Restart Google Chrome.

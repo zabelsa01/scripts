@@ -1,0 +1,32 @@
+WWHF Offensive Maldocs in 2020
+
+XLM Macros
+
+    Simple Example:
+    Open Excel -> Insert Sheet -> MS Excel 4.0 Macro
+     - Formula: =EXEC("calc.exe")
+     - Can also use process injection using Win32 API
+
+Tools: 
+    Excel4-DCOM - https://github.com/outflanknl/Excel4-DCOM
+    SharpShooter - https://github.com/mdsecactivebreach/SharpShooter
+    Macrome - https://github.com/michaelweber/Macrome
+    EXCELntDonut - https://github.com/FortyNorthSecurity/EXCELntDonut
+
+AV Evasion 
+    Obfuscation - malware.pizza
+    Very hidden excel tab - https://isc.sans.edu/forums/diary/Excel+Maldocs+Hidden+Sheets/25876/
+
+Create XLM using .Net (No Metadata created & Compressed VBA Code)
+    Tool: https://github.com/EPPlusSoftware/EPPlus
+    Automated Tool: https://github.com/FortyNorthSecurity/hot-manchego
+
+Social Engineering Attacks
+    Hover with Power: https://github.com/ethanhunnt/Hover_with_Power
+    Sample Pretexts: https://pretext-project.github.io/  
+
+Remote Template Injection
+    Link: http://blog.redxorblue.com/2018/07/executing-macros-from-docx-with-remote.html
+
+Inline Shape Attacks
+    Link: https://medium.com/@laughing_mantis/malicious-shapes-in-office-part-1-8a4efca74358

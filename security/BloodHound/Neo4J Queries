@@ -15,7 +15,7 @@ Admin Security Groups by Domain
     match (n:Group) where n.domain contains 'CORE' AND n.admincount=true return n.name, n.admincount, n.description
     
 Groups with AdminTo Rights to a Computer
-    MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name contains 'HELP DESK' return m.name
+    MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name contains 'HELP DESK' return n.name, m.name
     
 Permissions: MemberOf|HasSession|AdminTo|AllExtendedRights|AddMember|ForceChangePassword|GenericAll|GenericWrite|Owns
              WriteDacl|WriteOwner|CanRDP|ExecuteDCOM|AllowedToDelegate|ReadLAPSPassword|Contains|GpLink|AddAllowedToAct

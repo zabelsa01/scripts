@@ -12,7 +12,9 @@ Display User
     match (n:User) where n.name contains 'STEVEN.SANCHEZ' return n
 
 Admin Security Groups by Domain
-    match (n:Group) where n.domain contains 'CORE' AND n.admincount=true return n.name, n.admincount, n.description
+    Case Sensitive: match (n:Group) where n.domain contains 'CORE' AND n.admincount=true return n.name, n.admincount, n.description
+    Case Insensitive: MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name =~ '(?i).*help desk.*' return n.name, m.name
+    Note: =~ uses REGEX
     
 Groups with AdminTo Rights to a Computer
     MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name contains 'HELP DESK' return n.name, m.name

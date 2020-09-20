@@ -18,6 +18,9 @@ Groups with AdminTo Rights to a Computer
     MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name contains 'HELP DESK' return n.name, m.name
     Case Insensitive: MATCH (n.Group)-[r.AdminTo]->(m:Computer) where n.name =~ '(?i).*help desk.*' return n.name, m.name
         Note: =~ uses REGEX
+
+Search User AdminTo agains all nodes: 
+    MATCH (n.User)-[r.AdminTo]->(m) where n.name =~ '(?i).*username.*' return n.name, m.name, m.distinguishedname
     
 Permissions: MemberOf|HasSession|AdminTo|AllExtendedRights|AddMember|ForceChangePassword|GenericAll|GenericWrite|Owns
              WriteDacl|WriteOwner|CanRDP|ExecuteDCOM|AllowedToDelegate|ReadLAPSPassword|Contains|GpLink|AddAllowedToAct

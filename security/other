@@ -40,7 +40,9 @@ Bloodhound/Neo4J
   UNWIND tempVar AS comps
   RETURN u.name,COUNT(DISTINCT(comps))
   ORDER BY COUNT(DISTINCT(comps)) DESC
-  
+
+Set Time/Date: timedatectl set-time 13:05:30
+
 Linux Powershell (Pwsh)
   Import a module syntax
   Import-Module .\Invoke-CradleCrafter.psd1; Invoke-CradleCrafter

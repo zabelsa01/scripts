@@ -251,7 +251,7 @@ Cobalt
     cobalt: spawn x86 foreign-https
     
   Post Exploit Find Metasploit Exploits (like Watson)
-    * Note: Jon's tool Ghost works great for AV bypass
+    * Note: Jon's tool Ghost works great for AV bypass (if errors then run: sudo gem install metasm)
     use post/multi/recon/local_exploit_suggester
 
 Proxy DNS

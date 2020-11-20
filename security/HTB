@@ -132,7 +132,9 @@ Smbmap (shows a list of SMB Shares)
 Smbclient
   smbclient -N -L //10.10.10.97 (List all SMB Shares as anonymous)
   smbclient -N //10.10.10.97/share (View Share contents)
-  smbclient -U username //10.10.10.97/share (<recurse on> to list everything)
+  smbclient -U username //10.10.10.97/share 
+      <recurse on> to list everything
+      <prompt off> to turn off prompts
   smbclient //10.9.15.10/sysvol -U 'corewebdl$%4182816cd42bdb6d20f7fb89703f5c48' --pw-nt-hash
   
 SMB Mount Share

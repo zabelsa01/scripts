@@ -58,6 +58,7 @@ Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-esc
 Spooler Aggressor Script; SEImpersonate -> System: https://github.com/rxwx/spoolsystem
 
 Phishing
+https://github.com/FortyNorthSecurity/hot-manchego
 https://github.com/outflanknl/EvilClippy
 https://github.com/shr3ddersec/shr3dkit
 https://6point6.co.uk/insights/abusing-pdf-files/

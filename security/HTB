@@ -236,6 +236,11 @@ MSSQL Commands
   List tables: select * from INFORMATION_SCHEMA.TABLES;
   List data: select * from <table name>
   
+SQL Shell (sqsh)
+  Enum Examples: https://github.com/absolomb/Pentesting/blob/master/guides/Initial%20Enumeration.md
+  sqsh -S 10.10.10.52 -U admin -P 'm$$ql_S@_P@ssW0rd!' -D database_name
+  select name from master..syslogins;
+  go
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/

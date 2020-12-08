@@ -241,6 +241,8 @@ SQL Shell (sqsh)
   sqsh -S 10.10.10.52 -U admin -P 'm$$ql_S@_P@ssW0rd!' -D database_name
   select name from master..syslogins;
   go
+  
+DBeaver (Linux SQL GUI)
 
 Empire 
   https://null-byte.wonderhowto.com/how-to/use-powershell-empire-getting-started-with-post-exploitation-windows-hosts-0178664/

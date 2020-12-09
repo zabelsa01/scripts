@@ -1,10 +1,12 @@
 Rubeus /tgtdeleg: abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host.
     * Works if user has a session
 
+* Note: Can only impersonate an account who "Cannot Be Delegated" is False and not in Protected Users Group
 
 DELEGATION
 -------------------------------------------------------------------------------------------------
 Unconstrained Delegation
+Bloodhound: Allows Unconstrained Delegation
 Trust to ANY service
 Requirements:
     userAccountControl=TrustedForDelegation
@@ -14,6 +16,7 @@ Stores TGT in memory and used to get TGS for delegated service. TGT can be extra
     • Works across trusts
 ---------------------------------------------------------------------------------------------------
 Traditional Constrained
+Bloodhound: AllowedToDelegate
 Trust TO specific services (Attribute is set TO the target)
 Requirements:
     Account must have an SPN
@@ -23,6 +26,7 @@ Requirements:
 S4U Impersonation
 ---------------------------------------------------------------------------------------------------
 Resource Based Constrained Delegation
+Bloodhound: GenericWrite
 Trust FROM specific services (Attribute is set ON target)
 Requirements:
     Account used for s4u must have an SPN

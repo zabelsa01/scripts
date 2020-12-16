@@ -270,6 +270,9 @@ Cobalt
     * Note: Jon's tool Ghost works great for AV bypass (if errors then run: sudo gem install metasm)
     use post/multi/recon/local_exploit_suggester
 
+Socat port forward through proxychains
+    proxychains socat TCP4-Listen:1433,fork TCP:10.9.20.13:1433
+
 Proxy DNS
     Install dnschef
     sudo proxychains ./dnschef.py --nameservers 10.9.15.11 --tcp

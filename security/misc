@@ -1,0 +1,3 @@
+Zip directory into 25M chunks with password
+  Zip: zip -s 25m -rDe myfile.zip directory
+  Unzip: zip -s- mynewzip.zip myfile.zip; unzip mynewzip.zip

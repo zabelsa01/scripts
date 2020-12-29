@@ -22,4 +22,4 @@ vim /etc/systemd/system/vncserver@.service
 chmod +x 755 /etc/systemd/system/vncserver@.service\
 systemctl daemon-reload 
 systemctl enable vncserver@2.service
-systemctl start vncserver@2.service
+systemctl start vncserver@2.service (<- As user)

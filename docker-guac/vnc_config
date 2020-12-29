@@ -1,7 +1,7 @@
 apt install tigervnc-standalone-server
 apt install xvfb (not sure if required)
 
-vim ~/.vnc/xstartup
+vim /home/user/.vnc/xstartup
   #!/bin/sh
   unset SESSION_MANAGER
   unset DBUS_SESSION_BUS_ADDRESS

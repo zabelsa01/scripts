@@ -1,0 +1,5 @@
+Mount usb to lxc container
+Link: https://www.jamescoyle.net/how-to/2019-proxmox-4-x-bind-mount-mount-storage-in-an-lxc-container
+
+Example:
+mp0: /mnt/host-data /mnt/data  

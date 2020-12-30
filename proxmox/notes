@@ -1,5 +1,8 @@
 Mount usb to lxc container
 Link: https://www.jamescoyle.net/how-to/2019-proxmox-4-x-bind-mount-mount-storage-in-an-lxc-container
 
+Mount USB to proxmox host in fstab
+Example: /dev/sdc1 /mnt/seagate ntfs-3g permissions,locale=en_US.utf8 0 0
+
 Example:
-mp0: /mnt/host-data /mnt/data  
+mp0: /mnt/seagate,mp=/mnt/data  

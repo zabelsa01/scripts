@@ -20,6 +20,9 @@ vim /etc/systemd/system/vncserver@.service
 
 
 chmod +x 755 /etc/systemd/system/vncserver@.service\
+
+As regular user run the following
+vncserver (set password)
 systemctl daemon-reload 
-systemctl enable vncserver@2.service
-systemctl start vncserver@2.service (<- As user)
+systemctl enable vncserver@1.service 
+systemctl start vncserver@1.service 

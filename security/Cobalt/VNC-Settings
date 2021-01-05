@@ -1,5 +1,10 @@
-If having Java issues run:
-update-java-alternatives --set java-1.11.0-openjdk-amd64
+Install JAVA 
+  Update APT
+    sudo apt-get update
+  Install OpenJDK 11 with APT
+    sudo apt-get install openjdk-11-jdk
+  Make OpenJDK 11 the default:
+    sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
 
 sudo teamserver and run cobalt as user
 

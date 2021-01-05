@@ -6,8 +6,15 @@ Install JAVA
   Make OpenJDK 11 the default:
     sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
 
+Make sure the user display is set to :0
+echo $DISPLAY
+export DIAPLAY=:0
+
 sudo teamserver and run cobalt as user
 
+
+
+OTHER STUFF
 if having issues connecting to cobalt from VNC try 
 xhost 127.0.0.1
 or

@@ -49,6 +49,7 @@ CS Extension Kit (all things): https://github.com/josephkingstone/cobalt_strike_
 Powershell Shells and Scripts: https://github.com/samratashok/nishang
 Bronze Bit Attack: https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-attack/
 UAC Bypass: https://github.com/hfiref0x/UACME
+Credential Guard Bypass BOF: https://github.com/outflanknl/WdToggle
 
 
 Payloads

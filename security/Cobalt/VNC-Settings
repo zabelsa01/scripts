@@ -7,3 +7,6 @@ if having issues connecting to cobalt from VNC try
 xhost 127.0.0.1
 or
 export DIAPLAY=:0
+
+xhost si:localuser:root
+xhost si:localuser:user

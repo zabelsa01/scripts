@@ -3,7 +3,29 @@ FIREFOX PLUGIN dark reader
 FIREFOX PLUGIN useragent switcher
 
 APT:
+--NEW LIST--
+enum4linux
+nmap
+burpsuite
+dirb
+hydra
+nishang
+proxychains
+sqlmap
+webshells
+wfuzz
+wireshark
+hashcat
+hashcat-utils
+john
+mimikatz
+seclists
+wordlists
+exploitdb
+cherrytree
+powershell
 
+--OLD LIST--
 geany
 open-vm-tools-desktop
 metasploit-framework

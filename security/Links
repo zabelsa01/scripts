@@ -58,6 +58,7 @@ Velociraptor Detection: https://www.velocidex.com/
 Windows Offensive Platform: https://www.fireeye.com/blog/threat-research/2019/03/commando-vm-windows-offensive-distribution.html
 EDR Bypass Shellcode: https://github.com/phra/PEzor
 Logging: http://18pct.com/sending-bash-and-zsh-commands-to-syslog/
+Powershell Constrained Languate Mode Bypass: https://github.com/stonepresto/CLMBypass
 
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers

@@ -34,7 +34,8 @@ Set Date and Time: sudo date -s "21 Nov 2020 03:10:00"
 
 Powershell Obfuscation
   Link: https://github.com/tokyoneon/Chimera
-  Example: ./chimera.sh -f shells/Invoke-PowershellTcp.ps1 -o /tmp/chimera.ps1 -l 2 -v -t -c /tmp/star_wars.txt -i -h -b -j -g -r -e -s iex,getstream
+  Example: ./chimera.sh -f shells/Invoke-PowershellTcp.ps1 -o /tmp/chimera.ps1 -l 2 -v -t -c /tmp/spongebob.txt -i -h -b -j -g -r -e -s iex,getstream
+ 	  - Note: spongebob.txt is any txt file that it will use to add strings to the script
 
 Linux Powershell (Pwsh)
   Import a module syntax

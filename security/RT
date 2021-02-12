@@ -32,6 +32,10 @@ Set Time: timedatectl set-time 13:05:30
 Note: If synchronization is enabled: sudo timedatectl set-ntp 0 (1 to turn it back on)
 Set Date and Time: sudo date -s "21 Nov 2020 03:10:00"
 
+Powershell Obfuscation
+  Link: https://github.com/tokyoneon/Chimera
+  Example: ./chimera.sh -f shells/Invoke-PowershellTcp.ps1 -o /tmp/chimera.ps1 -l 2 -v -t -c /tmp/star_wars.txt -i -h -b -j -g -r -e -s iex,getstream
+
 Linux Powershell (Pwsh)
   Import a module syntax
   Import-Module .\Invoke-CradleCrafter.psd1; Invoke-CradleCrafter

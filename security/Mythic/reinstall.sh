@@ -12,6 +12,7 @@ cp $Scripts/config.json $MythicPath/mythic-docker/
 $MythicPath/start_mythic.sh
 
 # Install Apollo
+cd $MythicPath
 $MythicPath/install_agent_from_github.sh https://github.com/MythicAgents/Apollo
 cp $Scripts/Apollo.csproj $MythicPath/Payload_Types/Apollo/agent_code/Apollo/
 cp $Scripts/AssemblyInfo.cs $MythicPath/Payload_Types/Apollo/agent_code/Apollo/Properties/

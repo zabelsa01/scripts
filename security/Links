@@ -60,6 +60,7 @@ EDR Bypass Shellcode: https://github.com/phra/PEzor
 Logging: http://18pct.com/sending-bash-and-zsh-commands-to-syslog/
 Powershell Constrained Languate Mode Bypass: https://github.com/stonepresto/CLMBypass
 Hashcat Tools: https://github.com/HashPals
+LSASS Dump BOF: https://github.com/guervild/BOFs/tree/dev/SilentLsassDump
 
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers

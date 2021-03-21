@@ -5,6 +5,7 @@
 ## RUN THE CONTAINER USING FROM THE DIRECTORY OF THE YML FILE: docker-compose up -d 
 ## LOG INTO THE CONTAINER USING: docker exec -it nginx_proxy /bin/bash
 ## RUN THIS COMMAND TO GENERATE A SSL CERTIFICATE: certbot -d <FQDN> --manual --preferred-challenges dns certonly
+## If Certificates don't renew, create a new letsencrypt directory and run certbot again
 ## FOLLOW THE CERTBOT INSTRUCTIONS TO COMPLETE THE CERTIFICATE VALIDATION
 
 ## <-PASTE BELOW TEXT INTO A NGINX.YML FILE->

@@ -62,6 +62,7 @@ Powershell Constrained Languate Mode Bypass: https://github.com/stonepresto/CLMB
 Hashcat Tools: https://github.com/HashPals
 LSASS Dump BOF: https://github.com/guervild/BOFs/tree/dev/SilentLsassDump
 PS Constrained Language Mode Bypass: https://github.com/calebstewart/bypass-clm
+sql injection cheat sheet: http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
 
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers

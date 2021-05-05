@@ -64,6 +64,7 @@ LSASS Dump BOF: https://github.com/guervild/BOFs/tree/dev/SilentLsassDump
 PS Constrained Language Mode Bypass: https://github.com/calebstewart/bypass-clm
 sql injection cheat sheet: http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
 LSASS MiniDump in UserLand: https://github.com/itm4n/PPLdump
+AMSI Bypass: https://github.com/G0ldenGunSec/SharpTransactedLoad
 
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers

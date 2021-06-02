@@ -67,6 +67,7 @@ LSASS MiniDump in UserLand: https://github.com/itm4n/PPLdump
 AMSI Bypass: https://github.com/G0ldenGunSec/SharpTransactedLoad
 Powershell Pack (SharpAlltheThings in PowerShell): https://github.com/S3cur3Th1sSh1t/PowerSharpPack
 EDR Bypass Payloads: https://github.com/optiv/ScareCrow
+SysWisper Cobalt Strike EDR Bypass: https://br-sn.github.io/Implementing-Syscalls-In-The-CobaltStrike-Artifact-Kit/
 
 Payloads
 Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launchers

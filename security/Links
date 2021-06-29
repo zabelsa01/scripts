@@ -119,6 +119,10 @@ Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/S
 UAC Bypass Cobalt: https://github.com/chryzsh/Aggressor-Scripts
 UAC Bypass C# Cobalt: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
 
+Remote Ops:
+BlackHills Security Remote Infra: https://www.blackhillsinfosec.com/how-to-build-a-command-control-infrastructure-with-digital-ocean-c2k-revamped/
+BlueScreenOfJeff: https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki
+
 Attack VMs
 Windows Attack Platform: https://github.com/fireeye/commando-vm
 

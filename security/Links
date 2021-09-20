@@ -18,8 +18,6 @@ RDP Lateral Movement: https://posts.specterops.io/revisiting-remote-desktop-late
 WinRM Shell: https://alionder.net/winrm-shell/
 Specter Ops Agressor Script: https://posts.specterops.io/move-faster-stay-longer-6b4efab9c644
 Covenant & Donut: https://blog.naijasecforce.com/red-teaming-with-covenant-and-donut/
-Sharp Everything: https://github.com/N7WEra/SharpAllTheThings
-SharpSploit Compiled: https://github.com/anthemtotheego/SharpSploitConsole
 Traffic Generator (Ghost): https://github.com/cmu-sei/ghosts
 Generate AD Objects (BadBlood): https://github.com/davidprowe/BadBlood
 Usernames + Mangler: https://github.com/dafthack/EmailAddressMangler
@@ -38,20 +36,12 @@ C# Powershell Execution: https://github.com/Mr-B0b/SpaceRunner
 Powershell Bloodhound Parser: https://github.com/SadProcessor/CypherDog
 Keyboard Walk Script: https://github.com/ndrix/keywalker
 AD Pentest Flow Chart: https://i.ibb.co/TKYNCNP/Pentest-ad.png
-CS Beacon Object File SA by TrustedSec: https://www.trustedsec.com/blog/a-developers-introduction-to-beacon-object-files/
-  - GitHub Files: https://github.com/trustedsec/CS-Situational-Awareness-BOF
-SweetPotato
-  - Cobalt Aggressor: https://github.com/Tycx2ry/SweetPotato_CS
-  - Cobalt C#: https://github.com/CCob/SweetPotato
 New PowerView: https://exploit.ph/powerview.html
-Lots of CS Stuff: https://github.com/zer0yu/Awesome-CobaltStrike
 CS Extension Kit (all things): https://github.com/josephkingstone/cobalt_strike_extension_kit
 Powershell Shells and Scripts: https://github.com/samratashok/nishang
 Bronze Bit Attack: https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-attack/
 UAC Bypass: https://github.com/hfiref0x/UACME
-Credential Guard Bypass BOF: https://github.com/outflanknl/WdToggle
 SolarWinds Solarflare: https://github.com/mubix/solarflare
-Cobalt Profile 4.0 Breakdown: https://github.com/bigb0sss/RedTeam-OffensiveSecurity/blob/master/01-CobaltStrike/malleable_C2_profile/CS4.0_guideline.profile
 Medium article on profiles: https://medium.com/bugbountywriteup/red-team-cobalt-strike-4-0-malleable-c2-profile-guideline-eb3eeb219a7c
 PS Contrained Language Mode Bypass: https://s3cur3th1ssh1t.github.io/Playing-with-OffensiveNim/
 Velociraptor Detection: https://www.velocidex.com/
@@ -66,14 +56,7 @@ sql injection cheat sheet: http://pentestmonkey.net/cheat-sheet/sql-injection/my
 LSASS MiniDump in UserLand: https://github.com/itm4n/PPLdump
 AMSI Bypass: https://github.com/G0ldenGunSec/SharpTransactedLoad
 Powershell Pack (SharpAlltheThings in PowerShell): https://github.com/S3cur3Th1sSh1t/PowerSharpPack
-EDR Bypass Payloads: https://github.com/optiv/ScareCrow
-SysWisper Cobalt Strike EDR Bypass: https://br-sn.github.io/Implementing-Syscalls-In-The-CobaltStrike-Artifact-Kit/
-BOF .Net Assemblies: https://github.com/CCob/BOF.NET
-AD CS Abuse: https://posts.specterops.io/certified-pre-owned-d95910965cd2
-AD CS Relay: https://www.exandroid.dev/2021/06/23/ad-cs-relay-attack-practical-guide/
-Malleable Payloads: https://github.com/s0lst1c3/dropengine
-Cobalt Community Kit: https://cobalt-strike.github.io/community_kit/
-Cobalt BOF Collection: https://github.com/ajpc500/BOFs
+
 
 
 Payloads
@@ -81,6 +64,8 @@ Shellcode Launcher: https://www.nagarrosecurity.com/blog/evasive-shellcode-launc
 SGN Payloads: https://github.com/EgeBalci/sgn
 Web Shells: https://github.com/tennc/webshell/tree/master/jsp
 Shellcode into EXE: https://github.com/phra/PEzor
+Malleable Payloads: https://github.com/s0lst1c3/dropengine
+EDR Bypass Payloads: https://github.com/optiv/ScareCrow
 
 PrivEsc
 Windows PrivEsc: https://book.hacktricks.xyz/windows/windows-local-privilege-escalation
@@ -106,6 +91,8 @@ S4U Pwnage: https://www.harmj0y.net/blog/activedirectory/s4u2pwnage/
 Machine Quotas: https://blog.netspi.com/machineaccountquota-is-useful-sometimes/ 
 AD Recon: https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1
 AD Exploitatin CheatSheet: https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet
+AD CS Abuse: https://posts.specterops.io/certified-pre-owned-d95910965cd2
+AD CS Relay: https://www.exandroid.dev/2021/06/23/ad-cs-relay-attack-practical-guide/
 
 Binary Analysis
 Radare2: https://www.youtube.com/watch?v=317dNavABKo
@@ -113,15 +100,29 @@ https://github.com/RPISEC/Malware
 http://security.cs.rpi.edu/courses/binexp-spring2015/
 https://github.com/ctfs/
 
-C# & Aggressor Scripts
+Cobalt Strike & Aggressor Scripts
+Cobalt Profile 4.0 Breakdown: https://github.com/bigb0sss/RedTeam-OffensiveSecurity/blob/master/01-CobaltStrike/malleable_C2_profile/CS4.0_guideline.profile
 Compile C# Programs: https://github.com/Flangvik/SharpCollection
 Cobalt Auto Migrate: https://github.com/threatexpress/aggressor-scripts/blob/master/beacon_handler/modules/automigrate.cna
 More C# CS Stuff: https://github.com/FuzzySecurity/Sharp-Suite
 Cobalt Strike C# Compile and Run: https://github.com/cube0x0/SharpeningCobaltStrike
+Sharp Everything: https://github.com/N7WEra/SharpAllTheThings
+SharpSploit Compiled: https://github.com/anthemtotheego/SharpSploitConsole
+Credential Guard Bypass BOF: https://github.com/outflanknl/WdToggle
+Lots of CS Stuff: https://github.com/zer0yu/Awesome-CobaltStrike
 Complie C# on Linux: https://github.com/cobbr/SharpGen (Wiki: https://cobbr.io/SharpGen.html)
   * Having issues; the below script can compile C# on Linux
+CS Beacon Object File SA by TrustedSec: https://www.trustedsec.com/blog/a-developers-introduction-to-beacon-object-files/
+  - GitHub Files: https://github.com/trustedsec/CS-Situational-Awareness-BOF
+SweetPotato
+  - Cobalt Aggressor: https://github.com/Tycx2ry/SweetPotato_CS
+  - Cobalt C#: https://github.com/CCob/SweetPotato
 UAC Bypass Cobalt: https://github.com/chryzsh/Aggressor-Scripts
 UAC Bypass C# Cobalt: https://github.com/juliourena/plaintext/tree/master/CSharp%20Tools/UAC%20Bypass
+SysWisper Cobalt Strike EDR Bypass: https://br-sn.github.io/Implementing-Syscalls-In-The-CobaltStrike-Artifact-Kit/
+BOF .Net Assemblies: https://github.com/CCob/BOF.NET
+Cobalt Community Kit: https://cobalt-strike.github.io/community_kit/
+Cobalt BOF Collection: https://github.com/ajpc500/BOFs
 
 Remote Ops:
 BlackHills Security Remote Infra: https://www.blackhillsinfosec.com/how-to-build-a-command-control-infrastructure-with-digital-ocean-c2k-revamped/

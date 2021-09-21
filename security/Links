@@ -56,6 +56,7 @@ sql injection cheat sheet: http://pentestmonkey.net/cheat-sheet/sql-injection/my
 LSASS MiniDump in UserLand: https://github.com/itm4n/PPLdump
 AMSI Bypass: https://github.com/G0ldenGunSec/SharpTransactedLoad
 Powershell Pack (SharpAlltheThings in PowerShell): https://github.com/S3cur3Th1sSh1t/PowerSharpPack
+PetiPotam/SpoolSample Triggers: https://github.com/cube0x0/SharpSystemTriggers
 
 
 

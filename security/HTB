@@ -112,6 +112,12 @@ Test XSS
   <center>test</center>
   If the text is centered and the source contains the html code it is not filtering html code
 
+Python Bloodhound
+  Edit /etc/resolv.conf (may not be required)
+    nameserver 10.10.10.5
+    search blustar.com
+  python3 ./bloodhound.py -d blustar.com -ns 10.10.10.5 -u james -p 'Password' -c All
+
 LDAP Dump
   ldapdomaindump
   Anonymous: ldapsearch -LLL -x -H ldap://cascade.local -b 'DC=cascade,DC=local' -E pr=1000/noprompt

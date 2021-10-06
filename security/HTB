@@ -93,6 +93,7 @@ Gobuster (Find website directories)
 Dirb (Find website directories)
   dirb http://10.10.10.187 <wordlist> -X .php,.html -N 302 -w -z 100 -r -v -t -u admin:password -p 10.10.10.187:3129 -o dirb.log
   -X: file extensions (-x /usr/share/dirb/wordlists/extensions_common.txt)
+  -c: Cookies (-c api-key:sefFFaf23s,uuid:2)
   -N: ignore status code
   -w: show warning messages (in-depth scan)
   -z: delay miliseconds

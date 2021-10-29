@@ -1,0 +1,23 @@
+#! /bin/bash
+clear
+echo " "
+echo " " 
+echo "System hitting the domain"
+echo "====================================="
+docker logs nginx_proxy 2>&1 | grep 'GET' | egrep -iv '\/changepath|127.0.0.1|192\.168\.'
+echo " "
+echo "Systems that failed Apache Login"
+echo "====================================="
+docker logs nginx_proxy 2>&1 | egrep 'was not found in|mismatch' | grep -v "192\.168\."
+echo " "
+echo "Systems hitting Guacamole"
+echo "====================================="
+docker logs nginx_proxy 2>&1 | grep 'GET \/changepath' | awk -F":" '{print $1}' | egrep -v "192\.168\." | egrep -o '([0-9]{1,3}[\.]){3}[0-9]{1,3}' | sort | uniq -c | sort -nr
+echo " " 
+echo "Systems that failed Guacamole Login"
+echo "====================================="
+docker logs guacamole 2>&1 | grep -v "192\.168\." | grep "Authentication attempt"
+echo " "
+echo "Systems authenticated to Guacamole"
+echo "====================================="
+docker logs guacamole 2>&1 | grep -v "192\.168\." | grep "successfully authenticated"

@@ -3,11 +3,11 @@
 
 echo "local6.*    /var/log/commands.log" >> /etc/rsyslog.d/commands.conf
 
-#Bash
+#Bash (END OF FILE)
 # Put command in bashrc file (global or local)
 #export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
 
-#Zsh
+#Zsh (END OF FILE)
 # Put command in zshrc file (global or local)
 precmd() { eval 'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history | tail -n1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"' }
 #Copy to ~/.zshrc if you don't want it system wide

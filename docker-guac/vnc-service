@@ -19,7 +19,7 @@ vim /etc/systemd/system/vncserver@.service
         WantedBy=multi-user.target
 
 
-chmod +x 755 /etc/systemd/system/vncserver@.service\
+chmod 755 /etc/systemd/system/vncserver@.service\
 
 As regular user run the following
 vncserver (set password)

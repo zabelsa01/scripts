@@ -1,5 +1,6 @@
 apt install tigervnc-standalone-server
 apt install xvfb dbus-x11 (not sure if required)
+chmod 755 xstartup
 
 vim /home/user/.vnc/xstartup
   #!/bin/sh

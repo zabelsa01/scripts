@@ -1,3 +1,5 @@
+#CHANGE USER TO THE ACTUAL USERNAME
+
 vim /etc/systemd/system/vncserver@.service 
 
         [Unit]

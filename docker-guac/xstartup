@@ -4,7 +4,7 @@
 ##          All            ##
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
-export SHELL=/bin/bash
+#export SHELL=/bin/bash
 
 #############################
 ##          Gnome          ##

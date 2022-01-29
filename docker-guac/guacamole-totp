@@ -1,0 +1,13 @@
+# This is should be able to use Google Authenticator as 2Factor. Not working yet, still troubleshooting
+
+Download TOTP for the version of Guacd you have
+https://guacamole.apache.org/releases/1.2.0/
+guacamole-auth-totp-1.2.0.tar.gz
+
+Edit guacamole.properties
+../docker/guacamole/config/guacamole/guacamole.properties
+
+totp-issuer: Apache Guacamole
+totp-digits: 6
+totp-period: 30
+totp-mode: sha256

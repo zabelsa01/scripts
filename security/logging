@@ -4,15 +4,16 @@
 echo "local6.*    /var/log/commands.log" >> /etc/rsyslog.d/commands.conf
 
 #Bash (END OF FILE)
-# Put command in bashrc file (global or local)
-#export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
+Global: /etc/bashrc [if /etc/bash.bashrc then: ln -s /etc/bash.bashrc /etc/bashrc]
+Local: ~/.bashrc
+export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
 
 #Zsh (END OF FILE)
-Global: /etc/zshrc [if /etc/zsh/zshrc then: ln -s /etc/zsh/zshrc /etc/zshrc
+Global: /etc/zshrc [if /etc/zsh/zshrc then: ln -s /etc/zsh/zshrc /etc/zshrc]
 Local: ~/.zshrc
 precmd() { eval 'RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history | tail -n1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"' }
 
-source /etc/zsh/zshrc
-#source ~/.zshrc
+source /etc/zshrc
+source ~/.zshrc
 
 systemctl restart rsyslog

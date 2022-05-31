@@ -29,7 +29,7 @@
 						ms.Close();
 						br.Close();
 						Assembly a = Assembly.Load(bin);
-						string[] args = new string[] {"-m shadowcred","-f"};
+						string[] args = new string[] {"full","-m shadowcred","--forceShadowCred"};
 						try
 						{
 							a.EntryPoint.Invoke(null, new object[] { args });

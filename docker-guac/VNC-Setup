@@ -1,0 +1,39 @@
+#Install VNC
+apt install tigervnc-standalone-server xvfb dbus-x11
+vncserver [set password]
+vncserver -kill
+
+#Create XStartup File
+#vim /home/user/.vnc/xstartup
+
+!/bin/sh
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+exec startxfce4
+
+#Create Service
+#vim /etc/systemd/system/vncserver@.service
+
+[Unit]
+Description=Start TightVNC server at startup
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=plankton
+Group=plankton
+WorkingDirectory=/home/plankton
+
+PIDFile=/home/plankton/.vnc/%H:%i.pid
+ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
+ExecStart=/usr/bin/vncserver -localhost no -SecurityTypes VncAuth -depth 24 -alwaysshared  -fg -geometry 2080x1080 :%i
+ExecStop=/usr/bin/vncserver -kill :%i
+
+[Install]
+WantedBy=multi-user.target
+
+
+#Start Service
+systemctl daemon-reload 
+systemctl enable vncserver@1.service 
+systemctl start vncserver@1.service 

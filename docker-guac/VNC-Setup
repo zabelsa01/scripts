@@ -1,9 +1,9 @@
-#Install VNC
+**Install VNC**
 apt install tigervnc-standalone-server xvfb dbus-x11
 vncserver [set password]
 vncserver -kill
 
-#Create XStartup File
+**Create XStartup File**
 #vim /home/user/.vnc/xstartup
 
 !/bin/sh
@@ -11,7 +11,7 @@ unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4
 
-#Create Service
+**Create Service**
 #vim /etc/systemd/system/vncserver@.service
 
 [Unit]
@@ -32,8 +32,7 @@ ExecStop=/usr/bin/vncserver -kill :%i
 [Install]
 WantedBy=multi-user.target
 
-
-#Start Service
+**Start Service**
 systemctl daemon-reload 
 systemctl enable vncserver@1.service 
 systemctl start vncserver@1.service 

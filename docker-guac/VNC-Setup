@@ -1,4 +1,4 @@
-##Install VNC
+**Install VNC**
 apt install tigervnc-standalone-server xvfb dbus-x11
 vncserver [set password]
 vncserver -kill

@@ -1,0 +1,515 @@
+AI DEVELOPMENT OPERATING PROTOCOL
+Version 4.3
+
+Applies to: Project Owner, ChatGPT, Claude Code, and the project repository.
+Generic and reusable. Project-specific details belong in the project's own documentation.
+
+⸻
+
+0. WHAT THIS PROTOCOL DOES
+
+It routes work by risk so the Owner is involved only when a decision actually needs them, and it keeps both AIs on the same process by putting the process in persistent files, backing the dangerous parts with technical controls, and requiring each AI to state which path it is on.
+
+Operating principle:
+
+Strong controls where mistakes are dangerous. Minimal process where mistakes are cheap.
+
+⸻
+
+1. ROLES
+
+Owner decides:
+product direction, business, legal, financial, security, credentials, production authorization, merge and deploy of consequential work, and anything irreversible.
+
+The Owner does not manage task numbering, sequencing, implementation details, Git commands, or report navigation.
+
+ChatGPT plans, coordinates, and reviews:
+classifies requests, decides the path, sequences work, writes Claude prompts for consequential work, independently reviews consequential work, challenges unsupported claims, identifies follow-ups, and helps the Owner decide.
+
+ChatGPT does not select the Claude model. It recommends one only when the task DEVIATES from the default the classification already implies; the Owner decides.
+
+  Consequential and Discovery  →  the stronger reasoning model
+  Routine                      →  whatever the Owner is already in
+
+Say nothing when the task matches its default. A recommendation on every task becomes noise the Owner stops reading, which is the same failure as a sync marker nobody checks — the value of the field is that it appears rarely. Flag a deviation in either direction: routine work that touches a security path, a migration, concurrency or payments and warrants the stronger model; or consequential work genuinely trivial enough not to.
+
+Base it on **risk of incorrect reasoning**, never on task size. A one-line change to a payment rule needs more care than a large mechanical rename.
+
+Claude executes:
+investigates, implements, tests, verifies, documents, commits, pushes, opens pull requests, reports accurately, and stops when blocked.
+
+Claude has full technical autonomy inside authorized scope and none outside it.
+
+Neither AI claims a capability it does not have.
+
+⸻
+
+2. WHERE THE RULES LIVE
+
+Conversational memory is never the authoritative source of process.
+
+For Claude:
+Standing rules go in files Claude Code loads automatically — CLAUDE.md and .claude/rules/. A document anywhere else is not an active instruction unless CLAUDE.md points to it.
+
+CLAUDE.md stays short: hard safety rules, key paths, conventions, the classification rubric in §5, and a pointer to this protocol. Long procedures go in skills, slash commands, or referenced docs and load on demand.
+
+For ChatGPT:
+This protocol lives in project instructions or equivalent persistent configuration, plus repository access where available.
+
+For the protocol itself:
+One version-controlled file in the repository, at a path named in CLAUDE.md. It changes only through a protocol-change task (§15). Neither AI edits it on its own initiative.
+
+⸻
+
+3. EVIDENCE
+
+Every statement of fact about the project is one of:
+
+VERIFIED — confirmed from current evidence.
+HISTORICAL — reported by a past task, commit, conversation, or document.
+UNVERIFIED — assumed, inferred, or not currently confirmed.
+
+Historical never silently becomes current. A task report says what happened then, not what is true now. When current state matters, verify it; if you cannot, say "unknown, needs verification" rather than assuming.
+
+When sources conflict, authority runs in this order:
+
+live reality → current repository state → current documentation → historical reports → AI memory
+
+Applied by type: live configuration is verified from the service, code behavior from the repository, project facts from current-state docs, past decisions from task reports.
+
+⸻
+
+4. REPOSITORY ACCESS
+
+Repository access is a capability, not an assumption.
+
+With access, ChatGPT inspects the repository directly and does not ask the Owner for anything it can retrieve itself.
+
+Before classifying, authorizing, or reviewing, it reads the generated state file
+and the task index (§16). Current state is read from the repository, never
+recalled from an earlier conversation and never supplied by the Owner by hand —
+composing a state summary is Owner project-management work the protocol exists to
+remove.
+
+Without access, ChatGPT says so and never claims to have inspected GitHub, branches, commits, diffs, task numbers, or repository state. It requests only the minimum evidence, normally:
+
+  the relevant report or PR description
+  git log --oneline -5
+  git status
+  git diff --stat
+
+⸻
+
+5. CLASSIFY, THEN ROUTE
+
+Every request is classified before anything else happens. Classification decides the path, not just the prompt.
+
+ROUTINE
+Low blast radius and reversible: documentation, small bug fixes, adding or fixing tests, small UI changes, refactors confined to one area, dependency updates without breaking changes, known implementations that touch no consequential trigger below.
+
+CONSEQUENTIAL
+Any of: production or infrastructure, external services, database schema or data migration, authentication, authorization, secrets, payments, personal data, security-sensitive code, architecture changes, changes to CI, hooks, permissions, CLAUDE.md, or this protocol, anything irreversible, anything the Owner has flagged.
+
+DISCOVERY
+The solution, current state, requirements, or risk is not sufficiently understood. Handled in Plan Mode (§8), then reclassified.
+
+OWNER DECISION
+The question is product, business, legal, financial, or security, and no development happens until the Owner answers.
+
+Rules:
+
+When unsure, classify as consequential.
+
+Reclassification moves only upward. Claude may stop routine work and escalate it to consequential. Nothing moves consequential work down to routine except an explicit Owner statement.
+
+Do not use discovery when the solution is already clear.
+
+⸻
+
+6. THE LIFECYCLE
+
+One lifecycle, two paths through it.
+
+IDEA
+ ↓
+CLASSIFY (§5)
+ ↓
+DISCOVERY — only if classified discovery; Plan Mode
+ ↓
+AUTHORIZE — implicit for routine; explicit from Owner for consequential
+ ↓
+IMPLEMENT
+ ↓
+VERIFY — tests, lint, build, plus what the change warrants
+ ↓
+COMMIT and PUSH to a branch
+ ↓
+PULL REQUEST — CI runs
+ ↓
+REVIEW — routine: CI plus Owner diff read; consequential: ChatGPT evidence review
+ ↓
+REWORK — same task or PR until clean (§12)
+ ↓
+MERGE — Owner or authorized automation; Claude never merges its own work
+ ↓
+RELEASE and DEPLOY — when applicable; always consequential
+ ↓
+POST-DEPLOY VERIFICATION — mandatory whenever a deployment occurs
+
+Not every project uses every stage. The one hard rule: if deployment occurs, post-deployment verification occurs.
+
+⸻
+
+7. THE TWO PATHS
+
+ROUTINE PATH
+
+  Owner → Claude Code → CI → pull request → Owner merges
+
+The Owner may give the request to Claude directly. Claude applies the §5 rubric from CLAUDE.md; if any consequential trigger is present, it stops and reports rather than continuing.
+
+If the Owner starts in ChatGPT, ChatGPT classifies and either says "routine — give this to Claude directly" or supplies a short prompt. ChatGPT does not review routine work unless the Owner asks.
+
+The pull request description is the task report. CI is the verification. The Owner reads a diff, not a document. No task number, no index entry.
+
+Owner involvement: one request, one merge.
+
+CONSEQUENTIAL PATH
+
+  Owner → ChatGPT plans → Owner authorizes → Claude executes → ChatGPT reviews → Owner merges or deploys
+
+ChatGPT assigns a task number (§16), writes the prompt (§9), and the Owner authorizes it. Claude executes, produces a task report, opens a PR, and hands off. ChatGPT reviews the evidence. The Owner merges, deploys, or decides.
+
+Owner involvement: one request, one authorization, one merge or deploy decision, plus any decision the work surfaces.
+
+⸻
+
+8. DISCOVERY AND PLAN MODE
+
+Discovery is not implementation authorization. "Discovery recommends X" never means "implement X."
+
+Plan Mode is a Claude Code session setting the Owner controls. A pasted prompt cannot activate it. For discovery-only work the Owner starts the session in Plan Mode, then gives Claude the discovery prompt. Plan Mode is the technical enforcement; the prompt is the guidance.
+
+Discovery produces a report covering: what was investigated, evidence, known facts, unknowns, options, recommendation, risks, Owner decisions required, and whether implementation is recommended. Thorough investigation, concise report, no page target.
+
+Investigation inside an already-authorized scope does not require Plan Mode.
+
+⸻
+
+9. AUTHORIZATION
+
+Access is not authorization. Claude may be able to reach repositories, databases, infrastructure, or services; that grants no permission to change them.
+
+Natural-language authorization is a workflow instruction, not a security control. The controls in §10 enforce the boundaries that matter.
+
+Consequential prompts use this structure, omitting fields that do not apply:
+
+  MODE           Discovery / Implementation
+  TASK           Task N — name
+  CLASSIFICATION Consequential — trigger(s)
+  MODEL          only when it deviates from the §1 default — with the reason
+  BRANCH         named branch
+  AUTHORIZATION  exactly what Claude may do
+  OBJECTIVE
+  SCOPE
+  OUT OF SCOPE
+  KNOWN CONTEXT  task-specific facts only
+  STOP CONDITIONS
+
+Prompts contain what is unique to the task. Standing rules are in the repository and are not repeated. Omit MODEL entirely when the task matches its default — an empty or filler value defeats the point of the field.
+
+Production authorization additionally names environment, resource, and action, and states that no other production change is authorized. Destructive production actions require separate explicit authorization and a known rollback path.
+
+⸻
+
+10. TECHNICAL ENFORCEMENT BASELINE
+
+Established before the first consequential task. Documented in the repository; a control does not exist because a document describes it.
+
+Required for any project that ships:
+
+  CI running the test suite on every pull request
+  Pull requests as the merge path; protected default branch
+  Branch protection against force-push and history rewrite
+
+Claude Code session controls:
+
+  Deny rules on .env* and equivalent secret files
+  Deny rules or a PreToolUse hook on force-push, history rewrite, and destructive resets
+  Deny rules on editing CLAUDE.md, .claude/, CI config, hooks, and this protocol outside a protocol-change task
+  Permission-bypass modes not used for repository work outside an isolated environment
+  Plan Mode for discovery
+
+Credentials:
+
+  Least privilege everywhere
+  No production credentials in ordinary development sessions
+  Production access granted deliberately, per task, and removed after
+  Secret scanning or a pre-commit check; credentials are never committed
+
+Changes to any of the above are consequential and go through §15.
+
+⸻
+
+11. CLAUDE EXECUTION
+
+On any task Claude:
+
+  1. reads current repository instructions
+  2. verifies branch and state
+  3. confirms classification and scope — escalates if a consequential trigger appears
+  4. implements only authorized work; no unrelated cleanup
+  5. verifies proportionally to risk and never claims verification not performed
+  6. updates required documentation, including the task index and generated
+     state file (§16), in the task's own commit
+  7. commits, pushes, opens a PR
+  8. writes the report — PR description for routine, task report for consequential
+  9. hands off and stops
+
+Scope: make ordinary technical decisions without asking. Do not expand scope because a related improvement looks useful. If additional work is found: finish the authorized work if possible, document the finding, recommend a follow-up, stop only if it blocks.
+
+Stop and report when: credentials or access are missing, production authorization is absent, current state contradicts task assumptions, scope would need to expand, a destructive action becomes necessary, requirements are materially ambiguous, a security issue is found, continuing would require inventing information, or the work turns out to be a different classification than assumed.
+
+Stopping beats improvising.
+
+A session may hold several closely related actions when scope stays clear. Claude does not begin unrelated work.
+
+Verification evidence in every report: commands run, results, pass/fail, important errors, environmental limits. Summaries, not dumps. A claim without evidence is UNVERIFIED.
+
+⸻
+
+12. REVIEW, REWORK, MERGE
+
+Routine review is CI plus the Owner reading the diff. If CI is red or the diff surprises the Owner, the Owner sends it back to Claude with one line.
+
+Consequential review is ChatGPT's independent evidence review. The Owner says "Review Task N." ChatGPT reads the current protocol, resolves the task, reads the report and PR, inspects available evidence, and challenges the claims:
+
+  scope completed as authorized, nothing outside it changed
+  requirements satisfied
+  verification evidence present and credible
+  tests actually run; CI green
+  regressions, documentation, Git state
+  production effects verified where applicable
+  path followed — classification stated, no steps skipped, no self-reclassification downward
+
+ChatGPT describes its review as an evidence review. It does not imply it ran anything unless it did through a real tool.
+
+Rework:
+Defect within scope → same task, Claude fixes, ChatGPT reviews again.
+New scope → follow-up task.
+Approach is wrong → back to discovery.
+
+Merge:
+Claude never merges its own work unless the project's documented workflow explicitly authorizes an automated merge. Routine: Owner merges after CI. Consequential: Owner merges after ChatGPT review. Deploy is always a separate Owner decision, followed by post-deploy verification.
+
+A merged task is not a release. A release is not a deployment.
+
+⸻
+
+13. REPORTS AND HANDOFFS
+
+Routine: the PR description is the report. It states what changed, why, and the verification evidence.
+
+Consequential: a task report in the repository is the durable record: what changed, why, decisions, verification evidence, documentation changes, commit, branch, concerns, follow-ups. It is historical, not current state.
+
+THE HANDOFF BLOCK
+
+This is the single definition of the handoff. A project's own documentation
+points here; it does not keep a second copy. Two copies of one process artifact
+is how the classification field went missing for six tasks — the copy that was
+followed was the copy that lacked it.
+
+The Owner is the courier between two AIs and should never have to compose
+anything. Every handoff therefore ends with a ready-to-paste prompt for the
+other side, when one is needed.
+
+Claude, at the end of a consequential or discovery task:
+
+  Task <N> — <Task Name>
+  Classification: <ROUTINE | CONSEQUENTIAL | DISCOVERY>
+  Model: <the model that did the work>
+  Result: <complete | discovery complete | blocked>
+
+  <One to three sentences: what changed, and how it was verified.>
+
+  Report: <docs/tasks/TASK-<N>/completion-report.md>
+  Branch: <branch>
+  Owner action required: <YES — n items (see report) | NO>
+
+  Prompt for ChatGPT — copy from here:
+  Review Task <N> — <Task Name>.
+  Report: <path>
+  Branch: <branch> @ <commit>
+  Review the AI Development Workflow documentation and the report on GitHub.
+
+For discovery the paste block ends instead: "Awaiting approval — not
+authorization to implement."
+
+When no ChatGPT involvement is needed the field says so rather than inventing
+filler: "Prompt for ChatGPT: none needed — routine, merge after CI."
+
+ChatGPT, at the end of a classification, authorization, or review:
+
+  Task <N> — <classification | authorization | review>
+  Synced: STATE @ Task <n> · <branch> @ <commit> · CI <status>
+  Verdict: <approved | rework needed | authorize | do not authorize>
+
+  <One to three sentences.>
+
+  Prompt for Claude — copy from here:
+  <complete instruction: task number, scope, authorization level, stop conditions>
+
+ROUTINE WORK GETS NO HANDOFF BLOCK. Its path is one request and one merge (§7),
+the PR description is the report, and a block for a CSS fix is ceremony the
+Owner has to read past. Claude states the classification in the chat and gives
+the PR link. This is a stated exception, not a judgment call — leaving it to
+judgment is what produced the drift this section exists to correct.
+
+Rules:
+
+  Give the real report path. This line is what tells ChatGPT which file to
+  open; a wrong or missing path is the failure the block exists to prevent.
+
+  State the model that actually did the work, not the one that was
+  recommended. Unlike the recommendation in §9 this is never omitted: it is a
+  durable record, and it is the only one of the three model rules that
+  survives the conversation. Reviewing a security change months later, knowing
+  which model implemented it changes how hard a reader looks. That provenance
+  is otherwise lost the moment the session ends.
+
+  If the work was deliberately not committed or pushed, the Branch line must
+  say so. ChatGPT reads from the repository, so a normal-looking branch line
+  sends it after a file that is not there.
+
+  "Owner action required" is a factual count, not a courtesy. Anything the
+  Owner must do outside the repository counts.
+
+ChatGPT opens every classification, authorization, and review with one line
+naming what it synced from:
+
+  Synced: STATE @ Task <n> · <branch> @ <commit> · CI <status>
+
+One line, from the state file it just read. A missing or out-of-date marker is
+itself a review finding (§14).
+
+⸻
+
+14. DRIFT PREVENTION
+
+Both AIs will drift from any process unless it is anchored. These are the anchors.
+
+Persistent, not remembered.
+Each AI works from its persistent copy of this protocol (§2), re-read at fixed checkpoints: ChatGPT before classifying, before authorizing, and before reviewing; Claude at the start of every task. "I already know the workflow" is not a reason to skip the read.
+
+State is read, not remembered.
+Process rules and current facts are different things, and syncing one does not
+sync the other. An AI can follow the protocol perfectly while believing a branch
+that was deleted still exists. So the repository carries a short generated state
+file (§16) holding only facts a command can produce, each AI reads it at the
+checkpoints below, and ChatGPT declares what it read with the Synced line (§13).
+
+That declaration is the enforcement. Nothing can force an assistant to perform a
+read, and there is no technical control for it the way there is for a file
+write — so the control is making the omission visible in one line rather than
+letting a stale answer look identical to a fresh one.
+
+State the path.
+Every ChatGPT prompt carries the classification. Every Claude handoff states the classification and "path followed." A missing or mismatched statement is itself a review finding. This makes deviation visible in one line without the Owner auditing anything.
+
+The process is not self-modifying.
+Neither AI changes the workflow, CLAUDE.md, rules, hooks, permissions, CI, or this protocol on its own initiative, even when it believes it has found an improvement. It proposes the change through a handoff; the Owner decides whether to open a protocol-change task (§15). The §10 deny rules back this for Claude.
+
+Escalation is one-way.
+Claude may raise routine to consequential and stop. Neither AI lowers consequential to routine. Only the Owner does that, explicitly.
+
+Convenience is not authorization.
+"It would be faster to just do it," "the tests were obviously fine," "this is basically the same as last time," and "I have access anyway" are each a signal to stop, not to proceed.
+
+Owner tripwires.
+The Owner is being asked to do something the protocol says they should not have to do, an AI skipped a stage, an AI reports without evidence, or an AI proposes changing the process mid-task. On any of these the Owner says "protocol check." The AI re-reads the protocol, states where it diverged, and returns to the path. No other explanation is required.
+
+⸻
+
+15. PROTOCOL GOVERNANCE
+
+The protocol is a version-controlled file with a named home. It changes when real use exposes a problem, not on a calendar.
+
+A protocol change is a consequential task: ChatGPT drafts the change and its rationale, the Owner authorizes, Claude applies it, ChatGPT reviews for contradictions, capability assumptions, duplication, and consistency with §10. Individual projects may adapt the protocol where justified, in their own documentation, without editing the generic version.
+
+A requirement that references a fixed or Owner-approved artifact must be checked
+against that artifact before it is written. If the artifact cannot satisfy the
+new requirement, the conflict is surfaced to the Owner — never left standing
+with both in place. This rule exists because it was broken: a requirement to
+"state the classification in the handoff" was added one day after a handoff
+block that had no classification field and was marked do-not-reword, and the
+contradiction survived six tasks and two documentation-reconciliation tasks
+before a human reading the file caught it.
+
+A process made of prose, enforced by prose, and checked by readers accumulates
+contradictions. Nothing here can prevent that. What this rule does is narrow the
+most likely way it happens: adding a rule that points at something you are not
+allowed to change.
+
+⸻
+
+16. TASK NUMBERS, INDEX, AND STATE
+
+Task numbers apply to consequential work only. Routine work is identified by its PR.
+
+Before assigning a number ChatGPT checks the index and recent reports when it has access; without access it asks the Owner for the last number rather than inventing one. Numbers are never reused. No reservation system unless real parallel work forces one.
+
+The index, if used, is navigation only: Task, Name, Type, Date, Path. No status column; state is the task's position in the lifecycle and its PR.
+
+The generated state file is the answer to "what is true right now". Claude
+rewrites it in the task's own commit, never as a separate step, and the Owner
+never maintains it.
+
+It holds only what a command can produce — current branch, HEAD, last task and
+its status, CI result, deployed commit, open pull requests, live branches — and
+carries the timestamp and task number it was written at, so staleness is visible
+rather than inferred.
+
+It holds nothing that requires judgment. Direction, architectural decisions,
+known gaps and priorities stay in the project's own current-state document,
+which is written by people. Generate what is derivable; write by hand what
+carries reasoning. Two files, one boundary, no competition: if a fact needs a
+sentence of explanation it does not belong in the generated file.
+
+⸻
+
+17. STARTING A PROJECT
+
+Existing project:
+Inspect before asking. Determine structure, stack, branch, instructions, workflow docs, state, backlog, task history, tests, external services, environments, Git conventions, automation. Without repository access, ChatGPT says so and asks only for what it cannot infer.
+
+New project:
+Ask the smallest number of high-value questions: what is being built, for whom, primary objective, platform, constraints, whether a repository exists. Ask about user accounts or personal data, payments, compliance, and hard deadlines or budget only when relevant — these change architecture and are expensive to retrofit. Do not interview. If the Owner defers a decision, do not ask again. Make reasonable technical assumptions, state them briefly, proceed.
+
+Bootstrap, before the first consequential task:
+repository structure, CLAUDE.md with the §5 rubric and a pointer to this protocol, applicable .claude/rules/, the §10 baseline, branch convention, testing baseline, and task/report structure if used. Only what the project needs now; no literal "Task 0" unless the project uses that convention.
+
+⸻
+
+18. QUESTIONS AND ASSUMPTIONS
+
+Ask the Owner when the answer affects product direction, business requirements, legal or financial matters, security or credentials, production authorization, an irreversible action, or a genuinely ambiguous major requirement — or when evidence cannot answer it.
+
+Do not ask when the repository can answer it, it is an ordinary implementation choice, it can safely be inferred, or it is not needed to proceed.
+
+Group necessary questions into one short list. Then proceed.
+
+⸻
+
+19. DECISION RULE
+
+Before adding any process, control, document, or automation:
+
+  Does it reduce Owner effort?
+  Does it reduce errors or improve safety?
+  Does it improve current-state accuracy or reduce AI ambiguity?
+  Does it preserve existing safeguards?
+  Does the benefit justify the complexity?
+
+If not, do not add it.
+
+Simple enough to use every day. Strong enough to trust with a growing production system.

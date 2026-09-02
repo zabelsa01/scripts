@@ -1,5 +1,18 @@
+None selected 
+
+Skip to content
+Using Gmail with screen readers
+
+Conversations
+Gemini
+Try Gemini in Gmail, Docs, and more
+Boost your productivity with AI, plus get access to Google AI Pro and 5 TB of storage for $2.99 for 3 months $19.99
+69% of 200 GB used
+Terms · Privacy · Program Policies
+Last account activity: 1 minute ago
+Details
 AI DEVELOPMENT OPERATING PROTOCOL
-Version 4.3
+Version 4.4
 
 Applies to: Project Owner, ChatGPT, Claude Code, and the project repository.
 Generic and reusable. Project-specific details belong in the project's own documentation.
@@ -304,6 +317,15 @@ Claude never merges its own work unless the project's documented workflow explic
 
 A merged task is not a release. A release is not a deployment.
 
+One task branch at a time. Every task rewrites the generated state file (§16)
+and updates the index, so two branches open at once conflict on both — always,
+by construction, not by bad luck. Merge one before pushing the next.
+
+Where overlap is genuinely unavoidable, resolve the state file by regenerating
+it on the merged result, never by hand-merging it, and keep both index entries.
+Hand-merging a generated file produces something that looks resolved and
+describes nothing real.
+
 ⸻
 
 13. REPORTS AND HANDOFFS
@@ -513,3 +535,5 @@ Before adding any process, control, document, or automation:
 If not, do not add it.
 
 Simple enough to use every day. Strong enough to trust with a growing production system.
+ai-development-operating-protocol.md
+Displaying ai-development-operating-protocol.md.1Password menu is available. Press down arrow to select.

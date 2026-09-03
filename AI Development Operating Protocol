@@ -1,5 +1,5 @@
 AI DEVELOPMENT OPERATING PROTOCOL
-Version 4.4
+Version 4.6
 
 Applies to: Project Owner, ChatGPT, Claude Code, and the project repository.
 Generic and reusable. Project-specific details belong in the project's own documentation.
@@ -70,6 +70,19 @@ HISTORICAL — reported by a past task, commit, conversation, or document.
 UNVERIFIED — assumed, inferred, or not currently confirmed.
 
 Historical never silently becomes current. A task report says what happened then, not what is true now. When current state matters, verify it; if you cannot, say "unknown, needs verification" rather than assuming.
+
+Task reports are historical evidence and must not be silently rewritten once the
+task has merged. For a merged task, do not rewrite, rename, or restructure the
+report to reflect later changes; if later work supersedes the result, add a
+reconciliation note rather than editing the historical account.
+
+Work withdrawn, reverted, or substantially reworked BEFORE merge is different:
+the report may be corrected so that it accurately describes the work that
+actually merged. The top of the report must then record that an earlier version
+was superseded, identifying the superseded commit or version where one exists.
+
+The goal is an auditable evidence chain, while still allowing unfinished work to
+be corrected before it becomes historical project evidence.
 
 When sources conflict, authority runs in this order:
 
@@ -249,6 +262,12 @@ Credentials:
 
 Changes to any of the above are consequential and go through §15.
 
+A project may deliberately deviate from a baseline requirement only when the
+deviation is an explicit Owner decision and is recorded as such. An unrecorded
+deviation is a gap, not a choice. Recording one does not weaken the requirement:
+the baseline still states what the project should have, and the record states
+what it has instead and why.
+
 ⸻
 
 11. CLAUDE EXECUTION
@@ -260,6 +279,8 @@ On any task Claude:
   3. confirms classification and scope — escalates if a consequential trigger appears
   4. implements only authorized work; no unrelated cleanup
   5. verifies proportionally to risk and never claims verification not performed
+     — including, where a test is the primary evidence that a high-consequence
+     control works, a deliberate mutation proving the test actually guards it
   6. updates required documentation, including the task index and generated
      state file (§16), in the task's own commit
   7. commits, pushes, opens a PR
@@ -273,6 +294,24 @@ Stop and report when: credentials or access are missing, production authorizatio
 Stopping beats improvising.
 
 A session may hold several closely related actions when scope stays clear. Claude does not begin unrelated work.
+
+Mutation of the guarded behavior. When a test is relied on as the primary
+evidence that a security, authorization, data-integrity, or other
+high-consequence correctness control works, verification includes deliberately
+breaking that behavior: the mutation must make the guarded behavior incorrect,
+cause the intended test to fail, demonstrate the failure is for the intended
+reason, and then be restored before completion. The point is to prove the test
+guards what it is cited as evidence for, rather than merely passing.
+
+Not required for ordinary low-risk work — styling, copy, layout, routine UI —
+where no test is serving as the primary evidence of a high-consequence control.
+
+Non-green baselines. When the relevant test baseline is not green, a pass/fail
+count is not verification evidence. Capture the baseline failure set before the
+work and compare it after, and report three things separately: pre-existing
+failures that remain, pre-existing failures now resolved, and new failures the
+task introduced. Where the baseline is green, ordinary regression verification
+applies.
 
 Verification evidence in every report: commands run, results, pass/fail, important errors, environmental limits. Summaries, not dumps. A claim without evidence is UNVERIFIED.
 
@@ -288,7 +327,8 @@ Consequential review is ChatGPT's independent evidence review. The Owner says "R
   requirements satisfied
   verification evidence present and credible
   tests actually run; CI green
-  regressions, documentation, Git state
+  regressions, documentation, Git state — against a non-green baseline this
+  means the failure-set comparison (§11), not a pass count
   production effects verified where applicable
   path followed — classification stated, no steps skipped, no self-reclassification downward
 
@@ -332,6 +372,37 @@ The Owner is the courier between two AIs and should never have to compose
 anything. Every handoff therefore ends with a ready-to-paste prompt for the
 other side, when one is needed.
 
+This applies to ALL content the Owner carries between the two AIs, in either
+direction — not only the task-completion handoff. Prompts, research questions,
+planning and review requests, implementation requests, protocol-change requests,
+and corrections to any earlier request are all delivered as one complete,
+self-contained, copy-paste-ready block:
+
+  the Owner can copy the whole block in one action;
+  it depends on nothing in the surrounding conversation;
+  it is never split across blocks or messages;
+  the Owner never assembles, edits, reorders, or selects pieces of it;
+  a correction is never a diff or a "replace point X with this" — reissue the
+    complete replacement block instead;
+  placeholders requiring Owner editing are avoided, and where one is genuinely
+    unavoidable it is marked unmistakably and the reason it cannot be resolved
+    by the AI is stated.
+
+This extends the courier principle already stated above; it is not a second
+communication system.
+
+The handoff is a **chat-only coordination artifact**. It is not written into the
+task report and does not replace it: the report is the durable historical
+record, the handoff is the interface between two AIs at one moment. Putting the
+block in the report conflates the two, and a report is not where a reviewer
+looks for an instruction addressed to them.
+
+The canonical handoff carries these fields, and a block missing any of them is
+incomplete: **Task**, **Classification**, **Model**, **Result**, a concise
+change-and-verification sentence, **Report**, **Branch**, **Owner action**, and
+a copy/paste **Prompt for ChatGPT**. The templates below are those fields in
+order; they are the definition, not an illustration of one.
+
 Claude, at the end of a consequential or discovery task:
 
   Task <N> — <Task Name>
@@ -362,11 +433,22 @@ ChatGPT, at the end of a classification, authorization, or review:
   Task <N> — <classification | authorization | review>
   Synced: STATE @ Task <n> · <branch> @ <commit> · CI <status>
   Verdict: <approved | rework needed | authorize | do not authorize>
+  Merge: <YES | NO — what must happen first>
 
   <One to three sentences.>
 
   Prompt for Claude — copy from here:
   <complete instruction: task number, scope, authorization level, stop conditions>
+
+The Merge field exists because "approved" was being read as merge
+authorization, and the two are not the same: work can be approved as far as it
+has gone while still changing. On an implementation task, YES means ChatGPT has
+determined the task is complete and the Owner may merge; NO means the Owner must
+not merge yet, and the reason and the action required are stated. Never rely on
+"Verdict: approved" to imply it.
+
+On a discovery task the field never implies authorization to implement. The
+discovery closing line above remains authoritative.
 
 ROUTINE WORK GETS NO HANDOFF BLOCK. Its path is one request and one merge (§7),
 the PR description is the report, and a block for a CSS fix is ceremony the
@@ -400,6 +482,43 @@ naming what it synced from:
 
 One line, from the state file it just read. A missing or out-of-date marker is
 itself a review finding (§14).
+
+WHAT ENFORCEMENT CAN AND CANNOT VERIFY
+
+Parts of this section are machine-checkable and parts are not, and the
+difference is not a matter of effort. Stating it here stops a passing check
+from being read as proof the process was followed.
+
+A repository check can verify:
+
+  - that only this section defines the handoff, and no second copy has appeared
+    in another document;
+  - that no document points at a handoff definition that no longer exists;
+  - that this section still carries its required fields, the discovery closing
+    line, and the unpushed-branch rule;
+  - that a secondary document has not reintroduced an approval path that omits
+    ChatGPT's planning and review role;
+  - durable task-artifact conventions that are explicitly defined, such as a
+    task directory containing a report.
+
+A repository check can NOT verify:
+
+  - that a ChatGPT conversation occurred at all;
+  - that ChatGPT actually planned or independently reviewed the work;
+  - that the Owner genuinely authorized it rather than waving it through;
+  - that a human read or acted on the handoff;
+  - that Claude's reasoning or classification was honest.
+
+Those are human review responsibilities and remain so. **A green check means
+the documentation has not drifted. It never means the workflow was followed.**
+Claiming otherwise is itself a review finding.
+
+These checks are a ratchet against documentation drift, not a merge gate.
+Branch protection stays disabled (§10); a red run informs and never blocks.
+
+In this repository they live in `tests/workflowDocumentation.test.ts` and run in
+the existing test job. The check enforces this section; it does not define it —
+§13 remains the only authority on what the handoff contains (§15).
 
 ⸻
 
@@ -497,6 +616,26 @@ Ask the smallest number of high-value questions: what is being built, for whom, 
 Bootstrap, before the first consequential task:
 repository structure, CLAUDE.md with the §5 rubric and a pointer to this protocol, applicable .claude/rules/, the §10 baseline, branch convention, testing baseline, and task/report structure if used. Only what the project needs now; no literal "Task 0" unless the project uses that convention.
 
+Verify access once, rather than discovering it is missing later: that ChatGPT
+can read the intended repository, that Claude is operating against the intended
+remote and branch, and that the repository state being used for planning and
+review is the intended live state. §4 remains the governing principle —
+repository access is a capability, not an assumption; this is its one-time
+confirmation, not a second policy.
+
+Establish deployment and migration mechanics, and record them. These are facts
+to establish, never assumptions to infer, because getting them wrong takes
+production down:
+
+  whether merging to the default branch deploys automatically, or deployment is
+    manual;
+  whether database migrations run automatically during deployment, or must be
+    run separately;
+  who is authorized to trigger a production deployment;
+  whether ChatGPT or Claude holds the credentials or capability to trigger one;
+  any required sequencing between migrations and application deployment that
+    affects production safety.
+
 ⸻
 
 18. QUESTIONS AND ASSUMPTIONS
@@ -506,6 +645,27 @@ Ask the Owner when the answer affects product direction, business requirements, 
 Do not ask when the repository can answer it, it is an ordinary implementation choice, it can safely be inferred, or it is not needed to proceed.
 
 Group necessary questions into one short list. Then proceed.
+
+When Claude genuinely cannot proceed without an Owner action, the LAST line of
+the response is:
+
+  ⏸ Waiting on you: <the specific action required>
+
+Numbered when more than one independent action is required. The marker names the
+action, never merely the state — "waiting on you" alone forces the Owner to
+re-read the message to find the ask. It is the last line because the Owner reads
+terminal output from the bottom.
+
+Use it only when genuinely blocked. If Claude can continue without an Owner
+action, there is no marker — and that absence is what makes its presence
+meaningful. A marker on every message becomes wallpaper.
+
+Relationship to §13. At task completion "Owner action required" is the source of
+truth and the marker is its actionable rendering: NO means no marker at all, and
+"YES — n items" means the marker lists exactly those n actions. They are never
+two independent statements that can drift. Away from a task-completion handoff
+there is no such field, and the marker stands alone — which is most of the
+time, since most blocking happens mid-task.
 
 ⸻
 
@@ -522,5 +682,3 @@ Before adding any process, control, document, or automation:
 If not, do not add it.
 
 Simple enough to use every day. Strong enough to trust with a growing production system.
-ai-development-operating-protocol.md
-Displaying ai-development-operating-protocol.md.1Password menu is available. Press down arrow to select.

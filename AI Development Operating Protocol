@@ -1,5 +1,5 @@
 AI DEVELOPMENT OPERATING PROTOCOL
-Version 4.6
+Version 5.0
 
 Applies to: Project Owner, ChatGPT, Claude Code, and the project repository.
 Generic and reusable. Project-specific details belong in the project's own documentation.
@@ -293,6 +293,17 @@ Stop and report when: credentials or access are missing, production authorizatio
 
 Stopping beats improvising.
 
+Interactive authentication is the Owner's to perform, never Claude's to attempt.
+Establishing a credential — a device code, a browser round-trip, a token pasted
+at a prompt — is interactive by design, and a tool shell cannot answer a prompt.
+Attempting one does not fail; it waits, which is worse, because a hang carries
+no diagnosis.
+
+So when execution needs a credential or access that is missing, Claude names
+exactly what is missing, gives the Owner the exact commands to establish it,
+marks the work as waiting on the Owner (§18), and stops. It does not run the
+command itself and hope.
+
 A session may hold several closely related actions when scope stays clear. Claude does not begin unrelated work.
 
 Mutation of the guarded behavior. When a test is relied on as the primary
@@ -382,6 +393,7 @@ self-contained, copy-paste-ready block:
   it depends on nothing in the surrounding conversation;
   it is never split across blocks or messages;
   the Owner never assembles, edits, reorders, or selects pieces of it;
+  it opens with the sender attribution defined below, inside the block itself;
   a correction is never a diff or a "replace point X with this" — reissue the
     complete replacement block instead;
   placeholders requiring Owner editing are avoided, and where one is genuinely
@@ -390,6 +402,112 @@ self-contained, copy-paste-ready block:
 
 This extends the courier principle already stated above; it is not a second
 communication system.
+
+SENDER ATTRIBUTION — ASYMMETRICAL, BY EVIDENCE
+
+Every such block opens, INSIDE the copyable region, with a line naming what the
+recipient must send back:
+
+  Please reply with a paste-ready prompt for <recipient>, per §13.
+
+A Claude → ChatGPT block carries one line ABOVE that, identifying the sender:
+
+  FROM: Claude — this is Claude speaking, not the owner.
+
+A ChatGPT → Claude block does NOT. The asymmetry is deliberate and rests on what
+actually failed. ChatGPT receives the Owner's paste with no way to tell it from the
+Owner's own words, reads it as the Owner asking, and answers conversationally —
+that is the observed defect. Claude receives a reply to a question Claude itself
+wrote, and has never mistaken one. Symmetry here would be two lines of ceremony
+bought with nothing, and the goal is reliable transfer on the minimum text.
+
+The second line is not a label; it is the instruction that determines what comes
+back. It is why both directions keep it.
+
+"Copyable region" means whatever the recipient's client actually copies. Where
+that client renders the block as a code fence with a copy button, the two lines
+are the FIRST LINES INSIDE THE FENCE — not a preamble above it. A label above
+the fence is not copied and does not exist.
+
+Inside is the whole requirement. Attribution written above the copy point is
+not attribution: the Owner copies from the marked point, so a label outside it
+is the one part that does not travel. What arrives is an instruction in the
+Owner's voice, and it is answered conversationally to the Owner — with no
+paste-ready prompt in the reply, so the Owner composes one by hand. That is
+the courier composing something, which this section exists to prevent.
+
+The model that did the work is NOT named here. The Model field already carries
+it, and repeating it lengthens the one line whose entire value is being read at
+a glance.
+
+Keep it to these two lines. A longer header is ceremony the Owner reads past,
+and a label that gets read past is a label that is absent.
+
+MESSAGE IDENTITY
+
+Every courier block opens with its own identity and its recipient:
+
+  Task <N> · Prompt <M> → ChatGPT    (work under a task)
+  Prompt <M> → ChatGPT               (no task)
+
+That exact line is the first line of the durable file below AND appears verbatim in
+the pointer the Owner is given, so matching one against the other is a glance rather
+than a comparison.
+
+Numbering is scoped to the task, and the presence of the `Task N ·` prefix is what
+says so. Messages outside a task are not an edge case — a design question, a
+protocol proposal written before a number exists, a question arising during routine
+work — and a task number is never invented to satisfy the format.
+
+The next number is derived from the durable file's current label, read before it is
+overwritten. Writing under a task: the same task's label increments, any other label
+starts again at 1. Writing outside a task: a non-task label increments, a
+task-qualified one starts again at 1. An absent or unreadable file starts at 1.
+
+**The label orders messages and names their recipient. It is never evidence of
+repository state** — a commit hash is that, and confusing the two would let a
+sequence number look like a claim about the code.
+
+A timestamp does not do this job. Three reviews once arrived in a day citing the same
+task, branch and commit; what the Owner needed was which one was current and who it
+was for, not when it was written.
+
+Known limitation, stated rather than engineered around: the durable path is
+gitignored, so clearing it restarts the sequence at 1. That is visible rather than
+silent, and a restart is itself true information. The label gives ordered identity
+within the surviving courier lifecycle, not global uniqueness.
+
+DURABLE COPY
+
+Every courier block is also written to a fixed, gitignored path in the repository,
+and chat carries a one-line pointer to it. The path is named in the project's own
+documentation, not here — as is any client-specific delivery behaviour, which
+varies by what the Owner is reading on and does not travel between projects.
+
+Chat scrollback is not storage. A block the Owner scrolls past is gone, and the
+cost of losing it falls on the person this section exists to protect.
+
+THE FILE HOLDS THE CURRENT MESSAGE AND NOTHING ELSE. It is not a log and not an
+archive.
+
+When the branch, commit or state a block cites changes before the block is sent, the
+file is rewritten so it holds the current message. **A block citing superseded state
+is not merely old, it is wrong** — the Owner cannot see the difference, and the
+recipient acts on it. One review has already been performed against a commit whose
+defect had been fixed, because the file still named it.
+
+When the message has been carried or answered, the file is replaced with an explicit
+no-message state that RETAINS the label just spent. An answered block left in place
+will be carried again, because nothing tells the Owner it was already delivered — one
+review was returned three times for exactly that reason.
+
+So the file always answers one question: either here is the current labelled message
+and who it goes to, or there is nothing to send and this was the last thing carried.
+
+Spent is a lifecycle state of the artifact, not recordkeeping. **The retained label is
+also the surviving sequence state** that MESSAGE IDENTITY derives from, so these two
+rules hold each other up: remove the retention and the numbering resets every time a
+message is delivered.
 
 The handoff is a **chat-only coordination artifact**. It is not written into the
 task report and does not replace it: the report is the durable historical
@@ -403,7 +521,10 @@ change-and-verification sentence, **Report**, **Branch**, **Owner action**, and
 a copy/paste **Prompt for ChatGPT**. The templates below are those fields in
 order; they are the definition, not an illustration of one.
 
-Claude, at the end of a consequential or discovery task:
+Claude, at the end of a consequential or discovery task. The block opens with its
+MESSAGE IDENTITY line, above the fields:
+
+  Task <N> · Prompt <M> → ChatGPT
 
   Task <N> — <Task Name>
   Classification: <ROUTINE | CONSEQUENTIAL | DISCOVERY>
@@ -417,6 +538,9 @@ Claude, at the end of a consequential or discovery task:
   Owner action required: <YES — n items (see report) | NO>
 
   Prompt for ChatGPT — copy from here:
+  FROM: Claude — this is Claude speaking, not the owner.
+  Please reply with a paste-ready prompt for Claude, per §13.
+
   Review Task <N> — <Task Name>.
   Report: <path>
   Branch: <branch> @ <commit>
@@ -428,7 +552,10 @@ authorization to implement."
 When no ChatGPT involvement is needed the field says so rather than inventing
 filler: "Prompt for ChatGPT: none needed — routine, merge after CI."
 
-ChatGPT, at the end of a classification, authorization, or review:
+ChatGPT, at the end of a classification, authorization, or review. Same identity line
+first, with Claude as the recipient:
+
+  Task <N> · Prompt <M> → Claude
 
   Task <N> — <classification | authorization | review>
   Synced: STATE @ Task <n> · <branch> @ <commit> · CI <status>
@@ -438,7 +565,62 @@ ChatGPT, at the end of a classification, authorization, or review:
   <One to three sentences.>
 
   Prompt for Claude — copy from here:
+  Please reply with a paste-ready prompt for ChatGPT, per §13.
+
   <complete instruction: task number, scope, authorization level, stop conditions>
+
+CHATGPT ANSWERS IN TWO STAGES
+
+When an Owner decision is open, ChatGPT does not send a block. It sends the Owner a
+short, plain-English note carrying only three things — the decision needed, any
+concerns, and its recommendation — and stops. When the Owner answers, the complete
+block follows.
+
+A note is ALSO required when ChatGPT has already settled something on the Owner's
+behalf — when its judgement materially changed a consequential path he would
+reasonably expect to control or know about: the approach taken, the scope, the
+authorization, or product, business, security, legal or financial direction. That
+note says what was decided and why, and does not pretend a decision is still open.
+
+**"Nothing remains for the Owner to decide" is not "nothing happened he should know
+about."** ChatGPT once chose between two materially different architectures, reshaping
+a task, and correctly reported that no decision was needed — the Owner learned which
+road had been taken only by reading the block.
+
+THE NEGATIVE CASE, and it is the load-bearing half. No note for judgement inside a
+direction already set: choosing between equivalent implementations, naming, ordering
+work, routine test strategy, or applying a requirement the Owner has already settled.
+A choice is not notable merely because it was technically difficult. **The Owner is
+told when ChatGPT has selected a different road; he is not told which paving stone it
+used.**
+
+Without that boundary this widens until every reply carries a note, and notes nobody
+reads are worse than the gap they replaced, because they look like the problem was
+solved.
+
+When neither case applies, the block goes out on its own with no note. The note is for
+deciding or for disclosing, never for summarising a block the Owner is about to read
+anyway.
+
+**This is not an exception to the completeness rule above — it is that rule.** A
+block carrying an unresolved question is neither complete nor self-contained: it
+depends on an answer that does not exist yet. Sending one early already breaks this
+section.
+
+The gate opens only for an answer that would materially change authorization,
+implementation scope, classification, protocol wording, product or business
+direction, security, legal or financial direction, Owner authority, or another
+decision reserved to the Owner.
+
+It stays shut for routine implementation detail inside an existing authorization,
+wording that does not change meaning, an observation needing no decision, routine
+verification detail, and a recommendation where the authorized direction is already
+unambiguous. **The negative case is load-bearing.** A gate defined only by what
+opens it widens until every review ends in a pause, and a process that always waits
+has the same effect on the Owner as one that never asks.
+
+No separate stop marker: §18's ⏸ already governs waiting on the Owner and applies
+to both AIs.
 
 The Merge field exists because "approved" was being read as merge
 authorization, and the two are not the same: work can be approved as far as it
@@ -496,6 +678,9 @@ A repository check can verify:
   - that no document points at a handoff definition that no longer exists;
   - that this section still carries its required fields, the discovery closing
     line, and the unpushed-branch rule;
+  - that each courier template carries the return-prompt instruction inside the
+    copyable region, and that the Claude → ChatGPT template additionally carries
+    the sender line;
   - that a secondary document has not reintroduced an approval path that omits
     ChatGPT's planning and review role;
   - durable task-artifact conventions that are explicitly defined, such as a
@@ -547,6 +732,8 @@ Every ChatGPT prompt carries the classification. Every Claude handoff states the
 The process is not self-modifying.
 Neither AI changes the workflow, CLAUDE.md, rules, hooks, permissions, CI, or this protocol on its own initiative, even when it believes it has found an improvement. It proposes the change through a handoff; the Owner decides whether to open a protocol-change task (§15). The §10 deny rules back this for Claude.
 
+Every governed surface has a maintenance path, and it is the ordinary consequential one: ChatGPT plans, the Owner authorizes, Claude implements, ChatGPT reviews, the Owner merges. That includes `.claude/` — its command and rule files are governed like any other, not exempt from change and not changeable on Claude's initiative. Stating it costs a sentence and closes a real gap: a rule saying only who may NOT change a file leaves nobody who may, and a file nobody may repair goes stale silently until something built on it fails.
+
 Escalation is one-way.
 Claude may raise routine to consequential and stop. Neither AI lowers consequential to routine. Only the Owner does that, explicitly.
 
@@ -586,7 +773,7 @@ Task numbers apply to consequential work only. Routine work is identified by its
 
 Before assigning a number ChatGPT checks the index and recent reports when it has access; without access it asks the Owner for the last number rather than inventing one. Numbers are never reused. No reservation system unless real parallel work forces one.
 
-The index, if used, is navigation only: Task, Name, Type, Date, Path. No status column; state is the task's position in the lifecycle and its PR.
+The index is navigation only: Task, Name, Type, Date, Path. No status column; state is the task's position in the lifecycle and its PR.
 
 The generated state file is the answer to "what is true right now". Claude
 rewrites it in the task's own commit, never as a separate step, and the Owner
@@ -613,28 +800,83 @@ Inspect before asking. Determine structure, stack, branch, instructions, workflo
 New project:
 Ask the smallest number of high-value questions: what is being built, for whom, primary objective, platform, constraints, whether a repository exists. Ask about user accounts or personal data, payments, compliance, and hard deadlines or budget only when relevant — these change architecture and are expensive to retrofit. Do not interview. If the Owner defers a decision, do not ask again. Make reasonable technical assumptions, state them briefly, proceed.
 
-Bootstrap, before the first consequential task:
-repository structure, CLAUDE.md with the §5 rubric and a pointer to this protocol, applicable .claude/rules/, the §10 baseline, branch convention, testing baseline, and task/report structure if used. Only what the project needs now; no literal "Task 0" unless the project uses that convention.
+Bootstrap, before the first consequential task.
 
-Verify access once, rather than discovering it is missing later: that ChatGPT
-can read the intended repository, that Claude is operating against the intended
-remote and branch, and that the repository state being used for planning and
-review is the intended live state. §4 remains the governing principle —
-repository access is a capability, not an assumption; this is its one-time
-confirmation, not a second policy.
+Ordered, because the steps depend on each other and an unordered list leaves the
+order to be reinvented every time. Only what the project needs now; no literal
+"Task 0" unless the project uses that convention.
 
-Establish deployment and migration mechanics, and record them. These are facts
-to establish, never assumptions to infer, because getting them wrong takes
-production down:
+1. **Access, and the contribution path.** Verify that ChatGPT can read the
+   intended repository, that Claude is operating against the intended remote and
+   branch, and that the state being used for planning and review is the intended
+   live state. §4 remains the governing principle — repository access is a
+   capability, not an assumption; this is its one-time confirmation, not a
+   second policy.
 
-  whether merging to the default branch deploys automatically, or deployment is
-    manual;
-  whether database migrations run automatically during deployment, or must be
-    run separately;
-  who is authorized to trigger a production deployment;
-  whether ChatGPT or Claude holds the credentials or capability to trigger one;
-  any required sequencing between migrations and application deployment that
-    affects production safety.
+   Then establish **how a change actually reaches a pull request** on this
+   project. The requirement is not that any particular tool works: it is that
+   there is a known, working path for Claude and the Owner to contribute a
+   change and open a PR **without Claude performing interactive authentication**.
+   A CLI, a create-PR URL handed to the Owner, or the Owner opening it are all
+   acceptable; leaving it undecided is not, because it is discovered mid-task
+   otherwise.
+
+   Where access or a credential is missing, Claude applies §11: name what is
+   missing, give the Owner the exact commands, mark the work as waiting on the
+   Owner, and stop. First, because nothing below can be created in a repository
+   that cannot be reached.
+
+2. **Deployment and migration mechanics.** Facts to establish, never assumptions
+   to infer, because getting them wrong takes production down:
+
+   whether merging to the default branch deploys automatically, or deployment is
+     manual;
+   whether database migrations run automatically during deployment, or must be
+     run separately;
+   who is authorized to trigger a production deployment;
+   whether ChatGPT or Claude holds the credentials or capability to trigger one;
+   any required sequencing between migrations and application deployment that
+     affects production safety.
+
+3. **Governance artifacts.** Repository structure, CLAUDE.md carrying the §5
+   rubric and a pointer to this protocol, applicable .claude/rules/, the §10
+   baseline, and the branch convention. Also the courier path §13 requires — a
+   fixed gitignored file every courier block is written to — named in CLAUDE.md
+   and added to the ignore file here, because §13 defers the path to the project
+   and a project that never chooses one cannot satisfy it.
+
+4. **Testing and quality baseline.** What runs, how it is run, and what a green
+   run means — including whether the baseline is green at all, since §11's
+   failure-set comparison depends on knowing.
+
+5. **Task, report and state infrastructure**, as §16 defines it:
+
+   sequential task numbers, and the rule for determining the next one;
+   `docs/tasks/TASK-<n>/` as the home for a task's artifacts;
+   `discovery-report.md` where discovery was performed;
+   `completion-report.md` for completed consequential work;
+   `docs/tasks/INDEX.md` as navigation;
+   a generated current-state file, and the mechanism that regenerates it.
+
+   The §16 distinction holds and is the point of having both: the index is
+   navigation, the generated file is generated state, and neither is a
+   hand-maintained source of truth competing with the other.
+
+6. **Verify bootstrap is complete**, against the definition below.
+
+Bootstrap is done when all of these are true:
+
+  repository access is verified;
+  deployment and migration mechanics are established and recorded;
+  governance artifacts exist;
+  the testing and quality baseline is established;
+  task, report and state infrastructure exists;
+  the contribution and PR path is known and usable without Claude performing
+    interactive authentication;
+  step 6 has actually been carried out.
+
+Not a checklist to perform ceremonially. It exists so "are we ready to start?"
+has an answer rather than a feeling.
 
 ⸻
 
@@ -646,7 +888,7 @@ Do not ask when the repository can answer it, it is an ordinary implementation c
 
 Group necessary questions into one short list. Then proceed.
 
-When Claude genuinely cannot proceed without an Owner action, the LAST line of
+When either AI genuinely cannot proceed without an Owner action, the LAST line of
 the response is:
 
   ⏸ Waiting on you: <the specific action required>
@@ -654,9 +896,10 @@ the response is:
 Numbered when more than one independent action is required. The marker names the
 action, never merely the state — "waiting on you" alone forces the Owner to
 re-read the message to find the ask. It is the last line because the Owner reads
-terminal output from the bottom.
+terminal output from the bottom; the position is kept in every client so the ask
+sits in one predictable place regardless of which AI is speaking.
 
-Use it only when genuinely blocked. If Claude can continue without an Owner
+Use it only when genuinely blocked. If the AI can continue without an Owner
 action, there is no marker — and that absence is what makes its presence
 meaningful. A marker on every message becomes wallpaper.
 
